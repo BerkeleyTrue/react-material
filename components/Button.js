@@ -6,15 +6,20 @@
 var React = require('react');
 var ReactStyle = require('react-style');
 
+var RippleContainer = require('./RippleContainer');
+
 var Button = React.createClass({
 
   normalStyle: ReactStyle(function() {
     return {
+      webkitTapHighlightColor: 'rgba(0,0,0,0)',
       borderRadius: '3px',
       cursor: 'pointer',
       display: 'inline-block',
       outline: 'none',
+      overflow: 'hidden',
       padding: '9px 0',
+      position: 'relative',
       textAlign: 'center',
       textTransform: 'uppercase',
       userSelect: 'none',
@@ -46,8 +51,7 @@ var Button = React.createClass({
 
   propTypes: {
     raised: React.PropTypes.bool,
-    disabled: React.PropTypes.bool,
-    styles: React.PropTypes.array
+    disabled: React.PropTypes.bool
   },
 
   getInitialState: function() {
@@ -74,25 +78,31 @@ var Button = React.createClass({
       }
     }
 
-    return <div styles={styles} onClick={this.onClick} onMouseDown={this.onMouseDown} onMouseUp={this.onMouseUp}>
+    return <div role="button" styles={styles} onClick={this.onClick} onMouseDown={this.onMouseDown} onMouseUp={this.onMouseUp}>
+    {!this.props.disabled &&
+      <RippleContainer /> }
       {this.props.children}
     </div>
   },
 
   onClick: function(e) {
     var props = this.props;
-    // paper ripple
-    // handle click
     if (props.onClick) {
       props.onClick(e);
     }
   },
 
-  onMouseUp: function(e) {
+  onMouseUp: function() {
+    if (this.props.disabled) {
+      return;
+    }
     this.setState({active: false});
   },
 
-  onMouseDown: function(e) {
+  onMouseDown: function() {
+    if (this.props.disabled) {
+      return;
+    }
     this.setState({active: true});
   }
 

@@ -6,18 +6,12 @@
 var React = require('react');
 var ReactStyle = require('react-style');
 
-var PaperRipple = React.createClass({
-
-  normalStyle: ReactStyle(function(){
-
-  }),
+var Icon = React.createClass({
 
   render: function() {
-    return <div>
 
-    </div>;
   }
 
 });
 
-module.exports = PaperRipple;
+module.exports = Icon;

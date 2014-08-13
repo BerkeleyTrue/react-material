@@ -63,7 +63,7 @@ var RadioButton = React.createClass({
     var normalStyle = this.normalStyle();
     var onButtonStyle = [this.onButtonStyle()];
     if (props.onButtonStyle) {
-      onButtonStyle.push(props.onButtonStyle);
+      onButtonStyle = onButtonStyle.concat(props.onButtonStyle);
     }
     if (this.state.active){
       onButtonStyle.push(this.onButtonFillStyle());
