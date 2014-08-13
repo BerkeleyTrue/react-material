@@ -72,12 +72,11 @@ var RippleContainer = React.createClass({
         rippleStyles.push({opacity: 0});
       }
 
-      // todo: calculate the biggest dimension and use that for width or height
-      rippleStyles.push({left: ripple.x, top: ripple.y, width: ripple.width, height: ripple.width});
+      rippleStyles.push({left: ripple.x, top: ripple.y, width: ripple.width, height: ripple.height});
       var rippleComponent = <div key={ripple.id} ref={'ripple_'+ripple.id} styles={rippleStyles} />;
       rippleComponents.push(rippleComponent);
     }
-    return <div styles={this.normalStyle()} onMouseDown={this.onMouseDown} onMouseUp={this.onMouseUp}>
+    return <div styles={this.normalStyle()} onMouseDown={this.onMouseDown} onMouseLeave={this.onMouseUp} onMouseUp={this.onMouseUp}>
       {rippleComponents}
     </div>;
   },
@@ -86,9 +85,16 @@ var RippleContainer = React.createClass({
     var domNode = this.getDOMNode();
     var height = domNode.offsetHeight;
     var width = domNode.offsetWidth;
+    if (width > height) {
+      height = width;
+    }
+    else {
+      width = height;
+    }
     var boundingRect = domNode.getBoundingClientRect();
-    var x = e.pageX - boundingRect.left - width / 2;
-    var y = e.pageY - boundingRect.top - height / 2;
+    var x = e.clientX - boundingRect.left - width / 2;
+    var y = e.clientY - boundingRect.top - height / 2;
+
     var ripples = this.state.ripples;
     var ripple = {
       id: rippleUniqueId++,
@@ -123,10 +129,14 @@ var RippleContainer = React.createClass({
   },
 
   endRipple: function(e) {
+    var ripples = this.state.ripples;
     if (e.propertyName === 'transform') {
-      var ripples = this.state.ripples;
       ripples[0].transitioning = false;
       ripples[0].transitionComplete = true;
+      this.setState({ripples: ripples});
+    }
+    else if (e.propertyName === 'opacity') {
+      ripples.shift();
       this.setState({ripples: ripples});
     }
   },

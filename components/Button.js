@@ -78,7 +78,7 @@ var Button = React.createClass({
       }
     }
 
-    return <div role="button" styles={styles} onClick={this.onClick} onMouseDown={this.onMouseDown} onMouseUp={this.onMouseUp}>
+    return <div role="button" styles={styles} onClick={this.onClick} onMouseDown={this.onMouseDown} onMouseLeave={this.onMouseUp} onMouseUp={this.onMouseUp}>
     {!this.props.disabled &&
       <RippleContainer /> }
       {this.props.children}

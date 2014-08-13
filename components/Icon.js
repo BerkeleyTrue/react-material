@@ -9,7 +9,9 @@ var ReactStyle = require('react-style');
 var Icon = React.createClass({
 
   render: function() {
+    return <svg>
 
+    </svg>;
   }
 
 });
