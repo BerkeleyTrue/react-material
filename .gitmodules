@@ -1,0 +1,3 @@
+[submodule "components/icons"]
+	path = components/icons
+	url = https://github.com/Polymer/core-icons.git
