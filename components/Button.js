@@ -36,6 +36,7 @@ var Button = React.createClass({
   }),
 
   raisedPressedStyle: ReactStyle(function(){
+    this.bla = 123;
     return {
       boxShadow: '0 8px 17px 0 rgba(0, 0, 0, 0.2)'
     };
@@ -78,18 +79,16 @@ var Button = React.createClass({
       }
     }
 
-    return <div role="button" styles={styles} onClick={this.onClick} onMouseDown={this.onMouseDown} onMouseLeave={this.onMouseUp} onMouseUp={this.onMouseUp}>
+    return <div role="button"
+                styles={styles}
+                onClick={this.props.onClick}
+                onMouseDown={this.onMouseDown}
+                onMouseLeave={this.onMouseUp}
+                onMouseUp={this.onMouseUp}>
     {!this.props.disabled &&
       <RippleContainer /> }
       {this.props.children}
     </div>
-  },
-
-  onClick: function(e) {
-    var props = this.props;
-    if (props.onClick) {
-      props.onClick(e);
-    }
   },
 
   onMouseUp: function() {

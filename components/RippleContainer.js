@@ -76,7 +76,7 @@ var RippleContainer = React.createClass({
       var rippleComponent = <div key={ripple.id} ref={'ripple_'+ripple.id} styles={rippleStyles} />;
       rippleComponents.push(rippleComponent);
     }
-    return <div styles={this.normalStyle()} onMouseDown={this.onMouseDown} onMouseLeave={this.onMouseUp} onMouseUp={this.onMouseUp}>
+    return <div styles={[this.normalStyle(), this.props.styles]} onMouseDown={this.onMouseDown} onMouseLeave={this.onMouseUp} onMouseUp={this.onMouseUp}>
       {rippleComponents}
     </div>;
   },

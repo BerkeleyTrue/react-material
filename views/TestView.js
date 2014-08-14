@@ -52,8 +52,8 @@ var TestView = React.createClass({
       </div>
       <div>
       <h2>Floating Action Button</h2>
-        <FloatingActionButton  styles={[{backgroundColor:'#d23f31'}]}/>
-        <FloatingActionButton mini={true} styles={[{backgroundColor:'#5677fc'}]}/>
+        <FloatingActionButton icon="undo" styles={[{backgroundColor:'#d23f31'}]}/>
+        <FloatingActionButton icon="arrow-forward" mini={true} styles={[{backgroundColor:'#5677fc'}]}/>
       <h2>Radio Buttons</h2>
         <RadioButton name="radiobutton" onButtonStyle={[{backgroundColor:'#d23f31'}]}/>
         <RadioButton name="radiobutton"/>
