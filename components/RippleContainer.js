@@ -33,7 +33,7 @@ var RippleContainer = React.createClass({
       background: 'rgba(0, 0, 0, 0.04)',
       borderRadius: '50%',
       transform: 'scale(0)',
-      transition: 'transform .25s linear, opacity .25s linear'
+      transition: 'transform .25s linear, opacity .25s linear .2s'
     };
   }),
 

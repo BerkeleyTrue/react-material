@@ -13,6 +13,7 @@ var Button = React.createClass({
   normalStyle: ReactStyle(function() {
     return {
       webkitTapHighlightColor: 'rgba(0,0,0,0)',
+      backgroundColor: 'transparent',
       borderRadius: '3px',
       cursor: 'pointer',
       display: 'inline-block',
@@ -36,7 +37,6 @@ var Button = React.createClass({
   }),
 
   raisedPressedStyle: ReactStyle(function(){
-    this.bla = 123;
     return {
       boxShadow: '0 8px 17px 0 rgba(0, 0, 0, 0.2)'
     };
@@ -63,6 +63,7 @@ var Button = React.createClass({
 
   render: function() {
     var props = this.props;
+    var state = this.state;
     var styles = [this.normalStyle()];
 
     if (props.styles) {
@@ -79,15 +80,20 @@ var Button = React.createClass({
       }
     }
 
+
     return <div role="button"
+                tabIndex="0"
                 styles={styles}
-                onClick={this.props.onClick}
+                onClick={props.onClick}
+
                 onMouseDown={this.onMouseDown}
                 onMouseLeave={this.onMouseUp}
                 onMouseUp={this.onMouseUp}>
-    {!this.props.disabled &&
-      <RippleContainer /> }
-      {this.props.children}
+
+    {!props.disabled &&
+      <RippleContainer />
+    }
+      {props.children}
     </div>
   },
 
@@ -107,6 +113,4 @@ var Button = React.createClass({
 
 });
 
-module.exports = function() {
-  return Button.apply(null, arguments);
-};
+module.exports = Button;

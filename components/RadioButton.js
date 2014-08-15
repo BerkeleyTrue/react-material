@@ -52,14 +52,33 @@ var RadioButton = React.createClass({
     };
   }),
 
+  pressedStyle: ReactStyle(function(){
+    return {
+      top: 0,
+      left: 0,
+
+      position:'absolute',
+      opacity:'.3',
+      transform:'scale(2.5)',
+      transition: 'opacity ease 0.28s'
+    };
+  }),
+
   getInitialState: function() {
     return {
       active: false
     };
   },
 
+  releaseStyle: ReactStyle(function() {
+    return {
+      opacity: 0
+    };
+  }),
+
   render: function() {
     var props = this.props;
+    var state = this.state;
     var normalStyle = this.normalStyle();
     var onButtonStyle = [this.onButtonStyle()];
     if (props.onButtonStyle) {
@@ -68,7 +87,10 @@ var RadioButton = React.createClass({
     if (this.state.active){
       onButtonStyle.push(this.onButtonFillStyle());
     }
-    return <div styles={normalStyle} onClick={this.onClick}>
+    return <div styles={normalStyle} onClick={this.onClick} onMouseDown={this.onMouseDown} onMouseUp={this.onMouseUp}>
+      {state.mouseDown &&
+        <div ref="shadow" onTransitionEnd={this.onTransitionEnd} styles={onButtonStyle.concat([this.pressedStyle(), state.mouseUp ? this.releaseStyle(): null])} />
+        }
       <div styles={this.offButtonStyle()} />
       <div styles={onButtonStyle} />
     </div>;
@@ -76,8 +98,15 @@ var RadioButton = React.createClass({
 
   onClick: function() {
     this.setState({active: !this.state.active})
-  }
+  },
 
+  onMouseDown: function(){
+    this.setState({mouseDown: true});
+  },
+
+  onMouseUp: function() {
+    this.setState({mouseUp: true});
+  }
 
 });
 

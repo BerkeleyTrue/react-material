@@ -15,6 +15,8 @@ var FloatingActionButton = require('../components/FloatingActionButton');
 var RadioButton = require('../components/RadioButton');
 var Tab = require('../components/Tab');
 var Tabs = require('../components/Tabs');
+var ProgressBar = require('../components/ProgressBar');
+var ToggleButton = require('../components/ToggleButton');
 
 ReactStyle.theme = [require('../themes/BlueTheme')];
 
@@ -25,6 +27,20 @@ var TestView = React.createClass({
       <h1>React Material Components</h1>
       <p>
         A set of example components for React Style that aim to be very easy to use.
+      </p>
+      <p>
+        There is the ambition to have these components work from IE8 and later, with several exceptions:
+        <ul>
+          <li>
+            no transitions / animations
+          </li>
+          <li>
+            no shadows
+          </li>
+          <li>
+            no SVG - this should be solved by generating images
+          </li>
+        </ul>
       </p>
       <div>
         <h2>Flat buttons</h2>
@@ -69,7 +85,11 @@ var TestView = React.createClass({
 
         </Tab>
       </Tabs>
+      <h2>Progress bar</h2>
+        <ProgressBar percentage={20} styles={[{backgroundColor:'#d23f31'}]}/>
       </div>
+      <h2>Toggle Button</h2>
+      <ToggleButton />
     </div>;
   },
 
