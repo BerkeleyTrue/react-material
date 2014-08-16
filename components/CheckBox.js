@@ -11,6 +11,7 @@ var CheckBox = React.createClass({
   containerStyle: ReactStyle(function(){
     return {
       cursor: 'pointer',
+      display: 'inline-block',
       height: '18px',
       position: 'relative',
       transform: 'translateZ(0)',
@@ -47,10 +48,10 @@ var CheckBox = React.createClass({
 
   checkedStyle: ReactStyle(function(){
     return {
-      borderWidth: '0 0 2px 2px',
+      borderWidth: '0 2px 2px 0',
       borderColor: '#0f9d58',
-      height: '10px',
-      width: '21px'
+      width: '10px',
+      height: '21px'
     }
   }),
 
@@ -63,16 +64,40 @@ var CheckBox = React.createClass({
   render: function() {
     var state = this.state;
     var styles = [this.normalStyle()];
-    if (state.checked) {
+    if (state.transitioning) {
       styles.push(this.transitionStyle());
     }
+    else if (state.checked && !state.transitioning) {
+      styles.push(this.transitionStyle());
+      styles.push(this.checkedStyle());
+    }
+
     return <div styles={this.containerStyle()} onClick={this.onToggle} >
-      <div styles={styles}/>
+      <div ref="checkbox" styles={styles}/>
     </div>
   },
 
   onToggle: function() {
-    this.setState({checked: !this.state.checked});
+    if (!this.state.checked) {
+      this.setState({transitioning: true});
+    }
+    else {
+      this.setState({checked: false});
+    }
+  },
+
+  componentDidMount: function() {
+    this.refs.checkbox.getDOMNode().addEventListener('transitionend', this.onTransitionEnd);
+  },
+
+  onTransitionEnd: function(e) {
+    var state = this.state;
+    if (state.transitioning) {
+      if (e.propertyName === 'transform' && !this.state.checked) {
+        this.setState({checked: true, transitioning: false});
+
+      }
+    }
   }
 
 });

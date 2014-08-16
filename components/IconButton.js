@@ -8,7 +8,7 @@ var React = require('react');
 var IconButton = React.createClass({
 
   render: function() {
-
+    return <div />;
   }
 
 });

@@ -30,38 +30,18 @@ var ProgressBar = React.createClass({
     percentage: React.PropTypes.number.isRequired
   },
 
-  getInitialState: function(){
-    return {
-      width: -1
-    }
-  },
-
   render: function() {
     var props = this.props;
     var state = this.state;
     var progressBarStyles = [this.progressStyle()];
-    progressBarStyles.push({width: state.width / 100 * props.percentage});
+    progressBarStyles.push({width: props.percentage + '%'});
     if (props.styles) {
       progressBarStyles = progressBarStyles.concat(props.styles);
     }
     return <div ref="bar" styles={this.normalStyle()}>
-      {state.width > -1 &&
         <div styles={progressBarStyles} />
-        }
-    </div>
-  },
-
-  componentDidMount: function() {
-    var state = this.state;
-    if (state.width === -1) {
-      var barWidth = this.refs.bar.getDOMNode().offsetWidth;
-      console.log(barWidth);
-      this.setState({
-        width: barWidth
-      });
-    }
+      </div>
   }
-
 
 });
 

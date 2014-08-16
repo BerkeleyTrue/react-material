@@ -6,6 +6,8 @@
 var React = require('react');
 var ReactStyle = require('react-style');
 
+var CircleShadow = require('./CircleShadow');
+
 var RadioButton = React.createClass({
 
   normalStyle: ReactStyle(function(){
@@ -34,7 +36,7 @@ var RadioButton = React.createClass({
 
   onButtonStyle: ReactStyle(function(){
     return {
-      backgroundColor: 'grey',
+      backgroundColor: '#5a5a5a',
       borderRadius: '50%',
       height: '16px',
       left: 0,
@@ -52,47 +54,31 @@ var RadioButton = React.createClass({
     };
   }),
 
-  pressedStyle: ReactStyle(function(){
-    return {
-      top: 0,
-      left: 0,
-
-      position:'absolute',
-      opacity:'.3',
-      transform:'scale(2.5)',
-      transition: 'opacity ease 0.28s'
-    };
-  }),
-
   getInitialState: function() {
     return {
       active: false
     };
   },
 
-  releaseStyle: ReactStyle(function() {
-    return {
-      opacity: 0
-    };
-  }),
-
   render: function() {
     var props = this.props;
-    var state = this.state;
-    var normalStyle = this.normalStyle();
+    var active = this.state.active;
+    var normalStyles = [this.normalStyle()];
+    if (props.styles) {
+      normalStyles = normalStyles.concat(props.styles);
+    }
     var onButtonStyle = [this.onButtonStyle()];
     if (props.onButtonStyle) {
       onButtonStyle = onButtonStyle.concat(props.onButtonStyle);
     }
-    if (this.state.active){
+    if (active){
       onButtonStyle.push(this.onButtonFillStyle());
     }
-    return <div styles={normalStyle} onClick={this.onClick} onMouseDown={this.onMouseDown} onMouseUp={this.onMouseUp}>
-      {state.mouseDown &&
-        <div ref="shadow" onTransitionEnd={this.onTransitionEnd} styles={onButtonStyle.concat([this.pressedStyle(), state.mouseUp ? this.releaseStyle(): null])} />
-        }
+    return <div styles={normalStyles} onClick={this.onClick} onMouseDown={this.onMouseDown}>
+
       <div styles={this.offButtonStyle()} />
       <div styles={onButtonStyle} />
+      <CircleShadow styles={props.onButtonStyle} active={this.state.mouseDown} />
     </div>;
   },
 
@@ -101,11 +87,7 @@ var RadioButton = React.createClass({
   },
 
   onMouseDown: function(){
-    this.setState({mouseDown: true});
-  },
-
-  onMouseUp: function() {
-    this.setState({mouseUp: true});
+    this.setState({mouseDown: !this.state.active});
   }
 
 });

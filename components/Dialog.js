@@ -4,11 +4,20 @@
 'use strict';
 
 var React = require('react');
+var ReactStyle = require('react-style');
 
 var Dialog = React.createClass({
 
-  render: function() {
+  normalStyle: ReactStyle(function() {
+    return {
 
+    };
+  }),
+
+  render: function() {
+    return <div styles={this.normalStyle()}>
+
+    </div>;
   }
 
 });

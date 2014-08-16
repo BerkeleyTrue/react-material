@@ -1,3 +1,0 @@
-function chainTransitions(el, states) {
-
-}
