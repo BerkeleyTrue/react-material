@@ -10,7 +10,7 @@ var RippleContainer = require('./RippleContainer');
 
 var Button = React.createClass({
 
-  normalStyle: ReactStyle(function() {
+  normalButtonStyle: ReactStyle(function() {
     return {
       webkitTapHighlightColor: 'rgba(0,0,0,0)',
       backgroundColor: 'transparent',
@@ -28,7 +28,7 @@ var Button = React.createClass({
     };
   }),
 
-  raisedStyle: ReactStyle(function() {
+  raisedButtonStyle: ReactStyle(function() {
     return {
       backgroundColor: '#dfdfdf',
       boxShadow: '0 2px 5px 0 rgba(0, 0, 0, 0.26)',
@@ -36,13 +36,13 @@ var Button = React.createClass({
     };
   }),
 
-  raisedPressedStyle: ReactStyle(function(){
+  raisedButtonPressedStyle: ReactStyle(function(){
     return {
       boxShadow: '0 8px 17px 0 rgba(0, 0, 0, 0.2)'
     };
   }),
 
-  disabledStyle: ReactStyle(function() {
+  disabledButtonStyle: ReactStyle(function() {
     return {
       backgroundColor: '#eaeaea',
       color: '#a8a8a8',
@@ -64,28 +64,25 @@ var Button = React.createClass({
   render: function() {
     var props = this.props;
     var state = this.state;
-    var styles = [this.normalStyle()];
-
+    var styles = [this.normalButtonStyle()];
     if (props.styles) {
       styles = styles.concat(props.styles);
     }
     if (props.disabled) {
-      styles.push(this.disabledStyle());
+      styles.push(this.disabledButtonStyle());
     }
     else if (props.raised) {
-      styles.push(this.raisedStyle());
+      styles.push(this.raisedButtonStyle());
 
-      if (this.state.active) {
-        styles.push(this.raisedPressedStyle());
+      if (state.active) {
+        styles.push(this.raisedButtonPressedStyle());
       }
     }
 
 
-    return <div role="button"
+    return this.transferPropsTo(<div role="button"
                 tabIndex="0"
                 styles={styles}
-                onClick={props.onClick}
-
                 onMouseDown={this.onMouseDown}
                 onMouseLeave={this.onMouseUp}
                 onMouseUp={this.onMouseUp}>
@@ -94,7 +91,7 @@ var Button = React.createClass({
       <RippleContainer />
     }
       {props.children}
-    </div>
+    </div>);
   },
 
   onMouseUp: function() {

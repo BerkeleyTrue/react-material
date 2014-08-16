@@ -18,6 +18,7 @@ var Tabs = require('../components/Tabs');
 var ProgressBar = require('../components/ProgressBar');
 var ToggleButton = require('../components/ToggleButton');
 var IconButton = require('../components/IconButton');
+var TextField = require('../components/TextField')
 
 ReactStyle.theme = [require('../themes/BlueTheme')];
 
@@ -90,7 +91,12 @@ var TestView = React.createClass({
       <div>
         blaaaa
       </div>
-
+      <h2>Textfield</h2>
+      <div>
+        <TextField placeHolder="User name" />
+        <TextField placeHolder="Password" />
+      </div>
+      <h2>Moaaaarrr</h2>
     </div>;
   },
 
