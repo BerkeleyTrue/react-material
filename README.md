@@ -15,7 +15,6 @@ Current issues
 - Use Google Closure Compiler Advanced Mode for bragging rights
 - Properly implement the "theming" of the components
 - Should work in IE8 whereby the functionality should not be broken
--
 
 License
 ---
