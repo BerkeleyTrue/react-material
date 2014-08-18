@@ -6,6 +6,8 @@
 var React = require('react');
 var ReactStyle = require('react-style');
 
+var CircleShadow = require('./CircleShadow');
+
 var CheckBox = React.createClass({
 
   containerStyle: ReactStyle(function(){
@@ -13,6 +15,7 @@ var CheckBox = React.createClass({
       cursor: 'pointer',
       display: 'inline-block',
       height: '18px',
+      outline: 'none',
       position: 'relative',
       transform: 'translateZ(0)',
       width: '18px'
@@ -24,10 +27,12 @@ var CheckBox = React.createClass({
       borderColor: '#5a5a5a',
       borderStyle: 'solid',
       borderWidth: '2px',
+      boxSizing: 'border-box',
       cursor: 'pointer',
       height: '18px',
       width: '18px',
       left: 0,
+      outline: 'none',
       transition: 'transform .1s linear, ' +
         'width .1s linear, ' +
         'height .1s linear, ' +
@@ -55,6 +60,12 @@ var CheckBox = React.createClass({
     }
   }),
 
+  circleStyle: ReactStyle(function(){
+    return {
+      backgroundColor: '#0f9d58'
+    }
+  }),
+
   getInitialState:function() {
     return {
       checked: this.props.checked || false
@@ -72,9 +83,19 @@ var CheckBox = React.createClass({
       styles.push(this.checkedStyle());
     }
 
-    return <div styles={this.containerStyle()} onClick={this.onToggle} >
+    return <div tabIndex={0} styles={this.containerStyle()} onClick={this.onToggle} onMouseDown={this.onMouseDown} onMouseUp={this.onMouseUp}>
       <div ref="checkbox" styles={styles}/>
+      <CircleShadow styles={this.circleStyle()} active={this.state.mouseDown} />
+
     </div>
+  },
+
+  onMouseDown: function() {
+    this.setState({mouseDown: true});
+  },
+
+  onMouseUp: function() {
+    this.setState({mouseDown: false});
   },
 
   onToggle: function() {

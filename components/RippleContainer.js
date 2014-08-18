@@ -8,6 +8,8 @@ var ReactStyle = require('react-style');
 
 var rippleUniqueId = 0;
 
+var enableTouch = false;
+
 var RippleContainer = React.createClass({
 
   getInitialState: function() {
@@ -73,10 +75,16 @@ var RippleContainer = React.createClass({
       }
 
       rippleStyles.push({left: ripple.x, top: ripple.y, width: ripple.width, height: ripple.height});
-      var rippleComponent = <div key={ripple.id} ref={'ripple_'+ripple.id} styles={rippleStyles} />;
+      var rippleComponent = <div key={ripple.id}
+                                 ref={'ripple_'+ripple.id}
+                                 styles={rippleStyles} />;
       rippleComponents.push(rippleComponent);
     }
-    return <div styles={[this.normalStyle(), this.props.styles]} onMouseDown={this.onMouseDown} onMouseLeave={this.onMouseUp} onMouseUp={this.onMouseUp}>
+    return <div styles={[this.normalStyle(), this.props.styles]}
+                onMouseDown={this.onMouseDown}
+                onMouseUp={this.onMouseUp}
+                onMouseLeave={this.onMouseUp}
+                >
       {rippleComponents}
     </div>;
   },

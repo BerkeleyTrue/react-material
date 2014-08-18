@@ -19,6 +19,7 @@ var FloatingActionButton = React.createClass({
       display: 'inline-block',
       fill: 'white',
       height: '56px',
+      outline: 'none',
       position: 'relative',
       transition: 'box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1)',
       userSelect: 'none',
@@ -79,7 +80,7 @@ var FloatingActionButton = React.createClass({
       styles.push(this.pressedStyle());
 
     }
-    return <div styles={styles} onClick={this.props.onClick} onMouseDown={this.onMouseDown} onMouseUp={this.onMouseUp} onMouseLeave={this.onMouseUp} role="button">
+    return <div tabIndex={0} styles={styles} onClick={this.props.onClick} onMouseDown={this.onMouseDown} onMouseUp={this.onMouseUp} onMouseLeave={this.onMouseUp} role="button">
       {this.state.active &&
         <div styles={this.overlayStyle()} />
         }

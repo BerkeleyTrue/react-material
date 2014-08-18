@@ -21,6 +21,7 @@ var TextField = React.createClass({
       paddingTop: '8px',
       position: 'absolute',
       top: 0,
+      transition: 'border-bottom .38s linear',
       width: '100%',
       ':focus': {
         borderBottom: 'solid 2px #5677fc'

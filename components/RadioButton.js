@@ -15,6 +15,7 @@ var RadioButton = React.createClass({
       cursor: 'pointer',
       display: 'inline-block',
       height: '16px',
+      outline: 'none',
       position: 'relative',
       userSelect: 'none',
       width: '16px'
@@ -74,7 +75,7 @@ var RadioButton = React.createClass({
     if (active){
       onButtonStyle.push(this.onButtonFillStyle());
     }
-    return <div styles={normalStyles} onClick={this.onClick} onMouseDown={this.onMouseDown}>
+    return <div tabIndex={0} styles={normalStyles} onClick={this.onClick} onMouseDown={this.onMouseDown}>
 
       <div styles={this.offButtonStyle()} />
       <div styles={onButtonStyle} />
