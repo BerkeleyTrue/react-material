@@ -26,17 +26,25 @@ var TextField = require('../components/TextField');
 
 var TestView = React.createClass({
 
+  getInitialState: function() {
+    return {
+      selectedTab: 0
+    }
+  },
+
   render: function() {
+    var state = this.state;
+    var selectedTab = state.selectedTab;
     return <div>
       <AppBar>
         Todo
       </AppBar>
-      <Tabs>
-        <Tab title="something">
-        tab 1
+      <Tabs onChange={this.onTabClick}>
+        <Tab title="something" selected={selectedTab === 0}>
+          tab 1
         </Tab>
-        <Tab title="else" selected={true}>
-
+        <Tab title="else" selected={selectedTab === 1}>
+          tab 2
         </Tab>
       </Tabs>
 
@@ -102,6 +110,10 @@ var TestView = React.createClass({
 
   onButtonClick: function() {
     console.log('clickity click!');
+  },
+
+  onTabClick: function(e) {
+    this.setState({selectedTab: e.position});
   }
 
 });

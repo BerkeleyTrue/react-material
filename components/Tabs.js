@@ -38,7 +38,8 @@ var Tabs = React.createClass({
       display: 'inline-block',
       textAlign: 'center',
       userSelect: 'none',
-      opacity: .6
+      opacity: .6,
+      transition: 'opacity .38s linear'
     }
   }),
 
@@ -53,7 +54,7 @@ var Tabs = React.createClass({
     return {
       backgroundColor: '#ffff8d',
       height: '2px',
-      transition: 'left',
+      transition: 'left .38s linear',
       position: 'absolute',
       bottom: 0
     };
@@ -75,20 +76,32 @@ var Tabs = React.createClass({
         selectedIndex = i;
       }
 
-      titles[i] = <li onClick={this.onTabTitleClick} styles={tabTitleStyles}>{childProps.title}</li>;
+      titles[i] = <li onClick={this.onTabHeaderClick} styles={tabTitleStyles}>{childProps.title}</li>;
     }
-
     return <div styles={this.normalStyle()}>
       <ul styles={this.tabTitlesContainerStyle()}>
         {titles}
+        <div styles={[this.selectionBarStyle(), {width:(100 / children.length) + '%', left: (100 / children.length * selectedIndex) + '%'}]}/>
       </ul>
-      <div styles={[this.selectionBarStyle(), {width:(100 / children.length) + '%', left: (100 / children.length * selectedIndex) + '%'}]}/>
       {selectedTab}
     </div>
+
   },
 
-  onTabTitleClick: function(e) {
-    // call change handler here
+  onTabHeaderClick: function(e) {
+    var props = this.props;
+    if (props.onChange) {
+      var position = 0;
+      var target = e.target;
+
+      while (target = target.previousSibling) {
+        position++;
+      }
+
+      // enhance the event with the position of the blind
+      e.position = position;
+      props.onChange(e);
+    }
   }
 
 });
