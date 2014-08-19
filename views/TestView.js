@@ -9,6 +9,7 @@ var ReactStyle = require('react-style');
 React.initializeTouchEvents(true);
 
 // components
+var AppBar = require('../components/AppBar')
 var Button = require('../components/Button');
 var Checkbox = require('../components/CheckBox');
 var FloatingActionButton = require('../components/FloatingActionButton');
@@ -27,6 +28,18 @@ var TestView = React.createClass({
 
   render: function() {
     return <div>
+      <AppBar>
+        Todo
+      </AppBar>
+      <Tabs>
+        <Tab title="something">
+        tab 1
+        </Tab>
+        <Tab title="else" selected={true}>
+
+        </Tab>
+      </Tabs>
+
       <div>
         <h2>Flat buttons</h2>
         <Button>
@@ -62,14 +75,7 @@ var TestView = React.createClass({
         <Checkbox />
         <Checkbox />
       <h2>Tabs</h2>
-      <Tabs>
-        <Tab title="something">
-          tab 1
-        </Tab>
-        <Tab title="else" selected={true}>
 
-        </Tab>
-      </Tabs>
       <h2>Progress bar</h2>
         <ProgressBar percentage={50} styles={[{backgroundColor:'#d23f31'}]}/>
       </div>

@@ -6,6 +6,8 @@ Thanks to the Polymer team for providing a base set of elements that I could re-
 
 Contributions are very welcome!
 
+Definitely not production ready for now!
+
 Motivation
 ---
 A good starting point for web apps style§d with [material design](http://www.google.com/design/spec/material-design/introduction.html), but also to experiment with
