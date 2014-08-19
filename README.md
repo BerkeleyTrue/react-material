@@ -8,7 +8,7 @@ Contributions are very welcome.
 
 Motivation
 ---
-A good starting point for web apps styled with [material design](http://www.google.com/design/spec/material-design/introduction.html), but also to experiment with
+A good starting point for web apps style§d with [material design](http://www.google.com/design/spec/material-design/introduction.html), but also to experiment with
 [React Style](https://github.com/SanderSpies/react-style/) and see what works and what doesn't.
 
 Current issues

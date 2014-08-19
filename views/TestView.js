@@ -20,8 +20,8 @@ var ToggleButton = require('../components/ToggleButton');
 var IconButton = require('../components/IconButton');
 var TextField = require('../components/TextField');
 
-var ReactTheme = require('react-style/lib/theme')
-ReactTheme.theme = [require('../themes/BlueTheme')];
+//var ReactTheme = require('react-style/lib/theme')
+//ReactTheme.theme = [require('../themes/BlueTheme')];
 
 var TestView = React.createClass({
 
@@ -66,7 +66,7 @@ var TestView = React.createClass({
         <Tab title="something">
           tab 1
         </Tab>
-        <Tab title="else">
+        <Tab title="else" selected={true}>
 
         </Tab>
       </Tabs>

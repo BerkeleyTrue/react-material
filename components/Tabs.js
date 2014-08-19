@@ -10,35 +10,85 @@ var Tabs = React.createClass({
 
   normalStyle: ReactStyle(function(){
     return {
-      height: '48px',
       position: 'relative',
       width: '100%'
     }
   }),
 
+  tabTitlesContainerStyle: ReactStyle(function(){
+    return {
+      backgroundColor: '#00bcd4',
+      lineHeight: '48px',
+      margin: 0,
+      padding: 0,
+      height: '48px',
+      position: 'relative',
+      cursor: 'pointer',
+      color: 'white',
+      fontSize: '14px',
+      fontWeight: '500',
+      boxShadow:'0px 3px 2px rgba(0, 0, 0, 0.2)'
+
+    };
+  }),
+
   tabTitleStyle: ReactStyle(function(){
     return {
       height: '100%',
-      display: 'inline-block'
+      display: 'inline-block',
+      textAlign: 'center',
+      userSelect: 'none',
+      opacity: .6
     }
+  }),
+
+  tabTitleSelectedStyle: ReactStyle(function(){
+    return {
+      fontWeight: 'bold',
+      opacity: 1
+    }
+  }),
+
+  selectionBarStyle: ReactStyle(function(){
+    return {
+      backgroundColor: '#ffff8d',
+      height: '2px',
+      transition: 'left',
+      position: 'absolute',
+      bottom: 0
+    };
   }),
 
   render: function() {
     var props = this.props;
     var titles = [];
     var children = props.children;
+    var selectedTab;
+    var selectedIndex = 0;
     for (var i = 0, l = children.length; i < l; i++) {
       var child = children[i];
-      titles[i] = <li styles={this.tabTitleStyle()}>{child.props.title}</li>;
+      var childProps = child.props;
+      var tabTitleStyles = [this.tabTitleStyle(), {width:(100 / children.length) + '%'}];
+      if (childProps.selected) {
+        tabTitleStyles.push(this.tabTitleSelectedStyle());
+        selectedTab = child;
+        selectedIndex = i;
+      }
+
+      titles[i] = <li onClick={this.onTabTitleClick} styles={tabTitleStyles}>{childProps.title}</li>;
     }
 
     return <div styles={this.normalStyle()}>
-      <ul>
+      <ul styles={this.tabTitlesContainerStyle()}>
         {titles}
       </ul>
-      <div />
-      {this.props.children}
+      <div styles={[this.selectionBarStyle(), {width:(100 / children.length) + '%', left: (100 / children.length * selectedIndex) + '%'}]}/>
+      {selectedTab}
     </div>
+  },
+
+  onTabTitleClick: function(e) {
+    // call change handler here
   }
 
 });

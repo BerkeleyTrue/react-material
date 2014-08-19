@@ -10,7 +10,8 @@ var Tab = React.createClass({
 
   normalTabStyle: ReactStyle(function(){
     return {
-      display: 'inline-block'
+      display: 'inline-block',
+      textAlign: 'center'
     };
   }),
 
