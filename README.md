@@ -19,6 +19,7 @@ Run
 - git submodule init
 - git submodule update
 - npm install
+- webpack
 - open index.html
 - enjoy
 
