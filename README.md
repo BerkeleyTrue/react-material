@@ -20,6 +20,7 @@ Run
 - git submodule update
 - npm install
 - open index.html
+- webpack
 - enjoy
 
 Current issues
