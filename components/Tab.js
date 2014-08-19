@@ -8,11 +8,15 @@ var ReactStyle = require('react-style');
 
 var Tab = React.createClass({
 
-  normalStyle: ReactStyle(function(){
+  normalTabStyle: ReactStyle(function(){
     return {
       display: 'inline-block'
     };
   }),
+
+  propTypes: {
+    title: React.PropTypes.string.isRequired
+  },
 
   render: function(){
     return <div>

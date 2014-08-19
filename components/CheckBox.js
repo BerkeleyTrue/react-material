@@ -5,6 +5,7 @@
 
 var React = require('react');
 var ReactStyle = require('react-style');
+var transitionEnd = require('./TransitionEndName');
 
 var CircleShadow = require('./CircleShadow');
 
@@ -91,10 +92,16 @@ var CheckBox = React.createClass({
   },
 
   onMouseDown: function() {
+    if (!transitionEnd) {
+      return;
+    }
     this.setState({mouseDown: true});
   },
 
   onMouseUp: function() {
+    if (!transitionEnd) {
+      return;
+    }
     this.setState({mouseDown: false});
   },
 
@@ -108,7 +115,7 @@ var CheckBox = React.createClass({
   },
 
   componentDidMount: function() {
-    this.refs.checkbox.getDOMNode().addEventListener('transitionend', this.onTransitionEnd);
+    this.refs.checkbox.getDOMNode().addEventListener(transitionEnd, this.onTransitionEnd);
   },
 
   onTransitionEnd: function(e) {

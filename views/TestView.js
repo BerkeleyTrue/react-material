@@ -18,21 +18,15 @@ var Tabs = require('../components/Tabs');
 var ProgressBar = require('../components/ProgressBar');
 var ToggleButton = require('../components/ToggleButton');
 var IconButton = require('../components/IconButton');
-var TextField = require('../components/TextField')
+var TextField = require('../components/TextField');
 
-ReactStyle.theme = [require('../themes/BlueTheme')];
+var ReactTheme = require('react-style/lib/theme')
+ReactTheme.theme = [require('../themes/BlueTheme')];
 
 var TestView = React.createClass({
 
   render: function() {
     return <div>
-      <h1>React Material Components</h1>
-      <p>
-        A set of example components for React Style that aims to be easy to use.
-      </p>
-      <p>
-        There is the ambition to have these components work from IE8 onwards, however it doesn't need to be perfect.
-      </p>
       <div>
         <h2>Flat buttons</h2>
         <Button>
@@ -69,10 +63,10 @@ var TestView = React.createClass({
         <Checkbox />
       <h2>Tabs</h2>
       <Tabs>
-        <Tab label="something">
+        <Tab title="something">
           tab 1
         </Tab>
-        <Tab label="else">
+        <Tab title="else">
 
         </Tab>
       </Tabs>
