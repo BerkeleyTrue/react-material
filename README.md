@@ -4,7 +4,7 @@ Material design components written with React.js and React Style.
 
 Thanks to the Polymer team for providing a base set of elements that I could re-implement.
 
-Contributions are very welcome.
+Contributions are very welcome!
 
 Motivation
 ---
