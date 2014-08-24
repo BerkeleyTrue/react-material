@@ -28,7 +28,6 @@ var Tabs = React.createClass({
       fontSize: '14px',
       fontWeight: '500',
       boxShadow:'0px 3px 2px rgba(0, 0, 0, 0.2)'
-
     };
   }),
 
@@ -45,7 +44,6 @@ var Tabs = React.createClass({
 
   tabTitleSelectedStyle: ReactStyle(function(){
     return {
-      fontWeight: 'bold',
       opacity: 1
     }
   }),
@@ -54,7 +52,7 @@ var Tabs = React.createClass({
     return {
       backgroundColor: '#ffff8d',
       height: '2px',
-      transition: 'left .38s linear',
+      transition: 'left .28s linear',
       position: 'absolute',
       bottom: 0
     };
@@ -78,7 +76,11 @@ var Tabs = React.createClass({
 
       titles[i] = <li onClick={this.onTabHeaderClick} styles={tabTitleStyles}>{childProps.title}</li>;
     }
-    return <div styles={this.normalStyle()}>
+    var normalStyles = [this.normalStyle()];
+    if (props.styles) {
+      normalStyles = normalStyles.concat(props.styles);
+    }
+    return <div styles={normalStyles}>
       <ul styles={this.tabTitlesContainerStyle()}>
         {titles}
         <div styles={[this.selectionBarStyle(), {width:(100 / children.length) + '%', left: (100 / children.length * selectedIndex) + '%'}]}/>

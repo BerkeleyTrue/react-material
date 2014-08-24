@@ -21,6 +21,8 @@ Run
 - npm install
 - open index.html
 - enjoy
+- and contribute
+
 
 Current issues
 ---

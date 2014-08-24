@@ -13,6 +13,7 @@ var FloatingActionButton = React.createClass({
 
   normalStyle: ReactStyle(function(){
     return {
+      webkitTapHighlightColor: 'rgba(0,0,0,0)',
       borderRadius: '50%',
       boxShadow: '0 2px 5px 0 rgba(0, 0, 0, 0.26)',
       cursor: 'pointer',
