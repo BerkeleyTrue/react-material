@@ -20,6 +20,7 @@ var ListItem = React.createClass({
   normalListItemStyle: ReactStyle(function(){
     return merge(Typography.subhead,
       {
+      webkitTapHighlightColor: 'rgba(0,0,0,0)',
       boxSizing: 'border-box',
       cursor: 'pointer',
       height: '48px',
@@ -52,6 +53,7 @@ var ListItem = React.createClass({
     return {
       display: 'inline-block',
       padding: '0 16px 0 0',
+      float: 'left',
       width: '30px',
       verticalAlign: 'middle',
       position: 'relative',
@@ -68,15 +70,10 @@ var ListItem = React.createClass({
     });
   }),
 
-  textStyle: ReactStyle(function(){
-    return {
-      display: 'inline-block'
-    };
-  }),
-
   typeStyle: ReactStyle(function(){
     return {
-      marginRight: '30px'
+      margin: '10px 30px 0 0',
+      float: 'left'
     };
   }),
 
@@ -119,7 +116,7 @@ var ListItem = React.createClass({
         }
       {props.icon &&
         <div styles={this.iconStyle()}><Icon icon={props.icon}/></div> }
-      <div styles={this.textStyle()}>
+      <div>
         {props.title && <div>{props.title}</div>}
         {props.secondaryText && <div styles={this.secondaryTextStyle()}>{props.secondaryText}</div>}
         {props.tertiaryText && <div styles={this.tertiaryTextStyle()}>{props.tertiaryText}</div>}
