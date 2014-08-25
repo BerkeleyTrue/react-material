@@ -4,6 +4,7 @@
 'use strict';
 
 require("./style.css");
+
 var React = require('react');
 var ReactStyle = require('react-style');
 React.initializeTouchEvents(true);
@@ -34,8 +35,16 @@ var TestView = React.createClass({
     }
   },
 
+  normalStyle: ReactStyle(function(){
+    return {
+      backgroundColor: '#f9f9f9',
+      minHeight: '100%'
+    };
+  }),
+
   containerStyle: ReactStyle(function() {
     return {
+
       margin: 'auto',
       maxWidth: '700px',
       padding: '56px 20px 0'
@@ -67,7 +76,7 @@ var TestView = React.createClass({
 
   render: function() {
     var state = this.state;
-    return <div>
+    return <div styles={this.normalStyle()}>
       <AppBar boxShadow={true} onNavButtonClick={this.onNavButtonClick} shadow={true}/>
       <Overlay show={state.showSideNavigation} onClick={this.onNavButtonClick} />
       <SideNavigation show={state.showSideNavigation}>

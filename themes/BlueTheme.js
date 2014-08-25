@@ -16,6 +16,11 @@ var BlueTheme = {
       return {
         fill: 'white'
       }
+    }),
+    titleStyle: ReactStyle(function(){
+      return {
+        color: 'white'
+      };
     })
   },
   Button: {

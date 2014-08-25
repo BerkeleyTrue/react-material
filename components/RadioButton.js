@@ -12,6 +12,7 @@ var RadioButton = React.createClass({
 
   normalStyle: ReactStyle(function(){
     return {
+      webkitTapHighlightColor: 'rgba(0,0,0,0)',
       cursor: 'pointer',
       display: 'inline-block',
       height: '16px',

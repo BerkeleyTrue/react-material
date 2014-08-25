@@ -17,6 +17,7 @@ var Tabs = React.createClass({
 
   tabTitlesContainerStyle: ReactStyle(function(){
     return {
+      webkitTapHighlightColor: 'rgba(0,0,0,0)',
       backgroundColor: '#00bcd4',
       lineHeight: '48px',
       margin: 0,

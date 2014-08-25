@@ -1,4 +1,4 @@
-html, body {
+html, body, #container {
     height: 100%;
     margin: 0;
     padding: 0;
@@ -6,4 +6,6 @@ html, body {
 
 body {
     font-family: RobotoDraft, 'Helvetica Neue', Helvetica, Arial;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
 }

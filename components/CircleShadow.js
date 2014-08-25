@@ -10,6 +10,7 @@ var CircleShadow = React.createClass({
 
   normalStyle: ReactStyle(function(){
     return {
+      webkitTapHighlightColor: 'rgba(0,0,0,0)',
       backgroundColor: '#5a5a5a',
       opacity: '0',
       borderRadius: '50%',

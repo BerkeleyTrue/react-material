@@ -36,7 +36,6 @@ var FontStyles = {
   title: {
     color: 'black',
     opacity: '.87',
-    fontWeight: 'bold',
     font: "RobotoDraft Medium, 'Helvetica Neue', Helvetica, Arial",
     fontSize: '20px',
     whiteSpace: 'nowrap'
