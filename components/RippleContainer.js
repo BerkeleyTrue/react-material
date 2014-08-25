@@ -8,8 +8,6 @@ var ReactStyle = require('react-style');
 
 var rippleUniqueId = 0;
 
-var enableTouch = false;
-
 var RippleContainer = React.createClass({
 
   getInitialState: function() {

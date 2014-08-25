@@ -11,7 +11,7 @@ var CircleShadow = require('./CircleShadow');
 
 var CheckBox = React.createClass({
 
-  containerStyle: ReactStyle(function(){
+  containerStyle: ReactStyle(function() {
     return {
       webkitTapHighlightColor: 'rgba(0,0,0,0)',
       cursor: 'pointer',
@@ -24,7 +24,7 @@ var CheckBox = React.createClass({
     };
   }),
 
-  normalStyle: ReactStyle(function(){
+  normalStyle: ReactStyle(function() {
     return {
       borderColor: '#5a5a5a',
       borderStyle: 'solid',
@@ -44,7 +44,7 @@ var CheckBox = React.createClass({
     };
   }),
 
-  transitionStyle: ReactStyle(function(){
+  transitionStyle: ReactStyle(function() {
     return {
       height: 0,
       transform: 'rotate(45deg)',
@@ -53,7 +53,7 @@ var CheckBox = React.createClass({
     };
   }),
 
-  checkedStyle: ReactStyle(function(){
+  checkedStyle: ReactStyle(function() {
     return {
       borderWidth: '0 2px 2px 0',
       borderColor: '#0f9d58',
@@ -62,13 +62,13 @@ var CheckBox = React.createClass({
     }
   }),
 
-  circleStyle: ReactStyle(function(){
+  circleStyle: ReactStyle(function() {
     return {
       backgroundColor: '#0f9d58'
     }
   }),
 
-  getInitialState:function() {
+  getInitialState: function() {
     return {
       checked: this.props.checked || false
     }
@@ -76,16 +76,21 @@ var CheckBox = React.createClass({
 
   render: function() {
     var state = this.state;
+    var props = this.props;
     var styles = [this.normalStyle()];
+    var containerStyles = [this.containerStyle()];
+    if (props.containerStyles) {
+      containerStyles = containerStyles.concat(props.containerStyles);
+    }
     if (state.transitioning) {
       styles.push(this.transitionStyle());
     }
-    else if (state.checked && !state.transitioning) {
+    else if ((state.checked && !state.transitioning) || props.checked) {
       styles.push(this.transitionStyle());
       styles.push(this.checkedStyle());
     }
 
-    return <div tabIndex={0} styles={this.containerStyle()} onClick={this.onToggle} onMouseDown={this.onMouseDown} onMouseUp={this.onMouseUp}>
+    return <div tabIndex={0} styles={containerStyles} onClick={this.onToggle} onMouseDown={this.onMouseDown} onMouseUp={this.onMouseUp}>
       <div ref="checkbox" styles={styles}/>
       <CircleShadow styles={this.circleStyle()} active={this.state.mouseDown} />
 
