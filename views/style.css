@@ -7,5 +7,6 @@ html, body, #container {
 body {
     font-family: RobotoDraft, 'Helvetica Neue', Helvetica, Arial;
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: greyscale;
     text-rendering: optimizeLegibility;
 }

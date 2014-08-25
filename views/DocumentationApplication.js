@@ -21,6 +21,10 @@ var ProgressAndActivityView = require('./ProgressAndActivityView');
 var SwitchesView = require('./SwitchesView');
 var TabsView = require('./TabsView');
 var TextFieldsView = require('./TextFieldsView');
+var ListsView = require('./ListView');
+
+var List = require('../components/List');
+var ListItem = require('../components/ListItem');
 
 var BlueTheme = require('../themes/BlueTheme');
 
@@ -80,24 +84,15 @@ var TestView = React.createClass({
       <AppBar boxShadow={true} onNavButtonClick={this.onNavButtonClick} shadow={true}/>
       <Overlay show={state.showSideNavigation} onClick={this.onNavButtonClick} />
       <SideNavigation show={state.showSideNavigation}>
-        <SideNavigationItem onClick={this.onClick(1)}>
-          Bottom Sheets
-        </SideNavigationItem>
-        <SideNavigationItem onClick={this.onClick(2)}>
-          Buttons
-        </SideNavigationItem>
-        <SideNavigationItem onClick={this.onClick(3)}>
-          Progress and Activity
-        </SideNavigationItem>
-        <SideNavigationItem onClick={this.onClick(6)}>
-          Switches
-        </SideNavigationItem>
-        <SideNavigationItem onClick={this.onClick(4)}>
-          Tabs
-        </SideNavigationItem>
-        <SideNavigationItem onClick={this.onClick(5)}>
-          Text fields
-        </SideNavigationItem>
+        <List>
+          <ListItem onClick={this.onClick(1)} title="Bottom Sheets" />
+          <ListItem onClick={this.onClick(2)} title="Buttons" />
+          <ListItem onClick={this.onClick(7)} title="Lists" />
+          <ListItem onClick={this.onClick(3)} title="Progress and Activity" />
+          <ListItem onClick={this.onClick(6)} title="Switches" />
+          <ListItem onClick={this.onClick(4)} title="Tabs" />
+          <ListItem onClick={this.onClick(5)} title="Text fields" />
+        </List>
       </SideNavigation>
       <div className={this.containerStyle()}>
       {state.view === 0 &&
@@ -130,6 +125,9 @@ var TestView = React.createClass({
           }
         {state.view === 6 &&
           <SwitchesView />
+          }
+        {state.view === 7 &&
+          <ListsView />
           }
       </div>
     </div>;
