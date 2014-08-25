@@ -18,6 +18,7 @@ var ProgressBar = React.createClass({
 
   progressStyle: ReactStyle(function(){
     return {
+      backgroundColor: '#d23f31',
       bottom: 0,
       left: 0,
       position: 'absolute',
@@ -32,13 +33,12 @@ var ProgressBar = React.createClass({
 
   render: function() {
     var props = this.props;
-    var state = this.state;
     var progressBarStyles = [this.progressStyle()];
     progressBarStyles.push({width: props.percentage + '%'});
     if (props.styles) {
       progressBarStyles = progressBarStyles.concat(props.styles);
     }
-    return <div ref="bar" styles={this.normalStyle()}>
+    return <div styles={this.normalStyle()}>
         <div styles={progressBarStyles} />
       </div>
   }

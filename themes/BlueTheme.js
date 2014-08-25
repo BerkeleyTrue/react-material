@@ -1,14 +1,42 @@
 'use strict';
 
-function BlueTheme() {
-  var args = arguments;
-  var componentClasses = Array.prototype.slice.call(args);
+var ReactStyle = require('react-style');
 
-  for (var i = 0, l = componentClasses.length; i < l; i++) {
-    var componentClass = componentClasses[i];
-
-    componentClass().constructor = null;
+var BlueTheme = {
+  AppBar: {
+    normalAppBarStyle: ReactStyle(function(){
+      return {
+        backgroundColor: '#3f51b5',
+        position: 'fixed',
+        zIndex: 1,
+        top: 0
+      };
+    }),
+    navButtonStyle: ReactStyle(function(){
+      return {
+        fill: 'white'
+      }
+    }),
+    titleStyle: ReactStyle(function(){
+      return {
+        color: 'white'
+      };
+    })
+  },
+  Button: {
+    normalButtonStyle: ReactStyle(function() {
+      return {
+        margin: '10px'
+      };
+    })
+  },
+  FloatingActionButton: {
+    normalStyle: ReactStyle(function(){
+      return {
+        margin: '10px'
+      };
+    })
   }
-}
+};
 
 module.exports = BlueTheme;

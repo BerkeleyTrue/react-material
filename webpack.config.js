@@ -1,9 +1,8 @@
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
-var istyle = require.resolve('react-style/lib/webpack');
 var jsxloader = require.resolve('jsx-loader');
 
 module.exports = {
-	entry: "./views/TestView.js",
+	entry: "./views/DocumentationApplication.js",
 	output: {
 		filename: "bundle.js",
 		path: __dirname + "/assets",

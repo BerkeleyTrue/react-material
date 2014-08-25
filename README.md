@@ -22,6 +22,8 @@ Run
 - webpack
 - open index.html
 - enjoy
+- and contribute
+
 
 Current issues
 ---

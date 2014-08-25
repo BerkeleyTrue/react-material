@@ -12,6 +12,7 @@
     "html-loader": "0.2.2"
   },
   "dependencies": {
-    "react": "0.11.1"
+    "react": "0.11.1",
+    "react-style": "0.0.11-alpha"
   }
 }
