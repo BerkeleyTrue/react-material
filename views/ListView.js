@@ -42,7 +42,6 @@ var ListView = React.createClass({
         <ListItem title="Text fields"  secondaryText="example"/>
       </List>
       <h2>Two lines with checkbox</h2>
-      Todo: fix crappy checkboxes
       <List>
         <ListItem title="Bottom sheets" secondaryText="example" type="checkbox"/>
         <ListItem title="Button"  secondaryText="example" type="checkbox"/>

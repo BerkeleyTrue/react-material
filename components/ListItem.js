@@ -118,10 +118,10 @@ var ListItem = React.createClass({
     }
 
 
-    return <div styles={listItemStyles} onClick={props.onClick}>
+    return <div styles={listItemStyles} onClick={this.onClick}>
       <RippleContainer />
       {props.type === 'checkbox' &&
-        <CheckBox containerStyles={this.typeStyle()} checked={true}/>
+        <CheckBox ref="checkbox" containerStyles={this.typeStyle()} checked={true}/>
         }
       {props.icon &&
         <div styles={this.iconStyle()}><Icon icon={props.icon}/></div> }
@@ -131,6 +131,17 @@ var ListItem = React.createClass({
         {props.tertiaryText && <div styles={this.tertiaryTextStyle()}>{props.tertiaryText}</div>}
       </div>
     </div>;
+  },
+
+  onClick: function(e) {
+    var checkbox = this.refs.checkbox;
+    if (checkbox) {
+      checkbox.toggle();
+    }
+    var onClick = this.props.onClick;
+    if (onClick) {
+      onClick(e);
+    }
   }
 
 });
