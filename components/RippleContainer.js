@@ -6,7 +6,10 @@
 var React = require('react');
 var ReactStyle = require('react-style');
 
+var isTransform = require('./isTransform');
+
 var rippleUniqueId = 0;
+var transitionEnd = require('./TransitionEndName');
 
 var RippleContainer = React.createClass({
 
@@ -136,7 +139,7 @@ var RippleContainer = React.createClass({
 
   endRipple: function(e) {
     var ripples = this.state.ripples;
-    if (e.propertyName === 'transform') {
+    if (isTransform(e.propertyName)) {
       ripples[0].transitioning = false;
       ripples[0].transitionComplete = true;
       this.setState({ripples: ripples});
@@ -150,7 +153,7 @@ var RippleContainer = React.createClass({
   componentDidMount: function() {
     var self = this;
     var domNode = this.getDOMNode();
-    domNode.addEventListener('transitionend', this.endRipple);
+    domNode.addEventListener(transitionEnd, this.endRipple);
   }
 
 });
