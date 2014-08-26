@@ -6,11 +6,16 @@
 var React = require('react');
 var ReactStyle = require('react-style');
 
-var __SVGIcons = require('./__icons/core-icons.html');
-__SVGIcons = __SVGIcons.substr(__SVGIcons.indexOf('<defs>') + '<defs>'.length);
-__SVGIcons = __SVGIcons.substr(0, __SVGIcons.indexOf('</defs>'));
+var coreIcons = require('./__icons/core-icons.html');
+coreIcons = coreIcons.substr(coreIcons.indexOf('<defs>') + '<defs>'.length);
+coreIcons = coreIcons.substr(0, coreIcons.indexOf('</defs>'));
+var socialIcons = require('./__icons/social-icons.html');
+socialIcons = socialIcons.substr(socialIcons.indexOf('<defs>') + '<defs>'.length);
+socialIcons = socialIcons.substr(0, socialIcons.indexOf('</defs>'));
+
+
 var div = document.createElement('div');
-div.innerHTML = __SVGIcons;
+div.innerHTML = coreIcons + socialIcons;
 
 var Icon = React.createClass({
 
