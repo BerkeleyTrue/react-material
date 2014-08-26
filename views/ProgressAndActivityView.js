@@ -17,9 +17,10 @@ var ProgressAndActivityView = React.createClass({
       <h2>Determinate</h2>
       <ProgressBar percentage={20} />
       <h2>Indeterminate</h2>
-      TODO
+      Animation is not correct.
+      <ProgressBar type="indeterminate" />
       <h2>Buffer</h2>
-      TODO
+      <ProgressBar percentage={30} bufferPercentage={60} />
       <h2>Query indeterminate and determinate</h2>
       TODO
       <h2>Circular</h2>

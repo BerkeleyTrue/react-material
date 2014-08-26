@@ -6,7 +6,7 @@
 var React = require('react');
 var ReactStyle = require('react-style');
 var transitionEnd = require('./TransitionEndName');
-
+var isTransform = require('./isTransform');
 var CircleShadow = require('./CircleShadow');
 
 var CheckBox = React.createClass({
@@ -19,7 +19,6 @@ var CheckBox = React.createClass({
       height: '18px',
       outline: 'none',
       position: 'relative',
-      transform: 'translateZ(0)',
       width: '18px'
     };
   }),
@@ -35,6 +34,7 @@ var CheckBox = React.createClass({
       width: '18px',
       left: 0,
       outline: 'none',
+      transform: 'translateZ(0)',
       transition: 'transform .1s linear, ' +
         'width .1s linear, ' +
         'height .1s linear, ' +
@@ -47,7 +47,7 @@ var CheckBox = React.createClass({
   transitionStyle: ReactStyle(function() {
     return {
       height: 0,
-      transform: 'rotate(45deg)',
+      transform: 'translateZ(0) rotate(45deg)',
       width: 0,
       left: '8px'
     };
@@ -131,7 +131,7 @@ var CheckBox = React.createClass({
   onTransitionEnd: function(e) {
     var state = this.state;
     if (state.transitioning) {
-      if (e.propertyName === 'transform' && !this.state.checked) {
+      if (isTransform(e.propertyName) && !this.state.checked) {
         this.setState({checked: true, transitioning: false});
       }
     }
