@@ -85,7 +85,7 @@ var CheckBox = React.createClass({
     if (state.transitioning) {
       styles.push(this.transitionStyle());
     }
-    else if ((state.checked && !state.transitioning) || props.checked) {
+    else if (state.checked && !state.transitioning) {
       styles.push(this.transitionStyle());
       styles.push(this.checkedStyle());
     }
@@ -118,6 +118,10 @@ var CheckBox = React.createClass({
     else {
       this.setState({checked: false});
     }
+    var props = this.props;
+    if (props.onChange) {
+      props.onChange({checked: this.state.checked});
+    }
   },
 
   componentDidMount: function() {
@@ -129,9 +133,16 @@ var CheckBox = React.createClass({
     if (state.transitioning) {
       if (e.propertyName === 'transform' && !this.state.checked) {
         this.setState({checked: true, transitioning: false});
-
       }
     }
+  },
+
+  toggle: function() {
+    this.onToggle();
+  },
+
+  isChecked: function() {
+    return this.state.checked;
   }
 
 });
