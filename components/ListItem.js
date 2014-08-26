@@ -36,6 +36,12 @@ var ListItem = React.createClass({
     };
   }),
 
+  singleLineWithIconTitleStyle: ReactStyle(function(){
+    return {
+      lineHeight: '30px'
+    };
+  }),
+
   twoLinesStyle: ReactStyle(function(){
     return {
       height: '72px'
@@ -55,11 +61,12 @@ var ListItem = React.createClass({
       padding: '0 16px 0 0',
       float: 'left',
       width: '30px',
-      verticalAlign: 'middle',
+      verticalAlign: 'bottom',
       position: 'relative',
       pointerEvents: 'none'
     };
   }),
+
 
   secondaryTextStyle: ReactStyle(function(){
     return merge(Typography.body1, {
@@ -96,16 +103,18 @@ var ListItem = React.createClass({
   render: function() {
     var props = this.props;
     var listItemStyles = [this.normalListItemStyle()];
-
+    var textTitleStyles = [];
     if (props.icon) {
       listItemStyles.push(this.singleLineWithIconStyle());
     }
-
     if (props.tertiaryText || props.nrOfLines === 3) {
       listItemStyles.push(this.threeLinesStyle());
     }
     else if (props.secondaryText || props.nrOfLines === 2) {
       listItemStyles.push(this.twoLinesStyle());
+    }
+    else if (props.icon) {
+      textTitleStyles.push(this.singleLineWithIconTitleStyle());
     }
 
 
@@ -117,7 +126,7 @@ var ListItem = React.createClass({
       {props.icon &&
         <div styles={this.iconStyle()}><Icon icon={props.icon}/></div> }
       <div>
-        {props.title && <div>{props.title}</div>}
+        {props.title && <div styles={textTitleStyles}>{props.title}</div>}
         {props.secondaryText && <div styles={this.secondaryTextStyle()}>{props.secondaryText}</div>}
         {props.tertiaryText && <div styles={this.tertiaryTextStyle()}>{props.tertiaryText}</div>}
       </div>
