@@ -9,6 +9,7 @@ var ReactStyle = require('react-style');
 var Icon = require('./Icon');
 var RippleContainer = require('./RippleContainer');
 
+// Circular loader: http://jsfiddle.net/wEKg6/
 var FloatingActionButton = React.createClass({
 
   normalStyle: ReactStyle(function(){

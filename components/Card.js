@@ -6,15 +6,21 @@
 var React = require('react');
 var ReactStyle = require('react-style');
 
+var Shadow = require('./Shadow');
+
 var Card = React.createClass({
 
-  normalStyle: ReactStyle(function(){
-
+  normalCardStyle: ReactStyle(function(){
+    return {
+      margin: '8px',
+      padding: '16px'
+    };
   }),
 
   render: function() {
-    return <div>
-    </div>;
+    return <Shadow>
+
+    </Shadow>;
   }
 
 });

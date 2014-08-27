@@ -63,7 +63,9 @@ var RippleContainer = React.createClass({
   }),
 
   render: function() {
-    var ripples = this.state.ripples;
+    var props = this.props;
+    var state = this.state;
+    var ripples = state.ripples;
     var rippleComponents = [];
     for (var i = 0, l = ripples.length; i < l; i++) {
       var ripple = ripples[i];
@@ -81,10 +83,9 @@ var RippleContainer = React.createClass({
                                  styles={rippleStyles} />;
       rippleComponents.push(rippleComponent);
     }
-    return <div styles={[this.normalStyle(), this.props.styles]}
+    return <div styles={[this.normalStyle(), props.styles]}
                 onMouseDown={this.onMouseDown}
                 onMouseUp={this.onMouseUp}
-                onMouseLeave={this.onMouseUp}
                 >
       {rippleComponents}
     </div>;
@@ -129,6 +130,10 @@ var RippleContainer = React.createClass({
     }
     this.setState({ripples: ripples});
 
+    var onClick = this.props.onClick;
+    if (onClick) {
+      onClick();
+    }
   },
 
   startRipple: function() {
