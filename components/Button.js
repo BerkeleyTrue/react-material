@@ -80,7 +80,7 @@ var Button = React.createClass({
     }
 
 
-    return this.transferPropsTo(<div role="button"
+    return <div role="button"
                 tabIndex="0"
                 styles={styles}
                 onMouseDown={this.onMouseDown}
@@ -88,10 +88,10 @@ var Button = React.createClass({
                 onMouseUp={this.onMouseUp}>
 
     {!props.disabled &&
-      <RippleContainer />
+      <RippleContainer onClick={props.onClick}/>
     }
       {props.children}
-    </div>);
+    </div>;
   },
 
   onMouseUp: function() {

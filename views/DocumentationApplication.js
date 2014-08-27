@@ -7,7 +7,6 @@ require("./style.css");
 
 var React = require('react');
 var ReactStyle = require('react-style');
-React.initializeTouchEvents(true);
 
 // components
 var AppBar = require('../components/AppBar');

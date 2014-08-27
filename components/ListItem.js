@@ -118,8 +118,8 @@ var ListItem = React.createClass({
     }
 
 
-    return <div styles={listItemStyles} onClick={this.onClick}>
-      <RippleContainer />
+    return <div styles={listItemStyles}>
+      <RippleContainer onClick={this.onClick}/>
       {props.type === 'checkbox' &&
         <CheckBox ref="checkbox" containerStyles={this.typeStyle()} checked={true}/>
         }
