@@ -84,7 +84,11 @@ var RippleContainer = React.createClass({
       rippleComponents.push(rippleComponent);
     }
     return <div styles={[this.normalStyle(), props.styles]}
+                onTouchStart={this.onMouseDown}
+                onTouchEnd={this.onMouseUp}
+                onTouchCancel={this.onMouseUp}
                 onMouseDown={this.onMouseDown}
+                onMouseLeave={this.onMouseLeave}
                 onMouseUp={this.onMouseUp}
                 >
       {rippleComponents}
@@ -92,6 +96,7 @@ var RippleContainer = React.createClass({
   },
 
   onMouseDown: function(e) {
+    e.preventDefault();
     var domNode = this.getDOMNode();
     var height = domNode.offsetHeight;
     var width = domNode.offsetWidth;
@@ -121,6 +126,15 @@ var RippleContainer = React.createClass({
   },
 
   onMouseUp: function() {
+    this.onMouseLeave();
+
+    var onClick = this.props.onClick;
+    if (onClick) {
+      onClick();
+    }
+  },
+
+  onMouseLeave: function() {
     // fade out
     var ripples = this.state.ripples;
     for (var i = 0, l = ripples.length; i < l; i++) {
@@ -130,11 +144,8 @@ var RippleContainer = React.createClass({
     }
     this.setState({ripples: ripples});
 
-    var onClick = this.props.onClick;
-    if (onClick) {
-      onClick();
-    }
   },
+
 
   startRipple: function() {
     var ripples = this.state.ripples;
