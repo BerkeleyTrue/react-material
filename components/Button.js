@@ -8,6 +8,8 @@ var ReactStyle = require('react-style');
 
 var RippleContainer = require('./RippleContainer');
 
+var isTouchDevice = 'ontouchstart' in window;
+
 var Button = React.createClass({
 
   normalButtonStyle: ReactStyle(function() {
@@ -80,21 +82,34 @@ var Button = React.createClass({
     }
 
 
-    return <div role="button"
+    return isTouchDevice ? <div role="button"
                 tabIndex="0"
                 styles={styles}
                 onTouchStart={this.onMouseDown}
                 onTouchEnd={this.onMouseUp}
                 onTouchCancel={this.onMouseUp}
-                onMouseDown={this.onMouseDown}
-                onMouseLeave={this.onMouseUp}
-                onMouseUp={this.onMouseUp}>
+                >
 
     {!props.disabled &&
       <RippleContainer onClick={props.onClick}/>
     }
       {props.children}
-    </div>;
+    </div>
+      :
+      <div role="button"
+      tabIndex="0"
+      styles={styles}
+      onMouseDown={this.onMouseDown}
+      onMouseUp={this.onMouseUp}
+      onMouseLeave={this.onMouseUp}
+      >
+
+    {!props.disabled &&
+      <RippleContainer onClick={props.onClick}/>
+      }
+      {props.children}
+      </div>
+      ;
   },
 
   onMouseUp: function() {
