@@ -104,11 +104,16 @@
 	    this.setState({showSideNavigation: !this.state.showSideNavigation});
 	  },
 
+	  onOverlayClick: function() {
+	    this.setState({showSideNavigation: false});
+	  },
+
+
 	  render: function() {
 	    var state = this.state;
 	    return React.DOM.div({styles: this.normalStyle()}, 
 	      AppBar({boxShadow: true, onNavButtonClick: this.onNavButtonClick, shadow: true}), 
-	      Overlay({show: state.showSideNavigation, onClick: this.onNavButtonClick}), 
+	      Overlay({show: state.showSideNavigation, onClick: this.onOverlayClick}), 
 	      SideNavigation({show: state.showSideNavigation}, 
 	        List(null, 
 	          ListItem({onClick: this.onClick(1), title: "Bottom Sheets"}), 
@@ -262,7 +267,7 @@
 	    return React.DOM.div(null, 
 	      React.DOM.h1(null, "Bottom sheets"), 
 	      Button({onClick: this.onShowBottomSheetBtnClick, raised: true}, "List"), 
-	      Overlay({show: state.show, onClick: this.onShowBottomSheetBtnClick}), 
+	      Overlay({show: state.show, onClick: this.onOverlayClick}), 
 	      BottomSheet({show: state.show}, 
 	      
 	        state.grid ?
@@ -282,6 +287,10 @@
 
 	  onShowBottomSheetBtnClick: function() {
 	    this.setState({show:!this.state.show});
+	  },
+
+	  onOverlayClick: function() {
+	    this.setState({show:false});
 	  }
 
 	});
@@ -362,7 +371,7 @@
 	var React = __webpack_require__(16);
 	var ReactStyle = __webpack_require__(17);
 
-	var ProgressBar = __webpack_require__(23);
+	var ProgressBar = __webpack_require__(21);
 
 
 	var ProgressAndActivityView = React.createClass({displayName: 'ProgressAndActivityView',
@@ -400,8 +409,8 @@
 	var React = __webpack_require__(16);
 	var ReactStyle = __webpack_require__(17);
 
-	var CheckBox = __webpack_require__(21);
-	var RadioButton = __webpack_require__(22);
+	var CheckBox = __webpack_require__(22);
+	var RadioButton = __webpack_require__(23);
 
 	var SwitchesView = React.createClass({displayName: 'SwitchesView',
 
@@ -779,7 +788,7 @@
 	var React = __webpack_require__(16);
 	var ReactStyle = __webpack_require__(17);
 
-	var CheckBox = __webpack_require__(21);
+	var CheckBox = __webpack_require__(22);
 	var Icon = __webpack_require__(28);
 	var RippleContainer = __webpack_require__(29);
 
@@ -1355,6 +1364,127 @@
 
 	var React = __webpack_require__(16);
 	var ReactStyle = __webpack_require__(17);
+
+	var transitionEnd = __webpack_require__(32);
+
+	var ProgressBar = React.createClass({displayName: 'ProgressBar',
+
+	  normalStyle: ReactStyle(function normalStyle() {
+	    return "M";
+	  }),
+
+	  progressStyle: ReactStyle(function progressStyle() {
+	    return "N";
+	  }),
+
+	  indeterminateBigStyle: ReactStyle(function indeterminateBigStyle() {
+	    return "O";
+	  }),
+
+	  indeterminateBigAnimateStyle: ReactStyle(function indeterminateBigAnimateStyle() {
+	    return "P";
+	  }),
+
+	  indeteminateSmallSlowAnimateStyle: ReactStyle(function indeteminateSmallSlowAnimateStyle() {
+	    return "Q";
+	  }),
+
+	  loadingStyle: ReactStyle(function loadingStyle() {
+	    return "R";
+	  }),
+
+
+	  getInitialState: function() {
+	    return {
+	      counter: 0,
+	      indeterminateAnimate: false
+	    };
+	  },
+
+	  propTypes: {
+	    percentage: React.PropTypes.number,
+	    bufferPercentage: React.PropTypes.number,
+	    type: React.PropTypes.string
+	  },
+
+	  render: function() {
+	    var props = this.props;
+	    var state = this.state;
+	    var progressBarStyles = [this.progressStyle()];
+	    if (props.percentage) {
+	      progressBarStyles.push({width: props.percentage + '%'});
+	    }
+	    if (props.styles) {
+	      progressBarStyles = progressBarStyles.concat(props.styles);
+	    }
+	    if (props.type === 'indeterminate') {
+	      progressBarStyles.push(this.indeterminateBigStyle());
+	      if (state.indeterminateAnimate) {
+	        progressBarStyles.push(this.indeterminateBigAnimateStyle());
+	      }
+	      if (state.smallSlowAnimate) {
+	        progressBarStyles.push(this.indeteminateSmallSlowAnimateStyle());
+	      }
+	    }
+
+	    var bufferStyles = [this.normalStyle(), {width: props.bufferPercentage + '%'}];
+
+
+	    return React.DOM.div({styles: props.bufferPercentage ? this.loadingStyle() : this.normalStyle()}, 
+	          props.bufferPercentage &&
+	            React.DOM.div({styles: bufferStyles}), 
+	            
+	          React.DOM.div({ref: "progress", styles: progressBarStyles})
+	    )
+	  },
+
+	  componentDidMount: function() {
+	    var self = this;
+	    if (this.props.type === 'indeterminate') {
+	      setTimeout(function() {
+	        self.setState({indeterminateAnimate: true});
+	      }, 0);
+	      this.refs.progress.getDOMNode().addEventListener(transitionEnd, this.onTransitionEnd);
+	    }
+
+
+	  },
+
+	  onTransitionEnd: function(e) {
+	    if (e.propertyName === 'left') {
+	      var counter = this.state.counter;
+	      if (counter < 3) {
+	        this.setState({indeterminateAnimate: false, smallSlowAnimate: false, counter: counter + 1});
+	        var self = this;
+	        setTimeout(function() {
+	          self.setState({indeterminateAnimate: true});
+	        }, 0);
+	      }
+	      else {
+	        var self = this;
+	        self.setState({indeterminateAnimate: false});
+	        setTimeout(function() {
+	          self.setState({indeterminateAnimate: true, smallSlowAnimate: true, counter: 0});
+	        }, 0);
+	      }
+	    }
+	  }
+
+	});
+
+	module.exports = ProgressBar;
+
+/***/ },
+/* 22 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/**
+	 * @jsx React.DOM
+	 */
+	'use strict';
+
+	var React = __webpack_require__(16);
+	var ReactStyle = __webpack_require__(17);
 	var transitionEnd = __webpack_require__(32);
 	var isTransform = __webpack_require__(33);
 	var CircleShadow = __webpack_require__(34);
@@ -1362,23 +1492,23 @@
 	var CheckBox = React.createClass({displayName: 'CheckBox',
 
 	  containerStyle: ReactStyle(function containerStyle() {
-	    return "M";
+	    return "S";
 	  }),
 
 	  normalStyle: ReactStyle(function normalStyle() {
-	    return "N";
+	    return "T";
 	  }),
 
 	  transitionStyle: ReactStyle(function transitionStyle() {
-	    return "O";
+	    return "U";
 	  }),
 
 	  checkedStyle: ReactStyle(function checkedStyle() {
-	    return "P";
+	    return "V";
 	  }),
 
 	  circleStyle: ReactStyle(function circleStyle() {
-	    return "Q";
+	    return "W";
 	  }),
 
 	  getInitialState: function() {
@@ -1464,7 +1594,7 @@
 
 
 /***/ },
-/* 22 */
+/* 23 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -1480,19 +1610,19 @@
 	var RadioButton = React.createClass({displayName: 'RadioButton',
 
 	  normalStyle: ReactStyle(function normalStyle() {
-	    return "R";
+	    return "X";
 	  }),
 
 	  offButtonStyle: ReactStyle(function offButtonStyle() {
-	    return "S";
+	    return "Y";
 	  }),
 
 	  onButtonStyle: ReactStyle(function onButtonStyle() {
-	    return "T";
+	    return "Z";
 	  }),
 
 	  onButtonFillStyle: ReactStyle(function onButtonFillStyle() {
-	    return "U";
+	    return "aa";
 	  }),
 
 	  getInitialState: function() {
@@ -1534,127 +1664,6 @@
 	});
 
 	module.exports = RadioButton;
-
-/***/ },
-/* 23 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/**
-	 * @jsx React.DOM
-	 */
-	'use strict';
-
-	var React = __webpack_require__(16);
-	var ReactStyle = __webpack_require__(17);
-
-	var transitionEnd = __webpack_require__(32);
-
-	var ProgressBar = React.createClass({displayName: 'ProgressBar',
-
-	  normalStyle: ReactStyle(function normalStyle() {
-	    return "V";
-	  }),
-
-	  progressStyle: ReactStyle(function progressStyle() {
-	    return "W";
-	  }),
-
-	  indeterminateBigStyle: ReactStyle(function indeterminateBigStyle() {
-	    return "X";
-	  }),
-
-	  indeterminateBigAnimateStyle: ReactStyle(function indeterminateBigAnimateStyle() {
-	    return "Y";
-	  }),
-
-	  indeteminateSmallSlowAnimateStyle: ReactStyle(function indeteminateSmallSlowAnimateStyle() {
-	    return "Z";
-	  }),
-
-	  loadingStyle: ReactStyle(function loadingStyle() {
-	    return "aa";
-	  }),
-
-
-	  getInitialState: function() {
-	    return {
-	      counter: 0,
-	      indeterminateAnimate: false
-	    };
-	  },
-
-	  propTypes: {
-	    percentage: React.PropTypes.number,
-	    bufferPercentage: React.PropTypes.number,
-	    type: React.PropTypes.string
-	  },
-
-	  render: function() {
-	    var props = this.props;
-	    var state = this.state;
-	    var progressBarStyles = [this.progressStyle()];
-	    if (props.percentage) {
-	      progressBarStyles.push({width: props.percentage + '%'});
-	    }
-	    if (props.styles) {
-	      progressBarStyles = progressBarStyles.concat(props.styles);
-	    }
-	    if (props.type === 'indeterminate') {
-	      progressBarStyles.push(this.indeterminateBigStyle());
-	      if (state.indeterminateAnimate) {
-	        progressBarStyles.push(this.indeterminateBigAnimateStyle());
-	      }
-	      if (state.smallSlowAnimate) {
-	        progressBarStyles.push(this.indeteminateSmallSlowAnimateStyle());
-	      }
-	    }
-
-	    var bufferStyles = [this.normalStyle(), {width: props.bufferPercentage + '%'}];
-
-
-	    return React.DOM.div({styles: props.bufferPercentage ? this.loadingStyle() : this.normalStyle()}, 
-	          props.bufferPercentage &&
-	            React.DOM.div({styles: bufferStyles}), 
-	            
-	          React.DOM.div({ref: "progress", styles: progressBarStyles})
-	    )
-	  },
-
-	  componentDidMount: function() {
-	    var self = this;
-	    if (this.props.type === 'indeterminate') {
-	      setTimeout(function() {
-	        self.setState({indeterminateAnimate: true});
-	      }, 0);
-	      this.refs.progress.getDOMNode().addEventListener(transitionEnd, this.onTransitionEnd);
-	    }
-
-
-	  },
-
-	  onTransitionEnd: function(e) {
-	    if (e.propertyName === 'left') {
-	      var counter = this.state.counter;
-	      if (counter < 3) {
-	        this.setState({indeterminateAnimate: false, smallSlowAnimate: false, counter: counter + 1});
-	        var self = this;
-	        setTimeout(function() {
-	          self.setState({indeterminateAnimate: true});
-	        }, 0);
-	      }
-	      else {
-	        var self = this;
-	        self.setState({indeterminateAnimate: false});
-	        setTimeout(function() {
-	          self.setState({indeterminateAnimate: true, smallSlowAnimate: true, counter: 0});
-	        }, 0);
-	      }
-	    }
-	  }
-
-	});
-
-	module.exports = ProgressBar;
 
 /***/ },
 /* 24 */
@@ -1869,7 +1878,7 @@
 	var Icon = React.createClass({displayName: 'Icon',
 
 	  iconStyle: ReactStyle(function iconStyle() {
-	    return "at";
+	    return "ap";
 	  }),
 
 	  shouldComponentUpdate: function() {
@@ -1918,19 +1927,19 @@
 	  },
 
 	  normalStyle: ReactStyle(function normalStyle() {
-	    return "ap";
-	  }),
-
-	  rippleStyle: ReactStyle(function rippleStyle() {
 	    return "aq";
 	  }),
 
-	  rippleAnimationStyle: ReactStyle(function rippleAnimationStyle() {
+	  rippleStyle: ReactStyle(function rippleStyle() {
 	    return "ar";
 	  }),
 
-	  rippleFadeoutStyle: ReactStyle(function rippleFadeoutStyle() {
+	  rippleAnimationStyle: ReactStyle(function rippleAnimationStyle() {
 	    return "as";
+	  }),
+
+	  rippleFadeoutStyle: ReactStyle(function rippleFadeoutStyle() {
+	    return "at";
 	  }),
 
 	  dimensions: ReactStyle(function(){
@@ -1969,15 +1978,18 @@
 	    return isTouchDevice ? React.DOM.div({styles: [this.normalStyle(), props.styles], 
 	        onTouchStart: this.onMouseDown, 
 	        onTouchEnd: this.onMouseUp, 
-	        onTouchCancel: this.onMouseUp
+	        onTouchCancel: this.onMouseUp, 
+	        onClick: props.onClick
 	    }, 
 	      rippleComponents
 	    )
 	      :
 	      React.DOM.div({styles: [this.normalStyle(), props.styles], 
 	    onMouseDown: this.onMouseDown, 
-	    onMouseLeave: this.onMouseLeave, 
-	    onMouseUp: this.onMouseUp}, 
+	    onMouseLeave: this.onMouseUp, 
+	    onMouseUp: this.onMouseUp, 
+	    onClick: props.onClick
+	      }, 
 	        rippleComponents
 	      );
 	  },
@@ -2006,21 +2018,15 @@
 	    };
 	    ripples.push(ripple);
 
+	    // messes up click event :-(
 	    this.setState({ripples: ripples});
+
+	    this.onClick();
 
 	    setTimeout(this.startRipple, 0);
 	  },
 
 	  onMouseUp: function() {
-	    this.onMouseLeave();
-
-	    var onClick = this.props.onClick;
-	    if (onClick) {
-	      onClick();
-	    }
-	  },
-
-	  onMouseLeave: function() {
 	    // fade out
 	    var ripples = this.state.ripples;
 	    for (var i = 0, l = ripples.length; i < l; i++) {
@@ -13017,15 +13023,15 @@
 
 	"use strict";
 
-	var ReactDOMIDOperations = __webpack_require__(143);
+	var ReactDOMIDOperations = __webpack_require__(144);
 	var ReactMarkupChecksum = __webpack_require__(121);
 	var ReactMount = __webpack_require__(56);
 	var ReactPerf = __webpack_require__(58);
-	var ReactReconcileTransaction = __webpack_require__(144);
+	var ReactReconcileTransaction = __webpack_require__(145);
 
 	var getReactRootElementInContainer = __webpack_require__(117);
 	var invariant = __webpack_require__(41);
-	var setInnerHTML = __webpack_require__(145);
+	var setInnerHTML = __webpack_require__(146);
 
 
 	var ELEMENT_NODE_TYPE = 1;
@@ -13228,7 +13234,7 @@
 
 	"use strict";
 
-	var AutoFocusMixin = __webpack_require__(146);
+	var AutoFocusMixin = __webpack_require__(143);
 	var ReactBrowserComponentMixin = __webpack_require__(87);
 	var ReactCompositeComponent = __webpack_require__(48);
 	var ReactDOM = __webpack_require__(52);
@@ -13421,7 +13427,7 @@
 
 	"use strict";
 
-	var AutoFocusMixin = __webpack_require__(146);
+	var AutoFocusMixin = __webpack_require__(143);
 	var DOMPropertyOperations = __webpack_require__(44);
 	var LinkedValueUtils = __webpack_require__(148);
 	var ReactBrowserComponentMixin = __webpack_require__(87);
@@ -13672,7 +13678,7 @@
 
 	"use strict";
 
-	var AutoFocusMixin = __webpack_require__(146);
+	var AutoFocusMixin = __webpack_require__(143);
 	var LinkedValueUtils = __webpack_require__(148);
 	var ReactBrowserComponentMixin = __webpack_require__(87);
 	var ReactCompositeComponent = __webpack_require__(48);
@@ -13859,7 +13865,7 @@
 
 	"use strict";
 
-	var AutoFocusMixin = __webpack_require__(146);
+	var AutoFocusMixin = __webpack_require__(143);
 	var DOMPropertyOperations = __webpack_require__(44);
 	var LinkedValueUtils = __webpack_require__(148);
 	var ReactBrowserComponentMixin = __webpack_require__(87);
@@ -18069,6 +18075,44 @@
 /* 143 */
 /***/ function(module, exports, __webpack_require__) {
 
+	/**
+	 * Copyright 2013-2014 Facebook, Inc.
+	 *
+	 * Licensed under the Apache License, Version 2.0 (the "License");
+	 * you may not use this file except in compliance with the License.
+	 * You may obtain a copy of the License at
+	 *
+	 * http://www.apache.org/licenses/LICENSE-2.0
+	 *
+	 * Unless required by applicable law or agreed to in writing, software
+	 * distributed under the License is distributed on an "AS IS" BASIS,
+	 * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	 * See the License for the specific language governing permissions and
+	 * limitations under the License.
+	 *
+	 * @providesModule AutoFocusMixin
+	 * @typechecks static-only
+	 */
+
+	"use strict";
+
+	var focusNode = __webpack_require__(171);
+
+	var AutoFocusMixin = {
+	  componentDidMount: function() {
+	    if (this.props.autoFocus) {
+	      focusNode(this.getDOMNode());
+	    }
+	  }
+	};
+
+	module.exports = AutoFocusMixin;
+
+
+/***/ },
+/* 144 */
+/***/ function(module, exports, __webpack_require__) {
+
 	/* WEBPACK VAR INJECTION */(function(process) {/**
 	 * Copyright 2013-2014 Facebook, Inc.
 	 *
@@ -18099,7 +18143,7 @@
 	var ReactPerf = __webpack_require__(58);
 
 	var invariant = __webpack_require__(41);
-	var setInnerHTML = __webpack_require__(145);
+	var setInnerHTML = __webpack_require__(146);
 
 	/**
 	 * Errors for properties that should not be updated with `updatePropertyById()`.
@@ -18262,7 +18306,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(64)))
 
 /***/ },
-/* 144 */
+/* 145 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -18450,7 +18494,7 @@
 
 
 /***/ },
-/* 145 */
+/* 146 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -18538,44 +18582,6 @@
 	}
 
 	module.exports = setInnerHTML;
-
-
-/***/ },
-/* 146 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/**
-	 * Copyright 2013-2014 Facebook, Inc.
-	 *
-	 * Licensed under the Apache License, Version 2.0 (the "License");
-	 * you may not use this file except in compliance with the License.
-	 * You may obtain a copy of the License at
-	 *
-	 * http://www.apache.org/licenses/LICENSE-2.0
-	 *
-	 * Unless required by applicable law or agreed to in writing, software
-	 * distributed under the License is distributed on an "AS IS" BASIS,
-	 * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-	 * See the License for the specific language governing permissions and
-	 * limitations under the License.
-	 *
-	 * @providesModule AutoFocusMixin
-	 * @typechecks static-only
-	 */
-
-	"use strict";
-
-	var focusNode = __webpack_require__(171);
-
-	var AutoFocusMixin = {
-	  componentDidMount: function() {
-	    if (this.props.autoFocus) {
-	      focusNode(this.getDOMNode());
-	    }
-	  }
-	};
-
-	module.exports = AutoFocusMixin;
 
 
 /***/ },

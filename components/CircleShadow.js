@@ -19,7 +19,7 @@ var CircleShadow = React.createClass({
       left: 0,
       right: 0,
       bottom: 0,
-      transform: 'scale(1)',
+      transform: 'scale(1) translateZ(0)',
       transition: 'opacity .48s ease .1s , transform .001s ease .6s  '
     };
   }),
@@ -27,7 +27,7 @@ var CircleShadow = React.createClass({
   pressedStyle: ReactStyle(function(){
     return {
       opacity: '.3',
-      transform: 'scale(3)',
+      transform: 'scale(3) translateZ(0)',
       transition: 'opacity ease 0s, transform ease 0s'
     };
   }),

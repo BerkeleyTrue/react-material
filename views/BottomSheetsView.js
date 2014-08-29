@@ -26,7 +26,7 @@ var BottomSheetsView = React.createClass({
     return <div>
       <h1>Bottom sheets</h1>
       <Button onClick={this.onShowBottomSheetBtnClick} raised={true}>List</Button>
-      <Overlay show={state.show} onClick={this.onShowBottomSheetBtnClick}/>
+      <Overlay show={state.show} onClick={this.onOverlayClick}/>
       <BottomSheet show={state.show}>
       {
         state.grid ?
@@ -46,6 +46,10 @@ var BottomSheetsView = React.createClass({
 
   onShowBottomSheetBtnClick: function() {
     this.setState({show:!this.state.show});
+  },
+
+  onOverlayClick: function() {
+    this.setState({show:false});
   }
 
 });
