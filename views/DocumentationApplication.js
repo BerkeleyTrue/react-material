@@ -77,11 +77,16 @@ var TestView = React.createClass({
     this.setState({showSideNavigation: !this.state.showSideNavigation});
   },
 
+  onOverlayClick: function() {
+    this.setState({showSideNavigation: false});
+  },
+
+
   render: function() {
     var state = this.state;
     return <div styles={this.normalStyle()}>
       <AppBar boxShadow={true} onNavButtonClick={this.onNavButtonClick} shadow={true}/>
-      <Overlay show={state.showSideNavigation} onClick={this.onNavButtonClick} />
+      <Overlay show={state.showSideNavigation} onClick={this.onOverlayClick} />
       <SideNavigation show={state.showSideNavigation}>
         <List>
           <ListItem onClick={this.onClick(1)} title="Bottom Sheets" />

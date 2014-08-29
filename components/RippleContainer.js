@@ -11,6 +11,8 @@ var isTransform = require('./isTransform');
 var rippleUniqueId = 0;
 var transitionEnd = require('./TransitionEndName');
 
+var isTouchDevice = 'ontouchstart' in window;
+
 var RippleContainer = React.createClass({
 
   getInitialState: function() {
@@ -83,20 +85,28 @@ var RippleContainer = React.createClass({
                                  styles={rippleStyles} />;
       rippleComponents.push(rippleComponent);
     }
-    return <div styles={[this.normalStyle(), props.styles]}
-                onTouchStart={this.onMouseDown}
-                onTouchEnd={this.onMouseUp}
-                onTouchCancel={this.onMouseUp}
-                onMouseDown={this.onMouseDown}
-                onMouseLeave={this.onMouseLeave}
-                onMouseUp={this.onMouseUp}
-                >
+
+
+    return isTouchDevice ? <div styles={[this.normalStyle(), props.styles]}
+        onTouchStart={this.onMouseDown}
+        onTouchEnd={this.onMouseUp}
+        onTouchCancel={this.onMouseUp}
+        onClick={props.onClick}
+    >
       {rippleComponents}
-    </div>;
+    </div>
+      :
+      <div styles={[this.normalStyle(), props.styles]}
+    onMouseDown={this.onMouseDown}
+    onMouseLeave={this.onMouseUp}
+    onMouseUp={this.onMouseUp}
+    onClick={props.onClick}
+      >
+        {rippleComponents}
+      </div>;
   },
 
   onMouseDown: function(e) {
-    e.preventDefault();
     var domNode = this.getDOMNode();
     var height = domNode.offsetHeight;
     var width = domNode.offsetWidth;
@@ -120,21 +130,15 @@ var RippleContainer = React.createClass({
     };
     ripples.push(ripple);
 
+    // messes up click event :-(
     this.setState({ripples: ripples});
+
+    this.onClick();
 
     setTimeout(this.startRipple, 0);
   },
 
   onMouseUp: function() {
-    this.onMouseLeave();
-
-    var onClick = this.props.onClick;
-    if (onClick) {
-      onClick();
-    }
-  },
-
-  onMouseLeave: function() {
     // fade out
     var ripples = this.state.ripples;
     for (var i = 0, l = ripples.length; i < l; i++) {

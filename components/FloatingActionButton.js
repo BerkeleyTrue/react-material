@@ -9,6 +9,8 @@ var ReactStyle = require('react-style');
 var Icon = require('./Icon');
 var RippleContainer = require('./RippleContainer');
 
+var isTouchDevice = 'ontouchstart' in window;
+
 // Circular loader: http://jsfiddle.net/wEKg6/
 var FloatingActionButton = React.createClass({
 
@@ -82,22 +84,34 @@ var FloatingActionButton = React.createClass({
       styles.push(this.pressedStyle());
 
     }
-    return <div tabIndex={0}
+    return isTouchDevice ? <div tabIndex={0}
                 styles={styles}
                 onClick={this.props.onClick}
                 onTouchStart={this.onMouseDown}
                 onTouchEnd={this.onMouseUp}
                 onTouchCancel={this.onMouseUp}
-                onMouseDown={this.onMouseDown}
-                onMouseUp={this.onMouseUp}
-                onMouseLeave={this.onMouseUp}
                 role="button">
       {this.state.active &&
         <div styles={this.overlayStyle()} />
         }
 
       <Icon icon={this.props.icon} styles={this.props.mini ? this.miniIconStyle() : this.defaultIconStyle()}/>
-    </div>;
+    </div>
+      :
+      <div tabIndex={0}
+      styles={styles}
+      onClick={this.props.onClick}
+      onMouseDown={this.onMouseDown}
+      onMouseUp={this.onMouseUp}
+      onMouseLeave={this.onMouseUp}
+      role="button">
+      {this.state.active &&
+        <div styles={this.overlayStyle()} />
+        }
+
+        <Icon icon={this.props.icon} styles={this.props.mini ? this.miniIconStyle() : this.defaultIconStyle()}/>
+      </div>
+      ;
   },
 
 
