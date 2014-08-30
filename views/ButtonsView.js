@@ -13,7 +13,6 @@ var ButtonsView = React.createClass({
 
   render: function() {
     return <div>
-      <h1>Buttons</h1>
       <h2>Main buttons</h2>
       <h3>Floating action buttons</h3>
       <div>

@@ -13,7 +13,6 @@ var ProgressAndActivityView = React.createClass({
 
   render: function(){
     return <div>
-      <h1>Progress Bar</h1>
       <h2>Determinate</h2>
       <ProgressBar percentage={20} />
       <h2>Indeterminate</h2>

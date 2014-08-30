@@ -12,7 +12,6 @@ var TextFieldsView = React.createClass({
 
   render: function() {
     return <div>
-      <h1>Text fields</h1>
       <h2>Single line text fields</h2>
       <TextField placeHolder="Name"/>
       <h2>Single Line with Scrolling</h2>

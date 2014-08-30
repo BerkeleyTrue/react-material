@@ -13,7 +13,6 @@ var ListView = React.createClass({
 
   render: function() {
     return <div>
-      <h1>List</h1>
       <h2>Single line</h2>
       <List>
         <ListItem title="Bottom sheets" />

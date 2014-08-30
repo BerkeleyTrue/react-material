@@ -27,6 +27,16 @@ var ListItem = require('../components/ListItem');
 
 var BlueTheme = require('../themes/BlueTheme');
 
+var ViewsEnum = {
+  BottomSheetsView: 1,
+  ButtonsView: 2,
+  ProgressAndActivityView: 3,
+  TabsView: 4,
+  TextFieldsView: 5,
+  SwitchesView: 6,
+  ListsView: 7
+};
+
 var TestView = React.createClass({
 
   themes: [BlueTheme],
@@ -84,8 +94,31 @@ var TestView = React.createClass({
 
   render: function() {
     var state = this.state;
+    var view = state.view;
+    var title = '';
+    if(view === ViewsEnum.BottomSheetsView) {
+      title = 'Bottom sheets';
+    }
+    else if(view === ViewsEnum.ButtonsView) {
+      title = 'Buttons';
+    }
+    else if(view === ViewsEnum.ProgressAndActivityView) {
+      title = 'Progress and Activity';
+    }
+    else if(view === ViewsEnum.TabsView) {
+      title = 'Tabs';
+    }
+    else if(view === ViewsEnum.TextFieldsView) {
+      title = 'Text fields';
+    }
+    else if(view === ViewsEnum.SwitchesView) {
+      title = 'Switches';
+    }
+    else if(view === ViewsEnum.ListsView) {
+      title = 'Lists';
+    }
     return <div styles={this.normalStyle()}>
-      <AppBar boxShadow={true} onNavButtonClick={this.onNavButtonClick} shadow={true}/>
+      <AppBar boxShadow={true} onNavButtonClick={this.onNavButtonClick} shadow={true} title={title}/>
       <Overlay show={state.showSideNavigation} onClick={this.onOverlayClick} />
       <SideNavigation show={state.showSideNavigation}>
         <List>
@@ -103,34 +136,38 @@ var TestView = React.createClass({
         <div>
           <h1 styles={this.headerStyle()}>React Material Components</h1>
           <p styles={this.paragraphStyle()}>
-            Here you find components written with React.js and React Style that attempt to abide to the Google
-            material design guidelines. It takes a different approach from Polymer, by wrapping both templates
+             Here you find components written with <a href="http://reactjs.org">React.js</a> and {' '}
+             <a href="https://github.com/SanderSpies/react-style">React Style</a> that attempt to abide to the {' '}
+             <a href="http://www.google.com/design/spec/material-design/introduction.html">Google material design guidelines</a>.
+             It takes a different approach from Polymer, by wrapping both templates
             and CSS within JavaScript.
           </p>
           <p styles={this.paragraphStyle()}>
-            If something is not correct, feel free to help out and file an issue or do a pull request.
+            If something is not correct, feel free to help out and file an {' '}
+            <a href="https://github.com/SanderSpies/react-style/issues/new">issue</a> or {' '}
+            <a href="https://github.com/SanderSpies/react-style/fork">fork the project</a> and do a pull request.
           </p>
         </div>
         }
-        {state.view === 1 &&
+        {state.view === ViewsEnum.BottomSheetsView &&
           <BottomSheetsView />
           }
-        {state.view === 2 &&
+        {state.view === ViewsEnum.ButtonsView &&
           <ButtonsView />
         }
-        {state.view === 3 &&
+        {state.view === ViewsEnum.ProgressAndActivityView &&
           <ProgressAndActivityView />
         }
-        {state.view === 4 &&
+        {state.view === ViewsEnum.TabsView &&
           <TabsView />
           }
-        {state.view === 5 &&
+        {state.view === ViewsEnum.TextFieldsView &&
           <TextFieldsView />
           }
-        {state.view === 6 &&
+        {state.view === ViewsEnum.SwitchesView &&
           <SwitchesView />
           }
-        {state.view === 7 &&
+        {state.view === ViewsEnum.ListsView &&
           <ListsView />
           }
       </div>
@@ -147,63 +184,3 @@ var TestView = React.createClass({
 });
 
 React.renderComponent(<TestView />, document.getElementById('container'));
-
-/*
- *
- Welcome to React Material components, an attempt at recreating the Polymer material components within React.js
- <div>
- <h2>Flat buttons</h2>
- <Button>
- button
- </Button>
- <Button styles={{color:'#5677fc'}}>
- colored
- </Button>
- <Button disabled={true}>
- disabled
- </Button>
- </div>
- <div>
- <h2>Raised buttons</h2>
- <Button raised={true} onClick={this.onButtonClick}>
- button
- </Button>
- <Button raised={true} styles={{backgroundColor:'#5677fc', color: 'white'}}>
- colored
- </Button>
- <Button raised={true} disabled={true}>
- disabled
- </Button>
- </div>
- <div>
- <h2>Floating Action Button</h2>
- <FloatingActionButton icon="undo" styles={[{backgroundColor:'#d23f31'}]}/>
- <FloatingActionButton icon="arrow-forward" mini={true} styles={[{backgroundColor:'#5677fc'}]}/>
- <h2>Radio Buttons</h2>
- <RadioButton name="radiobutton" onButtonStyle={[{backgroundColor:'#d23f31'}]}/>
- <RadioButton name="radiobutton"/>
- <h2>Checkbox</h2>
- <Checkbox />
- <Checkbox />
- <h2>Progress bar</h2>
- <ProgressBar percentage={50} styles={[{backgroundColor:'#d23f31'}]}/>
- </div>
- <h2>Toggle Button</h2>
- <div>
- <ToggleButton />
- </div>
- <h2>Icon button</h2>
- <div>
- <IconButton />
- </div>
- <h2>Slider</h2>
- <div>
- blaaaa
- </div>
- <h2>Textfield</h2>
- <div>
- <TextField placeHolder="User name" />
- <TextField placeHolder="Password" />
- </div>
- <h2>Moaaaarrr</h2>
- */
