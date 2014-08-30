@@ -20,7 +20,6 @@ var TabsView = React.createClass({
   render: function() {
     var state = this.state;
     return <div>
-      <h1>Tabs</h1>
       <Tabs onChange={this.onChange}>
         <Tab title="tab1" selected={state.view === 0}>
           Contents of tab 1

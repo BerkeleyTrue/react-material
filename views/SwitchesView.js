@@ -13,7 +13,6 @@ var SwitchesView = React.createClass({
 
   render: function() {
     return <div>
-      <h1>Switches</h1>
       <h2>Checkbox</h2>
       <CheckBox />
       <h2>Radio</h2>
