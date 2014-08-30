@@ -8,14 +8,14 @@ var ReactStyle = require('react-style');
 
 var Tabs = React.createClass({
 
-  normalStyle: ReactStyle(function(){
+  normalStyle: ReactStyle(function normalStyle(){
     return {
       position: 'relative',
       width: '100%'
     }
   }),
 
-  tabTitlesContainerStyle: ReactStyle(function(){
+  tabTitlesContainerStyle: ReactStyle(function tabTitlesContainerStyle(){
     return {
       webkitTapHighlightColor: 'rgba(0,0,0,0)',
       backgroundColor: '#00bcd4',
@@ -32,7 +32,7 @@ var Tabs = React.createClass({
     };
   }),
 
-  tabTitleStyle: ReactStyle(function(){
+  tabTitleStyle: ReactStyle(function tabTitleStyle(){
     return {
       height: '100%',
       display: 'inline-block',
@@ -43,13 +43,13 @@ var Tabs = React.createClass({
     }
   }),
 
-  tabTitleSelectedStyle: ReactStyle(function(){
+  tabTitleSelectedStyle: ReactStyle(function tabTitleSelectedStyle(){
     return {
       opacity: 1
     }
   }),
 
-  selectionBarStyle: ReactStyle(function(){
+  selectionBarStyle: ReactStyle(function selectionBarStyle(){
     return {
       backgroundColor: '#ffff8d',
       height: '2px',

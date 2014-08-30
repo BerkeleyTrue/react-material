@@ -8,7 +8,7 @@ var ReactStyle = require('react-style');
 
 var BottomSheet = React.createClass({
 
-  normalBottomSheetStyle: ReactStyle(function(){
+  normalBottomSheetStyle: ReactStyle(function normalBottomSheetStyle(){
     return {
       backgroundColor: 'white',
       bottom: 0,
@@ -21,7 +21,7 @@ var BottomSheet = React.createClass({
     }
   }),
 
-  hiddenTransformStyle: ReactStyle(function(){
+  hiddenTransformStyle: ReactStyle(function hiddenTransformStyle(){
     var height = 0;
     if (this.isMounted()) {
       var domNode = this.getDOMNode();
@@ -35,7 +35,7 @@ var BottomSheet = React.createClass({
     };
   }),
 
-  showBottomSheetStyle: ReactStyle(function(){
+  showBottomSheetStyle: ReactStyle(function showBottomSheetStyle(){
     return {
       transform: 'translateY(0)'
     }

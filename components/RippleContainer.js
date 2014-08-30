@@ -21,7 +21,7 @@ var RippleContainer = React.createClass({
     };
   },
 
-  normalStyle: ReactStyle(function(){
+  normalStyle: ReactStyle(function normalStyle(){
     return {
       height: '100%',
       left: 0,
@@ -31,7 +31,7 @@ var RippleContainer = React.createClass({
     };
   }),
 
-  rippleStyle: ReactStyle(function() {
+  rippleStyle: ReactStyle(function rippleStyle() {
     return {
       display: 'block',
       position: 'absolute',
@@ -42,13 +42,13 @@ var RippleContainer = React.createClass({
     };
   }),
 
-  rippleAnimationStyle: ReactStyle(function() {
+  rippleAnimationStyle: ReactStyle(function rippleAnimationStyle() {
     return {
       transform: 'scale(2.5)'
     };
   }),
 
-  rippleFadeoutStyle: ReactStyle(function() {
+  rippleFadeoutStyle: ReactStyle(function rippleFadeoutStyle() {
     return {
       opacity: 0
     };

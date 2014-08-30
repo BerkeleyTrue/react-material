@@ -8,7 +8,7 @@ var ReactStyle = require('react-style');
 
 var CircleShadow = React.createClass({
 
-  normalStyle: ReactStyle(function(){
+  normalStyle: ReactStyle(function normalStyle(){
     return {
       webkitTapHighlightColor: 'rgba(0,0,0,0)',
       backgroundColor: '#5a5a5a',
@@ -24,7 +24,7 @@ var CircleShadow = React.createClass({
     };
   }),
 
-  pressedStyle: ReactStyle(function(){
+  pressedStyle: ReactStyle(function pressedStyle(){
     return {
       opacity: '.3',
       transform: 'scale(3) translateZ(0)',

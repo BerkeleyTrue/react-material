@@ -11,7 +11,7 @@ var CircleShadow = require('./CircleShadow');
 
 var CheckBox = React.createClass({
 
-  containerStyle: ReactStyle(function() {
+  containerStyle: ReactStyle(function containerStyle() {
     return {
       webkitTapHighlightColor: 'rgba(0,0,0,0)',
       cursor: 'pointer',
@@ -23,7 +23,7 @@ var CheckBox = React.createClass({
     };
   }),
 
-  normalStyle: ReactStyle(function() {
+  normalStyle: ReactStyle(function normalStyle() {
     return {
       borderColor: '#5a5a5a',
       borderStyle: 'solid',
@@ -44,7 +44,7 @@ var CheckBox = React.createClass({
     };
   }),
 
-  transitionStyle: ReactStyle(function() {
+  transitionStyle: ReactStyle(function transitionStyle() {
     return {
       height: 0,
       transform: 'translateZ(0) rotate(45deg)',
@@ -53,7 +53,7 @@ var CheckBox = React.createClass({
     };
   }),
 
-  checkedStyle: ReactStyle(function() {
+  checkedStyle: ReactStyle(function checkedStyle() {
     return {
       borderWidth: '0 2px 2px 0',
       borderColor: '#0f9d58',
@@ -62,7 +62,7 @@ var CheckBox = React.createClass({
     }
   }),
 
-  circleStyle: ReactStyle(function() {
+  circleStyle: ReactStyle(function circleStyle() {
     return {
       backgroundColor: '#0f9d58'
     }

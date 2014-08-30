@@ -10,7 +10,7 @@ var CircleShadow = require('./CircleShadow');
 
 var RadioButton = React.createClass({
 
-  normalStyle: ReactStyle(function(){
+  normalStyle: ReactStyle(function normalStyle(){
     return {
       webkitTapHighlightColor: 'rgba(0,0,0,0)',
       cursor: 'pointer',
@@ -23,7 +23,7 @@ var RadioButton = React.createClass({
     };
   }),
 
-  offButtonStyle: ReactStyle(function(){
+  offButtonStyle: ReactStyle(function offButtonStyle(){
     return {
       border: 'solid 2px',
       borderColor: '#5a5a5a',
@@ -36,7 +36,7 @@ var RadioButton = React.createClass({
     };
   }),
 
-  onButtonStyle: ReactStyle(function(){
+  onButtonStyle: ReactStyle(function onButtonStyle(){
     return {
       backgroundColor: '#5a5a5a',
       borderRadius: '50%',
@@ -50,7 +50,7 @@ var RadioButton = React.createClass({
     };
   }),
 
-  onButtonFillStyle: ReactStyle(function(){
+  onButtonFillStyle: ReactStyle(function onButtonFillStyle(){
     return {
       transform: 'scale(1.1)'
     };
