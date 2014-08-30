@@ -12,6 +12,8 @@ var List = require('../components/List');
 var ListItem = require('../components/ListItem');
 var Overlay = require('../components/Overlay');
 
+var preventOverlayClick = false; // Mobile Safari
+
 var BottomSheetsView = React.createClass({
 
   getInitialState:function(){
@@ -45,11 +47,11 @@ var BottomSheetsView = React.createClass({
   },
 
   onShowBottomSheetBtnClick: function() {
-    this.setState({show:!this.state.show});
+    this.setState({show: true});
   },
 
   onOverlayClick: function() {
-    this.setState({show:false});
+    this.setState({show: false});
   }
 
 });

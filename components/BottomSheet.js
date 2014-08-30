@@ -29,6 +29,7 @@ var BottomSheet = React.createClass({
         height = domNode.offsetHeight + 8;
       }
     }
+
     return {
       transform: 'translateY(' + height +'px)'
     };
@@ -46,7 +47,8 @@ var BottomSheet = React.createClass({
       bottomSheetStyles.push(this.showBottomSheetStyle());
     }
     else {
-      bottomSheetStyles.push(this.hiddenTransformStyle());
+      var x = this.hiddenTransformStyle();
+      bottomSheetStyles.push(x);
     }
     return <div styles={bottomSheetStyles}>
       {this.props.children}
