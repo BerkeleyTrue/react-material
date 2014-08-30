@@ -29,7 +29,7 @@ Current issues
 ---
 - [ ] Need to implement a base set of components
 - [ ] Properly implement the "theming" of the components
-- [ ] Should work in IE8 whereby the functionality should not be broken
+- [ ] Should work in IE8 whereby the functionality should not be broken. IE in general needs some extra work, but so far the results have been promising. Also, for IE8 we need to generate PNG's from the SVG's.
 - [ ] Properly handle mobile interfaces with proper touch support
 - [ ] Use Google Closure Compiler Advanced Mode for bragging rights
 
