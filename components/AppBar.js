@@ -11,17 +11,16 @@ var Icon = require('./Icon');
 
 var AppBar = React.createClass({
 
-  normalAppBarStyle: ReactStyle(function() {
+  normalAppBarStyle: ReactStyle(function normalAppBarStyle() {
     return {
       backgroundColor: '#00bcd4',
       boxSizing: 'border-box',
       height: '56px',
       width: '100%'
-
     };
   }),
 
-  navButtonStyle: ReactStyle(function(){
+  navButtonStyle: ReactStyle(function navButtonStyle(){
     return {
       height: '26px',
       webkitTapHighlightColor: 'rgba(0,0,0,0)',
@@ -31,10 +30,10 @@ var AppBar = React.createClass({
       padding: '14px 16px',
       cursor: 'pointer',
       verticalAlign: 'top'
-    }
+    };
   }),
 
-  titleStyle:ReactStyle(function(){
+  titleStyle:ReactStyle(function titleStyle(){
     var style = Typography.title;
     style.display = 'inline-block';
     delete style.opacity;
@@ -43,7 +42,7 @@ var AppBar = React.createClass({
     return style;
   }),
 
-  boxShadowStyle: ReactStyle(function(){
+  boxShadowStyle: ReactStyle(function boxShadowStyle(){
     return {
       boxShadow: '0 2px 5px rgba(0, 0, 0, .26)'
     };

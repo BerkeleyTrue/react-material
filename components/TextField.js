@@ -8,7 +8,7 @@ var ReactStyle = require('react-style');
 
 var TextField = React.createClass({
 
-  normalTextFieldStyle: ReactStyle(function(){
+  normalTextFieldStyle: ReactStyle(function normalTextFieldStyle(){
     return {
       background: 'transparent',
       border: 'none',
@@ -29,27 +29,27 @@ var TextField = React.createClass({
     };
   }),
 
-  fullWidthTextFieldStyle: ReactStyle(function(){
+  fullWidthTextFieldStyle: ReactStyle(function fullWidthTextFieldStyle(){
     return {
       width: '100%'
     };
   }),
 
-  errorTextFieldStyle: ReactStyle(function(){
+  errorTextFieldStyle: ReactStyle(function errorTextFieldStyle(){
     return {
 
     };
   }),
 
-  scrollLeftTextFieldStyle: ReactStyle(function(){
+  scrollLeftTextFieldStyle: ReactStyle(function scrollLeftTextFieldStyle(){
 
   }),
 
-  scrollRightTextFieldStyle: ReactStyle(function(){
+  scrollRightTextFieldStyle: ReactStyle(function scrollRightTextFieldStyle(){
 
   }),
 
-  placeHolderStyling: ReactStyle(function(){
+  placeHolderStyling: ReactStyle(function placeHolderStyling(){
     return {
       color: '#dfdfdf',
       fontSize: '16px',
@@ -62,7 +62,7 @@ var TextField = React.createClass({
     }
   }),
 
-  containerStyling: ReactStyle(function(){
+  containerStyling: ReactStyle(function containerStyling(){
     return {
       height: '48px',
       position: 'relative',
@@ -70,7 +70,7 @@ var TextField = React.createClass({
     };
   }),
 
-  placeHolderTopStyling: ReactStyle(function(){
+  placeHolderTopStyling: ReactStyle(function placeHolderTopStyling(){
     return {
       fontSize: '12px',
       top: '-8px'

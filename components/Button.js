@@ -12,7 +12,7 @@ var isTouchDevice = 'ontouchstart' in window;
 
 var Button = React.createClass({
 
-  normalButtonStyle: ReactStyle(function() {
+  normalButtonStyle: ReactStyle(function normalButtonStyle() {
     return {
       webkitTapHighlightColor: 'rgba(0,0,0,0)',
       backgroundColor: 'transparent',
@@ -30,7 +30,7 @@ var Button = React.createClass({
     };
   }),
 
-  raisedButtonStyle: ReactStyle(function() {
+  raisedButtonStyle: ReactStyle(function raisedButtonStyle() {
     return {
       backgroundColor: '#dfdfdf',
       boxShadow: '0 2px 5px 0 rgba(0, 0, 0, 0.26)',
@@ -38,13 +38,13 @@ var Button = React.createClass({
     };
   }),
 
-  raisedButtonPressedStyle: ReactStyle(function(){
+  raisedButtonPressedStyle: ReactStyle(function raisedButtonPressedStyle(){
     return {
       boxShadow: '0 8px 17px 0 rgba(0, 0, 0, 0.2)'
     };
   }),
 
-  disabledButtonStyle: ReactStyle(function() {
+  disabledButtonStyle: ReactStyle(function disabledButtonStyle() {
     return {
       backgroundColor: '#eaeaea',
       color: '#a8a8a8',

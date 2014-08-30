@@ -8,7 +8,7 @@ var ReactStyle = require('react-style');
 
 var Overlay = React.createClass({
 
-  normalOverlayStyle: ReactStyle(function() {
+  normalOverlayStyle: ReactStyle(function normalOverlayStyle() {
     return {
       height: '100%',
       position: 'fixed',
@@ -25,7 +25,7 @@ var Overlay = React.createClass({
     };
   }),
 
-  normalOverlayVisibleStyle: ReactStyle(function() {
+  normalOverlayVisibleStyle: ReactStyle(function normalOverlayVisibleStyle() {
     return {
       opacity: 1,
       visibility: 'visible',

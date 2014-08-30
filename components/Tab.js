@@ -8,7 +8,7 @@ var ReactStyle = require('react-style');
 
 var Tab = React.createClass({
 
-  normalTabStyle: ReactStyle(function(){
+  normalTabStyle: ReactStyle(function normalTabStyle(){
     return {
       display: 'inline-block',
       textAlign: 'center'

@@ -14,7 +14,7 @@ var isTouchDevice = 'ontouchstart' in window;
 // Circular loader: http://jsfiddle.net/wEKg6/
 var FloatingActionButton = React.createClass({
 
-  normalStyle: ReactStyle(function(){
+  normalStyle: ReactStyle(function normalStyle(){
     return {
       webkitTapHighlightColor: 'rgba(0,0,0,0)',
       borderRadius: '50%',
@@ -31,19 +31,20 @@ var FloatingActionButton = React.createClass({
     };
   }),
 
-  pressedStyle: ReactStyle(function(){
+  pressedStyle: ReactStyle(function pressedStyle(){
     return {
       boxShadow: '0 8px 17px 0 rgba(0, 0, 0, 0.2)'
     };
   }),
 
-  miniStyle: ReactStyle(function(){
+  miniStyle: ReactStyle(function miniStyle(){
     return {
       height: '40px',
       width: '40px'
-    }
+    };
   }),
-  overlayStyle: ReactStyle(function() {
+
+  overlayStyle: ReactStyle(function overlayStyle() {
     return {
       background: 'rgba(0, 0, 0, 0.04)',
       borderRadius: '50%',
@@ -53,11 +54,11 @@ var FloatingActionButton = React.createClass({
     };
   }),
 
-  miniIconStyle: ReactStyle(function(){
+  miniIconStyle: ReactStyle(function miniIconStyle(){
     return {position: 'absolute', width: '24px', left: '8px' };
   }),
 
-  defaultIconStyle: ReactStyle(function(){
+  defaultIconStyle: ReactStyle(function defaultIconStyle(){
     return {position: 'absolute', width: '24px', left: '16px' };
   }),
 

@@ -10,7 +10,7 @@ var transitionEnd = require('./TransitionEndName');
 
 var ProgressBar = React.createClass({
 
-  normalStyle: ReactStyle(function() {
+  normalStyle: ReactStyle(function normalStyle() {
     return {
       backgroundColor: '#c8c8c8',
       height: '4px',
@@ -19,7 +19,7 @@ var ProgressBar = React.createClass({
     };
   }),
 
-  progressStyle: ReactStyle(function() {
+  progressStyle: ReactStyle(function progressStyle() {
     return {
       backgroundColor: '#d23f31',
       bottom: 0,
@@ -32,7 +32,7 @@ var ProgressBar = React.createClass({
     };
   }),
 
-  indeterminateBigStyle: ReactStyle(function() {
+  indeterminateBigStyle: ReactStyle(function indeterminateBigStyle() {
     return {
       borderRadius: '3px',
       width: '75%',
@@ -41,21 +41,21 @@ var ProgressBar = React.createClass({
     };
   }),
 
-  indeterminateBigAnimateStyle: ReactStyle(function() {
+  indeterminateBigAnimateStyle: ReactStyle(function indeterminateBigAnimateStyle() {
     return {
       left: '100%',
       transition: 'left .65s ease-in, width .65s ease-in'
     };
   }),
 
-  indeteminateSmallSlowAnimateStyle: ReactStyle(function(){
+  indeteminateSmallSlowAnimateStyle: ReactStyle(function indeteminateSmallSlowAnimateStyle(){
     return {
       width: '10%',
       transition: 'left 1.25s ease-in, width .65s ease-in'
     };
   }),
 
-  loadingStyle: ReactStyle(function(){
+  loadingStyle: ReactStyle(function loadingStyle(){
     return {
       position: 'relative',
       height: '4px'

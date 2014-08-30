@@ -17,7 +17,7 @@ var Typography = require('../style/Typography');
 var ListItem = React.createClass({
 
 
-  normalListItemStyle: ReactStyle(function(){
+  normalListItemStyle: ReactStyle(function normalListItemStyle(){
     return merge(Typography.subhead,
       {
       webkitTapHighlightColor: 'rgba(0,0,0,0)',
@@ -30,32 +30,32 @@ var ListItem = React.createClass({
     });
   }),
 
-  singleLineWithIconStyle: ReactStyle(function(){
+  singleLineWithIconStyle: ReactStyle(function singleLineWithIconStyle(){
     return {
       height: '56px'
     };
   }),
 
-  singleLineWithIconTitleStyle: ReactStyle(function(){
+  singleLineWithIconTitleStyle: ReactStyle(function singleLineWithIconTitleStyle(){
     return {
       lineHeight: '30px'
     };
   }),
 
-  twoLinesStyle: ReactStyle(function(){
+  twoLinesStyle: ReactStyle(function twoLinesStyle(){
     return {
       height: '72px'
     };
   }),
 
-  threeLinesStyle: ReactStyle(function(){
+  threeLinesStyle: ReactStyle(function threeLinesStyle(){
     return {
       height: '88px'
     };
   }),
 
 
-  iconStyle: ReactStyle(function(){
+  iconStyle: ReactStyle(function iconStyle(){
     return {
       display: 'inline-block',
       padding: '0 16px 0 0',
@@ -68,7 +68,7 @@ var ListItem = React.createClass({
   }),
 
 
-  secondaryTextStyle: ReactStyle(function(){
+  secondaryTextStyle: ReactStyle(function secondaryTextStyle(){
     return merge(Typography.body1, {
       color: 'rgba(0,0,0,.54)',
       position: 'relative',
@@ -77,7 +77,7 @@ var ListItem = React.createClass({
     });
   }),
 
-  typeStyle: ReactStyle(function(){
+  typeStyle: ReactStyle(function typeStyle(){
     return {
       margin: '10px 30px 0 0',
       float: 'left'

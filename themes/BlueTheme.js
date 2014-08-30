@@ -4,7 +4,7 @@ var ReactStyle = require('react-style');
 
 var BlueTheme = {
   AppBar: {
-    normalAppBarStyle: ReactStyle(function(){
+    normalAppBarStyle: ReactStyle(function normalAppBarStyle(){
       return {
         backgroundColor: '#3f51b5',
         position: 'fixed',
@@ -12,26 +12,26 @@ var BlueTheme = {
         top: 0
       };
     }),
-    navButtonStyle: ReactStyle(function(){
+    navButtonStyle: ReactStyle(function navButtonStyle(){
       return {
         fill: 'white'
       }
     }),
-    titleStyle: ReactStyle(function(){
+    titleStyle: ReactStyle(function titleStyle(){
       return {
         color: 'white'
       };
     })
   },
   Button: {
-    normalButtonStyle: ReactStyle(function() {
+    normalButtonStyle: ReactStyle(function normalButtonStyle() {
       return {
         margin: '10px'
       };
     })
   },
   FloatingActionButton: {
-    normalStyle: ReactStyle(function(){
+    normalStyle: ReactStyle(function normalStyle(){
       return {
         margin: '10px'
       };

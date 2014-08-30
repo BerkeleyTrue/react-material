@@ -38,14 +38,14 @@ var TestView = React.createClass({
     }
   },
 
-  normalStyle: ReactStyle(function(){
+  normalStyle: ReactStyle(function normalStyle(){
     return {
       backgroundColor: '#f9f9f9',
       minHeight: '100%'
     };
   }),
 
-  containerStyle: ReactStyle(function() {
+  containerStyle: ReactStyle(function containerStyle() {
     return {
 
       margin: 'auto',
@@ -54,7 +54,7 @@ var TestView = React.createClass({
     };
   }),
 
-  headerStyle: ReactStyle(function() {
+  headerStyle: ReactStyle(function headerStyle() {
     return {
       color: '#3f51b5',
       fontSize: '34px',
@@ -65,7 +65,7 @@ var TestView = React.createClass({
     };
   }),
 
-  paragraphStyle: ReactStyle(function() {
+  paragraphStyle: ReactStyle(function paragraphStyle() {
     return {
       color: '#212121',
       fontSize: '20px',

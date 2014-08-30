@@ -8,7 +8,7 @@ var ReactStyle = require('react-style');
 
 var List = React.createClass({
 
-  normalListStyle: ReactStyle(function(){
+  normalListStyle: ReactStyle(function normalListStyle(){
     return {
       overflow: 'auto',
       overflowY: 'auto',

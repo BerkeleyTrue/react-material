@@ -19,7 +19,7 @@ div.innerHTML = coreIcons + socialIcons;
 
 var Icon = React.createClass({
 
-  iconStyle: ReactStyle(function(){
+  iconStyle: ReactStyle(function iconStyle(){
     return {
       bottom: 0,
       left: 0,
