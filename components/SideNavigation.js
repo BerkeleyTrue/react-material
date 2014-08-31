@@ -19,14 +19,17 @@ var SideNavigation = React.createClass({
       top: 0,
       width: '240px',
       transform: 'translateX(-241px)',
-      transition: 'transform .2s cubic-bezier(.4,0,.2,1)',
-      zIndex: 4
+      transition: 'transform .2s cubic-bezier(.4,0,.2,1), visibility 0s linear .21s',
+      zIndex: 4,
+      visibility: 'hidden'
     }
   }),
 
   showSideNavStyle: ReactStyle(function showSideNavStyle(){
     return {
-      transform: 'translateX(0)'
+      transform: 'translateX(0)',
+      transition: 'transform .2s cubic-bezier(.4,0,.2,1), visibility 0s linear 0s',
+      visibility: 'visible'
     }
   }),
 

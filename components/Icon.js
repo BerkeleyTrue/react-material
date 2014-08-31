@@ -38,8 +38,13 @@ var Icon = React.createClass({
       return <div />;
     }
 
-    return <svg styles={this.props.styles} viewBox="0 0 24 24" height="100%" width="100%" preserveAspectRatio="xMidYMid meet" ref="svg" dangerouslySetInnerHTML={{__html:div.querySelector('#' + this.props.icon).innerHTML}}>
-    </svg>;
+    if (window.SVGSVGElement) {
+      return <svg styles={this.props.styles} viewBox="0 0 24 24" height="100%" width="100%" preserveAspectRatio="xMidYMid meet" ref="svg" dangerouslySetInnerHTML={{__html: div.querySelector('#' + this.props.icon).innerHTML}} />
+    }
+    else {
+      // TODO: should go to generated image sprite
+      return <div />;
+    }
   }
 
 

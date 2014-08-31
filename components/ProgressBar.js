@@ -113,6 +113,11 @@ var ProgressBar = React.createClass({
       setTimeout(function() {
         self.setState({indeterminateAnimate: true});
       }, 0);
+
+      if (!transitionEnd) {
+        return;
+      }
+
       this.refs.progress.getDOMNode().addEventListener(transitionEnd, this.onTransitionEnd);
     }
 
