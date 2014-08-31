@@ -44,7 +44,7 @@ var RippleContainer = React.createClass({
 
   rippleAnimationStyle: ReactStyle(function rippleAnimationStyle() {
     return {
-      transform: 'scale(2.5)'
+      transform: 'scale(2)'
     };
   }),
 
@@ -177,6 +177,11 @@ var RippleContainer = React.createClass({
   componentDidMount: function() {
     var self = this;
     var domNode = this.getDOMNode();
+
+    if (!transitionEnd) {
+      return;
+    }
+
     domNode.addEventListener(transitionEnd, this.endRipple);
   }
 

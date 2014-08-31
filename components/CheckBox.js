@@ -125,6 +125,10 @@ var CheckBox = React.createClass({
   },
 
   componentDidMount: function() {
+    if (!transitionEnd) {
+      return;
+    }
+
     this.refs.checkbox.getDOMNode().addEventListener(transitionEnd, this.onTransitionEnd);
   },
 

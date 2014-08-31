@@ -13,12 +13,12 @@ var Overlay = React.createClass({
       height: '100%',
       position: 'fixed',
       width: '100%',
-      opacity: 0.01,
       top: 0,
       left: 0,
       bottom: 0,
       right: 0,
-      backgroundColor: 'rgba(0,0,0,.3)',
+      backgroundColor: 'rgb(0,0,0)',
+      opacity: .01,
       zIndex: 2,
       visibility: 'hidden',
       transition: 'visibility 0s linear .4s, opacity .4s cubic-bezier(.4, 0, .2, 1), z-index 0s linear .4s'
@@ -27,7 +27,8 @@ var Overlay = React.createClass({
 
   normalOverlayVisibleStyle: ReactStyle(function normalOverlayVisibleStyle() {
     return {
-      opacity: 1,
+      opacity:.3,
+      filter: 'alpha(opacity=30)', // wonder what's better this or transparent images (both suck for this)
       visibility: 'visible',
       transition: 'visibility 0s linear 0s, opacity .4s cubic-bezier(.4, 0, .2, 1), z-index 0s linear 0s'
     };

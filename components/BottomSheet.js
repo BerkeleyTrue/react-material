@@ -15,9 +15,10 @@ var BottomSheet = React.createClass({
       left: 0,
       position: 'fixed',
       right: 0,
-      transition: 'transform .2s cubic-bezier(.4,0,.2,1)',
+      transition: 'transform .2s cubic-bezier(.4,0,.2,1), visibility 0s linear 0s',
       zIndex: 3,
-      borderTop: '1px solid #e0e0e0'
+      borderTop: '1px solid #e0e0e0',
+      visibility: 'visible'
     }
   }),
 
@@ -31,6 +32,8 @@ var BottomSheet = React.createClass({
     }
 
     return {
+      visibility: 'hidden',
+      transition: 'transform .2s cubic-bezier(.4,0,.2,1), visibility 0s linear .21s',
       transform: 'translateY(' + height +'px)'
     };
   }),
