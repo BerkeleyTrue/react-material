@@ -29,7 +29,7 @@ var TextFieldsView = React.createClass({
       <h2>Search Filter</h2>
     TODO
       <h2>Error indication</h2>
-    TODO
+      <TextField error="Well that sucks" />
       <h2>Character counter</h2>
     TODO
     </div>;

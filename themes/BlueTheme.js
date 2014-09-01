@@ -36,6 +36,13 @@ var BlueTheme = {
         margin: '10px'
       };
     })
+  },
+  Card: {
+    headerStyle: ReactStyle(function headerStyle(){
+      return {
+        color: '#3f51b5'
+      };
+    })
   }
 };
 

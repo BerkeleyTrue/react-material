@@ -6,6 +6,11 @@
 var React = require('react');
 var ReactStyle = require('react-style');
 
+var Colors = require('../style/Colors');
+
+var merge = require('../vendor/merge');
+
+
 var BottomSheet = React.createClass({
 
   normalBottomSheetStyle: ReactStyle(function normalBottomSheetStyle(){
@@ -44,9 +49,17 @@ var BottomSheet = React.createClass({
     }
   }),
 
+  titleStyle: ReactStyle(function titleStyle(){
+    return merge({color:Colors.grey.P500}, {
+      cursor: 'default',
+      padding: '15px'
+    });
+  }),
+
   render: function(){
+    var props = this.props;
     var bottomSheetStyles = [this.normalBottomSheetStyle()];
-    if (this.props.show) {
+    if (props.show) {
       bottomSheetStyles.push(this.showBottomSheetStyle());
     }
     else {
@@ -54,7 +67,13 @@ var BottomSheet = React.createClass({
       bottomSheetStyles.push(x);
     }
     return <div styles={bottomSheetStyles}>
-      {this.props.children}
+    {props.title &&
+      <div styles={this.titleStyle()}>
+        {props.title}
+      </div>
+      }
+
+      {props.children}
     </div>;
   },
 

@@ -24,7 +24,7 @@ var TextField = React.createClass({
       transition: 'border-bottom .38s linear',
       width: '100%',
       ':focus': {
-        borderBottom: 'solid 2px #5677fc'
+        borderBottom: 'solid 2px #2196F3'
       }
     };
   }),
@@ -37,7 +37,10 @@ var TextField = React.createClass({
 
   errorTextFieldStyle: ReactStyle(function errorTextFieldStyle(){
     return {
-
+      borderBottom: 'solid 2px #F44336',
+      ':focus': {
+        borderBottom: 'solid 2px #F44336'
+      }
     };
   }),
 
@@ -51,7 +54,7 @@ var TextField = React.createClass({
 
   placeHolderStyling: ReactStyle(function placeHolderStyling(){
     return {
-      color: '#dfdfdf',
+      color: '#999999',
       fontSize: '16px',
       left: 0,
       position: 'absolute',
@@ -78,21 +81,28 @@ var TextField = React.createClass({
   }),
 
   render: function() {
+    var props = this.props;
     var textfield = this.refs.textfield;
 
     var placeHolderStyling = [this.placeHolderStyling()];
     if (textfield && textfield.getDOMNode().value.trim().length) {
       placeHolderStyling.push(this.placeHolderTopStyling());
     }
+    var textFieldStyling = [this.normalTextFieldStyle()];
+    if (props.error) {
+      textFieldStyling.push(this.errorTextFieldStyle());
+    }
+
     return <div styles={this.containerStyling()}>
-      <div styles={placeHolderStyling}>{this.props.placeHolder}</div>
-      <input onChange={this.onChange} type="text" ref="textfield" styles={this.normalTextFieldStyle()} />
+      <div styles={placeHolderStyling}>{props.placeHolder}</div>
+      <input onChange={this.onChange} type="text" ref="textfield" styles={textFieldStyling} />
     </div>;
   },
 
   onChange: function() {
     // todo: optimize
     this.forceUpdate();
+
   }
 
 });
