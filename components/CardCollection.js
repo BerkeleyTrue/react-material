@@ -13,7 +13,8 @@ var CardCollection = React.createClass({
   }),
 
   render: function() {
-    return <div>
+    return <div styles={this.normalCardCollectionStyle()}>
+      {this.props.children}
     </div>;
   }
 

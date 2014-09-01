@@ -21,6 +21,7 @@ var SwitchesView = require('./SwitchesView');
 var TabsView = require('./TabsView');
 var TextFieldsView = require('./TextFieldsView');
 var ListsView = require('./ListView');
+var CardsView = require('./CardsView');
 
 var List = require('../components/List');
 var ListItem = require('../components/ListItem');
@@ -34,7 +35,8 @@ var ViewsEnum = {
   TabsView: 4,
   TextFieldsView: 5,
   SwitchesView: 6,
-  ListsView: 7
+  ListsView: 7,
+  CardsView: 8
 };
 
 var TestView = React.createClass({
@@ -117,6 +119,10 @@ var TestView = React.createClass({
     else if(view === ViewsEnum.ListsView) {
       title = 'Lists';
     }
+    else if(view === ViewsEnum.CardsView) {
+      title = 'Cards';
+    }
+
     return <div styles={this.normalStyle()}>
       <AppBar boxShadow={true} onNavButtonClick={this.onNavButtonClick} shadow={true} title={title}/>
       <Overlay show={state.showSideNavigation} onClick={this.onOverlayClick} />
@@ -124,6 +130,7 @@ var TestView = React.createClass({
         <List>
           <ListItem onClick={this.onClick(1)} title="Bottom Sheets" />
           <ListItem onClick={this.onClick(2)} title="Buttons" />
+          <ListItem onClick={this.onClick(8)} title="Cards" />
           <ListItem onClick={this.onClick(7)} title="Lists" />
           <ListItem onClick={this.onClick(3)} title="Progress and Activity" />
           <ListItem onClick={this.onClick(6)} title="Switches" />
@@ -169,6 +176,9 @@ var TestView = React.createClass({
           }
         {state.view === ViewsEnum.ListsView &&
           <ListsView />
+          }
+        {state.view === ViewsEnum.CardsView &&
+          <CardsView />
           }
       </div>
     </div>;

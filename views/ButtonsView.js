@@ -16,8 +16,8 @@ var ButtonsView = React.createClass({
       <h2>Main buttons</h2>
       <h3>Floating action buttons</h3>
       <div>
-        <FloatingActionButton icon="undo" styles={[{backgroundColor:'#d23f31'}]}/>
-        <FloatingActionButton icon="arrow-forward" mini={true} styles={[{backgroundColor:'#5677fc'}]}/>
+        <FloatingActionButton ref="fab1" icon="undo" styles={[{backgroundColor:'#d23f31'}]}/>
+        <FloatingActionButton ref="fab2" icon="arrow-forward" mini={true} styles={[{backgroundColor:'#5677fc'}]}/>
       </div>
       <h3>Raised button</h3>
       <div>
