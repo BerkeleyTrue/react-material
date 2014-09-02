@@ -27,7 +27,7 @@ var CardsView = React.createClass({
       <Cards>
         <Card>
           <h2>
-            Bla bla bla bla
+            Not yet responsive or anything, best viewed on Nexus 5 for now
           </h2>
         </Card>
         <Card title="Basic components">

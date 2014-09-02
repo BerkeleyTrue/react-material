@@ -23,6 +23,7 @@ var Card = React.createClass({
 
   headerStyle: ReactStyle(function(){
     return {
+      cursor: 'default',
       marginBottom: '35px',
       marginTop: 0
     };

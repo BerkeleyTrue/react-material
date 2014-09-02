@@ -29,10 +29,6 @@ var Icon = React.createClass({
     };
   }),
 
-  shouldComponentUpdate: function() {
-    return false;
-  },
-
   render: function() {
     if (!this.props.icon) {
       return <div />;

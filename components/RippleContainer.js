@@ -87,18 +87,13 @@ var RippleContainer = React.createClass({
     }
 
 
-    return isTouchDevice ? <div styles={[this.normalStyle(), props.styles]}
-        onTouchStart={this.onMouseDown}
-        onTouchEnd={this.onMouseUp}
-        onTouchCancel={this.onMouseLeave}
-    >
-      {rippleComponents}
-    </div>
-      :
-      <div styles={[this.normalStyle(), props.styles]}
-    onMouseDown={this.onMouseDown}
-    onMouseLeave={this.onMouseLeave}
-    onMouseUp={this.onMouseUp}
+    return <div styles={[this.normalStyle(), props.styles]}
+        onTouchStart={isTouchDevice && this.onMouseDown}
+        onTouchEnd={isTouchDevice && this.onMouseUp}
+        onTouchCancel={isTouchDevice && this.onMouseLeave}
+        onMouseDown={!isTouchDevice && this.onMouseDown}
+        onMouseLeave={!isTouchDevice && this.onMouseLeave}
+        onMouseUp={!isTouchDevice && this.onMouseUp}
       >
         {rippleComponents}
       </div>;

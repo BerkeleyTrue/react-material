@@ -31,7 +31,7 @@ var BlueTheme = {
     })
   },
   FloatingActionButton: {
-    normalStyle: ReactStyle(function normalStyle(){
+    containerStyle: ReactStyle(function normalStyle(){
       return {
         margin: '10px'
       };

@@ -82,34 +82,21 @@ var Button = React.createClass({
     }
 
 
-    return isTouchDevice ? <div role="button"
+    return <div role="button"
                 tabIndex="0"
                 styles={styles}
-                onTouchStart={this.onMouseDown}
-                onTouchEnd={this.onMouseUp}
-                onTouchCancel={this.onMouseUp}
+                onTouchStart={isTouchDevice && this.onMouseDown}
+                onTouchEnd={isTouchDevice && this.onMouseUp}
+                onTouchCancel={isTouchDevice && this.onMouseUp}
+                onMouseDown={!isTouchDevice && this.onMouseDown}
+                onMouseUp={!isTouchDevice && this.onMouseUp}
+                onMouseLeave={!isTouchDevice && this.onMouseUp}
                 >
-
     {!props.disabled &&
       <RippleContainer onClick={props.onClick}/>
     }
       {props.children}
-    </div>
-      :
-      <div role="button"
-      tabIndex="0"
-      styles={styles}
-      onMouseDown={this.onMouseDown}
-      onMouseUp={this.onMouseUp}
-      onMouseLeave={this.onMouseUp}
-      >
-
-    {!props.disabled &&
-      <RippleContainer onClick={props.onClick}/>
-      }
-      {props.children}
-      </div>
-      ;
+    </div>;
   },
 
   onMouseUp: function() {
