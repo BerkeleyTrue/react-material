@@ -9,14 +9,14 @@ var ReactStyle = require('react-style');
 var Icon = require('./Icon');
 var RippleContainer = require('./RippleContainer');
 
+var Colors = require('../style/Colors');
+
 var isTouchDevice = 'ontouchstart' in window;
 
-// Circular loader: http://jsfiddle.net/wEKg6/
 var FloatingActionButton = React.createClass({
 
-  normalStyle: ReactStyle(function normalStyle(){
+  containerStyle: ReactStyle(function normalStyle(){
     return {
-      webkitTapHighlightColor: 'rgba(0,0,0,0)',
       borderRadius: '50%',
       boxShadow: '0 2px 5px 0 rgba(0, 0, 0, 0.26)',
       cursor: 'pointer',
@@ -25,9 +25,23 @@ var FloatingActionButton = React.createClass({
       height: '56px',
       outline: 'none',
       position: 'relative',
+      webkitTapHighlightColor: 'rgba(0,0,0,0)',
       transition: 'box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1)',
       userSelect: 'none',
       width: '56px'
+    };
+  }),
+
+  normalStyle: ReactStyle(function normalStyle(){
+    return {
+      borderRadius: '50%',
+      outline: 'none',
+      width: '100%',
+      userSelect: 'none',
+      height: '100%',
+      position:'absolute',
+      webkitTapHighlightColor: 'rgba(0,0,0,0)',
+      transition: 'background-color 0.28s cubic-bezier(0.4, 0, 0.2, 1)'
     };
   }),
 
@@ -55,11 +69,47 @@ var FloatingActionButton = React.createClass({
   }),
 
   miniIconStyle: ReactStyle(function miniIconStyle(){
-    return {position: 'absolute', width: '24px', left: '8px' };
+    return {
+      position: 'absolute',
+      width: '24px',
+      left: '8px'
+    };
   }),
 
   defaultIconStyle: ReactStyle(function defaultIconStyle(){
-    return {position: 'absolute', width: '24px', left: '16px' };
+    return {
+      position: 'absolute',
+      width: '24px',
+      left: '16px'
+    };
+  }),
+
+  percentageStyle: ReactStyle(function percentageStyle(){
+    return {
+      borderRadius:'50%',
+      backgroundColor: 'transparent',
+      position:'absolute',
+      opacity: 0,
+      top: '-2px',
+      left: '-2px',
+      right: '-2px',
+      bottom: '-2px',
+      cursor: 'default'
+    };
+  }),
+
+  percentageStyleVisible: ReactStyle(function percentageStyle(){
+    return {
+      backgroundColor: Colors.amber.P500,
+      opacity: 1,
+      transition: 'opacity .5s ease-in'
+    };
+  }),
+
+  progressCircleStyle: ReactStyle(function progressCircleStyle(){
+    return {
+      strokeWidth: '2px'
+    };
   }),
 
   propTypes: {
@@ -74,57 +124,89 @@ var FloatingActionButton = React.createClass({
 
   render: function() {
     var props = this.props;
+    var state = this.state;
+    var containerStyles = [this.containerStyle()];
     var styles = [this.normalStyle()];
     if (props.styles) {
       styles = styles.concat(props.styles);
     }
     if (props.mini) {
-      styles.push(this.miniStyle());
+      containerStyles.push(this.miniStyle());
     }
-    if (this.state.active) {
-      styles.push(this.pressedStyle());
+    if (state.active && !props.percentage) {
+      containerStyles.push(this.pressedStyle());
+    }
+    var percentageStyling = [this.percentageStyle()];
+    if (props.percentage) {
+      var percentage = props.percentage;
+      percentageStyling.push(this.percentageStyleVisible());
+      var r = '29';
+      var c = Math.PI*(r*2);
+
+      if (percentage < 0) { percentage = 0;}
+      if (percentage > 100) { percentage = 100;}
+
+      var pct = ((100-percentage)/100)*c;
+
+      // react doesn't support this yet :(
+      //percentageStyling.push({ strokeDashoffset: pct});
 
     }
-    return isTouchDevice ? <div tabIndex={0}
-                styles={styles}
-                onClick={this.props.onClick}
-                onTouchStart={this.onMouseDown}
-                onTouchEnd={this.onMouseUp}
-                onTouchCancel={this.onMouseUp}
-                role="button">
-      {this.state.active &&
-        <div styles={this.overlayStyle()} />
-        }
 
-      <Icon icon={this.props.icon} styles={this.props.mini ? this.miniIconStyle() : this.defaultIconStyle()}/>
-    </div>
-      :
-      <div tabIndex={0}
-      styles={styles}
-      onClick={this.props.onClick}
-      onMouseDown={this.onMouseDown}
-      onMouseUp={this.onMouseUp}
-      onMouseLeave={this.onMouseUp}
-      role="button">
-      {this.state.active &&
-        <div styles={this.overlayStyle()} />
-        }
+    var progressCircleStyles = [this.progressCircleStyle(), props.progressCircleStyle];
 
-        <Icon icon={this.props.icon} styles={this.props.mini ? this.miniIconStyle() : this.defaultIconStyle()}/>
+    return <div   role="button"
+                  tabIndex={0}
+                  onTouchStart={isTouchDevice && this.onMouseDown}
+                  onTouchEnd={isTouchDevice && this.onMouseUp}
+                  onTouchCancel={isTouchDevice && this.onMouseUp}
+                  onMouseDown={!isTouchDevice && this.onMouseDown}
+                  onMouseUp={!isTouchDevice && this.onMouseUp}
+                  onMouseLeave={!isTouchDevice && this.onMouseLeave}
+                  styles={containerStyles}>
+
+        <div styles={percentageStyling}>
+          {props.percentage ?
+            <svg width={60} height={60}>
+              <circle id="bar" r="29"  cx="30" cy="30" styles={progressCircleStyles} fill="transparent">
+              </circle>
+            </svg>: <div />
+            }
+        </div>
+
+        <div
+              styles={styles}
+
+              >
+
+        {state.active &&
+          <div styles={this.overlayStyle()} />
+          }
+        <Icon icon={props.icon} styles={props.mini ? this.miniIconStyle() : this.defaultIconStyle()}/>
       </div>
-      ;
+    </div>;
   },
 
 
   onMouseUp: function() {
-    if (this.props.disabled) {
+    var props = this.props;
+    this.onMouseLeave();
+    if(props.onClick) {
+      props.onClick();
+    }
+  },
+
+  onMouseLeave: function() {
+    var props = this.props;
+    if (props.disabled || props.percentage) {
       return;
     }
     this.setState({active: false});
   },
 
   onMouseDown: function() {
-    if (this.props.disabled) {
+    var props = this.props;
+    if (props.disabled || props.percentage) {
       return;
     }
     this.setState({active: true});
