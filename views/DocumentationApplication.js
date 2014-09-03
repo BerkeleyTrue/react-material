@@ -59,7 +59,6 @@ var TestView = React.createClass({
 
   containerStyle: ReactStyle(function containerStyle() {
     return {
-
       margin: 'auto',
       maxWidth: '700px',
       padding: '56px 20px 0'
@@ -97,11 +96,13 @@ var TestView = React.createClass({
   render: function() {
     var state = this.state;
     var view = state.view;
-    var title = '';
+    var title;
+    var expanded = false;
     if(view === ViewsEnum.BottomSheetsView) {
       title = 'Bottom sheets';
     }
     else if(view === ViewsEnum.ButtonsView) {
+      expanded = true;
       title = 'Buttons';
     }
     else if(view === ViewsEnum.ProgressAndActivityView) {
@@ -124,7 +125,7 @@ var TestView = React.createClass({
     }
 
     return <div styles={this.normalStyle()}>
-      <AppBar boxShadow={true} onNavButtonClick={this.onNavButtonClick} shadow={true} title={title}/>
+      <AppBar onNavButtonClick={this.onNavButtonClick} expanded={expanded} shadow={true} title={title}/>
       <Overlay show={state.showSideNavigation} onClick={this.onOverlayClick} />
       <SideNavigation show={state.showSideNavigation}>
         <List>

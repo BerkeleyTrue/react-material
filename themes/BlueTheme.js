@@ -7,7 +7,13 @@ var BlueTheme = {
     normalAppBarStyle: ReactStyle(function normalAppBarStyle(){
       return {
         backgroundColor: '#3f51b5',
-        position: 'fixed',
+        zIndex: 1,
+        top: 0
+      };
+    }),
+    placeHolderStyle: ReactStyle(function normalAppBarStyle(){
+      return {
+        backgroundColor: '#3f51b5',
         zIndex: 1,
         top: 0
       };
