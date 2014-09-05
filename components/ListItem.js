@@ -23,121 +23,46 @@ var ListItem = React.createClass({
       webkitTapHighlightColor: 'rgba(0,0,0,0)',
       boxSizing: 'border-box',
       cursor: 'pointer',
-      height: '48px',
       overflow: 'hidden',
-      padding: '16px',
+      padding: '14px 16px 15px',
       position: 'relative'
     });
   }),
 
-  singleLineWithIconStyle: ReactStyle(function singleLineWithIconStyle(){
-    return {
-      height: '56px'
-    };
-  }),
-
   singleLineWithIconTitleStyle: ReactStyle(function singleLineWithIconTitleStyle(){
     return {
-      lineHeight: '30px'
+      padding: '11px 16px'
     };
   }),
-
-  twoLinesStyle: ReactStyle(function twoLinesStyle(){
-    return {
-      height: '72px'
-    };
-  }),
-
-  threeLinesStyle: ReactStyle(function threeLinesStyle(){
-    return {
-      height: '88px'
-    };
-  }),
-
 
   iconStyle: ReactStyle(function iconStyle(){
     return {
       display: 'inline-block',
       padding: '0 16px 0 0',
-      float: 'left',
       width: '30px',
-      verticalAlign: 'bottom',
+      verticalAlign: 'middle',
       position: 'relative',
       pointerEvents: 'none'
     };
   }),
 
-
-  secondaryTextStyle: ReactStyle(function secondaryTextStyle(){
-    return merge(Typography.body1, {
-      color: 'rgba(0,0,0,.54)',
-      position: 'relative',
-      pointerEvents: 'none',
-      top: '2px'
-    });
-  }),
-
-  typeStyle: ReactStyle(function typeStyle(){
-    return {
-      margin: '10px 30px 0 0',
-      float: 'left'
-    };
-  }),
-
-  propTypes: {
-    title: React.PropTypes.string.isRequired,
-    nrOfLines: function(props, propName) {
-      var value = props[propName]
-      if (!(propName in props)) {
-        return;
-      }
-      if (isNaN(value)) {
-        return new Error('nrOfLines should be a number');
-      }
-      else if (value < 1 || value > 3) {
-        return new Error('nrOfLines should be between 1 and 3');
-      }
-    }
-  },
-
   render: function() {
     var props = this.props;
     var listItemStyles = [this.normalListItemStyle()];
-    var textTitleStyles = [];
     if (props.icon) {
-      listItemStyles.push(this.singleLineWithIconStyle());
+      listItemStyles.push(this.singleLineWithIconTitleStyle());
     }
-    if (props.tertiaryText || props.nrOfLines === 3) {
-      listItemStyles.push(this.threeLinesStyle());
-    }
-    else if (props.secondaryText || props.nrOfLines === 2) {
-      listItemStyles.push(this.twoLinesStyle());
-    }
-    else if (props.icon) {
-      textTitleStyles.push(this.singleLineWithIconTitleStyle());
-    }
-
 
     return <div styles={listItemStyles}>
-      <RippleContainer onClick={this.onClick}/>
-      {props.type === 'checkbox' &&
-        <CheckBox ref="checkbox" containerStyles={this.typeStyle()} checked={true}/>
-        }
+      {!props.disableRipple &&
+      <RippleContainer onClick={this.onClick}/> }
       {props.icon &&
         <div styles={this.iconStyle()}><Icon icon={props.icon}/></div> }
-      <div>
-        {props.title && <div styles={textTitleStyles}>{props.title}</div>}
-        {props.secondaryText && <div styles={this.secondaryTextStyle()}>{props.secondaryText}</div>}
-        {props.tertiaryText && <div styles={this.tertiaryTextStyle()}>{props.tertiaryText}</div>}
-      </div>
+      {props.children}
     </div>;
   },
 
   onClick: function(e) {
-    var checkbox = this.refs.checkbox;
-    if (checkbox) {
-      checkbox.toggle();
-    }
     var onClick = this.props.onClick;
     if (onClick) {
       onClick(e);

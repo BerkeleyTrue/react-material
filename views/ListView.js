@@ -6,57 +6,54 @@
 var React = require('react');
 var ReactStyle = require('react-style');
 
+var CheckBox = require('../components/CheckBox');
 var List = require('../components/List');
 var ListItem = require('../components/ListItem');
 
 var ListView = React.createClass({
 
   render: function() {
-    return <div>
+    return <div style={{margin: '0 -20px'}}>
       <h2>Single line</h2>
       <List>
-        <ListItem title="Bottom sheets" />
-        <ListItem title="Button" />
-        <ListItem title="Progress and Activity" />
-        <ListItem title="Switches" />
-        <ListItem title="Tabs" />
-        <ListItem title="Text fields" />
+        <ListItem>Bottom sheets</ListItem>
+        <ListItem>Button</ListItem>
+        <ListItem>Progress and Activity</ListItem>
+        <ListItem>Switches</ListItem>
+        <ListItem>Tabs</ListItem>
+        <ListItem>Text fields</ListItem>
       </List>
       <h2>Single line with icon</h2>
       <List>
-        <ListItem icon="favorite" title="Bottom sheets" />
-        <ListItem icon="favorite" title="Button" />
-        <ListItem icon="favorite" title="Progress and Activity" />
-        <ListItem icon="favorite" title="Switches" />
-        <ListItem icon="favorite" title="Tabs" />
-        <ListItem icon="favorite" title="Text fields" />
+        <ListItem icon="post-facebook">Facebook</ListItem>
+        <ListItem icon="post-github">Github</ListItem>
+        <ListItem icon="post-twitter">Twitter</ListItem>
       </List>
       <h2>Two lines</h2>
       <List>
-        <ListItem title="Bottom sheets" secondaryText="example" />
-        <ListItem title="Button"  secondaryText="example"/>
-        <ListItem title="Progress and Activity"  secondaryText="example"/>
-        <ListItem title="Switches"  secondaryText="example"/>
-        <ListItem title="Tabs"  secondaryText="example"/>
-        <ListItem title="Text fields"  secondaryText="example"/>
+        <ListItem>Bottom sheets</ListItem>
+        <ListItem>Button</ListItem>
+        <ListItem>Progress and Activity</ListItem>
+        <ListItem>Switches</ListItem>
+        <ListItem>Tabs</ListItem>
+        <ListItem>Text fields</ListItem>
       </List>
       <h2>Two lines with checkbox</h2>
       <List>
-        <ListItem title="Bottom sheets" secondaryText="example" type="checkbox"/>
-        <ListItem title="Button"  secondaryText="example" type="checkbox"/>
-        <ListItem title="Progress and Activity"  secondaryText="example" type="checkbox"/>
-        <ListItem title="Switches"  secondaryText="example" type="checkbox"/>
-        <ListItem title="Tabs"  secondaryText="example" type="checkbox"/>
-        <ListItem title="Text fields"  secondaryText="example" type="checkbox"/>
+        <ListItem disableRipple={true}><CheckBox>Bottom sheets<br /> line 2</CheckBox></ListItem>
+        <ListItem disableRipple={true}><CheckBox>Bottom sheets<br /> line 2</CheckBox></ListItem>
+        <ListItem disableRipple={true}><CheckBox>Bottom sheets<br /> line 2</CheckBox></ListItem>
+        <ListItem disableRipple={true}><CheckBox>Bottom sheets<br /> line 2</CheckBox></ListItem>
+        <ListItem disableRipple={true}><CheckBox>Bottom sheets<br /> line 2</CheckBox></ListItem>
       </List>
       <h2>Three lines</h2>
       <List>
-        <ListItem title="Bottom sheets" secondaryText="example" nrOfLines={3} />
-        <ListItem title="Button"  secondaryText="example example example example example example example example example example example example example example example example example example"  nrOfLines={3}/>
-        <ListItem title="Progress and Activity"  secondaryText="example"  nrOfLines={3}/>
-        <ListItem title="Switches"  secondaryText="example" nrOfLines={3}/>
-        <ListItem title="Tabs"  secondaryText="example" nrOfLines={3}/>
-        <ListItem title="Text fields"  secondaryText="example" nrOfLines={3}/>
+        <ListItem>Bottom sheets</ListItem>
+        <ListItem>Button</ListItem>
+        <ListItem>Progress and Activity</ListItem>
+        <ListItem>Switches</ListItem>
+        <ListItem>Tabs</ListItem>
+        <ListItem>Text fields</ListItem>
       </List>
     </div>;
   }

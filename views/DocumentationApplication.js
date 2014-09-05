@@ -129,14 +129,30 @@ var TestView = React.createClass({
       <Overlay show={state.showSideNavigation} onClick={this.onOverlayClick} />
       <SideNavigation show={state.showSideNavigation}>
         <List>
-          <ListItem onClick={this.onClick(1)} title="Bottom Sheets" />
-          <ListItem onClick={this.onClick(2)} title="Buttons" />
-          <ListItem onClick={this.onClick(8)} title="Cards" />
-          <ListItem onClick={this.onClick(7)} title="Lists" />
-          <ListItem onClick={this.onClick(3)} title="Progress and Activity" />
-          <ListItem onClick={this.onClick(6)} title="Switches" />
-          <ListItem onClick={this.onClick(4)} title="Tabs" />
-          <ListItem onClick={this.onClick(5)} title="Text fields" />
+          <ListItem onClick={this.onClick(1)}>
+            Bottom Sheets
+          </ListItem>
+          <ListItem onClick={this.onClick(2)}>
+            Buttons
+          </ListItem>
+          <ListItem onClick={this.onClick(8)}>
+            Cards
+          </ListItem>
+          <ListItem onClick={this.onClick(7)}>
+            Lists
+          </ListItem>
+          <ListItem onClick={this.onClick(3)}>
+            Progress and Activity
+          </ListItem>
+          <ListItem onClick={this.onClick(6)}>
+            Switches
+          </ListItem>
+          <ListItem onClick={this.onClick(4)}>
+            Tabs
+          </ListItem>
+          <ListItem onClick={this.onClick(5)}>
+            Text fields
+          </ListItem>
         </List>
       </SideNavigation>
       <div className={this.containerStyle()}>

@@ -35,6 +35,12 @@ Current issues
 - [ ] De-fugly-fy code
 - [ ] Use Google Closure Compiler Advanced Mode for bragging rights
 
+Alternatives
+---
+- https://github.com/callemall/material-ui
+
+If there are others let us know.
+
 License
 ---
 MIT

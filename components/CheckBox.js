@@ -11,15 +11,27 @@ var CircleShadow = require('./CircleShadow');
 
 var CheckBox = React.createClass({
 
+  isChecked: false,
+
   containerStyle: ReactStyle(function containerStyle() {
     return {
       webkitTapHighlightColor: 'rgba(0,0,0,0)',
       cursor: 'pointer',
-      display: 'inline-block',
-      height: '18px',
+      display: 'block',
       outline: 'none',
-      position: 'relative',
-      width: '18px'
+      position: 'relative'
+    };
+  }),
+
+  childStyle: ReactStyle(function childStyle(){
+    return {
+      paddingLeft: '16px'
+    };
+  }),
+
+  childBigStyle: ReactStyle(function childStyle(){
+    return {
+      paddingLeft: '32px'
     };
   }),
 
@@ -35,12 +47,14 @@ var CheckBox = React.createClass({
       left: 0,
       outline: 'none',
       transform: 'translateZ(0)',
+      marginTop: 0,
       transition: 'transform .1s linear, ' +
         'width .1s linear, ' +
         'height .1s linear, ' +
+        'margin-top .1s linear, ' +
         'left .1s linear',
       position: 'absolute',
-      bottom: 0
+      top: 0
     };
   }),
 
@@ -49,6 +63,7 @@ var CheckBox = React.createClass({
       height: 0,
       transform: 'translateZ(0) rotate(45deg)',
       width: 0,
+      marginTop: '18px',
       left: '8px'
     };
   }),
@@ -58,20 +73,32 @@ var CheckBox = React.createClass({
       borderWidth: '0 2px 2px 0',
       borderColor: '#0f9d58',
       width: '10px',
-      height: '21px'
-    }
+      height: '21px',
+      marginTop: 0
+    };
+  }),
+
+
+  circleContainerStyle: ReactStyle(function circleContainerStyle(){
+    return {
+      position: 'absolute',
+      width: '16px',
+      height: '16px'
+    };
   }),
 
   circleStyle: ReactStyle(function circleStyle() {
     return {
       backgroundColor: '#0f9d58'
-    }
+    };
   }),
 
   getInitialState: function() {
+    var checked = this.props.checked || false;
+    this.isChecked = checked;
     return {
-      checked: this.props.checked || false
-    }
+      checked: checked
+    };
   },
 
   render: function() {
@@ -90,10 +117,15 @@ var CheckBox = React.createClass({
       styles.push(this.checkedStyle());
     }
 
+
     return <div tabIndex={0} styles={containerStyles} onClick={this.onToggle} onMouseDown={this.onMouseDown} onMouseUp={this.onMouseUp}>
       <div ref="checkbox" styles={styles}/>
-      <CircleShadow styles={this.circleStyle()} active={this.state.mouseDown} />
-
+      <div styles={this.circleContainerStyle()}>
+        <CircleShadow styles={this.circleStyle()} active={this.state.mouseDown} />
+      </div>
+      <div styles={ props.children && props.children.length ? this.childBigStyle() : this.childStyle()}>
+        {props.children}
+      </div>
     </div>
   },
 
@@ -114,13 +146,15 @@ var CheckBox = React.createClass({
   onToggle: function() {
     if (!this.state.checked) {
       this.setState({transitioning: true});
+      this.isChecked = true;
     }
     else {
       this.setState({checked: false});
+      this.isChecked = false;
     }
     var props = this.props;
     if (props.onChange) {
-      props.onChange({checked: this.state.checked});
+      props.onChange({checked: this.isChecked});
     }
   },
 
@@ -135,7 +169,7 @@ var CheckBox = React.createClass({
   onTransitionEnd: function(e) {
     var state = this.state;
     if (state.transitioning) {
-      if (isTransform(e.propertyName) && !this.state.checked) {
+      if (isTransform(e.propertyName) && !state.checked) {
         this.setState({checked: true, transitioning: false});
       }
     }
@@ -143,10 +177,6 @@ var CheckBox = React.createClass({
 
   toggle: function() {
     this.onToggle();
-  },
-
-  isChecked: function() {
-    return this.state.checked;
   }
 
 });

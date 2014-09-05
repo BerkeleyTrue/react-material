@@ -1,6 +1,7 @@
 {
   "name": "react-material",
   "version": "0.0.1-alpha",
+  "keywords": ["react-component"],
   "devDependencies": {
     "css-loader": "^0.7.0",
     "extract-text-webpack-plugin": "git+https://github.com/andreypopp/extract-text-webpack-plugin.git",
