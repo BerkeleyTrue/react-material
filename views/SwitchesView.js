@@ -59,7 +59,6 @@ var SwitchesView = React.createClass({
   },
 
   onToggleButtonChange:function(){
-    console.log('lalala');
     this.setState({swChecked: this.refs.toggleButton.isChecked})
   }
 
