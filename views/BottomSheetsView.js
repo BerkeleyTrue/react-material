@@ -33,10 +33,10 @@ var BottomSheetsView = React.createClass({
         state.grid ?
           <div>TODO</div> :
           <List>
-            <ListItem icon="share" title="Share" />
-            <ListItem icon="cloud-upload" title="Upload" />
-            <ListItem icon="content-copy" title="Copy" />
-            <ListItem icon="print" title="Print this page" />
+            <ListItem icon="share">Share</ListItem>
+            <ListItem icon="cloud-upload">Upload</ListItem>
+            <ListItem icon="content-copy">Copy</ListItem>
+            <ListItem icon="print">Print this page</ListItem>
           </List>
         }
       </BottomSheet>

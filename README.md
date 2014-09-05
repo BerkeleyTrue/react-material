@@ -33,6 +33,12 @@ Current issues
 - [ ] Properly handle mobile interfaces with proper touch support
 - [ ] Use Google Closure Compiler Advanced Mode for bragging rights
 
+Alternatives
+---
+- https://github.com/callemall/material-ui
+
+If there are others let us know.
+
 License
 ---
 MIT
