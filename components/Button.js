@@ -28,8 +28,7 @@ var Button = React.createClass({
       display: 'inline-block',
       outline: 'none',
       overflow: 'hidden',
-      padding: '9px 0',
-
+      padding: 9,
       textAlign: 'center',
       textTransform: 'uppercase',
       userSelect: 'none',
