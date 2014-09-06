@@ -6,9 +6,12 @@
 var React = require('react');
 var ReactStyle = require('react-style');
 
+var Colors = require('../style/Colors');
+
 var Button = require('../components/Button');
 var BottomSheet = require('../components/BottomSheet');
-var List = require('../components/List');
+var BottomSheetItem = require('../components/BottomSheetItem');
+
 var ListItem = require('../components/ListItem');
 var Overlay = require('../components/Overlay');
 
@@ -28,16 +31,16 @@ var BottomSheetsView = React.createClass({
     return <div>
       <Button onClick={this.onShowBottomSheetBtnClick} raised={true}>List</Button>
       <Overlay show={state.show} onClick={this.onOverlayClick}/>
-      <BottomSheet show={state.show} title="Title">
+      <BottomSheet show={state.show} title="Title" styles={[{color: Colors.grey.P800, fill: Colors.grey.P800}]}>
       {
         state.grid ?
           <div>TODO</div> :
-          <List>
-            <ListItem icon="share">Share</ListItem>
-            <ListItem icon="cloud-upload">Upload</ListItem>
-            <ListItem icon="content-copy">Copy</ListItem>
-            <ListItem icon="print">Print this page</ListItem>
-          </List>
+          <div>
+            <BottomSheetItem icon="share">Share</BottomSheetItem>
+            <BottomSheetItem icon="cloud-upload">Upload</BottomSheetItem>
+            <BottomSheetItem icon="content-copy">Copy</BottomSheetItem>
+            <BottomSheetItem icon="print">Print this page</BottomSheetItem>
+          </div>
         }
       </BottomSheet>
       <h2>TODO</h2>

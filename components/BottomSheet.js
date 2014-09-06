@@ -50,10 +50,11 @@ var BottomSheet = React.createClass({
   }),
 
   titleStyle: ReactStyle(function titleStyle(){
-    return merge({color:Colors.grey.P500}, {
+    return {
+      color: Colors.grey.P500,
       cursor: 'default',
-      padding:  '15px'
-    });
+      padding:  16
+    };
   }),
 
   render: function(){
@@ -65,6 +66,9 @@ var BottomSheet = React.createClass({
     else {
       var x = this.hiddenTransformStyle();
       bottomSheetStyles.push(x);
+    }
+    if (props.styles) {
+      bottomSheetStyles = bottomSheetStyles.concat(props.styles);
     }
     return <div styles={bottomSheetStyles}>
     {props.title &&

@@ -18,15 +18,14 @@ var ListItem = React.createClass({
 
 
   normalListItemStyle: ReactStyle(function normalListItemStyle(){
-    return merge(Typography.subhead,
-      {
+    return {
       webkitTapHighlightColor: 'rgba(0,0,0,0)',
       boxSizing: 'border-box',
       cursor: 'pointer',
       overflow: 'hidden',
       padding: '14px 16px 15px',
       position: 'relative'
-    });
+    };
   }),
 
   singleLineWithIconTitleStyle: ReactStyle(function singleLineWithIconTitleStyle(){
@@ -51,6 +50,10 @@ var ListItem = React.createClass({
     var listItemStyles = [this.normalListItemStyle()];
     if (props.icon) {
       listItemStyles.push(this.singleLineWithIconTitleStyle());
+    }
+
+    if(props.styles) {
+      listItemStyles = listItemStyles.concat(props.styles);
     }
 
     return <div styles={listItemStyles}>
