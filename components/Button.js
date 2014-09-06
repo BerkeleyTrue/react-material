@@ -6,7 +6,12 @@
 var React = require('react');
 var ReactStyle = require('react-style');
 
+var Colors = require('../style/Colors');
+var Sizes = require('../style/Sizes');
+
 var RippleContainer = require('./RippleContainer');
+
+var merge = require('../vendor/merge');
 
 var isTouchDevice = 'ontouchstart' in window;
 
@@ -15,24 +20,26 @@ var Button = React.createClass({
   normalButtonStyle: ReactStyle(function normalButtonStyle() {
     return {
       webkitTapHighlightColor: 'rgba(0,0,0,0)',
-      backgroundColor: 'transparent',
-      borderRadius: '3px',
       cursor: 'pointer',
+      position: 'relative',
+      height: Sizes.Button.height - 2 * 9,
+
+      borderRadius: 3,
       display: 'inline-block',
       outline: 'none',
       overflow: 'hidden',
       padding: '9px 0',
-      position: 'relative',
+
       textAlign: 'center',
       textTransform: 'uppercase',
       userSelect: 'none',
-      width: '10em'
+      minWidth: Sizes.Button.minWidth
     };
   }),
 
   raisedButtonStyle: ReactStyle(function raisedButtonStyle() {
     return {
-      backgroundColor: '#dfdfdf',
+      backgroundColor: Colors.grey.P300,
       boxShadow: '0 2px 5px 0 rgba(0, 0, 0, 0.26)',
       transition: 'box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1)'
     };
@@ -46,8 +53,8 @@ var Button = React.createClass({
 
   disabledButtonStyle: ReactStyle(function disabledButtonStyle() {
     return {
-      backgroundColor: '#eaeaea',
-      color: '#a8a8a8',
+      backgroundColor: Colors.grey.P300,
+      color: Colors.grey.P500,
       cursor: 'default'
     };
   }),

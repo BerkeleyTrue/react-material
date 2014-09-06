@@ -3,6 +3,8 @@
  */
 'use strict';
 
+var Colors = require('../style/Colors');
+
 var React = require('react');
 var ReactStyle = require('react-style');
 
@@ -15,29 +17,29 @@ var ToggleButton = React.createClass({
       webkitTapHighlightColor: 'rgba(0,0,0,0)',
       cursor: 'pointer',
       display: 'block',
-      position: 'relative',
+      position: 'relative'
     };
   }),
 
   lineStyle: ReactStyle(function() {
     return {
-      backgroundColor: '#5a5a5a',
-      height: '1px',
+      backgroundColor: Colors.grey.P700,
+      height: 1,
       webkitTapHighlightColor: 'rgba(0,0,0,0)',
       left: 0,
       position: 'absolute',
-      top: '10px',
-      width: '38px'
+      top: 10,
+      width: 38
     };
   }),
 
   circleStyle: ReactStyle(function() {
     return {
       border: 'solid 2px',
-      borderColor: '#5a5a5a',
+      borderColor: Colors.grey.P700,
       borderRadius: '50%',
-      height: '16px',
-      backgroundColor: 'white',
+      height: 16,
+      backgroundColor: Colors.grey.P100,
       left: 0,
       position: 'absolute',
       top: 0,
@@ -49,19 +51,19 @@ var ToggleButton = React.createClass({
 
   childStyle: ReactStyle(function childStyle(){
     return {
-      paddingLeft: '16px'
+      paddingLeft: 16
     };
   }),
 
   childBigStyle: ReactStyle(function childStyle(){
     return {
-      paddingLeft: '32px'
+      paddingLeft: 32
     };
   }),
 
   checkedStyle: ReactStyle(function(){
     return {
-      left:'20px'
+      left: 20
     };
   }),
 
@@ -71,21 +73,21 @@ var ToggleButton = React.createClass({
       right: 0,
       top: 0,
       bottom: 0,
-      width: '40px'
+      width: 40
     };
   }),
 
   onButtonStyle: ReactStyle(function onButtonStyle(){
     return {
-      backgroundColor: '#5a5a5a',
+      backgroundColor: Colors.grey.P700,
       borderRadius: '50%',
-      height: '20px',
-      left: '-2px',
+      height: 20,
+      left: -2,
       position: 'absolute',
-      top: '-2px',
+      top: -2,
       transform: 'scale(0)',
       transition: 'transform ease 0.28s',
-      width: '20px'
+      width: 20
     };
   }),
 

@@ -5,6 +5,9 @@
 
 var React = require('react');
 var ReactStyle = require('react-style');
+
+var Colors = require('../style/Colors');
+
 var transitionEnd = require('./TransitionEndName');
 var isTransform = require('./isTransform');
 var CircleShadow = require('./CircleShadow');
@@ -17,33 +20,34 @@ var CheckBox = React.createClass({
     return {
       webkitTapHighlightColor: 'rgba(0,0,0,0)',
       cursor: 'pointer',
+      position: 'relative',
+
       display: 'block',
-      outline: 'none',
-      position: 'relative'
+      outline: 'none'
     };
   }),
 
   childStyle: ReactStyle(function childStyle(){
     return {
-      paddingLeft: '16px'
+      paddingLeft: 16
     };
   }),
 
   childBigStyle: ReactStyle(function childStyle(){
     return {
-      paddingLeft: '32px'
+      paddingLeft: 32
     };
   }),
 
   normalStyle: ReactStyle(function normalStyle() {
     return {
-      borderColor: '#5a5a5a',
+      borderColor: Colors.grey.P700,
       borderStyle: 'solid',
-      borderWidth: '2px',
+      borderWidth: 2,
       boxSizing: 'border-box',
       cursor: 'pointer',
-      height: '18px',
-      width: '18px',
+      height: 18,
+      width: 18,
       left: 0,
       outline: 'none',
       transform: 'translateZ(0)',
@@ -63,17 +67,17 @@ var CheckBox = React.createClass({
       height: 0,
       transform: 'translateZ(0) rotate(45deg)',
       width: 0,
-      marginTop: '18px',
-      left: '8px'
+      marginTop: 18,
+      left: 8
     };
   }),
 
   checkedStyle: ReactStyle(function checkedStyle() {
     return {
       borderWidth: '0 2px 2px 0',
-      borderColor: '#0f9d58',
-      width: '10px',
-      height: '21px',
+      borderColor: Colors.green.P600,
+      width: 10,
+      height: 21,
       marginTop: 0
     };
   }),
@@ -82,14 +86,14 @@ var CheckBox = React.createClass({
   circleContainerStyle: ReactStyle(function circleContainerStyle(){
     return {
       position: 'absolute',
-      width: '16px',
-      height: '16px'
+      width: 16,
+      height: 16
     };
   }),
 
   circleStyle: ReactStyle(function circleStyle() {
     return {
-      backgroundColor: '#0f9d58'
+      backgroundColor: Colors.green.P600
     };
   }),
 

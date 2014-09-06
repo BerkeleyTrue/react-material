@@ -13,18 +13,18 @@ var Card = React.createClass({
   normalCardStyle: ReactStyle(function(){
     return {
       backgroundColor: 'white',
-      borderRadius: '2px',
+      borderRadius: 2,
       boxShadow: '0 2px 5px 0 rgba(0, 0, 0, 0.26)',
-      margin: '8px',
-      height: '250px',
-      padding: '16px'
+      margin: 8,
+      height: 250,
+      padding: 16
     };
   }),
 
   headerStyle: ReactStyle(function(){
     return {
       cursor: 'default',
-      marginBottom: '35px',
+      marginBottom: 35,
       marginTop: 0
     };
   }),

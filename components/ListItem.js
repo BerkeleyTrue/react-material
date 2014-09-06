@@ -39,7 +39,7 @@ var ListItem = React.createClass({
     return {
       display: 'inline-block',
       padding: '0 16px 0 0',
-      width: '30px',
+      width: 30,
       verticalAlign: 'middle',
       position: 'relative',
       pointerEvents: 'none'

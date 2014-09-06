@@ -6,6 +6,7 @@
 var React = require('react');
 var ReactStyle = require('react-style');
 
+var Colors = require('../style/Colors');
 var Typography = require('../style/Typography');
 var Icon = require('./Icon');
 
@@ -15,28 +16,28 @@ var AppBar = React.createClass({
 
   normalAppBarStyle: ReactStyle(function normalAppBarStyle() {
     return {
-      backgroundColor: '#00bcd4',
+      backgroundColor: Colors.cyan.P500,
       boxSizing: 'border-box',
       position: 'fixed',
-      height: '56px',
+      height: 56,
       width: '100%'
     };
   }),
 
   expandedAppBarStyle: ReactStyle(function expandedAppBarStyle() {
     return {
-      height: '128px',
+      height: 128,
       position: 'relative',
-      marginTop: '-128px'
+      marginTop: -128
     };
   }),
 
   navButtonStyle: ReactStyle(function navButtonStyle() {
     return {
-      height: '26px',
+      height: 26,
       webkitTapHighlightColor: 'rgba(0,0,0,0)',
       position: 'fixed',
-      width: '24px',
+      width: 24,
       display: 'inline-block',
       padding: '14px 16px',
       cursor: 'pointer',
@@ -53,15 +54,15 @@ var AppBar = React.createClass({
       lineHeight: '56px',
       position: 'absolute',
       top: 0,
-      left: '56px'
+      left: 56
     });
   }),
 
   expandedTitleStyle: ReactStyle(function expandedTitleStyle() {
     return merge(Typography.headline, {
       position: 'relative',
-      left: '14px',
-      top: '65px'
+      left: 14,
+      top: 65
     });
   }),
 
@@ -71,13 +72,23 @@ var AppBar = React.createClass({
     };
   }),
 
+  placeHolderStyle: ReactStyle(function placeHolderStyle(){
+    return {
+      backgroundColor: Colors.cyan.P500,
+      position: 'relative',
+      height: 128,
+      width: '100%'
+    };
+  }),
+
   propTypes: {
     actionButtons: React.PropTypes.array,
-    onNavButtonClick: React.PropTypes.func,
-    onMenuButtonCLick: React.PropTypes.func,
+    boxShadow: React.PropTypes.bool,
+    expanded: React.PropTypes.bool,
     onBackButtonClick: React.PropTypes.func,
-    title: React.PropTypes.string,
-    boxShadow: React.PropTypes.bool
+    onMenuButtonCLick: React.PropTypes.func,
+    onNavButtonClick: React.PropTypes.func,
+    title: React.PropTypes.string
   },
 
   getInitialState: function() {
@@ -86,15 +97,6 @@ var AppBar = React.createClass({
       showShadow: true
     };
   },
-
-  placeHolderStyle: ReactStyle(function placeHolderStyle(){
-    return {
-      backgroundColor: '#00bcd4',
-      position: 'relative',
-      height: '128px',
-      width: '100%'
-    };
-  }),
 
   render: function() {
     var props = this.props;

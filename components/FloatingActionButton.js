@@ -17,18 +17,19 @@ var FloatingActionButton = React.createClass({
 
   containerStyle: ReactStyle(function normalStyle(){
     return {
-      borderRadius: '50%',
-      boxShadow: '0 2px 5px 0 rgba(0, 0, 0, 0.26)',
       cursor: 'pointer',
-      display: 'inline-block',
-      fill: 'white',
-      height: '56px',
-      outline: 'none',
       position: 'relative',
       webkitTapHighlightColor: 'rgba(0,0,0,0)',
+
+      borderRadius: '50%',
+      boxShadow: '0 2px 5px 0 rgba(0, 0, 0, 0.26)',
+      display: 'inline-block',
+      fill: 'white',
+      height: 56,
+      outline: 'none',
       transition: 'box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1)',
       userSelect: 'none',
-      width: '56px'
+      width: 56
     };
   }),
 
@@ -53,8 +54,8 @@ var FloatingActionButton = React.createClass({
 
   miniStyle: ReactStyle(function miniStyle(){
     return {
-      height: '40px',
-      width: '40px'
+      height: 40,
+      width: 40
     };
   }),
 
@@ -71,16 +72,16 @@ var FloatingActionButton = React.createClass({
   miniIconStyle: ReactStyle(function miniIconStyle(){
     return {
       position: 'absolute',
-      width: '24px',
-      left: '8px'
+      width: 24,
+      left: 8
     };
   }),
 
   defaultIconStyle: ReactStyle(function defaultIconStyle(){
     return {
       position: 'absolute',
-      width: '24px',
-      left: '16px'
+      width: 24,
+      left: 16
     };
   }),
 
@@ -90,10 +91,10 @@ var FloatingActionButton = React.createClass({
       backgroundColor: 'transparent',
       position:'absolute',
       opacity: 0,
-      top: '-2px',
-      left: '-2px',
-      right: '-2px',
-      bottom: '-2px',
+      top: -2,
+      left: -2,
+      right: -2,
+      bottom: -2,
       cursor: 'default'
     };
   }),
@@ -108,7 +109,7 @@ var FloatingActionButton = React.createClass({
 
   progressCircleStyle: ReactStyle(function progressCircleStyle(){
     return {
-      strokeWidth: '2px'
+      strokeWidth: 2
     };
   }),
 

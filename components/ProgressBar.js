@@ -6,14 +6,16 @@
 var React = require('react');
 var ReactStyle = require('react-style');
 
+var Colors = require('../style/Colors');
+
 var transitionEnd = require('./TransitionEndName');
 
 var ProgressBar = React.createClass({
 
   normalStyle: ReactStyle(function normalStyle() {
     return {
-      backgroundColor: '#c8c8c8',
-      height: '4px',
+      backgroundColor: Colors.grey.P300,
+      height: 4,
       overflow: 'hidden',
       position: 'relative'
     };
@@ -21,10 +23,10 @@ var ProgressBar = React.createClass({
 
   progressStyle: ReactStyle(function progressStyle() {
     return {
-      backgroundColor: '#d23f31',
+      backgroundColor: Colors.red.P600,
       bottom: 0,
-      borderTopRightRadius: '3px',
-      borderBottomRightRadius: '3px',
+      borderTopRightRadius: 3,
+      borderBottomRightRadius: 3,
       left: 0,
       position: 'absolute',
       top: 0,
@@ -34,7 +36,7 @@ var ProgressBar = React.createClass({
 
   indeterminateBigStyle: ReactStyle(function indeterminateBigStyle() {
     return {
-      borderRadius: '3px',
+      borderRadius: 3,
       width: '75%',
       left: '-75%'
 
@@ -58,7 +60,7 @@ var ProgressBar = React.createClass({
   loadingStyle: ReactStyle(function loadingStyle(){
     return {
       position: 'relative',
-      height: '4px'
+      height: 4
     };
   }),
 

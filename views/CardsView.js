@@ -6,6 +6,8 @@
 var React = require('react');
 var ReactStyle = require('react-style');
 
+var Colors = require('../style/Colors');
+
 var Cards = require('../components/CardCollection');
 var Card = require('../components/Card');
 
@@ -32,7 +34,7 @@ var CardsView = React.createClass({
         </Card>
         <Card title="Basic components">
           <Button>A simple button</Button>
-          <Button raised={true} styles={[{backgroundColor:'#3f51b5', color: 'white'}]}>
+          <Button raised={true} styles={[{backgroundColor: Colors.amber.P500, color: Colors.grey.P50}]}>
             Raised button
           </Button>
           <div>
