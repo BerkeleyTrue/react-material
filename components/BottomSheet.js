@@ -22,7 +22,7 @@ var BottomSheet = React.createClass({
       right: 0,
       transition: 'transform .2s cubic-bezier(.4,0,.2,1), visibility 0s linear 0s',
       zIndex: 3,
-      borderTop: '1px solid #e0e0e0',
+      borderTop: '1px solid ' + Colors.grey.P300,
       visibility: 'visible'
     }
   }),
@@ -52,7 +52,7 @@ var BottomSheet = React.createClass({
   titleStyle: ReactStyle(function titleStyle(){
     return merge({color:Colors.grey.P500}, {
       cursor: 'default',
-      padding: '15px'
+      padding:  '15px'
     });
   }),
 

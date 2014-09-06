@@ -10,7 +10,7 @@ var FormRow = React.createClass({
 
   normalStyle: ReactStyle(function normalStyle(){
     return {
-      padding: '20px'
+      padding: 20
     };
   }),
 

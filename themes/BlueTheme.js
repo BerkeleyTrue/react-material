@@ -2,18 +2,20 @@
 
 var ReactStyle = require('react-style');
 
+var Colors = require('../style/Colors');
+
 var BlueTheme = {
   AppBar: {
     normalAppBarStyle: ReactStyle(function normalAppBarStyle(){
       return {
-        backgroundColor: '#3f51b5',
+        backgroundColor: Colors.blue.P500,
         zIndex: 1,
         top: 0
       };
     }),
     placeHolderStyle: ReactStyle(function normalAppBarStyle(){
       return {
-        backgroundColor: '#3f51b5',
+        backgroundColor: Colors.blue.P500,
         zIndex: 1,
         top: 0
       };
@@ -46,7 +48,7 @@ var BlueTheme = {
   Card: {
     headerStyle: ReactStyle(function headerStyle(){
       return {
-        color: '#3f51b5'
+        color: Colors.blue.P900
       };
     })
   }

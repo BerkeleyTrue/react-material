@@ -6,6 +6,8 @@
 var React = require('react');
 var ReactStyle = require('react-style');
 
+var Colors = require('../style/Colors');
+
 var CircleShadow = require('./CircleShadow');
 
 var RadioButton = React.createClass({
@@ -14,49 +16,50 @@ var RadioButton = React.createClass({
     return {
       webkitTapHighlightColor: 'rgba(0,0,0,0)',
       cursor: 'pointer',
+      position: 'relative',
+
       display: 'block',
       outline: 'none',
-      position: 'relative',
       userSelect: 'none'
     };
   }),
 
   childStyle: ReactStyle(function childStyle(){
     return {
-      paddingLeft: '16px'
+      paddingLeft: 16
     };
   }),
 
   childBigStyle: ReactStyle(function childStyle(){
     return {
-      paddingLeft: '32px'
+      paddingLeft: 32
     };
   }),
 
   offButtonStyle: ReactStyle(function offButtonStyle(){
     return {
       border: 'solid 2px',
-      borderColor: '#5a5a5a',
+      borderColor: Colors.grey.P700,
       borderRadius: '50%',
-      height: '16px',
+      height: 16,
       left: 0,
       position: 'absolute',
       top: 0,
-      width: '16px'
+      width: 16
     };
   }),
 
   onButtonStyle: ReactStyle(function onButtonStyle(){
     return {
-      backgroundColor: '#5a5a5a',
+      backgroundColor: Colors.grey.P700,
       borderRadius: '50%',
-      height: '20px',
+      height: 20,
       left: 0,
       position: 'absolute',
       top: 0,
       transform: 'scale(0)',
       transition: 'transform ease 0.28s',
-      width: '20px'
+      width: 20
     };
   }),
 
@@ -69,10 +72,10 @@ var RadioButton = React.createClass({
   circleContainerStyle: ReactStyle(function circleContainerStyle(){
     return {
       position: 'absolute',
-      width: '16px',
-      height: '16px',
-      top: '2px',
-      left:'2px'
+      width: 16,
+      height: 16,
+      top: 2,
+      left: 2
     };
   }),
 

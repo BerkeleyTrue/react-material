@@ -3,6 +3,8 @@
  */
 'use strict';
 
+var Colors = require('../style/Colors');
+
 var React = require('react');
 var ReactStyle = require('react-style');
 
@@ -11,13 +13,13 @@ var SideNavigation = React.createClass({
   normalSideNavStyle: ReactStyle(function normalSideNavStyle(){
     return {
       backgroundColor: 'white',
-      borderRight: '1px solid #e0e0e0',
+      borderRight: '1px solid ' + Colors.grey.P300,
       bottom: 0,
       left: 0,
       overflow: 'auto',
       position: 'fixed',
       top: 0,
-      width: '240px',
+      width: 240,
       transform: 'translateX(-241px)',
       transition: 'transform .2s cubic-bezier(.4,0,.2,1), visibility 0s linear .21s',
       zIndex: 4,

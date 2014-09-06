@@ -9,6 +9,8 @@ var React = require('react');
 var ReactStyle = require('react-style');
 React.initializeTouchEvents(true);
 
+var Colors = require('../style/Colors');
+
 // components
 var AppBar = require('../components/AppBar');
 var SideNavigation = require('../components/SideNavigation');
@@ -52,7 +54,7 @@ var TestView = React.createClass({
 
   normalStyle: ReactStyle(function normalStyle(){
     return {
-      backgroundColor: '#f9f9f9',
+      backgroundColor: Colors.grey.P100,
       minHeight: '100%'
     };
   }),
@@ -67,19 +69,19 @@ var TestView = React.createClass({
 
   headerStyle: ReactStyle(function headerStyle() {
     return {
-      color: '#3f51b5',
-      fontSize: '34px',
+      color: Colors.deepPurple.P500,
+      fontSize: 34,
       lineHeight: '32px',
-      marginBottom: '42px',
-      paddingTop: '80px',
+      marginBottom: 42,
+      paddingTop: 80,
       fontWeight: 400
     };
   }),
 
   paragraphStyle: ReactStyle(function paragraphStyle() {
     return {
-      color: '#212121',
-      fontSize: '20px',
+      color: Colors.grey.P900,
+      fontSize: 20,
       lineHeight: '32px'
     }
   }),

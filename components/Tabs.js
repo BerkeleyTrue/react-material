@@ -6,6 +6,8 @@
 var React = require('react');
 var ReactStyle = require('react-style');
 
+var Colors = require('../style/Colors');
+
 var Tabs = React.createClass({
 
   normalStyle: ReactStyle(function normalStyle(){
@@ -18,16 +20,16 @@ var Tabs = React.createClass({
   tabTitlesContainerStyle: ReactStyle(function tabTitlesContainerStyle(){
     return {
       webkitTapHighlightColor: 'rgba(0,0,0,0)',
-      backgroundColor: '#00bcd4',
+      backgroundColor: Colors.cyan.P500,
       lineHeight: '48px',
       margin: 0,
       padding: 0,
-      height: '48px',
+      height: 48,
       position: 'relative',
       cursor: 'pointer',
       color: 'white',
-      fontSize: '14px',
-      fontWeight: '500',
+      fontSize: 14,
+      fontWeight: 500,
       boxShadow:'0px 3px 2px rgba(0, 0, 0, 0.2)'
     };
   }),
@@ -51,7 +53,7 @@ var Tabs = React.createClass({
 
   selectionBarStyle: ReactStyle(function selectionBarStyle(){
     return {
-      backgroundColor: '#ffff8d',
+      backgroundColor: Colors.yellow.A100,
       height: '2px',
       transition: 'left .28s linear',
       position: 'absolute',
