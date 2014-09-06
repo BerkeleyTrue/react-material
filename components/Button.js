@@ -31,7 +31,8 @@ var Button = React.createClass({
       padding: 9,
       textAlign: 'center',
       userSelect: 'none',
-      minWidth: Sizes.Button.minWidth
+      minWidth: Sizes.Button.minWidth,
+      lineHeight: '19px'
     });
   }),
 
