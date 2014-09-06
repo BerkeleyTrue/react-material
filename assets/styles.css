@@ -22,14 +22,14 @@ body {
 .AppBar__boxShadowStyle__p { box-shadow: 0 2px 5px rgba(0, 0, 0, .26); }
 .AppBar__placeHolderStyle__q { background-color: #00bcd4; position: relative; height: 128px; width: 100%; }
 .Icon__iconStyle__aP { bottom: 0; left: 0; position: absolute; right: 0; top: 0; }
-.SideNavigation__normalSideNavStyle__i { background-color: white; border-right: 1px solid #e0e0e0; bottom: 0; left: 0; overflow: auto; position: fixed; top: 0; width: 240px; -webkit-transform: translateX(-241px); -ms-transform: translateX(-241px); transform: translateX(-241px); -webkit-transition: -webkit-transform .2s cubic-bezier(.4,0,.2,1), visibility 0s linear .21s; transition: transform .2s cubic-bezier(.4,0,.2,1), visibility 0s linear .21s; z-index: 4; visibility: hidden; }
-.SideNavigation__showSideNavStyle__j { -webkit-transform: translateX(0); -ms-transform: translateX(0); transform: translateX(0); -webkit-transition: -webkit-transform .2s cubic-bezier(.4,0,.2,1), visibility 0s linear 0s; transition: transform .2s cubic-bezier(.4,0,.2,1), visibility 0s linear 0s; visibility: visible; }
-.Overlay__normalOverlayStyle__g { height: 100%; position: fixed; width: 100%; top: 0; left: 0; bottom: 0; right: 0; background-color: rgb(0,0,0); opacity: 0.01; z-index: 2; visibility: hidden; -webkit-transition: visibility 0s linear .4s, opacity .4s cubic-bezier(.4, 0, .2, 1), z-index 0s linear .4s; transition: visibility 0s linear .4s, opacity .4s cubic-bezier(.4, 0, .2, 1), z-index 0s linear .4s; }
-.Overlay__normalOverlayVisibleStyle__h { opacity: 0.3; filter: alpha(opacity=30); visibility: visible; -webkit-transition: visibility 0s linear 0s, opacity .4s cubic-bezier(.4, 0, .2, 1), z-index 0s linear 0s; transition: visibility 0s linear 0s, opacity .4s cubic-bezier(.4, 0, .2, 1), z-index 0s linear 0s; }
-.Button__normalButtonStyle__H { -webkit-tap-highlight-color: rgba(0,0,0,0); cursor: pointer; position: relative; height: 18px; border-radius: 3px; display: inline-block; outline: none; overflow: hidden; padding: 9px 0; text-align: center; text-transform: uppercase; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; min-width: 88px; }
-.Button__raisedButtonStyle__I { background-color: #e0e0e0; box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26); -webkit-transition: box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1); transition: box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1); }
-.Button__raisedButtonPressedStyle__J { box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2); }
-.Button__disabledButtonStyle__K { background-color: #e0e0e0; color: #9e9e9e; cursor: default; }
+.SideNavigation__normalSideNavStyle__f { background-color: white; border-right: 1px solid #e0e0e0; bottom: 0; left: 0; overflow: auto; position: fixed; top: 0; width: 240px; -webkit-transform: translateX(-241px); -ms-transform: translateX(-241px); transform: translateX(-241px); -webkit-transition: -webkit-transform .2s cubic-bezier(.4,0,.2,1), visibility 0s linear .21s; transition: transform .2s cubic-bezier(.4,0,.2,1), visibility 0s linear .21s; z-index: 4; visibility: hidden; }
+.SideNavigation__showSideNavStyle__g { -webkit-transform: translateX(0); -ms-transform: translateX(0); transform: translateX(0); -webkit-transition: -webkit-transform .2s cubic-bezier(.4,0,.2,1), visibility 0s linear 0s; transition: transform .2s cubic-bezier(.4,0,.2,1), visibility 0s linear 0s; visibility: visible; }
+.Overlay__normalOverlayStyle__i { height: 100%; position: fixed; width: 100%; top: 0; left: 0; bottom: 0; right: 0; background-color: rgb(0,0,0); opacity: 0.01; z-index: 2; visibility: hidden; -webkit-transition: visibility 0s linear .4s, opacity .4s cubic-bezier(.4, 0, .2, 1), z-index 0s linear .4s; transition: visibility 0s linear .4s, opacity .4s cubic-bezier(.4, 0, .2, 1), z-index 0s linear .4s; }
+.Overlay__normalOverlayVisibleStyle__j { opacity: 0.3; filter: alpha(opacity=30); visibility: visible; -webkit-transition: visibility 0s linear 0s, opacity .4s cubic-bezier(.4, 0, .2, 1), z-index 0s linear 0s; transition: visibility 0s linear 0s, opacity .4s cubic-bezier(.4, 0, .2, 1), z-index 0s linear 0s; }
+.Button__normalButtonStyle__R { -webkit-tap-highlight-color: rgba(0,0,0,0); cursor: pointer; position: relative; height: 18px; border-radius: 3px; display: inline-block; outline: none; overflow: hidden; padding: 9px; text-align: center; text-transform: uppercase; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; min-width: 88px; }
+.Button__raisedButtonStyle__S { background-color: #e0e0e0; box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26); -webkit-transition: box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1); transition: box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1); }
+.Button__raisedButtonPressedStyle__T { box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2); }
+.Button__disabledButtonStyle__U { background-color: #e0e0e0; color: #9e9e9e; cursor: default; }
 .RippleContainer__normalStyle__aQ { height: 100%; left: 0; position: absolute; top: 0; width: 100%; }
 .RippleContainer__rippleStyle__aR { display: block; position: absolute; background: rgba(0, 0, 0, 0.04); border-radius: 50%; -webkit-transform: scale(0); -ms-transform: scale(0); transform: scale(0); -webkit-transition: -webkit-transform .25s linear, opacity .25s linear .2s; transition: transform .25s linear, opacity .25s linear .2s; }
 .RippleContainer__rippleAnimationStyle__aS { -webkit-transform: scale(2); -ms-transform: scale(2); transform: scale(2); }
@@ -37,10 +37,10 @@ body {
 .BottomSheet__normalBottomSheetStyle__V { background-color: white; bottom: 0; left: 0; position: fixed; right: 0; -webkit-transition: -webkit-transform .2s cubic-bezier(.4,0,.2,1), visibility 0s linear 0s; transition: transform .2s cubic-bezier(.4,0,.2,1), visibility 0s linear 0s; z-index: 3; border-top: 1px solid #e0e0e0; visibility: visible; }
 .BottomSheet__showBottomSheetStyle__W { -webkit-transform: translateY(0); -ms-transform: translateY(0); transform: translateY(0); }
 .BottomSheet__titleStyle__X { color: #9e9e9e; cursor: default; padding: 15px; }
-.List__normalListStyle__f { overflow: auto; overflow-y: auto; overflow-x: none; }
-.ListItem__normalListItemStyle__y { color: rgba(0, 0, 0, .87); font-family: RobotoDraft, 'Helvetica Neue', Helvetica, Arial; font-size: 16px; -webkit-tap-highlight-color: rgba(0,0,0,0); box-sizing: border-box; cursor: pointer; overflow: hidden; padding: 14px 16px 15px; position: relative; }
-.ListItem__singleLineWithIconTitleStyle__z { padding: 11px 16px; }
-.ListItem__iconStyle__A { display: inline-block; padding: 0 16px 0 0; width: 30px; vertical-align: middle; position: relative; pointer-events: none; }
+.List__normalListStyle__h { overflow: auto; overflow-y: auto; overflow-x: none; }
+.ListItem__normalListItemStyle__r { color: rgba(0, 0, 0, .87); font-family: RobotoDraft, 'Helvetica Neue', Helvetica, Arial; font-size: 16px; -webkit-tap-highlight-color: rgba(0,0,0,0); box-sizing: border-box; cursor: pointer; overflow: hidden; padding: 14px 16px 15px; position: relative; }
+.ListItem__singleLineWithIconTitleStyle__s { padding: 11px 16px; }
+.ListItem__iconStyle__t { display: inline-block; padding: 0 16px 0 0; width: 30px; vertical-align: middle; position: relative; pointer-events: none; }
 .CheckBox__containerStyle__Z { -webkit-tap-highlight-color: rgba(0,0,0,0); cursor: pointer; position: relative; display: block; outline: none; }
 .CheckBox__childStyle__aa { padding-left: 16px; }
 .CheckBox__childBigStyle__ab { padding-left: 32px; }
@@ -51,16 +51,16 @@ body {
 .CheckBox__circleStyle__ag { background-color: #0a8f08; }
 .CircleShadow__normalStyle__aU { -webkit-tap-highlight-color: rgba(0,0,0,0); background-color: #616161; opacity: 0; border-radius: 50%; position: absolute; top: 0; left: 0; right: 0; bottom: 0; -webkit-transform: scale(1) translateZ(0); transform: scale(1) translateZ(0); -webkit-transition: opacity .48s ease .1s , -webkit-transform .001s ease .6s; transition: opacity .48s ease .1s , transform .001s ease .6s  ; }
 .CircleShadow__pressedStyle__aV { opacity: 0.3; -webkit-transform: scale(3) translateZ(0); transform: scale(3) translateZ(0); -webkit-transition: opacity ease 0s, -webkit-transform ease 0s; transition: opacity ease 0s, transform ease 0s; }
-.FloatingActionButton__containerStyle__L { cursor: pointer; position: relative; -webkit-tap-highlight-color: rgba(0,0,0,0); border-radius: 50%; box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26); display: inline-block; fill: white; height: 56px; outline: none; -webkit-transition: box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1); transition: box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1); -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; width: 56px; }
-.FloatingActionButton__normalStyle__M { border-radius: 50%; outline: none; width: 100%; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; height: 100%; position: absolute; -webkit-tap-highlight-color: rgba(0,0,0,0); -webkit-transition: background-color 0.28s cubic-bezier(0.4, 0, 0.2, 1); transition: background-color 0.28s cubic-bezier(0.4, 0, 0.2, 1); }
-.FloatingActionButton__pressedStyle__N { box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2); }
-.FloatingActionButton__miniStyle__O { height: 40px; width: 40px; }
-.FloatingActionButton__overlayStyle__P { background: rgba(0, 0, 0, 0.04); border-radius: 50%; position: absolute; width: 100%; height: 100%; }
-.FloatingActionButton__miniIconStyle__Q { position: absolute; width: 24px; left: 8px; }
-.FloatingActionButton__defaultIconStyle__R { position: absolute; width: 24px; left: 16px; }
-.FloatingActionButton__percentageStyle__S { border-radius: 50%; background-color: transparent; position: absolute; opacity: 0; top: -2px; left: -2px; right: -2px; bottom: -2px; cursor: default; }
-.FloatingActionButton__percentageStyleVisible__T { background-color: #ffc107; opacity: 1; -webkit-transition: opacity .5s ease-in; transition: opacity .5s ease-in; }
-.FloatingActionButton__progressCircleStyle__U { stroke-width: 2px; }
+.FloatingActionButton__containerStyle__H { cursor: pointer; position: relative; -webkit-tap-highlight-color: rgba(0,0,0,0); border-radius: 50%; box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26); display: inline-block; fill: white; height: 56px; outline: none; -webkit-transition: box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1); transition: box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1); -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; width: 56px; }
+.FloatingActionButton__normalStyle__I { border-radius: 50%; outline: none; width: 100%; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; height: 100%; position: absolute; -webkit-tap-highlight-color: rgba(0,0,0,0); -webkit-transition: background-color 0.28s cubic-bezier(0.4, 0, 0.2, 1); transition: background-color 0.28s cubic-bezier(0.4, 0, 0.2, 1); }
+.FloatingActionButton__pressedStyle__J { box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2); }
+.FloatingActionButton__miniStyle__K { height: 40px; width: 40px; }
+.FloatingActionButton__overlayStyle__L { background: rgba(0, 0, 0, 0.04); border-radius: 50%; position: absolute; width: 100%; height: 100%; }
+.FloatingActionButton__miniIconStyle__M { position: absolute; width: 24px; left: 8px; }
+.FloatingActionButton__defaultIconStyle__N { position: absolute; width: 24px; left: 16px; }
+.FloatingActionButton__percentageStyle__O { border-radius: 50%; background-color: transparent; position: absolute; opacity: 0; top: -2px; left: -2px; right: -2px; bottom: -2px; cursor: default; }
+.FloatingActionButton__percentageStyleVisible__P { background-color: #ffc107; opacity: 1; -webkit-transition: opacity .5s ease-in; transition: opacity .5s ease-in; }
+.FloatingActionButton__progressCircleStyle__Q { stroke-width: 2px; }
 .ProgressBar__normalStyle__B { background-color: #e0e0e0; height: 4px; overflow: hidden; position: relative; }
 .ProgressBar__progressStyle__C { background-color: #dd191d; bottom: 0; border-top-right-radius: 3px; border-bottom-right-radius: 3px; left: 0; position: absolute; top: 0; -webkit-transition: width .65s linear; transition: width .65s linear; }
 .ProgressBar__indeterminateBigStyle__D { border-radius: 3px; width: 75%; left: -75%; }
@@ -68,46 +68,46 @@ body {
 .ProgressBar__indeteminateSmallSlowAnimateStyle__F { width: 10%; -webkit-transition: left 1.25s ease-in, width .65s ease-in; transition: left 1.25s ease-in, width .65s ease-in; }
 .ProgressBar__loadingStyle__G { position: relative; height: 4px; }
 .FormRow__normalStyle__Y { padding: 20px; }
-.RadioButton__normalStyle__ai { -webkit-tap-highlight-color: rgba(0,0,0,0); cursor: pointer; position: relative; display: block; outline: none; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
-.RadioButton__childStyle__aj { padding-left: 16px; }
-.RadioButton__childBigStyle__ak { padding-left: 32px; }
-.RadioButton__offButtonStyle__al { border: solid 2px; border-color: #616161; border-radius: 50%; height: 16px; left: 0; position: absolute; top: 0; width: 16px; }
-.RadioButton__onButtonStyle__am { background-color: #616161; border-radius: 50%; height: 20px; left: 0; position: absolute; top: 0; -webkit-transform: scale(0); -ms-transform: scale(0); transform: scale(0); -webkit-transition: -webkit-transform ease 0.28s; transition: transform ease 0.28s; width: 20px; }
-.RadioButton__onButtonFillStyle__an { -webkit-transform: scale(.6); -ms-transform: scale(.6); transform: scale(.6); }
-.RadioButton__circleContainerStyle__ao { position: absolute; width: 16px; height: 16px; top: 2px; left: 2px; }
-.RadioButtonGroup__rowStyle__ah:first-child { padding-top: 0; }
-.RadioButtonGroup__rowStyle__ah:last-child { padding-bottom: 0; }
-.RadioButtonGroup__rowStyle__ah { padding: 20px 0; }
-.ToggleButton__normalStyle__ap { -webkit-tap-highlight-color: rgba(0,0,0,0); cursor: pointer; display: block; position: relative; }
-.ToggleButton__lineStyle__aq { background-color: #616161; height: 1px; -webkit-tap-highlight-color: rgba(0,0,0,0); left: 0; position: absolute; top: 10px; width: 38px; }
-.ToggleButton__circleStyle__ar { border: solid 2px; border-color: #616161; border-radius: 50%; height: 16px; background-color: #f5f5f5; left: 0; position: absolute; top: 0; width: 16px; -webkit-transition: left .28s cubic-bezier(0.4, 0, 0.2, 1); transition: left .28s cubic-bezier(0.4, 0, 0.2, 1); }
-.ToggleButton__childStyle__as { padding-left: 16px; }
-.ToggleButton__childBigStyle__at { padding-left: 32px; }
-.ToggleButton__checkedStyle__au { left: 20px; }
-.ToggleButton__circlePositionStyle__av { position: absolute; right: 0; top: 0; bottom: 0; width: 40px; }
-.ToggleButton__onButtonStyle__aw { background-color: #616161; border-radius: 50%; height: 20px; left: -2px; position: absolute; top: -2px; -webkit-transform: scale(0); -ms-transform: scale(0); transform: scale(0); -webkit-transition: -webkit-transform ease 0.28s; transition: transform ease 0.28s; width: 20px; }
-.ToggleButton__onButtonFillStyle__ax { -webkit-transform: scale(1); -ms-transform: scale(1); transform: scale(1); }
+.RadioButton__normalStyle__ah { -webkit-tap-highlight-color: rgba(0,0,0,0); cursor: pointer; position: relative; display: block; outline: none; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
+.RadioButton__childStyle__ai { padding-left: 16px; }
+.RadioButton__childBigStyle__aj { padding-left: 32px; }
+.RadioButton__offButtonStyle__ak { border: solid 2px; border-color: #616161; border-radius: 50%; height: 16px; left: 0; position: absolute; top: 0; width: 16px; }
+.RadioButton__onButtonStyle__al { background-color: #616161; border-radius: 50%; height: 20px; left: 0; position: absolute; top: 0; -webkit-transform: scale(0); -ms-transform: scale(0); transform: scale(0); -webkit-transition: -webkit-transform ease 0.28s; transition: transform ease 0.28s; width: 20px; }
+.RadioButton__onButtonFillStyle__am { -webkit-transform: scale(.6); -ms-transform: scale(.6); transform: scale(.6); }
+.RadioButton__circleContainerStyle__an { position: absolute; width: 16px; height: 16px; top: 2px; left: 2px; }
+.RadioButtonGroup__rowStyle__ao:first-child { padding-top: 0; }
+.RadioButtonGroup__rowStyle__ao:last-child { padding-bottom: 0; }
+.RadioButtonGroup__rowStyle__ao { padding: 20px 0; }
+.ToggleButton__normalStyle__ax { -webkit-tap-highlight-color: rgba(0,0,0,0); cursor: pointer; display: block; position: relative; }
+.ToggleButton__lineStyle__ay { background-color: #616161; height: 1px; -webkit-tap-highlight-color: rgba(0,0,0,0); left: 0; position: absolute; top: 10px; width: 38px; }
+.ToggleButton__circleStyle__az { border: solid 2px; border-color: #616161; border-radius: 50%; height: 16px; background-color: #f5f5f5; left: 0; position: absolute; top: 0; width: 16px; -webkit-transition: left .28s cubic-bezier(0.4, 0, 0.2, 1); transition: left .28s cubic-bezier(0.4, 0, 0.2, 1); }
+.ToggleButton__childStyle__aA { padding-left: 16px; }
+.ToggleButton__childBigStyle__aB { padding-left: 32px; }
+.ToggleButton__checkedStyle__aC { left: 20px; }
+.ToggleButton__circlePositionStyle__aD { position: absolute; right: 0; top: 0; bottom: 0; width: 40px; }
+.ToggleButton__onButtonStyle__aE { background-color: #616161; border-radius: 50%; height: 20px; left: -2px; position: absolute; top: -2px; -webkit-transform: scale(0); -ms-transform: scale(0); transform: scale(0); -webkit-transition: -webkit-transform ease 0.28s; transition: transform ease 0.28s; width: 20px; }
+.ToggleButton__onButtonFillStyle__aF { -webkit-transform: scale(1); -ms-transform: scale(1); transform: scale(1); }
 .Tabs__normalStyle__aJ { position: relative; width: 100%; }
 .Tabs__tabTitlesContainerStyle__aK { -webkit-tap-highlight-color: rgba(0,0,0,0); background-color: #00bcd4; line-height: 48px; margin: 0; padding: 0; height: 48px; position: relative; cursor: pointer; color: white; font-size: 14px; font-weight: 500; box-shadow: 0px 3px 2px rgba(0, 0, 0, 0.2); }
 .Tabs__tabTitleStyle__aL { height: 100%; display: inline-block; text-align: center; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; opacity: 0.6; -webkit-transition: opacity .38s linear; transition: opacity .38s linear; }
 .Tabs__tabTitleSelectedStyle__aM { opacity: 1; }
 .Tabs__selectionBarStyle__aN { background-color: #ffff8d; height: 2px; -webkit-transition: left .28s linear; transition: left .28s linear; position: absolute; bottom: 0; }
 .Tab__normalTabStyle__aO { display: inline-block; text-align: center; }
-.TextField__normalTextFieldStyle__aB:focus { border-bottom: solid 2px #5677fc; }
-.TextField__normalTextFieldStyle__aB { background: transparent; border: none; border-bottom: solid 1px #e0e0e0; font-family: RobotoDraft, 'Helvetica Neue', Helvetica, Arial;; font-size: 16px; height: 32px; outline: none; left: 0; padding-top: 8px; position: absolute; top: 0; -webkit-transition: border-bottom .38s linear; transition: border-bottom .38s linear; width: 100%; }
-.TextField__fullWidthTextFieldStyle__aC { width: 100%; }
-.TextField__errorTextFieldStyle__aD:focus { border-bottom: solid 2px #e84e40; }
-.TextField__errorTextFieldStyle__aD { border-bottom: solid 2px #e84e40; }
-.TextField__placeHolderStyling__aG { color: #9e9e9e; font-size: 16px; left: 0; position: absolute; top: 15px; width: 100%; height: 100%; -webkit-transition: top .18s linear, font-size .18s linear; transition: top .18s linear, font-size .18s linear; }
-.TextField__containerStyling__aH { height: 48px; position: relative; width: 200px; }
-.TextField__placeHolderTopStyling__aI { font-size: 12px; top: -8px; }
+.TextField__normalTextFieldStyle__ap:focus { border-bottom: solid 2px #5677fc; }
+.TextField__normalTextFieldStyle__ap { background: transparent; border: none; border-bottom: solid 1px #e0e0e0; font-family: RobotoDraft, 'Helvetica Neue', Helvetica, Arial;; font-size: 16px; height: 32px; outline: none; left: 0; padding-top: 8px; position: absolute; top: 0; -webkit-transition: border-bottom .38s linear; transition: border-bottom .38s linear; width: 100%; }
+.TextField__fullWidthTextFieldStyle__aq { width: 100%; }
+.TextField__errorTextFieldStyle__ar:focus { border-bottom: solid 2px #e84e40; }
+.TextField__errorTextFieldStyle__ar { border-bottom: solid 2px #e84e40; }
+.TextField__placeHolderStyling__au { color: #9e9e9e; font-size: 16px; left: 0; position: absolute; top: 15px; width: 100%; height: 100%; -webkit-transition: top .18s linear, font-size .18s linear; transition: top .18s linear, font-size .18s linear; }
+.TextField__containerStyling__av { height: 48px; position: relative; width: 200px; }
+.TextField__placeHolderTopStyling__aw { font-size: 12px; top: -8px; }
 .CardsView__normalStyle__e { margin: 0 auto; width: 300px; }
-.Card__normalCardStyle__az { background-color: white; border-radius: 2px; box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26); margin: 8px; height: 250px; padding: 16px; }
-.Card__headerStyle__aA { cursor: default; margin-bottom: 35px; margin-top: 0; }
-.BlueTheme__normalAppBarStyle__r { background-color: #5677fc; z-index: 1; top: 0; }
-.BlueTheme__placeHolderStyle__s { background-color: #5677fc; z-index: 1; top: 0; }
-.BlueTheme__navButtonStyle__t { fill: white; }
-.BlueTheme__titleStyle__u { color: white; }
-.BlueTheme__normalButtonStyle__v { margin: 10px; }
-.BlueTheme__containerStyle__w { margin: 10px; }
-.BlueTheme__headerStyle__x { color: #2a36b1; }
+.Card__normalCardStyle__aH { background-color: white; border-radius: 2px; box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26); margin: 8px; height: 250px; padding: 16px; }
+.Card__headerStyle__aI { cursor: default; margin-bottom: 35px; margin-top: 0; }
+.BlueTheme__normalAppBarStyle__u { background-color: #5677fc; z-index: 1; top: 0; }
+.BlueTheme__placeHolderStyle__v { background-color: #5677fc; z-index: 1; top: 0; }
+.BlueTheme__navButtonStyle__w { fill: white; }
+.BlueTheme__titleStyle__x { color: white; }
+.BlueTheme__normalButtonStyle__y { margin: 10px; }
+.BlueTheme__containerStyle__z { margin: 10px; }
+.BlueTheme__headerStyle__A { color: #2a36b1; }
