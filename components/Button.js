@@ -8,6 +8,7 @@ var ReactStyle = require('react-style');
 
 var Colors = require('../style/Colors');
 var Sizes = require('../style/Sizes');
+var Typography = require('../style/Typography');
 
 var RippleContainer = require('./RippleContainer');
 
@@ -18,22 +19,20 @@ var isTouchDevice = 'ontouchstart' in window;
 var Button = React.createClass({
 
   normalButtonStyle: ReactStyle(function normalButtonStyle() {
-    return {
+    return merge(Typography.button, {
       webkitTapHighlightColor: 'rgba(0,0,0,0)',
       cursor: 'pointer',
       position: 'relative',
       height: Sizes.Button.height - 2 * 9,
-
       borderRadius: 3,
       display: 'inline-block',
       outline: 'none',
       overflow: 'hidden',
       padding: 9,
       textAlign: 'center',
-      textTransform: 'uppercase',
       userSelect: 'none',
       minWidth: Sizes.Button.minWidth
-    };
+    });
   }),
 
   raisedButtonStyle: ReactStyle(function raisedButtonStyle() {

@@ -69,7 +69,7 @@ var TestView = React.createClass({
 
   headerStyle: ReactStyle(function headerStyle() {
     return {
-      color: Colors.deepPurple.P500,
+      color: Colors.deepOrange.P500,
       fontSize: 34,
       lineHeight: '32px',
       marginBottom: 42,

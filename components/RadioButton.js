@@ -19,8 +19,7 @@ var RadioButton = React.createClass({
       position: 'relative',
 
       display: 'block',
-      outline: 'none',
-      userSelect: 'none'
+      outline: 'none'
     };
   }),
 

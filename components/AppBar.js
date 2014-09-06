@@ -54,7 +54,7 @@ var AppBar = React.createClass({
       lineHeight: '56px',
       position: 'absolute',
       top: 0,
-      left: 56
+      left: 72
     });
   }),
 

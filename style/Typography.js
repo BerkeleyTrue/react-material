@@ -1,71 +1,75 @@
 'use strict';
 
+var robotoLightFont = "'RobotoDraft Light', 'Helvetica Neue', Helvetica, Arial";
+var robotoMediumFont = "'RobotoDraft Light', 'Helvetica Neue', Helvetica, Arial";
+var robotoFont = "'RobotoDraft Light', 'Helvetica Neue', Helvetica, Arial";
+
 var FontStyles = {
   display4: {
     color: 'rgba(0, 0, 0, .54)',
-    fontFamily: "RobotoDraft Light, 'Helvetica Neue', Helvetica, Arial",
-    fontSize: '112px',
+    fontFamily: robotoLightFont,
+    fontSize: 112,
     whiteSpace: 'nowrap'
   },
   display3: {
     color: 'rgba(0, 0, 0, .54)',
-    fontFamily: "RobotoDraft, 'Helvetica Neue', Helvetica, Arial",
-    fontSize: '56px',
+    fontFamily: robotoFont,
+    fontSize: 56,
     whiteSpace: 'nowrap'
   },
   display2: {
     color: 'rgba(0, 0, 0, .54)',
-    fontFamily: "RobotoDraft, 'Helvetica Neue', Helvetica, Arial",
-    fontSize: '45px'
+    fontFamily: robotoFont,
+    fontSize: 45
   },
   display1: {
     color: 'rgba(0, 0, 0, .54)',
-    fontFamily: "RobotoDraft, 'Helvetica Neue', Helvetica, Arial",
-    fontSize: '34px'
+    fontFamily: robotoFont,
+    fontSize: 34
   },
   headline: {
     color: 'rgba(0, 0, 0, .87)',
-    fontFamily: "RobotoDraft, 'Helvetica Neue', Helvetica, Arial",
-    fontSize: '24px'
+    fontFamily: robotoFont,
+    fontSize: 24
   },
   title: {
     color: 'rgba(0, 0, 0, .87)',
-    fontFamily: "RobotoDraft Medium, 'Helvetica Neue', Helvetica, Arial",
-    fontSize: '20px',
+    fontFamily: robotoMediumFont,
+    fontSize: 20,
     whiteSpace: 'nowrap'
   },
   subhead: {
     color: 'rgba(0, 0, 0, .87)',
-    fontFamily: "RobotoDraft, 'Helvetica Neue', Helvetica, Arial",
-    fontSize: '16px'
+    fontFamily: robotoFont,
+    fontSize: 16
   },
   body2: {
     color: 'rgba(0, 0, 0, .87)',
-    fontFamily: "RobotoDraft Medium, 'Helvetica Neue', Helvetica, Arial",
-    fontSize: '14px',
+    fontFamily: robotoMediumFont,
+    fontSize: 14,
     lineHeight: ''
   },
   body1: {
     color: 'rgba(0, 0, 0, .87)',
-    fontFamily: "RobotoDraft, 'Helvetica Neue', Helvetica, Arial",
-    fontSize: '14px'
+    fontFamily: robotoFont,
+    fontSize: 14
   },
   caption: {
     color: 'rgba(0, 0, 0, .54)',
-    fontFamily: "RobotoDraft, 'Helvetica Neue', Helvetica, Arial",
-    fontSize: '12px',
+    fontFamily: robotoFont,
+    fontSize: 12,
     whiteSpace: 'nowrap'
   },
   menu: {
     color: 'rgba(0, 0, 0, .87)',
-    fontFamily: "RobotoDraft Medium, 'Helvetica Neue', Helvetica, Arial",
-    fontSize: '14px',
+    fontFamily: robotoMediumFont,
+    fontSize: 14,
     whiteSpace: 'nowrap'
   },
   button: {
     color: 'rgba(0, 0, 0, .87)',
-    fontFamily: "RobotoDraft Medium, 'Helvetica Neue', Helvetica, Arial",
-    fontSize: '14px',
+    fontFamily: robotoMediumFont,
+    fontSize: 14,
     whiteSpace: 'nowrap',
     textTransform: 'uppercase'
   }
