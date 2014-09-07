@@ -43,7 +43,7 @@ var ToggleButton = React.createClass({
       left: 0,
       position: 'absolute',
       top: 0,
-      width: '16px',
+      width: 16,
       transition: 'left .28s cubic-bezier(0.4, 0, 0.2, 1)'
     };
   }),

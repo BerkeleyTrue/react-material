@@ -39,7 +39,6 @@ var ProgressBar = React.createClass({
       borderRadius: 3,
       width: '75%',
       left: '-75%'
-
     };
   }),
 
@@ -64,6 +63,11 @@ var ProgressBar = React.createClass({
     };
   }),
 
+  bufferingStyle: ReactStyle(function bufferingStyle(){
+    return {
+
+    };
+  }),
 
   getInitialState: function() {
     return {
@@ -103,7 +107,10 @@ var ProgressBar = React.createClass({
 
     return <div styles={props.bufferPercentage ? this.loadingStyle() : this.normalStyle()}>
           {props.bufferPercentage &&
-            <div styles={bufferStyles} />
+            <div>
+              <div styles={this.bufferingStyle()} />
+              <div styles={bufferStyles} />
+            </div>
             }
           <div ref="progress" styles={progressBarStyles} />
     </div>
