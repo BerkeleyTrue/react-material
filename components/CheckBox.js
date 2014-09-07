@@ -18,12 +18,11 @@ var CheckBox = React.createClass({
 
   containerStyle: ReactStyle(function containerStyle() {
     return {
-      webkitTapHighlightColor: 'rgba(0,0,0,0)',
       cursor: 'pointer',
-      position: 'relative',
-
       display: 'block',
-      outline: 'none'
+      outline: 'none',
+      position: 'relative',
+      webkitTapHighlightColor: 'rgba(0,0,0,0)'
     };
   }),
 
@@ -47,28 +46,28 @@ var CheckBox = React.createClass({
       boxSizing: 'border-box',
       cursor: 'pointer',
       height: 18,
-      width: 18,
       left: 0,
-      outline: 'none',
-      transform: 'translateZ(0)',
       marginTop: 0,
+      outline: 'none',
+      position: 'absolute',
+      top: 0,
+      transform: 'translateZ(0)',
       transition: 'transform .1s linear, ' +
         'width .1s linear, ' +
         'height .1s linear, ' +
         'margin-top .1s linear, ' +
         'left .1s linear',
-      position: 'absolute',
-      top: 0
+      width: 18
     };
   }),
 
   transitionStyle: ReactStyle(function transitionStyle() {
     return {
       height: 0,
+      left: 8,
+      marginTop: 16,
       transform: 'translateZ(0) rotate(45deg)',
-      width: 0,
-      marginTop: 18,
-      left: 8
+      width: 0
     };
   }),
 
@@ -76,9 +75,9 @@ var CheckBox = React.createClass({
     return {
       borderWidth: '0 2px 2px 0',
       borderColor: Colors.green.P600,
-      width: 10,
       height: 21,
-      marginTop: 0
+      marginTop: -2,
+      width: 10
     };
   }),
 
@@ -86,8 +85,8 @@ var CheckBox = React.createClass({
   circleContainerStyle: ReactStyle(function circleContainerStyle(){
     return {
       position: 'absolute',
-      width: 16,
-      height: 16
+      height: 20,
+      width: 20
     };
   }),
 

@@ -54,7 +54,7 @@ var Tabs = React.createClass({
   selectionBarStyle: ReactStyle(function selectionBarStyle(){
     return {
       backgroundColor: Colors.yellow.A100,
-      height: '2px',
+      height: 2,
       transition: 'left .28s linear',
       position: 'absolute',
       bottom: 0
