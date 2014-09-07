@@ -163,7 +163,7 @@ var TextField = React.createClass({
 
     return <div styles={[this.containerStyling(), props.floatingLabel ? {height: 66} : null]}>
       <div styles={placeHolderStyling}>{props.placeHolder}</div>
-      <input onKeyUp={this.onChange} onClick={this.onChange} onWheel={this.onChange} onFocus={this.onFocus} onBlur={this.onBlur} type="text" ref="textfield" styles={textFieldStyling} />
+      <input onChange={this.onChange} onKeyUp={this.onChange} onClick={this.onChange} onWheel={this.onChange} onFocus={this.onFocus} onBlur={this.onBlur} type="text" ref="textfield" styles={textFieldStyling} />
       <div styles={[scrollLeft ? {opacity: 1} : null, this.state.focus ? this.focusStyle() : null, this.scrollBlocksStyle(), {left: 6}]} />
       <div styles={[(scrollWidth > (scrollLeft + width)) ? {opacity: 1} : null, this.state.focus ? this.focusStyle() : null,  this.scrollBlocksStyle(), {right: 6}]} />
     </div>;
