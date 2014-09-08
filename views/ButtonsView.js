@@ -5,9 +5,11 @@
 
 var React = require('react');
 var ReactStyle = require('react-style');
-var Colors = require('../style/Colors');
+
 var Button = require('../components/Button');
+var Colors = require('../style/Colors');
 var FloatingActionButton = require('../components/FloatingActionButton');
+var IconButton = require('../components/IconButton');
 
 var ButtonsView = React.createClass({
 
@@ -16,15 +18,15 @@ var ButtonsView = React.createClass({
       <h2>Main buttons</h2>
       <h3>Floating action buttons</h3>
       <div>
-        <FloatingActionButton ref="fab1" icon="undo" styles={[{backgroundColor:Colors.red.P600}]}/>
+        <FloatingActionButton ref="fab1" icon="undo" styles={[{backgroundColor:Colors.red.P600}]}/> {' '}
         <FloatingActionButton ref="fab2" icon="arrow-forward" mini={true} styles={[{backgroundColor:Colors.blue.P500}]}/>
       </div>
       <h3>Raised button</h3>
       <div>
         <Button raised={true}>
           Button 1
-        </Button>
-        <Button raised={true}>
+        </Button>{' '}
+        <Button raised={true} styles={{marginLeft:10}}>
           Button 2
         </Button>
       </div>
@@ -32,14 +34,17 @@ var ButtonsView = React.createClass({
       <div>
         <Button>
           Button 1
-        </Button>
+        </Button> {' '}
         <Button>
           Button 2
         </Button>
       </div>
       <h3>Icon buttons</h3>
       <div>
-        TODO
+        <IconButton icon="error" onClick={this.onClick} />
+        <IconButton icon="event" onClick={this.onClick} />
+        <IconButton icon="markunread" onClick={this.onClick} />
+
       </div>
       <h3>Missing functionalities</h3>
       <ul>
@@ -48,6 +53,10 @@ var ButtonsView = React.createClass({
       </ul>
       <h3>More information</h3>
     </div>;
+  },
+
+  onClick: function() {
+    console.log('click');
   }
 
 });
