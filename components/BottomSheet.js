@@ -10,20 +10,20 @@ var Colors = require('../style/Colors');
 
 var merge = require('../vendor/merge');
 
-
 var BottomSheet = React.createClass({
 
   normalBottomSheetStyle: ReactStyle(function normalBottomSheetStyle(){
     return {
       backgroundColor: 'white',
+      borderTop: '1px solid ' + Colors.grey.P300,
       bottom: 0,
       left: 0,
+      paddingBottom: 8,
       position: 'fixed',
       right: 0,
       transition: 'transform .2s cubic-bezier(.4,0,.2,1), visibility 0s linear 0s',
-      zIndex: 3,
-      borderTop: '1px solid ' + Colors.grey.P300,
-      visibility: 'visible'
+      visibility: 'visible',
+      zIndex: 3
     }
   }),
 
@@ -38,8 +38,8 @@ var BottomSheet = React.createClass({
 
     return {
       visibility: 'hidden',
-      transition: 'transform .2s cubic-bezier(.4,0,.2,1), visibility 0s linear .21s',
-      transform: 'translateY(' + height +'px)'
+      transform: 'translateY(' + height +'px)',
+      transition: 'transform .2s cubic-bezier(.4,0,.2,1), visibility 0s linear .21s'
     };
   }),
 
@@ -64,8 +64,7 @@ var BottomSheet = React.createClass({
       bottomSheetStyles.push(this.showBottomSheetStyle());
     }
     else {
-      var x = this.hiddenTransformStyle();
-      bottomSheetStyles.push(x);
+      bottomSheetStyles.push(this.hiddenTransformStyle());
     }
     if (props.styles) {
       bottomSheetStyles = bottomSheetStyles.concat(props.styles);

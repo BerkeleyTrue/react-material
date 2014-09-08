@@ -14,10 +14,10 @@ var Card = React.createClass({
     return {
       backgroundColor: 'white',
       borderRadius: 2,
-      boxShadow: '0 2px 5px 0 rgba(0, 0, 0, 0.26)',
       margin: 8,
       height: 250,
-      padding: 16
+      padding: 16,
+      position: 'relative'
     };
   }),
 
@@ -32,6 +32,7 @@ var Card = React.createClass({
   render: function() {
     var props = this.props;
     return <div styles={this.normalCardStyle()}>
+      <Shadow size={1} />
       {props.title &&
         <h3 styles={this.headerStyle()}>{props.title}</h3>
       }

@@ -11,7 +11,7 @@ var Sizes = require('../style/Sizes');
 var Typography = require('../style/Typography');
 
 var RippleContainer = require('./RippleContainer');
-
+var Shadow = require('./Shadow');
 var merge = require('../vendor/merge');
 
 var isTouchDevice = 'ontouchstart' in window;
@@ -27,7 +27,6 @@ var Button = React.createClass({
       borderRadius: 3,
       display: 'inline-block',
       outline: 'none',
-      overflow: 'hidden',
       padding: 9,
       textAlign: 'center',
       userSelect: 'none',
@@ -38,9 +37,7 @@ var Button = React.createClass({
 
   raisedButtonStyle: ReactStyle(function raisedButtonStyle() {
     return {
-      backgroundColor: Colors.grey.P300,
-      boxShadow: '0 2px 5px 0 rgba(0, 0, 0, 0.26)',
-      transition: 'box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1)'
+      backgroundColor: Colors.grey.P300
     };
   }),
 
@@ -55,6 +52,19 @@ var Button = React.createClass({
       backgroundColor: Colors.grey.P300,
       color: Colors.grey.P500,
       cursor: 'default'
+    };
+  }),
+
+  shadowStyle: ReactStyle(function shadowStyle(){
+    return {
+      borderRadius: 3
+    };
+  }),
+
+  rippleContainerStyle: ReactStyle(function(){
+    return {
+      overflow: 'hidden',
+      borderRadius: 3
     };
   }),
 
@@ -73,6 +83,7 @@ var Button = React.createClass({
     var props = this.props;
     var state = this.state;
     var styles = [this.normalButtonStyle()];
+    var shadowSize = -1;
     if (props.styles) {
       styles = styles.concat(props.styles);
     }
@@ -81,12 +92,12 @@ var Button = React.createClass({
     }
     else if (props.raised) {
       styles.push(this.raisedButtonStyle());
+      shadowSize = 1;
 
       if (state.active) {
-        styles.push(this.raisedButtonPressedStyle());
+        shadowSize = 2;
       }
     }
-
 
     return <div role="button"
                 tabIndex="0"
@@ -96,13 +107,15 @@ var Button = React.createClass({
                 onTouchCancel={isTouchDevice && this.onMouseUp}
                 onMouseDown={!isTouchDevice && this.onMouseDown}
                 onMouseUp={!isTouchDevice && this.onMouseUp}
-                onMouseLeave={!isTouchDevice && this.onMouseUp}
-                >
-    {!props.disabled &&
-      <RippleContainer onClick={props.onClick}/>
-    }
-      {props.children}
-    </div>;
+                onMouseLeave={!isTouchDevice && this.onMouseUp} >
+          <Shadow size={shadowSize} styles={this.shadowStyle()}>
+
+      {!props.disabled &&
+        <RippleContainer styles={this.rippleContainerStyle()} onClick={props.onClick}/>
+      }
+        {props.children}
+          </Shadow>
+      </div>;
   },
 
   onMouseUp: function() {

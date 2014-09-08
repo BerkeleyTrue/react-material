@@ -31,20 +31,6 @@ var BlueTheme = {
       };
     })
   },
-  Button: {
-    normalButtonStyle: ReactStyle(function normalButtonStyle() {
-      return {
-        margin: '10px'
-      };
-    })
-  },
-  FloatingActionButton: {
-    containerStyle: ReactStyle(function normalStyle(){
-      return {
-        margin: '10px'
-      };
-    })
-  },
   Card: {
     headerStyle: ReactStyle(function headerStyle(){
       return {

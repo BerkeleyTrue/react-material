@@ -1,8 +1,13 @@
 function merge(a, b) {
-  for (var key in b) {
-    a[key] = b[key];
+  var newA = {};
+  for (var key in a) {
+    newA[key] = a[key]
   }
-  return a;
+
+  for (var key in b) {
+    newA[key] = b[key];
+  }
+  return newA;
 }
 
 module.exports = merge;
