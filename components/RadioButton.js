@@ -58,7 +58,8 @@ var RadioButton = React.createClass({
       top: 0,
       transform: 'scale(0)',
       transition: 'transform ease 0.28s',
-      width: 20
+      width: 20,
+      willChange: 'transform'
     };
   }),
 

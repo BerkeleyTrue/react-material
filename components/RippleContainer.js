@@ -54,7 +54,7 @@ var RippleContainer = React.createClass({
     };
   }),
 
-  dimensions: ReactStyle(function(){
+  dimensions: ReactStyle(function dimensions(){
     var props = this.props;
     return {
       height: props.height,
@@ -134,7 +134,7 @@ var RippleContainer = React.createClass({
     var onClick = this.props.onClick;
     if (onClick) {
       e.preventDefault();
-      onClick();
+      onClick({target: this.getDOMNode().parentNode, originalEvent: e});
     }
   },
 

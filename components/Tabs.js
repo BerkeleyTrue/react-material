@@ -8,6 +8,8 @@ var ReactStyle = require('react-style');
 
 var Colors = require('../style/Colors');
 
+var RippleContainer = require('../components/RippleContainer');
+
 var Tabs = React.createClass({
 
   normalStyle: ReactStyle(function normalStyle(){
@@ -40,6 +42,8 @@ var Tabs = React.createClass({
       display: 'inline-block',
       textAlign: 'center',
       userSelect: 'none',
+      position: 'relative',
+      overflow: 'hidden',
       opacity: .6,
       transition: 'opacity .38s linear'
     }
@@ -77,7 +81,7 @@ var Tabs = React.createClass({
         selectedIndex = i;
       }
 
-      titles[i] = <li onClick={this.onTabHeaderClick} styles={tabTitleStyles}>{childProps.title}</li>;
+      titles[i] = <li key={i} styles={tabTitleStyles}><RippleContainer onClick={this.onTabHeaderClick} />{childProps.title}</li>;
     }
     var normalStyles = [this.normalStyle()];
     if (props.styles) {

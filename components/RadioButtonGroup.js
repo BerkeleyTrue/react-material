@@ -40,7 +40,7 @@ var RadioButtonGroup = React.createClass({
         {child.props.children}
       </RadioButton>;
 
-      radioButtons[i] = <div styles={this.rowStyle()}>
+      radioButtons[i] = <div key={'d_' + i} styles={this.rowStyle()}>
         {radioButton}
       </div>;
     }

@@ -44,14 +44,7 @@ var ButtonsView = React.createClass({
         <IconButton icon="error" onClick={this.onClick} />
         <IconButton icon="event" onClick={this.onClick} />
         <IconButton icon="markunread" onClick={this.onClick} />
-
       </div>
-      <h3>Missing functionalities</h3>
-      <ul>
-        <li>Buttons with images</li>
-        <li>Circular loading indicator</li>
-      </ul>
-      <h3>More information</h3>
     </div>;
   },
 

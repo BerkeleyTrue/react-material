@@ -29,7 +29,7 @@ var BottomSheetsView = React.createClass({
   render: function() {
     var state = this.state;
     return <div>
-      <Button onClick={this.onShowBottomSheetBtnClick} raised={true}>List</Button>
+      <Button onClick={this.onShowBottomSheetBtnClick} raised={true} styles={{marginTop:40}}>List</Button>
       <Overlay show={state.show} onClick={this.onOverlayClick}/>
       <BottomSheet show={state.show} title="Title" styles={[{color: Colors.grey.P800, fill: Colors.grey.P800}]}>
       {

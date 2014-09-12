@@ -49,7 +49,10 @@ var Overlay = React.createClass({
   },
 
   onClick: function(e) {
-    this.props.onClick(e);
+    var props = this.props;
+    if (props.onClick) {
+      props.onClick(e);
+    }
   }
 });
 

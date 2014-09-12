@@ -8,6 +8,7 @@ var ReactStyle = require('react-style');
 
 var Icon = require('./Icon');
 var RippleContainer = require('./RippleContainer');
+var Shadow = require('./Shadow');
 
 var Colors = require('../style/Colors');
 
@@ -20,14 +21,11 @@ var FloatingActionButton = React.createClass({
       cursor: 'pointer',
       position: 'relative',
       webkitTapHighlightColor: 'rgba(0,0,0,0)',
-
       borderRadius: '50%',
-      boxShadow: '0 2px 5px 0 rgba(0, 0, 0, 0.26)',
       display: 'inline-block',
       fill: 'white',
       height: 56,
       outline: 'none',
-      transition: 'box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1)',
       userSelect: 'none',
       width: 56
     };
@@ -41,14 +39,13 @@ var FloatingActionButton = React.createClass({
       userSelect: 'none',
       height: '100%',
       position:'absolute',
-      webkitTapHighlightColor: 'rgba(0,0,0,0)',
-      transition: 'background-color 0.28s cubic-bezier(0.4, 0, 0.2, 1)'
+      webkitTapHighlightColor: 'rgba(0,0,0,0)'
     };
   }),
 
-  pressedStyle: ReactStyle(function pressedStyle(){
+  shadowStyle: ReactStyle(function pressedStyle(){
     return {
-      boxShadow: '0 8px 17px 0 rgba(0, 0, 0, 0.2)'
+      borderRadius: '50%'
     };
   }),
 
@@ -61,11 +58,19 @@ var FloatingActionButton = React.createClass({
 
   overlayStyle: ReactStyle(function overlayStyle() {
     return {
-      background: 'rgba(0, 0, 0, 0.04)',
+      background: 'rgba(0, 0, 0, 0.08)',
       borderRadius: '50%',
       position:'absolute',
       width: '100%',
-      height: '100%'
+      height: '100%',
+      opacity: 0,
+      transition: 'opacity 0.28s cubic-bezier(0.4, 0, 0.2, 1)'
+    };
+  }),
+
+  overlayPressedStyle: ReactStyle(function overlayPressedStyle() {
+    return {
+      opacity: 1
     };
   }),
 
@@ -134,8 +139,9 @@ var FloatingActionButton = React.createClass({
     if (props.mini) {
       containerStyles.push(this.miniStyle());
     }
+    var shadowSize = 1;
     if (state.active && !props.percentage) {
-      containerStyles.push(this.pressedStyle());
+      shadowSize = 2;
     }
     var percentageStyling = [this.percentageStyle()];
     if (props.percentage) {
@@ -156,6 +162,11 @@ var FloatingActionButton = React.createClass({
 
     var progressCircleStyles = [this.progressCircleStyle(), props.progressCircleStyle];
 
+    var overlayStyles = [this.overlayStyle()];
+    if (state.active) {
+      overlayStyles.push(this.overlayPressedStyle());
+    }
+
     return <div   role="button"
                   tabIndex={0}
                   onTouchStart={isTouchDevice && this.onMouseDown}
@@ -165,7 +176,7 @@ var FloatingActionButton = React.createClass({
                   onMouseUp={!isTouchDevice && this.onMouseUp}
                   onMouseLeave={!isTouchDevice && this.onMouseLeave}
                   styles={containerStyles}>
-
+        <Shadow size={shadowSize} styles={this.shadowStyle()}/>
         <div styles={percentageStyling}>
           {props.percentage ?
             <svg width={60} height={60}>
@@ -175,14 +186,8 @@ var FloatingActionButton = React.createClass({
             }
         </div>
 
-        <div
-              styles={styles}
-
-              >
-
-        {state.active &&
-          <div styles={this.overlayStyle()} />
-          }
+        <div styles={styles}>
+        <div styles={overlayStyles} />
         <Icon icon={props.icon} styles={props.mini ? this.miniIconStyle() : this.defaultIconStyle()}/>
       </div>
     </div>;
