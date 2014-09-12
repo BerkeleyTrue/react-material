@@ -10,12 +10,14 @@ var CheckBox = require('../components/CheckBox');
 var List = require('../components/List');
 var ListItem = require('../components/ListItem');
 
+var Subheader = require('../components/Subheader');
+
 var ListView = React.createClass({
 
   render: function() {
     return <div style={{margin: '0 -20px'}}>
-      <h2>Single line</h2>
       <List>
+        <Subheader>Single line</Subheader>
         <ListItem>Bottom sheets</ListItem>
         <ListItem>Button</ListItem>
         <ListItem>Progress and Activity</ListItem>
@@ -23,8 +25,8 @@ var ListView = React.createClass({
         <ListItem>Tabs</ListItem>
         <ListItem>Text fields</ListItem>
       </List>
-      <h2>Single line with icon</h2>
       <List>
+        <Subheader>Single line with icon</Subheader>
         <ListItem icon="post-facebook">Facebook</ListItem>
         <ListItem icon="post-github">Github</ListItem>
         <ListItem icon="post-twitter">Twitter</ListItem>

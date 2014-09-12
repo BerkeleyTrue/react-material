@@ -25,6 +25,7 @@ var TextFieldsView = require('./TextFieldsView');
 var ListsView = require('./ListView');
 var CardsView = require('./CardsView');
 var DialogsView = require('./DialogsView');
+var MenusView = require('./MenusView');
 
 var List = require('../components/List');
 var ListItem = require('../components/ListItem');
@@ -40,7 +41,8 @@ var ViewsEnum = {
   SwitchesView: 6,
   ListsView: 7,
   CardsView: 8,
-  DialogsView: 9
+  DialogsView: 9,
+  MenusView: 10
 };
 
 var TestView = React.createClass({
@@ -127,8 +129,11 @@ var TestView = React.createClass({
     else if(view === ViewsEnum.CardsView) {
       title = 'Cards';
     }
-    else if (view === ViewsEnum.DialogView) {
-
+    else if (view === ViewsEnum.DialogsView) {
+      title = 'Dialogs';
+    }
+    else if (view === ViewsEnum.MenusView) {
+      title = 'Menus';
     }
 
     return <div styles={this.normalStyle()}>
@@ -139,28 +144,31 @@ var TestView = React.createClass({
           <ListItem onClick={this.onClick(ViewsEnum.BottomSheetsView)}>
             Bottom Sheets
           </ListItem>
-          <ListItem onClick={this.onClick(2)}>
+          <ListItem onClick={this.onClick(ViewsEnum.ButtonsView)}>
             Buttons
           </ListItem>
-          <ListItem onClick={this.onClick(8)}>
+          <ListItem onClick={this.onClick(ViewsEnum.CardsView)}>
             Cards
           </ListItem>
-          <ListItem onClick={this.onClick(9)}>
+          <ListItem onClick={this.onClick(ViewsEnum.DialogsView)}>
             Dialogs
           </ListItem>
-          <ListItem onClick={this.onClick(7)}>
+          <ListItem onClick={this.onClick(ViewsEnum.ListsView)}>
             Lists
           </ListItem>
-          <ListItem onClick={this.onClick(3)}>
+          <ListItem onClick={this.onClick(ViewsEnum.MenusView)}>
+            Menus
+          </ListItem>
+          <ListItem onClick={this.onClick(ViewsEnum.ProgressAndActivityView)}>
             Progress and Activity
           </ListItem>
-          <ListItem onClick={this.onClick(6)}>
+          <ListItem onClick={this.onClick(ViewsEnum.SwitchesView)}>
             Switches
           </ListItem>
-          <ListItem onClick={this.onClick(4)}>
+          <ListItem onClick={this.onClick(ViewsEnum.TabsView)}>
             Tabs
           </ListItem>
-          <ListItem onClick={this.onClick(5)}>
+          <ListItem onClick={this.onClick(ViewsEnum.TextFieldsView)}>
             Text fields
           </ListItem>
         </List>
@@ -209,6 +217,9 @@ var TestView = React.createClass({
           }
         {state.view === ViewsEnum.DialogsView &&
           <DialogsView />
+          }
+        {state.view === ViewsEnum.MenusView &&
+          <MenusView />
           }
       </div>
     </div>;

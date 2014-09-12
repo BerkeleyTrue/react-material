@@ -57,7 +57,8 @@ var CheckBox = React.createClass({
         'height .1s linear, ' +
         'margin-top .1s linear, ' +
         'left .1s linear',
-      width: 18
+      width: 18,
+      willChange: 'width, height, margin-top, left'
     };
   }),
 
@@ -167,6 +168,14 @@ var CheckBox = React.createClass({
     }
 
     this.refs.checkbox.getDOMNode().addEventListener(transitionEnd, this.onTransitionEnd);
+  },
+
+  componentWillUnmount: function() {
+    if (!transitionEnd) {
+      return;
+    }
+
+    this.refs.checkbox.getDOMNode().removeEventListener(transitionEnd, this.onTransitionEnd);
   },
 
   onTransitionEnd: function(e) {

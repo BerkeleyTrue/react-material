@@ -11,7 +11,7 @@ var ShadowStyle = require('../style/Shadow');
 var Shadow = React.createClass({
 
   propTypes: {
-    shadow: React.PropTypes.number.isRequired
+    size: React.PropTypes.number.isRequired
   },
 
   normalShadowStyle: ReactStyle(function(){
@@ -21,6 +21,7 @@ var Shadow = React.createClass({
       position: 'absolute',
       right: 0,
       top: 0,
+      willChange: 'box-shadow',
       transition: 'box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1)'
     };
   }),

@@ -22,7 +22,8 @@ var CircleShadow = React.createClass({
       right: 0,
       bottom: 0,
       transform: 'scale(1) translateZ(0)',
-      transition: 'opacity .48s ease .1s , transform .001s ease .6s  '
+      transition: 'opacity .48s ease .1s , transform .001s ease .6s  ',
+      willChange: 'opacity, transform'
     };
   }),
 
