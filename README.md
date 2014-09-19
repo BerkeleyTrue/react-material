@@ -1,4 +1,4 @@
-Currently broken due to react-style being refactored - want to get everything working again in the coming 2 weeks (Sep. 19th). Apologies for the inconvenience. 
+Currently broken due to react-style being refactored - want to get everything working again in the coming 2 weeks (from Sep. 19th). Apologies for the inconvenience. 
 
 React Material Design Components
 ===
