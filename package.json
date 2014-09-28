@@ -4,6 +4,11 @@
   "keywords": [
     "react-component"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/SanderSpies/react-material.git"
+  },
+  "main": "index.js",
   "devDependencies": {
     "browser-sync": "^1.4.0",
     "css-loader": "^0.7.0",
@@ -22,6 +27,7 @@
   },
   "dependencies": {
     "react": "0.11.1",
-    "react-style": "0.0.13-alpha"
+    "react-style": "0.0.13-alpha",
+    "node-jsx": "^0.11.0"
   }
 }
