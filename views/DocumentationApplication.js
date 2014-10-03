@@ -15,22 +15,22 @@ var Colors = require('../style/Colors');
 var AppBar = require('../components/AppBar');
 var SideNavigation = require('../components/SideNavigation');
 var Overlay = require('../components/Overlay');
-
-var BottomSheetsView = require('./BottomSheetsView');
-var ButtonsView = require('./ButtonsView');
-var ProgressAndActivityView = require('./ProgressAndActivityView');
-var SwitchesView = require('./SwitchesView');
-var TabsView = require('./TabsView');
-var TextFieldsView = require('./TextFieldsView');
-var ListsView = require('./ListView');
-var CardsView = require('./CardsView');
-var DialogsView = require('./DialogsView');
-var MenusView = require('./MenusView');
-
+//
+//var BottomSheetsView = require('./BottomSheetsView');
+//var ButtonsView = require('./ButtonsView');
+//var ProgressAndActivityView = require('./ProgressAndActivityView');
+//var SwitchesView = require('./SwitchesView');
+//var TabsView = require('./TabsView');
+//var TextFieldsView = require('./TextFieldsView');
+//var ListsView = require('./ListView');
+//var CardsView = require('./CardsView');
+//var DialogsView = require('./DialogsView');
+//var MenusView = require('./MenusView');
+//
 var List = require('../components/List');
 var ListItem = require('../components/ListItem');
-
-var BlueTheme = require('../themes/BlueTheme');
+//
+//var BlueTheme = require('../themes/BlueTheme');
 
 var ViewsEnum = {
   BottomSheetsView: 1,
@@ -47,7 +47,7 @@ var ViewsEnum = {
 
 var TestView = React.createClass({
 
-  themes: [BlueTheme],
+  // themes: [BlueTheme],
 
   getInitialState: function() {
     return {
@@ -55,40 +55,34 @@ var TestView = React.createClass({
       view: 0
     }
   },
+  styles: {
 
-  normalStyle: ReactStyle(function normalStyle(){
-    return {
+    normalStyle: ReactStyle({
       backgroundColor: Colors.grey.P100,
       minHeight: '100%'
-    };
-  }),
+    }),
 
-  containerStyle: ReactStyle(function containerStyle() {
-    return {
+    containerStyle: ReactStyle({
       margin: 'auto',
       maxWidth: '700px',
       padding: '56px 20px 0'
-    };
-  }),
+    }),
 
-  headerStyle: ReactStyle(function headerStyle() {
-    return {
+    headerStyle: ReactStyle({
       color: Colors.indigo.P500,
       fontSize: 34,
       lineHeight: '32px',
       marginBottom: 42,
       paddingTop: 80,
       fontWeight: 400
-    };
-  }),
+    }),
 
-  paragraphStyle: ReactStyle(function paragraphStyle() {
-    return {
+    paragraphStyle: ReactStyle({
       color: Colors.grey.P900,
       fontSize: 20,
       lineHeight: '32px'
-    }
-  }),
+    })
+  },
 
   onNavButtonClick: function() {
     this.setState({showSideNavigation: !this.state.showSideNavigation});
@@ -135,10 +129,10 @@ var TestView = React.createClass({
     else if (view === ViewsEnum.MenusView) {
       title = 'Menus';
     }
-
-    return <div styles={this.normalStyle()}>
+    var styles = this.styles;
+    return <div styles={styles.normalStyle}>
       <AppBar onNavButtonClick={this.onNavButtonClick} expanded={expanded} shadow={true} title={title}/>
-      <Overlay show={state.showSideNavigation} onClick={this.onOverlayClick} />
+      /*<Overlay show={state.showSideNavigation} onClick={this.onOverlayClick} />
       <SideNavigation show={state.showSideNavigation}>
         <List>
           <ListItem onClick={this.onClick(ViewsEnum.BottomSheetsView)}>
@@ -172,55 +166,26 @@ var TestView = React.createClass({
             Text fields
           </ListItem>
         </List>
-      </SideNavigation>
-      <div className={this.containerStyle()}>
+      </SideNavigation>*/
+      <div className={styles.containerStyle}>
       {state.view === 0 &&
         <div>
-          <h1 styles={this.headerStyle()}>React Material Components</h1>
-          <p styles={this.paragraphStyle()}>
+          <h1 styles={styles.headerStyle}>React Material Components</h1>
+          <p styles={styles.paragraphStyle}>
              Here you find components written with <a href="http://reactjs.org">React.js</a> and {' '}
              <a href="https://github.com/SanderSpies/react-style">React Style</a> that attempt to abide to the {' '}
              <a href="http://www.google.com/design/spec/material-design/introduction.html">Google material design guidelines</a>.
              It takes a different approach from Polymer, by wrapping both templates
             and CSS within JavaScript.
           </p>
-          <p styles={this.paragraphStyle()}>
+          <p styles={styles.paragraphStyle}>
             If something is not correct, feel free to help out and file an {' '}
             <a href="https://github.com/SanderSpies/react-style/issues/new">issue</a> or {' '}
             <a href="https://github.com/SanderSpies/react-style/fork">fork the project</a> and do a pull request.
           </p>
         </div>
         }
-        {state.view === ViewsEnum.BottomSheetsView &&
-          <BottomSheetsView />
-          }
-        {state.view === ViewsEnum.ButtonsView &&
-          <ButtonsView />
-        }
-        {state.view === ViewsEnum.ProgressAndActivityView &&
-          <ProgressAndActivityView />
-        }
-        {state.view === ViewsEnum.TabsView &&
-          <TabsView />
-          }
-        {state.view === ViewsEnum.TextFieldsView &&
-          <TextFieldsView />
-          }
-        {state.view === ViewsEnum.SwitchesView &&
-          <SwitchesView />
-          }
-        {state.view === ViewsEnum.ListsView &&
-          <ListsView />
-          }
-        {state.view === ViewsEnum.CardsView &&
-          <CardsView />
-          }
-        {state.view === ViewsEnum.DialogsView &&
-          <DialogsView />
-          }
-        {state.view === ViewsEnum.MenusView &&
-          <MenusView />
-          }
+
       </div>
     </div>;
   },
@@ -234,4 +199,7 @@ var TestView = React.createClass({
 
 });
 
-React.renderComponent(<TestView />, document.getElementById('container'));
+if (typeof window !== 'undefined') {
+  ReactStyle.inject();
+  React.renderComponent(<TestView />, document.getElementById('container'));
+}

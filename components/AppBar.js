@@ -8,32 +8,28 @@ var ReactStyle = require('react-style');
 
 var Colors = require('../style/Colors');
 var Typography = require('../style/Typography');
-var Icon = require('./Icon');
+//var Icon = require('./Icon');
 
 var merge = require('../vendor/merge');
 
 var AppBar = React.createClass({
 
-  normalAppBarStyle: ReactStyle(function normalAppBarStyle() {
-    return {
+  styles: {
+    normalAppBarStyle: ReactStyle({
       backgroundColor: Colors.cyan.P500,
       boxSizing: 'border-box',
       position: 'fixed',
       height: 56,
       width: '100%'
-    };
-  }),
+    }),
 
-  expandedAppBarStyle: ReactStyle(function expandedAppBarStyle() {
-    return {
+    expandedAppBarStyle: ReactStyle({
       height: 128,
       position: 'relative',
       marginTop: -128
-    };
-  }),
+    }),
 
-  navButtonStyle: ReactStyle(function navButtonStyle() {
-    return {
+    navButtonStyle: ReactStyle({
       height: 26,
       webkitTapHighlightColor: 'rgba(0,0,0,0)',
       position: 'fixed',
@@ -43,11 +39,9 @@ var AppBar = React.createClass({
       cursor: 'pointer',
       verticalAlign: 'top',
       top: 0
-    };
-  }),
+    }),
 
-  titleStyle: ReactStyle(function titleStyle() {
-    return merge(Typography.title, {
+    titleStyle: ReactStyle(merge(Typography.title, {
       display: 'inline-block',
       opacity: 'inherit',
       cursor: 'default',
@@ -55,31 +49,25 @@ var AppBar = React.createClass({
       position: 'absolute',
       top: 0,
       left: 72
-    });
-  }),
+    })),
 
-  expandedTitleStyle: ReactStyle(function expandedTitleStyle() {
-    return merge(Typography.headline, {
+    expandedTitleStyle: ReactStyle(merge(Typography.headline, {
       position: 'relative',
       left: 14,
       top: 65
-    });
-  }),
+    })),
 
-  boxShadowStyle: ReactStyle(function boxShadowStyle() {
-    return {
+    boxShadowStyle: ReactStyle({
       boxShadow: '0 2px 5px rgba(0, 0, 0, .26)'
-    };
-  }),
+    }),
 
-  placeHolderStyle: ReactStyle(function placeHolderStyle(){
-    return {
+    placeHolderStyle: ReactStyle({
       backgroundColor: Colors.cyan.P500,
       position: 'relative',
       height: 128,
       width: '100%'
-    };
-  }),
+    })
+  },
 
   propTypes: {
     actionButtons: React.PropTypes.array,
@@ -101,24 +89,25 @@ var AppBar = React.createClass({
   render: function() {
     var props = this.props;
     var state = this.state;
-    var appBarStyles = [this.normalAppBarStyle(), state.showExpanded && props.expanded && this.expandedAppBarStyle()]
+    var styles = this.styles;
+    var appBarStyles = [styles.normalAppBarStyle, state.showExpanded && props.expanded && styles.expandedAppBarStyle]
     if (props.styles) {
       appBarStyles = appBarStyles.concat(props.styles);
     }
 
     if (props.shadow && !props.expanded || state.showShadow === true) {
-      appBarStyles.push(this.boxShadowStyle());
+      appBarStyles.push(styles.boxShadowStyle);
     }
     return <div>
-    {props.expanded && <div styles={this.placeHolderStyle()}/> }
+    {props.expanded && <div styles={styles.placeHolderStyle}/> }
       <nav styles={appBarStyles}>
     {props.onNavButtonClick &&
-      <div styles={this.navButtonStyle()} onClick={props.onNavButtonClick}>
-        <Icon icon="menu"/>
+      <div styles={styles.navButtonStyle} onClick={props.onNavButtonClick}>
+
       </div>
       }
     {props.title &&
-      <div styles={[this.titleStyle(), state.showExpanded && props.expanded && this.expandedTitleStyle()]}>
+      <div styles={[styles.titleStyle, state.showExpanded && props.expanded && styles.expandedTitleStyle]}>
         {props.title}
       </div>
       }
@@ -144,6 +133,9 @@ var AppBar = React.createClass({
     this.scroll = true;
     var self = this;
     function checkExpanded() {
+      if (typeof window === 'undefined') {
+        return;
+      }
       var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
       if (scrollTop > 30) {
         self.setState({showExpanded: false});
@@ -182,6 +174,10 @@ var AppBar = React.createClass({
   },
 
   initializeScrollListener: function() {
+    if (typeof window === 'undefined') {
+      return;
+    }
+
     var props = this.props;
     var state = this.state;
     // fugly
@@ -194,6 +190,10 @@ var AppBar = React.createClass({
   },
 
   componentWillUnmount: function() {
+    if (typeof window === 'undefined') {
+      return;
+    }
+
     window.removeEventListener('scroll', this.onBodyScroll);
   }
 

@@ -7,9 +7,8 @@ var React = require('react');
 var ReactStyle = require('react-style');
 
 var Overlay = React.createClass({
-
-  normalOverlayStyle: ReactStyle(function normalOverlayStyle() {
-    return {
+  styles: {
+    normalOverlayStyle: ReactStyle({
       height: '100%',
       position: 'fixed',
       width: '100%',
@@ -22,26 +21,25 @@ var Overlay = React.createClass({
       zIndex: 2,
       visibility: 'hidden',
       transition: 'visibility 0s linear .4s, opacity .4s cubic-bezier(.4, 0, .2, 1), z-index 0s linear .4s'
-    };
-  }),
+    }),
 
-  normalOverlayVisibleStyle: ReactStyle(function normalOverlayVisibleStyle() {
-    return {
+    normalOverlayVisibleStyle: ReactStyle({
       opacity: .3,
       filter: 'alpha(opacity=30)', // wonder what's better this or transparent images (both suck for this)
       visibility: 'visible',
       transition: 'visibility 0s linear 0s, opacity .4s cubic-bezier(.4, 0, .2, 1), z-index 0s linear 0s'
-    };
-  }),
+    })
+  },
 
   propTypes: {
     onClick: React.PropTypes.func.isRequired
   },
 
   render: function() {
-    var overlayStyles = [this.normalOverlayStyle()];
+    var styles = this.styles;
+    var overlayStyles = [styles.normalOverlayStyle];
     if (this.props.show) {
-      overlayStyles.push(this.normalOverlayVisibleStyle());
+      overlayStyles.push(styles.normalOverlayVisibleStyle);
     }
     return <div onClick={this.onClick} styles={overlayStyles}>
 

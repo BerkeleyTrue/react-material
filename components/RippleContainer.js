@@ -21,40 +21,33 @@ var RippleContainer = React.createClass({
     };
   },
 
-  normalStyle: ReactStyle(function normalStyle(){
-    return {
+  styles: {
+    normalStyle: ReactStyle({
       height: '100%',
       left: 0,
       position: 'absolute',
       top: 0,
       width: '100%'
-    };
-  }),
+    }),
 
-  rippleStyle: ReactStyle(function rippleStyle() {
-    return {
+    rippleStyle: ReactStyle({
       display: 'block',
       position: 'absolute',
       background: 'rgba(0, 0, 0, 0.04)',
       borderRadius: '50%',
       transform: 'scale(0)',
       transition: 'transform .25s linear, opacity .25s linear .2s'
-    };
-  }),
+    }),
 
-  rippleAnimationStyle: ReactStyle(function rippleAnimationStyle() {
-    return {
+    rippleAnimationStyle: ReactStyle({
       transform: 'scale(2)'
-    };
-  }),
+    }),
 
-  rippleFadeoutStyle: ReactStyle(function rippleFadeoutStyle() {
-    return {
+    rippleFadeoutStyle: ReactStyle({
       opacity: 0
-    };
-  }),
-
-  dimensions: ReactStyle(function dimensions(){
+    })
+  },
+  /*dimensions: ReactStyle(function dimensions(){
     var props = this.props;
     return {
       height: props.height,
@@ -62,18 +55,19 @@ var RippleContainer = React.createClass({
       top: props.top,
       width: props.width
     };
-  }),
+  }),*/
 
   render: function() {
     var props = this.props;
     var state = this.state;
+    var styles = this.styles;
     var ripples = state.ripples;
     var rippleComponents = [];
     for (var i = 0, l = ripples.length; i < l; i++) {
       var ripple = ripples[i];
-      var rippleStyles = [this.rippleStyle()];
+      var rippleStyles = [styles.rippleStyle];
       if (ripple.transitioning || ripple.transitionComplete) {
-        rippleStyles.push(this.rippleAnimationStyle());
+        rippleStyles.push(styles.rippleAnimationStyle);
       }
       if (i < l - 1 || (ripple.transitionComplete && ripple.fadeOut)) {
         rippleStyles.push({opacity: 0});
@@ -87,7 +81,7 @@ var RippleContainer = React.createClass({
     }
 
 
-    return <div styles={[this.normalStyle(), props.styles]}
+    return <div styles={[styles.normalStyle, props.styles]}
         onTouchStart={isTouchDevice && this.onMouseDown}
         onTouchEnd={isTouchDevice && this.onMouseUp}
         onTouchCancel={isTouchDevice && this.onMouseLeave}
