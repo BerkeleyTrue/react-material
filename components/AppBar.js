@@ -8,7 +8,7 @@ var ReactStyle = require('react-style');
 
 var Colors = require('../style/Colors');
 var Typography = require('../style/Typography');
-//var Icon = require('./Icon');
+var Icon = require('./Icon');
 
 var merge = require('../vendor/merge');
 
@@ -103,7 +103,7 @@ var AppBar = React.createClass({
       <nav styles={appBarStyles}>
     {props.onNavButtonClick &&
       <div styles={styles.navButtonStyle} onClick={props.onNavButtonClick}>
-
+        <Icon icon="menu"/>
       </div>
       }
     {props.title &&
@@ -190,9 +190,6 @@ var AppBar = React.createClass({
   },
 
   componentWillUnmount: function() {
-    if (typeof window === 'undefined') {
-      return;
-    }
 
     window.removeEventListener('scroll', this.onBodyScroll);
   }

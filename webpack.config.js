@@ -11,6 +11,10 @@ module.exports = {
 	module: {
 		loaders: [
       {
+        test:/\.html$/,
+        loader: 'html-loader'
+      },
+      {
         test: /\.js$/,
         loaders: [
           ReactStylePlugin.loader(),
