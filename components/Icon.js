@@ -13,9 +13,11 @@ var socialIcons = require('./__icons/social-icons.html');
 socialIcons = socialIcons.substr(socialIcons.indexOf('<defs>') + '<defs>'.length);
 socialIcons = socialIcons.substr(0, socialIcons.indexOf('</defs>'));
 
-
-var div = document.createElement('div');
-div.innerHTML = coreIcons + socialIcons;
+var div;
+if (typeof window !== 'undefined') {
+	div = document.createElement('div');
+	div.innerHTML = coreIcons + socialIcons;
+}
 
 var Icon = React.createClass({
 

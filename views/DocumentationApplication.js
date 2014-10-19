@@ -19,7 +19,7 @@ var Overlay = require('../components/Overlay');
 //var BottomSheetsView = require('./BottomSheetsView');
 //var ButtonsView = require('./ButtonsView');
 //var ProgressAndActivityView = require('./ProgressAndActivityView');
-//var SwitchesView = require('./SwitchesView');
+var SwitchesView = require('./SwitchesView');
 //var TabsView = require('./TabsView');
 //var TextFieldsView = require('./TextFieldsView');
 //var ListsView = require('./ListView');
@@ -70,7 +70,7 @@ var TestView = React.createClass({
 
     headerStyle: ReactStyle({
       color: Colors.indigo.P500,
-      fontSize: 34,
+      fontSize: '34',
       lineHeight: '32px',
       marginBottom: 42,
       paddingTop: 80,
@@ -79,7 +79,7 @@ var TestView = React.createClass({
 
     paragraphStyle: ReactStyle({
       color: Colors.grey.P900,
-      fontSize: 20,
+      fontSize: '20',
       lineHeight: '32px'
     })
   },
@@ -132,7 +132,7 @@ var TestView = React.createClass({
     var styles = this.styles;
     return <div styles={styles.normalStyle}>
       <AppBar onNavButtonClick={this.onNavButtonClick} expanded={expanded} shadow={true} title={title}/>
-      /*<Overlay show={state.showSideNavigation} onClick={this.onOverlayClick} />
+      <Overlay show={state.showSideNavigation} onClick={this.onOverlayClick} />
       <SideNavigation show={state.showSideNavigation}>
         <List>
           <ListItem onClick={this.onClick(ViewsEnum.BottomSheetsView)}>
@@ -166,7 +166,7 @@ var TestView = React.createClass({
             Text fields
           </ListItem>
         </List>
-      </SideNavigation>*/
+      </SideNavigation>
       <div className={styles.containerStyle}>
       {state.view === 0 &&
         <div>
@@ -185,7 +185,9 @@ var TestView = React.createClass({
           </p>
         </div>
         }
-
+        {state.view === ViewsEnum.SwitchesView &&
+            <SwitchesView />
+        }
       </div>
     </div>;
   },
@@ -200,6 +202,5 @@ var TestView = React.createClass({
 });
 
 if (typeof window !== 'undefined') {
-  ReactStyle.inject();
   React.renderComponent(<TestView />, document.getElementById('container'));
 }

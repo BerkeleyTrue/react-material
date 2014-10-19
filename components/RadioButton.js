@@ -12,72 +12,60 @@ var CircleShadow = require('./CircleShadow');
 
 var RadioButton = React.createClass({
 
-  normalStyle: ReactStyle(function normalStyle(){
-    return {
+	styles: {
+
+	  normalStyle: ReactStyle({
       webkitTapHighlightColor: 'rgba(0,0,0,0)',
       cursor: 'pointer',
       position: 'relative',
-
       display: 'block',
       outline: 'none'
-    };
-  }),
+	  }),
 
-  childStyle: ReactStyle(function childStyle(){
-    return {
-      paddingLeft: 16
-    };
-  }),
+	  childStyle: ReactStyle({
+	    paddingLeft: '16px'
+	  }),
 
-  childBigStyle: ReactStyle(function childStyle(){
-    return {
-      paddingLeft: 32
-    };
-  }),
+	  childBigStyle: ReactStyle({
+	      paddingLeft: '32px'
+	  }),
 
-  offButtonStyle: ReactStyle(function offButtonStyle(){
-    return {
+	  offButtonStyle: ReactStyle({
       border: 'solid 2px',
       borderColor: Colors.grey.P700,
       borderRadius: '50%',
-      height: 16,
+      height: '16px',
       left: 0,
       position: 'absolute',
       top: 0,
-      width: 16
-    };
-  }),
+      width: '16px'
+	  }),
 
-  onButtonStyle: ReactStyle(function onButtonStyle(){
-    return {
+	  onButtonStyle: ReactStyle({
       backgroundColor: Colors.grey.P700,
       borderRadius: '50%',
-      height: 20,
+      height: '20px',
       left: 0,
       position: 'absolute',
       top: 0,
       transform: 'scale(0)',
       transition: 'transform ease 0.28s',
-      width: 20,
+      width: '20px',
       willChange: 'transform'
-    };
-  }),
+	  }),
 
-  onButtonFillStyle: ReactStyle(function onButtonFillStyle(){
-    return {
-      transform: 'scale(.6)'
-    };
-  }),
+	  onButtonFillStyle: ReactStyle({
+	    transform: 'scale(.6)'
+	  }),
 
-  circleContainerStyle: ReactStyle(function circleContainerStyle(){
-    return {
+	  circleContainerStyle: ReactStyle({
       position: 'absolute',
-      width: 16,
-      height: 16,
-      top: 2,
-      left: 2
-    };
-  }),
+      width: '16px',
+      height: '16px',
+      top: '2px',
+      left: '2px'
+	  })
+	},
 
   isChecked: false,
 
@@ -91,27 +79,28 @@ var RadioButton = React.createClass({
 
   render: function() {
     var props = this.props;
+	  var styles = this.styles;
     var checked = this.state.checked || props.checked;
-    var normalStyles = [this.normalStyle()];
+    var normalStyles = [styles.normalStyle];
     if (props.styles) {
       normalStyles = normalStyles.concat(props.styles);
     }
 
-    var onButtonStyle = [this.onButtonStyle()];
+    var onButtonStyle = [styles.onButtonStyle];
     if (props.onButtonStyle) {
       onButtonStyle = onButtonStyle.concat(props.onButtonStyle);
     }
     if (checked){
-      onButtonStyle.push(this.onButtonFillStyle());
+      onButtonStyle.push(styles.onButtonFillStyle);
     }
 
     return <div tabIndex={0} styles={normalStyles} onClick={this.onClick} onMouseDown={this.onMouseDown}>
-      <div styles={this.offButtonStyle()} />
+      <div styles={styles.offButtonStyle} />
       <div styles={onButtonStyle} />
-      <div styles={this.circleContainerStyle()}>
+      <div styles={styles.circleContainerStyle}>
         <CircleShadow styles={props.onButtonStyle} active={this.state.mouseDown} />
       </div>
-      <div styles={props.children && props.children.length ? this.childBigStyle() : this.childStyle()}>
+      <div styles={props.children && props.children.length ? styles.childBigStyle : styles.childStyle}>
         {props.children}
       </div>
     </div>;

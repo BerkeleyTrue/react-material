@@ -22,7 +22,7 @@ var SideNavigation = React.createClass({
       width: 240,
       transform: 'translateX(-241px)',
       transition: 'transform .2s cubic-bezier(.4,0,.2,1), visibility 0s linear .21s',
-      zIndex: 4,
+      zIndex: '4',
       visibility: 'hidden'
     }),
 

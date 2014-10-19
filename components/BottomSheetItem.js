@@ -9,15 +9,14 @@ var ReactStyle = require('react-style');
 var ListItem = require('../components/ListItem');
 
 var BottomSheetItem = React.createClass({
+	styles: {
+		normalStyle: ReactStyle({
+			height: 48
+		})
+	},
 
-  normalStyle: ReactStyle(function normalStyle(){
-    return {
-      height: 48
-    };
-  }),
-
-  render: function() {
-    return this.transferPropsTo(<ListItem styles={this.normalStyle()}>{this.props.children}</ListItem>);
+  render() {
+    return this.transferPropsTo(<ListItem styles={this.styles.normalStyle}>{this.props.children}</ListItem>);
   }
 
 });

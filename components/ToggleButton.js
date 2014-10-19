@@ -12,120 +12,105 @@ var RadioButton = require('./RadioButton');
 
 var ToggleButton = React.createClass({
 
-  normalStyle: ReactStyle(function() {
-    return {
-      webkitTapHighlightColor: 'rgba(0,0,0,0)',
-      cursor: 'pointer',
-      display: 'block',
-      position: 'relative'
-    };
-  }),
+	styles: {
 
-  lineStyle: ReactStyle(function() {
-    return {
-      backgroundColor: Colors.grey.P700,
-      height: 1,
-      webkitTapHighlightColor: 'rgba(0,0,0,0)',
-      left: 0,
-      position: 'absolute',
-      top: 10,
-      width: 38
-    };
-  }),
+		normalStyle: ReactStyle({
+			webkitTapHighlightColor: 'rgba(0,0,0,0)',
+			cursor: 'pointer',
+			display: 'block',
+			position: 'relative'
+		}),
 
-  circleStyle: ReactStyle(function() {
-    return {
-      border: 'solid 2px',
-      borderColor: Colors.grey.P700,
-      borderRadius: '50%',
-      height: 16,
-      backgroundColor: Colors.grey.P100,
-      left: 0,
-      position: 'absolute',
-      top: 0,
-      width: 16,
-      transition: 'left .28s cubic-bezier(0.4, 0, 0.2, 1)',
-      willChange: 'left'
-    };
-  }),
+		lineStyle: ReactStyle({
+			backgroundColor: Colors.grey.P700,
+			height: '1px',
+			webkitTapHighlightColor: 'rgba(0,0,0,0)',
+			left: 0,
+			position: 'absolute',
+			top: '10px',
+			width: '38px'
+		}),
 
+		circleStyle: ReactStyle({
+			border: 'solid 2px',
+			borderColor: Colors.grey.P700,
+			borderRadius: '50%',
+			height: '16px',
+			backgroundColor: Colors.grey.P100,
+			left: 0,
+			position: 'absolute',
+			top: 0,
+			width: '16px',
+			transition: 'left .28s cubic-bezier(0.4, 0, 0.2, 1)',
+			willChange: 'left'
+		}),
 
-  childStyle: ReactStyle(function childStyle(){
-    return {
-      paddingLeft: 16
-    };
-  }),
+		childStyle: ReactStyle({
+			paddingLeft: '16px'
+		}),
 
-  childBigStyle: ReactStyle(function childStyle(){
-    return {
-      paddingLeft: 32
-    };
-  }),
+		childBigStyle: ReactStyle({
+			paddingLeft: '32px'
+		}),
 
-  checkedStyle: ReactStyle(function(){
-    return {
-      left: 20
-    };
-  }),
+		checkedStyle: ReactStyle({
+			left: '20px'
+		}),
 
-  circlePositionStyle: ReactStyle(function(){
-    return {
-      position: 'absolute',
-      right: 0,
-      top: 0,
-      bottom: 0,
-      width: 40
-    };
-  }),
+		circlePositionStyle: ReactStyle({
+			display: 'inline-block',
+			position: 'absolute',
+			right: '20px',
+			width: '40px'
+		}),
 
-  onButtonStyle: ReactStyle(function onButtonStyle(){
-    return {
-      backgroundColor: Colors.grey.P700,
-      borderRadius: '50%',
-      height: 20,
-      left: -2,
-      position: 'absolute',
-      top: -2,
-      transform: 'scale(0)',
-      transition: 'transform ease 0.28s',
-      width: 20,
-      willChange: 'transform'
-    };
-  }),
+		onButtonStyle: ReactStyle({
+			backgroundColor: Colors.grey.P700,
+			borderRadius: '50%',
+			height: '20px',
+			left: '-2px',
+			position: 'absolute',
+			top: '-2px',
+			transform: 'scale(0)',
+			transition: 'transform ease 0.28s',
+			width: '20px',
+			willChange: 'transform'
+		}),
 
-  onButtonFillStyle: ReactStyle(function onButtonFillStyle(){
-    return {
-      transform: 'scale(1)'
-    };
-  }),
+		onButtonFillStyle: ReactStyle({
+			transform: 'scale(1)'
+		})
 
-  getInitialState: function(){
+	},
+
+  getInitialState(){
     return {
       checked: false
     };
   },
 
-  render: function() {
+  render() {
     var props = this.props;
-    var circleStyle = [this.circleStyle()];
+	  var styles = this.styles;
+    var circleStyle = [styles.circleStyle];
     var checked = this.state.checked;
 
     if (checked) {
-      circleStyle.push(this.checkedStyle());
+      circleStyle.push(styles.checkedStyle);
     }
 
-    var onButtonStyle = [this.onButtonStyle()];
+    var onButtonStyle = [styles.onButtonStyle];
     if (props.onButtonStyle) {
       onButtonStyle = onButtonStyle.concat(props.onButtonStyle);
     }
     if (checked){
-      onButtonStyle.push(this.onButtonFillStyle());
+      onButtonStyle.push(styles.onButtonFillStyle);
     }
 
-    return <div styles={this.normalStyle()} onClick={this.onClick}>
+    return <div styles={this.normalStyle} onClick={this.onClick}>
       {props.children}
-      <div styles={this.circlePositionStyle()}>
-        <div styles={this.lineStyle()} />
+      <div styles={styles.circlePositionStyle}>
+        <div styles={styles.lineStyle} />
         <div styles={circleStyle}>
           <div styles={onButtonStyle} />
         </div>
@@ -133,7 +118,7 @@ var ToggleButton = React.createClass({
     </div>;
   },
 
-  onClick: function() {
+  onClick() {
     var props = this.props;
     var checked = !this.state.checked;
     this.isChecked = checked;

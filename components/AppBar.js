@@ -20,7 +20,8 @@ var AppBar = React.createClass({
       boxSizing: 'border-box',
       position: 'fixed',
       height: 56,
-      width: '100%'
+	    top: 0,
+	    width: '100%'
     }),
 
     expandedAppBarStyle: ReactStyle({
@@ -79,14 +80,14 @@ var AppBar = React.createClass({
     title: React.PropTypes.string
   },
 
-  getInitialState: function() {
+  getInitialState() {
     return {
       scrollListenerAttached: false,
       showShadow: true
     };
   },
 
-  render: function() {
+  render() {
     var props = this.props;
     var state = this.state;
     var styles = this.styles;
@@ -115,18 +116,18 @@ var AppBar = React.createClass({
     </nav></div>;
   },
 
-  componentDidUpdate: function() {
+  componentDidUpdate() {
     this.initializeScrollListener();
     this.onBodyScroll()
   },
 
-  componentWillMount: function() {
+  componentWillMount() {
     this.initializeScrollListener();
   },
 
   acceptingScrollValue: true,
   finalCheckTimeout: null,
-  onBodyScroll: function() {
+  onBodyScroll() {
     if (!this.acceptingScrollValue) {
       return
     }
@@ -166,14 +167,14 @@ var AppBar = React.createClass({
 
     checkExpanded();
 
-    setTimeout(function(){
+    setTimeout(()=>{
       self.acceptingScrollValue = true;
     }, 100);
 
     this.acceptingScrollValue = false;
   },
 
-  initializeScrollListener: function() {
+  initializeScrollListener() {
     if (typeof window === 'undefined') {
       return;
     }
@@ -189,7 +190,7 @@ var AppBar = React.createClass({
     }
   },
 
-  componentWillUnmount: function() {
+  componentWillUnmount() {
 
     window.removeEventListener('scroll', this.onBodyScroll);
   }

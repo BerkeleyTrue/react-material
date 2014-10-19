@@ -1,7 +1,11 @@
+'use strict';
+
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var ReactStylePlugin = require('react-style-webpack-plugin');
 
 
 module.exports = {
+	devtool: 'sourcemap',
 	entry: "./views/DocumentationApplication.js",
 	output: {
 		filename: "bundle.js",
@@ -18,17 +22,20 @@ module.exports = {
         test: /\.js$/,
         loaders: [
           ReactStylePlugin.loader(),
-          'jsx-loader?harmony'
+          'jsx-loader?harmony&sourceMap'
         ]
       },
       {
         test: /\.css$/,
-        loader: 'style-loader!css-loader'
+	      loader: ExtractTextPlugin.extract('css-loader?sourceMap')
       },
       {
         test: /\.(otf|eot|svg|ttf|woff)/,
         loader: 'url-loader?limit=8192'
       }
 		]
-	}
+	},
+	plugins: [
+		new ReactStylePlugin('bundle.css', {allChunks: true})
+	]
 };

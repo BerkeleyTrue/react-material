@@ -6,7 +6,6 @@
 var React = require('react');
 var ReactStyle = require('react-style');
 
-var CheckBox = require('./CheckBox');
 var Icon = require('./Icon');
 var RippleContainer = require('./RippleContainer');
 
