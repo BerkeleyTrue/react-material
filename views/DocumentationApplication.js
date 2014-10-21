@@ -21,7 +21,7 @@ var Overlay = require('../components/Overlay');
 //var ProgressAndActivityView = require('./ProgressAndActivityView');
 var SwitchesView = require('./SwitchesView');
 //var TabsView = require('./TabsView');
-//var TextFieldsView = require('./TextFieldsView');
+var TextFieldsView = require('./TextFieldsView');
 //var ListsView = require('./ListView');
 //var CardsView = require('./CardsView');
 //var DialogsView = require('./DialogsView');
@@ -188,6 +188,9 @@ var TestView = React.createClass({
         {state.view === ViewsEnum.SwitchesView &&
             <SwitchesView />
         }
+				{state.view === ViewsEnum.TextFieldsView &&
+					<TextFieldsView />
+				}
       </div>
     </div>;
   },

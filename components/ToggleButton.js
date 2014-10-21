@@ -60,7 +60,8 @@ var ToggleButton = React.createClass({
 		circlePositionStyle: ReactStyle({
 			display: 'inline-block',
 			position: 'absolute',
-			right: '20px',
+			right: 0,
+			top: 0,
 			width: '40px'
 		}),
 

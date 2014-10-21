@@ -81,26 +81,22 @@ var RadioButton = React.createClass({
     var props = this.props;
 	  var styles = this.styles;
     var checked = this.state.checked || props.checked;
-    var normalStyles = [styles.normalStyle];
-    if (props.styles) {
-      normalStyles = normalStyles.concat(props.styles);
-    }
+    var normalStyles = styles.normalStyle;
+	  var propStyles = props.styles || {};
 
-    var onButtonStyle = [styles.onButtonStyle];
-    if (props.onButtonStyle) {
-      onButtonStyle = onButtonStyle.concat(props.onButtonStyle);
-    }
-    if (checked){
-      onButtonStyle.push(styles.onButtonFillStyle);
-    }
-
-    return <div tabIndex={0} styles={normalStyles} onClick={this.onClick} onMouseDown={this.onMouseDown}>
-      <div styles={styles.offButtonStyle} />
-      <div styles={onButtonStyle} />
-      <div styles={styles.circleContainerStyle}>
-        <CircleShadow styles={props.onButtonStyle} active={this.state.mouseDown} />
-      </div>
-      <div styles={props.children && props.children.length ? styles.childBigStyle : styles.childStyle}>
+    return <div tabIndex={0}
+	              styles={[styles.normalStyle, propStyles.normalStyle]}
+	              onClick={this.onClick}
+								onMouseDown={this.onMouseDown}>
+      <div styles={[styles.offButtonStyle,
+										propStyles.offButtonStyle]} />
+      <div styles={[styles.onButtonStyle,
+										propStyles.onButtonStyle,
+										checked && styles.onButtonFillStyle]} />
+      <div styles={[props.children && props.children.length ?
+									  styles.childBigStyle :
+									  styles.childStyle,
+										propStyles.childStyle]}>
         {props.children}
       </div>
     </div>;
