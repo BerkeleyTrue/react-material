@@ -18,14 +18,14 @@ var Overlay = require('../components/Overlay');
 //
 var BottomSheetsView = require('./BottomSheetsView');
 var ButtonsView = require('./ButtonsView');
-//var ProgressAndActivityView = require('./ProgressAndActivityView');
+var ProgressAndActivityView = require('./ProgressAndActivityView');
 var SwitchesView = require('./SwitchesView');
-//var TabsView = require('./TabsView');
+var TabsView = require('./TabsView');
 var TextFieldsView = require('./TextFieldsView');
-//var ListsView = require('./ListView');
-//var CardsView = require('./CardsView');
+var ListsView = require('./ListView');
+var CardsView = require('./CardsView');
 var DialogsView = require('./DialogsView');
-//var MenusView = require('./MenusView');
+var MenusView = require('./MenusView');
 //
 var List = require('../components/List');
 var ListItem = require('../components/ListItem');
@@ -57,31 +57,48 @@ var TestView = React.createClass({
   },
   styles: {
 
-    normalStyle: ReactStyle({
-      backgroundColor: Colors.grey.P100,
-      minHeight: '100%'
-    }),
+	  normalStyle: ReactStyle({
+		  backgroundColor: Colors.grey.P100,
+		  minHeight: '100%'
+	  }),
 
-    containerStyle: ReactStyle({
-      margin: 'auto',
-      maxWidth: '700px',
-      padding: '56px 20px 0'
-    }),
+	  containerStyle: ReactStyle({
+		  margin: 'auto',
+		  maxWidth: '700px',
+		  padding: '56px 20px 0'
+	  }),
 
-    headerStyle: ReactStyle({
-      color: Colors.indigo.P500,
-      fontSize: '34',
-      lineHeight: '32px',
-      marginBottom: 42,
-      paddingTop: 80,
-      fontWeight: 400
-    }),
+	  headerStyle: ReactStyle({
+		  color: Colors.indigo.P500,
+		  fontSize: '34',
+		  lineHeight: '32px',
+		  marginBottom: 42,
+		  paddingTop: 80,
+		  fontWeight: 400
+	  }),
 
-    paragraphStyle: ReactStyle({
-      color: Colors.grey.P900,
-      fontSize: '20',
-      lineHeight: '32px'
-    })
+	  paragraphStyle: ReactStyle({
+		  color: Colors.grey.P900,
+		  fontSize: '20',
+		  lineHeight: '32px'
+	  }),
+
+	  appBar: {
+
+		  normalAppBarStyle: ReactStyle({
+			  backgroundColor: Colors.blue.P500,
+		    color: 'white',
+		    fill: 'white'
+		  }),
+
+		  placeHolderStyle: ReactStyle({
+			  backgroundColor: Colors.blue.P500
+		  }),
+
+		  titleStyle: ReactStyle({
+			  color: 'white'
+		  })
+	  }
   },
 
   onNavButtonClick: function() {
@@ -131,7 +148,11 @@ var TestView = React.createClass({
     }
     var styles = this.styles;
     return <div styles={styles.normalStyle}>
-      <AppBar onNavButtonClick={this.onNavButtonClick} expanded={expanded} shadow={true} title={title}/>
+      <AppBar onNavButtonClick={this.onNavButtonClick}
+							expanded={expanded}
+							shadow={true}
+							title={title}
+							styles={styles.appBar}/>
       <Overlay show={state.showSideNavigation} onClick={this.onOverlayClick} />
       <SideNavigation show={state.showSideNavigation}>
         <List>
@@ -167,7 +188,7 @@ var TestView = React.createClass({
           </ListItem>
         </List>
       </SideNavigation>
-      <div className={styles.containerStyle}>
+      <div styles={styles.containerStyle}>
       {state.view === 0 &&
         <div>
           <h1 styles={styles.headerStyle}>React Material Components</h1>
@@ -185,21 +206,36 @@ var TestView = React.createClass({
           </p>
         </div>
         }
+        {state.view === ViewsEnum.BottomSheetsView &&
+            <BottomSheetsView />
+        }
+        {state.view === ViewsEnum.ButtonsView &&
+            <ButtonsView />
+        }
+        {state.view === ViewsEnum.ProgressAndActivityView &&
+            <ProgressAndActivityView />
+        }
+        {state.view === ViewsEnum.TabsView &&
+            <TabsView />
+        }
+        {state.view === ViewsEnum.TextFieldsView &&
+            <TextFieldsView />
+        }
         {state.view === ViewsEnum.SwitchesView &&
             <SwitchesView />
         }
-				{state.view === ViewsEnum.TextFieldsView &&
-					<TextFieldsView />
-				}
-				{state.view === ViewsEnum.DialogsView &&
-					<DialogsView />
-				}
-				{state.view === ViewsEnum.ButtonsView &&
-					<ButtonsView />
-				}
-				{state.view === ViewsEnum.BottomSheetsView &&
-					<BottomSheetsView />
-				}
+        {state.view === ViewsEnum.ListsView &&
+            <ListsView />
+        }
+        {state.view === ViewsEnum.CardsView &&
+            <CardsView />
+        }
+        {state.view === ViewsEnum.DialogsView &&
+            <DialogsView />
+        }
+        {state.view === ViewsEnum.MenusView &&
+            <MenusView />
+        }
       </div>
     </div>;
   },

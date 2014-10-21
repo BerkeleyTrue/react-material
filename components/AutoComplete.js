@@ -6,12 +6,21 @@
 var React      = require('react');
 var ReactStyle = require('react-style');
 
+var TextField  = require('./TextField');
 
-
+// on select go to top + full width + show suggestions
 var AutoComplete = React.createClass({
 
-	render() {
+	styles: {
 
+	},
+
+	render() {
+		return <div>
+			<div>
+				<TextField />
+			</div>
+		</div>;
 	}
 
 });

@@ -18,7 +18,7 @@ var Overlay = React.createClass({
       right: 0,
       backgroundColor: 'rgb(0,0,0)',
       opacity: '.01',
-      zIndex: 2,
+      zIndex: '2',
       visibility: 'hidden',
       transition: 'visibility 0s linear .4s, opacity .4s cubic-bezier(.4, 0, .2, 1), z-index 0s linear .4s'
     }),

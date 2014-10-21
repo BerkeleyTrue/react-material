@@ -40,7 +40,7 @@ var IconButton = React.createClass({
 	  var props = this.props;
 	  var styles = this.styles;
     return <div styles={styles.normalStyle} onClick={props.onClick}>
-      <CircleShadow active={true} styles={styles.circleShadowStyle}/>
+      <CircleShadow active={true} styles={[styles.circleShadowStyle]}/>
       <Icon icon={props.icon}/>
     </div>;
   }

@@ -12,17 +12,20 @@ var merge = require('../vendor/merge');
 
 var Subheader = React.createClass({
 
-  normalStyle: ReactStyle(function normalStyle(){
-    return merge(Typography.subhead, {
-      height: 48,
-      lineHeight: '48px',
-      padding: '0 16px',
-      position: 'relative'
-    });
-  }),
+	styles: {
+
+		normalStyle: ReactStyle({
+			height: 48,
+			lineHeight: '48px',
+			padding: '0 16px',
+			position: 'relative'
+		})
+
+	},
 
   render: function() {
-    return <div styles={this.normalStyle()}>
+	  var styles = this.styles;
+    return <div styles={[Typography.subhead, styles.normalStyle]}>
       {this.props.children}
     </div>
   }

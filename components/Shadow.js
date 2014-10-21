@@ -27,7 +27,7 @@ var Shadow = React.createClass({
 	},
 
   render: function() {
-    var props = this.props;
+	  var props = this.props;
 	  var styles = this.styles;
     var size = props.size;
     var shadowTopStyle;
@@ -57,7 +57,7 @@ var Shadow = React.createClass({
     var bottomStyles = [styles.normalShadowStyle, shadowBottomStyle];
     var topStyles = [styles.normalShadowStyle , shadowTopStyle];
     if (props.styles) {
-      bottomStyles = bottomStyles.concat(props.styles);
+	    bottomStyles = bottomStyles.concat(props.styles);
       topStyles = topStyles.concat(props.styles);
     }
     return <div>

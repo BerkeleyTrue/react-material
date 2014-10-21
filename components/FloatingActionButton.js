@@ -117,9 +117,9 @@ var FloatingActionButton = React.createClass({
 	  var styles = this.styles;
     var state = this.state;
     var containerStyles = [styles.containerStyle];
-    var styles = [styles.normalStyle];
+    var normalStyles = [styles.normalStyle];
     if (props.styles) {
-      styles = styles.concat(props.styles);
+	    normalStyles = normalStyles.concat(props.styles);
     }
     if (props.mini) {
       containerStyles.push(styles.miniStyle);
@@ -152,6 +152,7 @@ var FloatingActionButton = React.createClass({
       overlayStyles.push(styles.overlayPressedStyle);
     }
 
+
     return <div   role="button"
                   tabIndex={0}
                   onTouchStart={isTouchDevice && this.onMouseDown}
@@ -171,7 +172,7 @@ var FloatingActionButton = React.createClass({
             }
         </div>
 
-        <div styles={styles}>
+        <div styles={normalStyles}>
         <div styles={overlayStyles} />
         <Icon icon={props.icon} styles={props.mini ? styles.miniIconStyle : styles.defaultIconStyle}/>
       </div>

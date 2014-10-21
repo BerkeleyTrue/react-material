@@ -36,7 +36,7 @@ var DialogsView = React.createClass({
   render() {
 		var styles = this.styles;
     var state = this.state;
-    return <div styles={ReactStyle({paddingTop: 60})}>
+    return <div>
       <Button ref="button" onClick={this.onOpenDialogClick}>Open dialog</Button>
       <Overlay show={state.show} onClick={this.onOverlayClick}/>
       <Dialog title="Permissions" triggerElement={this.refs.button} width={300} show={state.show}>

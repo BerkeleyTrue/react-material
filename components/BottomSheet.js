@@ -26,22 +26,6 @@ var BottomSheet = React.createClass({
 			zIndex: '3'
 		}),
 
-		hiddenTransformStyle: ReactStyle(function hiddenTransformStyle() {
-			var height = 0;
-			if (this.isMounted()) {
-				var domNode = this.getDOMNode();
-				if (domNode) {
-					height = domNode.offsetHeight + 8;
-				}
-			}
-
-			return {
-				visibility: 'hidden',
-				transform: 'translateY(' + height + 'px)',
-				transition: 'transform .2s cubic-bezier(.4,0,.2,1), visibility 0s linear .21s'
-			};
-		}),
-
 		showBottomSheetStyle: ReactStyle({
 			transform: 'translateY(0)'
 		}),
@@ -53,6 +37,22 @@ var BottomSheet = React.createClass({
 		})
 	},
 
+	hiddenTransformStyle() {
+		var height = 0;
+		if (this.isMounted()) {
+			var domNode = this.getDOMNode();
+			if (domNode) {
+				height = domNode.offsetHeight + 8;
+			}
+		}
+
+		return ReactStyle({
+			visibility: 'hidden',
+			transform: 'translateY(' + height + 'px)',
+			transition: 'transform .2s cubic-bezier(.4,0,.2,1), visibility 0s linear .21s'
+		});
+	},
+
   render(){
     var props = this.props;
 	  var styles = this.styles;
@@ -61,7 +61,7 @@ var BottomSheet = React.createClass({
       bottomSheetStyles.push(styles.showBottomSheetStyle);
     }
     else {
-      bottomSheetStyles.push(styles.hiddenTransformStyle);
+      bottomSheetStyles.push(this.hiddenTransformStyle());
     }
     if (props.styles) {
       bottomSheetStyles = bottomSheetStyles.concat(props.styles);

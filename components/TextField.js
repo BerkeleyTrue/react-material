@@ -144,7 +144,6 @@ var TextField = React.createClass({
 		if (props.floatingLabel) {
 			textFieldStyling.push(ReactStyle({paddingTop: 25}));
 		}
-		console.log('show:', scrollLeft ? {opacity: '1'} : null);
 		return <div styles={[styles.containerStyling,
 												props.floatingLabel ? ReactStyle({height: '66px'}) : null,
 												propStyles.containerStyling]}>

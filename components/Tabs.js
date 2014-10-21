@@ -12,61 +12,56 @@ var RippleContainer = require('../components/RippleContainer');
 
 var Tabs = React.createClass({
 
-  normalStyle: ReactStyle(function normalStyle(){
-    return {
-      position: 'relative',
-      width: '100%'
-    }
-  }),
+	styles: {
 
-  tabTitlesContainerStyle: ReactStyle(function tabTitlesContainerStyle(){
-    return {
-      webkitTapHighlightColor: 'rgba(0,0,0,0)',
-      backgroundColor: Colors.cyan.P500,
-      lineHeight: '48px',
-      margin: 0,
-      padding: 0,
-      height: 48,
-      position: 'relative',
-      cursor: 'pointer',
-      color: 'white',
-      fontSize: 14,
-      fontWeight: 500,
-      boxShadow:'0px 3px 2px rgba(0, 0, 0, 0.2)'
-    };
-  }),
+		normalStyle: ReactStyle({
+			position: 'relative',
+			width: '100%'
+		}),
 
-  tabTitleStyle: ReactStyle(function tabTitleStyle(){
-    return {
-      height: '100%',
-      display: 'inline-block',
-      textAlign: 'center',
-      userSelect: 'none',
-      position: 'relative',
-      overflow: 'hidden',
-      opacity: .6,
-      transition: 'opacity .38s linear'
-    }
-  }),
+		tabTitlesContainerStyle: ReactStyle({
+			webkitTapHighlightColor: 'rgba(0,0,0,0)',
+			backgroundColor: Colors.cyan.P500,
+			lineHeight: '48px',
+			margin: 0,
+			padding: 0,
+			height: 48,
+			position: 'relative',
+			cursor: 'pointer',
+			color: 'white',
+			fontSize: 14,
+			fontWeight: '500',
+			boxShadow: '0px 3px 2px rgba(0, 0, 0, 0.2)'
+		}),
 
-  tabTitleSelectedStyle: ReactStyle(function tabTitleSelectedStyle(){
-    return {
-      opacity: 1
-    }
-  }),
+		tabTitleStyle: ReactStyle({
+			height: '100%',
+			display: 'inline-block',
+			textAlign: 'center',
+			userSelect: 'none',
+			position: 'relative',
+			overflow: 'hidden',
+			opacity: '.6',
+			transition: 'opacity .38s linear'
+		}),
 
-  selectionBarStyle: ReactStyle(function selectionBarStyle(){
-    return {
-      backgroundColor: Colors.yellow.A100,
-      height: 2,
-      transition: 'left .28s linear',
-      position: 'absolute',
-      bottom: 0
-    };
-  }),
+		tabTitleSelectedStyle: ReactStyle({
+			opacity: '1'
+		}),
 
-  render: function() {
+		selectionBarStyle: ReactStyle({
+			backgroundColor: Colors.yellow.A100,
+			height: 2,
+			transition: 'left .28s linear',
+			position: 'absolute',
+			bottom: 0
+		})
+
+	},
+
+  render() {
     var props = this.props;
+	  var styles = this.styles;
     var titles = [];
     var children = props.children;
     var selectedTab;
@@ -74,30 +69,39 @@ var Tabs = React.createClass({
     for (var i = 0, l = children.length; i < l; i++) {
       var child = children[i];
       var childProps = child.props;
-      var tabTitleStyles = [this.tabTitleStyle(), {width:(100 / children.length) + '%'}];
+      var tabTitleStyles = [styles.tabTitleStyle,
+	                          ReactStyle({width:(100 / children.length) + '%'})];
       if (childProps.selected) {
-        tabTitleStyles.push(this.tabTitleSelectedStyle());
+        tabTitleStyles.push(styles.tabTitleSelectedStyle);
         selectedTab = child;
         selectedIndex = i;
       }
 
-      titles[i] = <li key={i} styles={tabTitleStyles}><RippleContainer onClick={this.onTabHeaderClick} />{childProps.title}</li>;
+      titles[i] = <li key={i} styles={tabTitleStyles}>
+		                <RippleContainer onClick={this.onTabHeaderClick} />
+	                  {childProps.title}
+	                </li>;
     }
-    var normalStyles = [this.normalStyle()];
+    var normalStyles = [styles.normalStyle];
     if (props.styles) {
       normalStyles = normalStyles.concat(props.styles);
     }
     return <div styles={normalStyles}>
-      <ul styles={this.tabTitlesContainerStyle()}>
+      <ul styles={styles.tabTitlesContainerStyle}>
         {titles}
-        <div styles={[this.selectionBarStyle(), {width:(100 / children.length) + '%', left: (100 / children.length * selectedIndex) + '%'}]}/>
+        <div styles={[styles.selectionBarStyle,
+											ReactStyle({
+												width:(100 / children.length) + '%',
+												left: (100 / children.length * selectedIndex) + '%'
+											})
+										]}/>
       </ul>
       {selectedTab}
     </div>
 
   },
 
-  onTabHeaderClick: function(e) {
+  onTabHeaderClick(e) {
     var props = this.props;
     if (props.onChange) {
       var position = 0;

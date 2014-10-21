@@ -21,7 +21,8 @@ var AppBar = React.createClass({
       position: 'fixed',
       height: 56,
 	    top: 0,
-	    width: '100%'
+	    width: '100%',
+	    zIndex: '1'
     }),
 
     expandedAppBarStyle: ReactStyle({
@@ -42,7 +43,7 @@ var AppBar = React.createClass({
       top: 0
     }),
 
-    titleStyle: ReactStyle(merge(Typography.title, {
+    titleStyle: ReactStyle({
       display: 'inline-block',
       opacity: 'inherit',
       cursor: 'default',
@@ -50,7 +51,7 @@ var AppBar = React.createClass({
       position: 'absolute',
       top: 0,
       left: 72
-    })),
+    }),
 
     expandedTitleStyle: ReactStyle(merge(Typography.headline, {
       position: 'relative',
@@ -88,27 +89,28 @@ var AppBar = React.createClass({
   },
 
   render() {
-    var props = this.props;
-    var state = this.state;
-    var styles = this.styles;
+    var props =       this.props;
+    var state =       this.state;
+    var styles =      this.styles;
+	  var propsStyles = props.styles || {};
     var appBarStyles = [styles.normalAppBarStyle, state.showExpanded && props.expanded && styles.expandedAppBarStyle]
     if (props.styles) {
-      appBarStyles = appBarStyles.concat(props.styles);
+      appBarStyles = appBarStyles.concat(propsStyles.normalAppBarStyle);
     }
 
     if (props.shadow && !props.expanded || state.showShadow === true) {
       appBarStyles.push(styles.boxShadowStyle);
     }
     return <div>
-    {props.expanded && <div styles={styles.placeHolderStyle}/> }
-      <nav styles={appBarStyles}>
+    {props.expanded && <div styles={[styles.placeHolderStyle, propsStyles.placeHolderStyle]}/> }
+      <nav styles={[appBarStyles, propsStyles.appBarStyles]}>
     {props.onNavButtonClick &&
       <div styles={styles.navButtonStyle} onClick={props.onNavButtonClick}>
         <Icon icon="menu"/>
       </div>
       }
     {props.title &&
-      <div styles={[styles.titleStyle, state.showExpanded && props.expanded && styles.expandedTitleStyle]}>
+      <div styles={[Typography.title, styles.titleStyle, state.showExpanded && props.expanded && styles.expandedTitleStyle, propsStyles.titleStyle]}>
         {props.title}
       </div>
       }

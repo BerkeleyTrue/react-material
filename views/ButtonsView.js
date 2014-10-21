@@ -14,7 +14,7 @@ var IconButton = require('../components/IconButton');
 var ButtonsView = React.createClass({
 
   render() {
-    return <div styles={ReactStyle({paddingTop: 60})}>
+    return <div>
       <h2>Main buttons</h2>
       <h3>Floating action buttons</h3>
       <div>
