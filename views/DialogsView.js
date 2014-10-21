@@ -14,51 +14,50 @@ var Colors = require('../style/Colors');
 
 var DialogsView = React.createClass({
 
-  buttonBarStyle: ReactStyle(function buttonBarStyle(){
-    return {
-      position: 'absolute',
-      bottom: -12,
-      right: -8,
-      display: 'inline-block'
-    };
-  }),
+	styles: {
+		buttonBarStyle: ReactStyle({
+			position: 'absolute',
+			bottom: -12,
+			right: -8,
+			display: 'inline-block'
+		}),
 
-  textStyle: ReactStyle(function textStyle(){
-    return {
-      paddingBottom: 40
-    }
-  }),
+		textStyle: ReactStyle({
+			paddingBottom: 40
+		})
+	},
 
-  getInitialState: function() {
+  getInitialState() {
     return {
       show: false
     };
   },
 
-  render: function() {
+  render() {
+		var styles = this.styles;
     var state = this.state;
-    return <div>
+    return <div styles={ReactStyle({paddingTop: 60})}>
       <Button ref="button" onClick={this.onOpenDialogClick}>Open dialog</Button>
       <Overlay show={state.show} onClick={this.onOverlayClick}/>
       <Dialog title="Permissions" triggerElement={this.refs.button} width={300} show={state.show}>
-        <div styles={this.textStyle()}>
+        <div styles={styles.textStyle}>
           This app determines your phone's location and shares it with
           Hypnotoad in order to serve personalized ads for you. This
           allows for a better overall app experience.
         </div>
-        <div styles={this.buttonBarStyle()}>
+        <div styles={styles.buttonBarStyle}>
           <Button onClick={this.onOverlayClick}>Decline</Button>
-          <Button onClick={this.onOverlayClick} styles={{color:Colors.blue.P500}}>Accept</Button>
+          <Button onClick={this.onOverlayClick} styles={ReactStyle({color:Colors.blue.P500})}>Accept</Button>
         </div>
       </Dialog>
     </div>;
   },
 
-  onOpenDialogClick: function() {
+  onOpenDialogClick() {
     this.setState({show: true});
   },
 
-  onOverlayClick: function() {
+  onOverlayClick() {
     this.setState({show: false});
   }
 

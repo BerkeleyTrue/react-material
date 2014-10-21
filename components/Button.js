@@ -19,21 +19,20 @@ var isTouchDevice = typeof window !== 'undefined' && 'ontouchstart' in window;
 var Button = React.createClass({
 
 	styles: {
-		normalButtonStyle: ReactStyle(function normalButtonStyle() {
-			return merge(Typography.button, {
-				webkitTapHighlightColor: 'rgba(0,0,0,0)',
-				cursor: 'pointer',
-				position: 'relative',
-				height: Sizes.Button.height - 2 * 9,
-				borderRadius: 3,
-				display: 'inline-block',
-				outline: 'none',
-				padding: 9,
-				textAlign: 'center',
-				userSelect: 'none',
-				minWidth: Sizes.Button.minWidth,
-				lineHeight: '19px'
-			});
+		normalButtonStyle: ReactStyle({
+			webkitTapHighlightColor: 'rgba(0,0,0,0)',
+			cursor: 'pointer',
+			position: 'relative',
+			height: Sizes.Button.height - 2 * 9,
+			borderRadius: 3,
+			display: 'inline-block',
+			outline: 'none',
+			overflow: 'hidden',
+			padding: 9,
+			textAlign: 'center',
+			userSelect: 'none',
+			minWidth: Sizes.Button.minWidth,
+			lineHeight: '19px'
 		}),
 
 		raisedButtonStyle: ReactStyle({
@@ -73,17 +72,18 @@ var Button = React.createClass({
 
   render() {
     var props = this.props;
+		var styles = this.styles;
     var state = this.state;
-    var styles = [this.normalButtonStyle()];
+    var styles = [Typography.button, styles.normalButtonStyle];
     var shadowSize = -1;
     if (props.styles) {
       styles = styles.concat(props.styles);
     }
     if (props.disabled) {
-      styles.push(this.disabledButtonStyle());
+      styles.push(styles.disabledButtonStyle);
     }
     else if (props.raised) {
-      styles.push(this.raisedButtonStyle());
+      styles.push(styles.raisedButtonStyle);
       shadowSize = 1;
 
       if (state.active) {
@@ -100,10 +100,10 @@ var Button = React.createClass({
                 onMouseDown={!isTouchDevice && this.onMouseDown}
                 onMouseUp={!isTouchDevice && this.onMouseUp}
                 onMouseLeave={!isTouchDevice && this.onMouseUp} >
-          <Shadow size={shadowSize} styles={this.shadowStyle()}>
+          <Shadow size={shadowSize} styles={styles.shadowStyle}>
 
       {!props.disabled &&
-        <RippleContainer styles={this.rippleContainerStyle()} onClick={props.onClick}/>
+        <RippleContainer styles={styles.rippleContainerStyle} onClick={props.onClick}/>
       }
         {props.children}
           </Shadow>

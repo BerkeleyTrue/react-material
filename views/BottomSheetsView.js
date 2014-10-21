@@ -19,19 +19,19 @@ var preventOverlayClick = false; // Mobile Safari
 
 var BottomSheetsView = React.createClass({
 
-  getInitialState:function(){
+  getInitialState(){
     return {
       show: false,
       grid: false
     }
   },
 
-  render: function() {
+  render() {
     var state = this.state;
     return <div>
-      <Button onClick={this.onShowBottomSheetBtnClick} raised={true} styles={{marginTop:40}}>List</Button>
+      <Button onClick={this.onShowBottomSheetBtnClick} raised={true} styles={ReactStyle({marginTop:40})}>List</Button>
       <Overlay show={state.show} onClick={this.onOverlayClick}/>
-      <BottomSheet show={state.show} title="Title" styles={[{color: Colors.grey.P800, fill: Colors.grey.P800}]}>
+      <BottomSheet show={state.show} title="Title" styles={[ReactStyle({color: Colors.grey.P800, fill: Colors.grey.P800})]}>
       {
         state.grid ?
           <div>TODO</div> :
@@ -48,11 +48,11 @@ var BottomSheetsView = React.createClass({
     </div>
   },
 
-  onShowBottomSheetBtnClick: function() {
+  onShowBottomSheetBtnClick() {
     this.setState({show: true});
   },
 
-  onOverlayClick: function() {
+  onOverlayClick() {
     this.setState({show: false});
   }
 

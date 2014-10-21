@@ -16,15 +16,15 @@ var AppBar = require('../components/AppBar');
 var SideNavigation = require('../components/SideNavigation');
 var Overlay = require('../components/Overlay');
 //
-//var BottomSheetsView = require('./BottomSheetsView');
-//var ButtonsView = require('./ButtonsView');
+var BottomSheetsView = require('./BottomSheetsView');
+var ButtonsView = require('./ButtonsView');
 //var ProgressAndActivityView = require('./ProgressAndActivityView');
 var SwitchesView = require('./SwitchesView');
 //var TabsView = require('./TabsView');
 var TextFieldsView = require('./TextFieldsView');
 //var ListsView = require('./ListView');
 //var CardsView = require('./CardsView');
-//var DialogsView = require('./DialogsView');
+var DialogsView = require('./DialogsView');
 //var MenusView = require('./MenusView');
 //
 var List = require('../components/List');
@@ -190,6 +190,15 @@ var TestView = React.createClass({
         }
 				{state.view === ViewsEnum.TextFieldsView &&
 					<TextFieldsView />
+				}
+				{state.view === ViewsEnum.DialogsView &&
+					<DialogsView />
+				}
+				{state.view === ViewsEnum.ButtonsView &&
+					<ButtonsView />
+				}
+				{state.view === ViewsEnum.BottomSheetsView &&
+					<BottomSheetsView />
 				}
       </div>
     </div>;
