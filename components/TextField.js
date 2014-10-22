@@ -8,101 +8,103 @@ var ReactStyle = require('react-style');
 
 var Colors = require('../style/Colors');
 
-var TextField = React.createClass({
-	styles: {
-		normalTextFieldStyle: ReactStyle({
-			background: 'transparent',
-			border: 'none',
-			borderBottom: 'solid 1px ' + Colors.grey.P300,
-			fontFamily: "RobotoDraft, 'Helvetica Neue', Helvetica, Arial;",
-			fontSize: 16,
-			height: 24,
-			outline: 'none',
-			left: 0,
-			paddingTop: 6,
-			position: 'absolute',
-			top: 0,
-			transition: 'border-bottom .28s linear',
-			width: '100%',
-			':focus': {
-				borderBottom: 'solid 2px ' + Colors.blue.P500
-			}
-		}),
+var TextFieldStyles = {
 
-		fullWidthTextFieldStyle: ReactStyle({
-			width: '100%'
-		}),
+	normalTextFieldStyle: ReactStyle({
+		background: 'transparent',
+		border: 'none',
+		borderBottom: 'solid 1px ' + Colors.grey.P300,
+		fontFamily: "RobotoDraft, 'Helvetica Neue', Helvetica, Arial;",
+		fontSize: 16,
+		height: 24,
+		outline: 'none',
+		left: 0,
+		paddingTop: 6,
+		position: 'absolute',
+		top: 0,
+		transition: 'border-bottom .28s linear',
+		width: '100%',
+		':focus': {
+			borderBottom: 'solid 2px ' + Colors.blue.P500
+		}
+	}),
 
-		errorTextFieldStyle: ReactStyle({
-			borderBottom: 'solid 2px ' + Colors.red.P400,
-			':focus': {
-				borderBottom: 'solid 2px ' + Colors.red.P400
-			}
-		}),
+	fullWidthTextFieldStyle: ReactStyle({
+		width: '100%'
+	}),
 
-		placeHolderStyling: ReactStyle({
-			color: Colors.grey.P500,
-			fontSize: 16,
-			left: 1,
-			position: 'absolute',
-			top: 8,
-			opacity: '1',
-			transition: 'top .18s linear, font-size .18s linear, opacity .10s linear'
-		}),
+	errorTextFieldStyle: ReactStyle({
+		borderBottom: 'solid 2px ' + Colors.red.P400,
+		':focus': {
+			borderBottom: 'solid 2px ' + Colors.red.P400
+		}
+	}),
 
-		floatingLabelPlaceHolderStyling: ReactStyle({
-			top: 27
-		}),
+	placeHolderStyling: ReactStyle({
+		color: Colors.grey.P500,
+		fontSize: 16,
+		left: 1,
+		position: 'absolute',
+		top: 8,
+		opacity: '1',
+		transition: 'top .18s linear, font-size .18s linear, opacity .10s linear'
+	}),
 
-		containerStyling: ReactStyle({
-			height: 48,
-			position: 'relative',
-			width: 300
-		}),
+	floatingLabelPlaceHolderStyling: ReactStyle({
+		top: 27
+	}),
 
-		placeHolderTopStyling: ReactStyle({
-			fontSize: 12,
-			top: 4
-		}),
+	containerStyling: ReactStyle({
+		height: 48,
+		position: 'relative',
+		width: 300
+	}),
 
-		scrollBlocksStyle: ReactStyle({
+	placeHolderTopStyling: ReactStyle({
+		fontSize: 12,
+		top: 4
+	}),
+
+	scrollBlocksStyle: ReactStyle({
+		backgroundColor: Colors.grey.P500,
+		bottom: 6,
+		height: 3,
+		opacity: '0',
+		position: 'absolute',
+		transition: 'opacity .28s linear',
+		width: 3,
+		':before': {
 			backgroundColor: Colors.grey.P500,
-			bottom: 6,
-			height: 3,
-			opacity: '0',
+			bottom: 0,
+			content: "''",
 			position: 'absolute',
-			transition: 'opacity .28s linear',
+			height: 3,
 			width: 3,
-			':before': {
-				backgroundColor: Colors.grey.P500,
-				bottom: 0,
-				content: "''",
-				position: 'absolute',
-				height: 3,
-				width: 3,
-				right: 6
-			},
-			':after': {
-				backgroundColor: Colors.grey.P500,
-				bottom: 0,
-				content: "''",
-				position: 'absolute',
-				height: 3,
-				width: 3,
-				right: -6
-			}
-		}),
+			right: 6
+		},
+		':after': {
+			backgroundColor: Colors.grey.P500,
+			bottom: 0,
+			content: "''",
+			position: 'absolute',
+			height: 3,
+			width: 3,
+			right: -6
+		}
+	}),
 
-		focusStyle: ReactStyle({
-			backgroundColor: Colors.blue.P500,
-			':before': {
-				backgroundColor: Colors.blue.P500
-			},
-			':after': {
-				backgroundColor: Colors.blue.P500
-			}
-		})
-	},
+	focusStyle: ReactStyle({
+		backgroundColor: Colors.blue.P500,
+		':before': {
+			backgroundColor: Colors.blue.P500
+		},
+		':after': {
+			backgroundColor: Colors.blue.P500
+		}
+	})
+};
+
+var TextField = React.createClass({
 
 	getInitialState() {
 		return {
@@ -112,7 +114,7 @@ var TextField = React.createClass({
 
 	render() {
 		var props = this.props;
-		var styles = this.styles;
+		var styles = TextFieldStyles;
 		var propStyles = props.styles || {};
 		var textfield = this.refs.textfield;
 		var scrollLeft = 0;

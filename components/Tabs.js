@@ -10,58 +10,56 @@ var Colors = require('../style/Colors');
 
 var RippleContainer = require('../components/RippleContainer');
 
+var TabsStyles = {
+	normalStyle: ReactStyle({
+		position: 'relative',
+		width: '100%'
+	}),
+
+	tabTitlesContainerStyle: ReactStyle({
+		webkitTapHighlightColor: 'rgba(0,0,0,0)',
+		backgroundColor: Colors.cyan.P500,
+		lineHeight: '48px',
+		margin: 0,
+		padding: 0,
+		height: 48,
+		position: 'relative',
+		cursor: 'pointer',
+		color: 'white',
+		fontSize: 14,
+		fontWeight: '500',
+		boxShadow: '0px 3px 2px rgba(0, 0, 0, 0.2)'
+	}),
+
+	tabTitleStyle: ReactStyle({
+		height: '100%',
+		display: 'inline-block',
+		textAlign: 'center',
+		userSelect: 'none',
+		position: 'relative',
+		overflow: 'hidden',
+		opacity: '.6',
+		transition: 'opacity .38s linear'
+	}),
+
+	tabTitleSelectedStyle: ReactStyle({
+		opacity: '1'
+	}),
+
+	selectionBarStyle: ReactStyle({
+		backgroundColor: Colors.yellow.A100,
+		height: 2,
+		transition: 'left .28s linear',
+		position: 'absolute',
+		bottom: 0
+	})
+};
+
 var Tabs = React.createClass({
-
-	styles: {
-
-		normalStyle: ReactStyle({
-			position: 'relative',
-			width: '100%'
-		}),
-
-		tabTitlesContainerStyle: ReactStyle({
-			webkitTapHighlightColor: 'rgba(0,0,0,0)',
-			backgroundColor: Colors.cyan.P500,
-			lineHeight: '48px',
-			margin: 0,
-			padding: 0,
-			height: 48,
-			position: 'relative',
-			cursor: 'pointer',
-			color: 'white',
-			fontSize: 14,
-			fontWeight: '500',
-			boxShadow: '0px 3px 2px rgba(0, 0, 0, 0.2)'
-		}),
-
-		tabTitleStyle: ReactStyle({
-			height: '100%',
-			display: 'inline-block',
-			textAlign: 'center',
-			userSelect: 'none',
-			position: 'relative',
-			overflow: 'hidden',
-			opacity: '.6',
-			transition: 'opacity .38s linear'
-		}),
-
-		tabTitleSelectedStyle: ReactStyle({
-			opacity: '1'
-		}),
-
-		selectionBarStyle: ReactStyle({
-			backgroundColor: Colors.yellow.A100,
-			height: 2,
-			transition: 'left .28s linear',
-			position: 'absolute',
-			bottom: 0
-		})
-
-	},
 
   render() {
     var props = this.props;
-	  var styles = this.styles;
+	  var styles = TabsStyles;
     var titles = [];
     var children = props.children;
     var selectedTab;

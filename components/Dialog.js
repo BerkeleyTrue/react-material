@@ -14,50 +14,52 @@ var Typography = require('../style/Typography');
 var merge = require('../vendor/merge');
 var transitionEnd = require('./TransitionEndName');
 
+var DialogStyles = {
+
+	normalStyle: ReactStyle({
+		backgroundColor: Colors.grey.P50,
+		boxSizing: 'border-box',
+		lineHeight: '24px',
+		opacity: '0',
+		padding: 24,
+		left: '50%',
+		top: '50%',
+		visibility: 'hidden',
+		position: 'fixed',
+		transform: 'translate(0,0) scale(1, 1)',
+		transformOrigin: '0 0',
+		zIndex: '3',
+		willChange: 'transform, opacity, left, top'
+	}),
+
+	titleStyle: ReactStyle({
+		paddingBottom: 10
+	}),
+
+
+	expandStyle: ReactStyle({
+		visibility: 'visible',
+		opacity: '1'
+	}),
+
+	childrenStyle: ReactStyle({
+		position: 'relative' // to re-enable text selection
+	}),
+
+	slideDownStyle: ReactStyle({
+		opacity: '0',
+		transform: 'translate(0, 100%) scale(.5,.5)',
+		transition: 'transform .56s cubic-bezier(.4, 0, .2, 1),' +
+			'opacity .56s cubic-bezier(.4, 0, .2, 1), ' +
+			'visibility 0s linear .57s',
+		visibility: 'hidden'
+	})
+
+};
+
 // warning: this code is fugly - did several attempts of getting
 // the effects right, which was a challenge
 var Dialog = React.createClass({
-
-	styles: {
-	  normalStyle: ReactStyle({
-      backgroundColor: Colors.grey.P50,
-      boxSizing: 'border-box',
-      lineHeight: '24px',
-      opacity: '0',
-      padding: 24,
-      left: '50%',
-      top: '50%',
-      visibility: 'hidden',
-      position: 'fixed',
-      transform: 'translate(0,0) scale(1, 1)',
-      transformOrigin: '0 0',
-      zIndex: '3',
-      willChange: 'transform, opacity, left, top'
-	  }),
-
-	  titleStyle: ReactStyle({
-	      paddingBottom: 10
-	  }),
-
-
-	  expandStyle: ReactStyle({
-      visibility: 'visible',
-      opacity: '1'
-	  }),
-
-	  childrenStyle: ReactStyle({
-	    position: 'relative' // to re-enable text selection
-	  }),
-
-	  slideDownStyle: ReactStyle({
-      opacity: '0',
-      transform: 'translate(0, 100%) scale(.5,.5)',
-      transition: 'transform .56s cubic-bezier(.4, 0, .2, 1),' +
-        'opacity .56s cubic-bezier(.4, 0, .2, 1), ' +
-        'visibility 0s linear .57s',
-      visibility: 'hidden'
-	  }),
-	},
 
   getInitialState() {
 		return {
@@ -67,7 +69,7 @@ var Dialog = React.createClass({
 
   render() {
     var props = this.props;
-	  var styles = this.styles;
+	  var styles = DialogStyles;
     var node;
     var dimensions;
     var normalStyles = [Typography.body2, styles.normalStyle];

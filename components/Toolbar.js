@@ -8,10 +8,6 @@ var ReactStyle = require('react-style');
 
 var Toolbar = React.createClass({
 
-  normalStyle: ReactStyle(function(){
-
-  }),
-
   render: function() {
     return <div>
     </div>;

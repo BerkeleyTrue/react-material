@@ -21,14 +21,6 @@ if (typeof window !== 'undefined') {
 
 var Icon = React.createClass({
 
-  iconStyle: ReactStyle({
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
-    right: 0,
-    top: 0
-  }),
-
   render: function() {
     if (!this.props.icon) {
       return <div />;

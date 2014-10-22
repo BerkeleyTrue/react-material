@@ -11,10 +11,6 @@ var TextField  = require('./TextField');
 // on select go to top + full width + show suggestions
 var AutoComplete = React.createClass({
 
-	styles: {
-
-	},
-
 	render() {
 		return <div>
 			<div>

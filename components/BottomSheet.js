@@ -10,32 +10,34 @@ var Colors = require('../style/Colors');
 
 var merge = require('../vendor/merge');
 
+var BottomSheetStyles = {
+
+	normalBottomSheetStyle: ReactStyle({
+		backgroundColor: 'white',
+		borderTop: '1px solid ' + Colors.grey.P300,
+		bottom: 0,
+		left: 0,
+		paddingBottom: 8,
+		position: 'fixed',
+		right: 0,
+		transition: 'transform .2s cubic-bezier(.4,0,.2,1), visibility 0s linear 0s',
+		visibility: 'visible',
+		zIndex: '3'
+	}),
+
+	showBottomSheetStyle: ReactStyle({
+		transform: 'translateY(0)'
+	}),
+
+	titleStyle: ReactStyle({
+		color: Colors.grey.P500,
+		cursor: 'default',
+		padding: 16
+	})
+
+};
+
 var BottomSheet = React.createClass({
-
-	styles: {
-		normalBottomSheetStyle: ReactStyle({
-			backgroundColor: 'white',
-			borderTop: '1px solid ' + Colors.grey.P300,
-			bottom: 0,
-			left: 0,
-			paddingBottom: 8,
-			position: 'fixed',
-			right: 0,
-			transition: 'transform .2s cubic-bezier(.4,0,.2,1), visibility 0s linear 0s',
-			visibility: 'visible',
-			zIndex: '3'
-		}),
-
-		showBottomSheetStyle: ReactStyle({
-			transform: 'translateY(0)'
-		}),
-
-		titleStyle: ReactStyle({
-			color: Colors.grey.P500,
-			cursor: 'default',
-			padding: 16
-		})
-	},
 
 	hiddenTransformStyle() {
 		var height = 0;
@@ -55,7 +57,7 @@ var BottomSheet = React.createClass({
 
   render(){
     var props = this.props;
-	  var styles = this.styles;
+	  var styles = BottomSheetStyles;
     var bottomSheetStyles = [styles.normalBottomSheetStyle];
     if (props.show) {
       bottomSheetStyles.push(styles.showBottomSheetStyle);

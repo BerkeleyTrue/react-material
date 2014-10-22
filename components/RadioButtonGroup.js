@@ -9,23 +9,23 @@ var ReactStyle = require('react-style');
 var RadioButton = require('./RadioButton');
 var FormRow = require('./FormRow');
 
+var RadioButtonGroupStyles = {
+
+	rowStyle: ReactStyle({
+		padding: '20px 0',
+		':first-child': {
+			paddingTop: 0
+		},
+		':last-child': {
+			paddingBottom: 0
+		}
+	})
+
+};
+
 var RadioButtonGroup = React.createClass({
 
   selectedValue: null,
-
-	styles: {
-
-    rowStyle: ReactStyle({
-      padding: '20px 0',
-      ':first-child': {
-        paddingTop: 0
-      },
-      ':last-child': {
-        paddingBottom: 0
-      }
-		})
-
-	},
 
   getInitialState() {
     return {
@@ -35,12 +35,16 @@ var RadioButtonGroup = React.createClass({
 
   render() {
 		var props = this.props;
-		var styles = this.styles;
+		var styles = RadioButtonGroupStyles;
     var radioButtons = [];
     var children = this.props.children;
     for (var i = 0, l = children.length; i < l; i++) {
       var child = children[i];
-      var radioButton = <RadioButton key={i} value={child.props.value} position={i} onChange={this.onChange} checked={this.state.selectedIndex === i}>
+      var radioButton = <RadioButton key={i}
+	                                   value={child.props.value}
+																		 position={i}
+																		 onChange={this.onChange}
+																		 checked={this.state.selectedIndex === i}>
         {child.props.children}
       </RadioButton>;
 

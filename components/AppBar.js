@@ -12,64 +12,65 @@ var Icon = require('./Icon');
 
 var merge = require('../vendor/merge');
 
+var AppBarStyles = {
+
+	normalAppBarStyle: ReactStyle({
+		backgroundColor: Colors.cyan.P500,
+		boxSizing: 'border-box',
+		position: 'fixed',
+		height: 56,
+		top: 0,
+		width: '100%',
+		zIndex: '1'
+	}),
+
+	expandedAppBarStyle: ReactStyle({
+		height: 128,
+		position: 'relative',
+		marginTop: -128
+	}),
+
+	navButtonStyle: ReactStyle({
+		height: 26,
+		webkitTapHighlightColor: 'rgba(0,0,0,0)',
+		position: 'fixed',
+		width: 24,
+		display: 'inline-block',
+		padding: '14px 16px',
+		cursor: 'pointer',
+		verticalAlign: 'top',
+		top: 0
+	}),
+
+	titleStyle: ReactStyle({
+		display: 'inline-block',
+		opacity: 'inherit',
+		cursor: 'default',
+		lineHeight: '56px',
+		position: 'absolute',
+		top: 0,
+		left: 72
+	}),
+
+	expandedTitleStyle: ReactStyle(merge(Typography.headline, {
+		position: 'relative',
+		left: 14,
+		top: 65
+	})),
+
+	boxShadowStyle: ReactStyle({
+		boxShadow: '0 2px 5px rgba(0, 0, 0, .26)'
+	}),
+
+	placeHolderStyle: ReactStyle({
+		backgroundColor: Colors.cyan.P500,
+		position: 'relative',
+		height: 128,
+		width: '100%'
+	})
+};
+
 var AppBar = React.createClass({
-
-  styles: {
-    normalAppBarStyle: ReactStyle({
-      backgroundColor: Colors.cyan.P500,
-      boxSizing: 'border-box',
-      position: 'fixed',
-      height: 56,
-	    top: 0,
-	    width: '100%',
-	    zIndex: '1'
-    }),
-
-    expandedAppBarStyle: ReactStyle({
-      height: 128,
-      position: 'relative',
-      marginTop: -128
-    }),
-
-    navButtonStyle: ReactStyle({
-      height: 26,
-      webkitTapHighlightColor: 'rgba(0,0,0,0)',
-      position: 'fixed',
-      width: 24,
-      display: 'inline-block',
-      padding: '14px 16px',
-      cursor: 'pointer',
-      verticalAlign: 'top',
-      top: 0
-    }),
-
-    titleStyle: ReactStyle({
-      display: 'inline-block',
-      opacity: 'inherit',
-      cursor: 'default',
-      lineHeight: '56px',
-      position: 'absolute',
-      top: 0,
-      left: 72
-    }),
-
-    expandedTitleStyle: ReactStyle(merge(Typography.headline, {
-      position: 'relative',
-      left: 14,
-      top: 65
-    })),
-
-    boxShadowStyle: ReactStyle({
-      boxShadow: '0 2px 5px rgba(0, 0, 0, .26)'
-    }),
-
-    placeHolderStyle: ReactStyle({
-      backgroundColor: Colors.cyan.P500,
-      position: 'relative',
-      height: 128,
-      width: '100%'
-    })
-  },
 
   propTypes: {
     actionButtons: React.PropTypes.array,
@@ -89,9 +90,9 @@ var AppBar = React.createClass({
   },
 
   render() {
-    var props =       this.props;
-    var state =       this.state;
-    var styles =      this.styles;
+    var props  =       this.props;
+    var state  =       this.state;
+	  var styles =       AppBarStyles;
 	  var propsStyles = props.styles || {};
     var appBarStyles = [styles.normalAppBarStyle, state.showExpanded && props.expanded && styles.expandedAppBarStyle]
     if (props.styles) {

@@ -13,35 +13,37 @@ var merge = require('../vendor/merge');
 
 var Typography = require('../style/Typography');
 
+var ListItemStyles = {
+
+	normalListItemStyle: ReactStyle({
+		webkitTapHighlightColor: 'rgba(0,0,0,0)',
+		boxSizing: 'border-box',
+		cursor: 'pointer',
+		overflow: 'hidden',
+		padding: '14px 16px 15px',
+		position: 'relative'
+	}),
+
+	singleLineWithIconTitleStyle: ReactStyle({
+		padding: '11px 16px'
+	}),
+
+	iconStyle: ReactStyle({
+		display: 'inline-block',
+		padding: '0 16px 0 0',
+		width: 30,
+		verticalAlign: 'middle',
+		position: 'relative',
+		pointerEvents: 'none'
+	})
+
+};
+
 var ListItem = React.createClass({
-
-  styles: {
-    normalListItemStyle: ReactStyle({
-      webkitTapHighlightColor: 'rgba(0,0,0,0)',
-      boxSizing: 'border-box',
-      cursor: 'pointer',
-      overflow: 'hidden',
-      padding: '14px 16px 15px',
-      position: 'relative'
-    }),
-
-    singleLineWithIconTitleStyle: ReactStyle({
-      padding: '11px 16px'
-    }),
-
-    iconStyle: ReactStyle({
-      display: 'inline-block',
-      padding: '0 16px 0 0',
-      width: 30,
-      verticalAlign: 'middle',
-      position: 'relative',
-      pointerEvents: 'none'
-    })
-  },
 
   render: function() {
     var props = this.props;
-    var styles = this.styles;
+    var styles = ListItemStyles;
     var listItemStyles = [styles.normalListItemStyle];
     if (props.icon) {
       listItemStyles.push(styles.singleLineWithIconTitleStyle);

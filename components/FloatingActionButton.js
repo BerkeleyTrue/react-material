@@ -17,90 +17,91 @@ if (typeof window !== 'undefined') {
 	isTouchDevice = 'ontouchstart' in window;
 }
 
+var FloatingActionButtonStyles = {
+
+	containerStyle: ReactStyle({
+		cursor: 'pointer',
+		position: 'relative',
+		webkitTapHighlightColor: 'rgba(0,0,0,0)',
+		borderRadius: '50%',
+		display: 'inline-block',
+		fill: 'white',
+		height: 56,
+		outline: 'none',
+		userSelect: 'none',
+		width: 56
+	}),
+
+	normalStyle: ReactStyle({
+		borderRadius: '50%',
+		outline: 'none',
+		width: '100%',
+		userSelect: 'none',
+		height: '100%',
+		position:'absolute',
+		webkitTapHighlightColor: 'rgba(0,0,0,0)'
+	}),
+
+	shadowStyle: ReactStyle({
+		borderRadius: '50%'
+	}),
+
+	miniStyle: ReactStyle({
+		height: 40,
+		width: 40
+	}),
+
+	overlayStyle: ReactStyle({
+		background: 'rgba(0, 0, 0, 0.08)',
+		borderRadius: '50%',
+		position:'absolute',
+		width: '100%',
+		height: '100%',
+		opacity: '0',
+		transition: 'opacity 0.28s cubic-bezier(0.4, 0, 0.2, 1)'
+	}),
+
+	overlayPressedStyle: ReactStyle({
+		opacity: '1'
+	}),
+
+	miniIconStyle: ReactStyle({
+		position: 'absolute',
+		width: 24,
+		left: 8
+	}),
+
+	defaultIconStyle: ReactStyle({
+		position: 'absolute',
+		width: 24,
+		left: 16
+	}),
+
+	percentageStyle: ReactStyle({
+		borderRadius:'50%',
+		backgroundColor: 'transparent',
+		position:'absolute',
+		opacity: '0',
+		top: -2,
+		left: -2,
+		right: -2,
+		bottom: -2,
+		cursor: 'default'
+	}),
+
+	percentageStyleVisible: ReactStyle({
+		backgroundColor: Colors.amber.P500,
+		opacity: '1',
+		transition: 'opacity .5s ease-in'
+	}),
+
+	progressCircleStyle: ReactStyle({
+		strokeWidth: 2
+	})
+
+};
+
 var FloatingActionButton = React.createClass({
-
-	styles: {
-	  containerStyle: ReactStyle({
-      cursor: 'pointer',
-      position: 'relative',
-      webkitTapHighlightColor: 'rgba(0,0,0,0)',
-      borderRadius: '50%',
-      display: 'inline-block',
-      fill: 'white',
-      height: 56,
-      outline: 'none',
-      userSelect: 'none',
-      width: 56
-	  }),
-
-	  normalStyle: ReactStyle({
-      borderRadius: '50%',
-      outline: 'none',
-      width: '100%',
-      userSelect: 'none',
-      height: '100%',
-      position:'absolute',
-      webkitTapHighlightColor: 'rgba(0,0,0,0)'
-	  }),
-
-	  shadowStyle: ReactStyle({
-      borderRadius: '50%'
-	  }),
-
-	  miniStyle: ReactStyle({
-      height: 40,
-      width: 40
-	  }),
-
-	  overlayStyle: ReactStyle({
-      background: 'rgba(0, 0, 0, 0.08)',
-      borderRadius: '50%',
-      position:'absolute',
-      width: '100%',
-      height: '100%',
-      opacity: '0',
-      transition: 'opacity 0.28s cubic-bezier(0.4, 0, 0.2, 1)'
-	  }),
-
-	  overlayPressedStyle: ReactStyle({
-      opacity: '1'
-	  }),
-
-	  miniIconStyle: ReactStyle({
-      position: 'absolute',
-      width: 24,
-      left: 8
-	  }),
-
-	  defaultIconStyle: ReactStyle({
-      position: 'absolute',
-      width: 24,
-      left: 16
-	  }),
-
-	  percentageStyle: ReactStyle({
-      borderRadius:'50%',
-      backgroundColor: 'transparent',
-      position:'absolute',
-      opacity: '0',
-      top: -2,
-      left: -2,
-      right: -2,
-      bottom: -2,
-      cursor: 'default'
-	  }),
-
-	  percentageStyleVisible: ReactStyle({
-      backgroundColor: Colors.amber.P500,
-      opacity: '1',
-      transition: 'opacity .5s ease-in'
-	  }),
-
-	  progressCircleStyle: ReactStyle({
-		  strokeWidth: 2
-	  })
-  },
-
 
   propTypes: {
     icon: React.PropTypes.string.isRequired
@@ -114,7 +115,7 @@ var FloatingActionButton = React.createClass({
 
   render() {
     var props = this.props;
-	  var styles = this.styles;
+	  var styles = FloatingActionButtonStyles;
     var state = this.state;
     var containerStyles = [styles.containerStyle];
     var normalStyles = [styles.normalStyle];

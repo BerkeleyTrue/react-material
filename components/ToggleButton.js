@@ -10,79 +10,79 @@ var ReactStyle = require('react-style');
 
 var RadioButton = require('./RadioButton');
 
+var ToggleButtonStyles = {
+
+	normalStyle: ReactStyle({
+		webkitTapHighlightColor: 'rgba(0,0,0,0)',
+		cursor: 'pointer',
+		display: 'block',
+		position: 'relative'
+	}),
+
+	lineStyle: ReactStyle({
+		backgroundColor: Colors.grey.P700,
+		height: '1px',
+		webkitTapHighlightColor: 'rgba(0,0,0,0)',
+		left: 0,
+		position: 'absolute',
+		top: '10px',
+		width: '38px'
+	}),
+
+	circleStyle: ReactStyle({
+		border: 'solid 2px',
+		borderColor: Colors.grey.P700,
+		borderRadius: '50%',
+		height: '16px',
+		backgroundColor: Colors.grey.P100,
+		left: 0,
+		position: 'absolute',
+		top: 0,
+		width: '16px',
+		transition: 'left .28s cubic-bezier(0.4, 0, 0.2, 1)',
+		willChange: 'left'
+	}),
+
+	childStyle: ReactStyle({
+		paddingLeft: '16px'
+	}),
+
+	childBigStyle: ReactStyle({
+		paddingLeft: '32px'
+	}),
+
+	checkedStyle: ReactStyle({
+		left: '20px'
+	}),
+
+	circlePositionStyle: ReactStyle({
+		display: 'inline-block',
+		position: 'absolute',
+		right: 0,
+		top: 0,
+		width: '40px'
+	}),
+
+	onButtonStyle: ReactStyle({
+		backgroundColor: Colors.grey.P700,
+		borderRadius: '50%',
+		height: '20px',
+		left: '-2px',
+		position: 'absolute',
+		top: '-2px',
+		transform: 'scale(0)',
+		transition: 'transform ease 0.28s',
+		width: '20px',
+		willChange: 'transform'
+	}),
+
+	onButtonFillStyle: ReactStyle({
+		transform: 'scale(1)'
+	})
+
+};
+
 var ToggleButton = React.createClass({
-
-	styles: {
-
-		normalStyle: ReactStyle({
-			webkitTapHighlightColor: 'rgba(0,0,0,0)',
-			cursor: 'pointer',
-			display: 'block',
-			position: 'relative'
-		}),
-
-		lineStyle: ReactStyle({
-			backgroundColor: Colors.grey.P700,
-			height: '1px',
-			webkitTapHighlightColor: 'rgba(0,0,0,0)',
-			left: 0,
-			position: 'absolute',
-			top: '10px',
-			width: '38px'
-		}),
-
-		circleStyle: ReactStyle({
-			border: 'solid 2px',
-			borderColor: Colors.grey.P700,
-			borderRadius: '50%',
-			height: '16px',
-			backgroundColor: Colors.grey.P100,
-			left: 0,
-			position: 'absolute',
-			top: 0,
-			width: '16px',
-			transition: 'left .28s cubic-bezier(0.4, 0, 0.2, 1)',
-			willChange: 'left'
-		}),
-
-		childStyle: ReactStyle({
-			paddingLeft: '16px'
-		}),
-
-		childBigStyle: ReactStyle({
-			paddingLeft: '32px'
-		}),
-
-		checkedStyle: ReactStyle({
-			left: '20px'
-		}),
-
-		circlePositionStyle: ReactStyle({
-			display: 'inline-block',
-			position: 'absolute',
-			right: 0,
-			top: 0,
-			width: '40px'
-		}),
-
-		onButtonStyle: ReactStyle({
-			backgroundColor: Colors.grey.P700,
-			borderRadius: '50%',
-			height: '20px',
-			left: '-2px',
-			position: 'absolute',
-			top: '-2px',
-			transform: 'scale(0)',
-			transition: 'transform ease 0.28s',
-			width: '20px',
-			willChange: 'transform'
-		}),
-
-		onButtonFillStyle: ReactStyle({
-			transform: 'scale(1)'
-		})
-
-	},
 
   getInitialState(){
     return {
@@ -92,7 +92,7 @@ var ToggleButton = React.createClass({
 
   render() {
     var props = this.props;
-	  var styles = this.styles;
+	  var styles = ToggleButtonStyles;
     var circleStyle = [styles.circleStyle];
     var checked = this.state.checked;
 

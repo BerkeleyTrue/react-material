@@ -6,17 +6,19 @@
 var React = require('react');
 var ReactStyle = require('react-style');
 
-var FormRow = React.createClass({
+var FormRowStyles = {
 
-	styles: {
-		normalStyle: ReactStyle({
-			padding: '20px'
-		})
-	},
+	normalStyle: ReactStyle({
+		padding: '20px'
+	})
+
+};
+
+var FormRow = React.createClass({
 
   render() {
 	  var props   = this.props;
-	  var styles  = this.styles;
+	  var styles  = FormRowStyles;
     return <div styles={styles.normalStyle}>
       {props.children}
     </div>;
