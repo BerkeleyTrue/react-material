@@ -1,7 +1,7 @@
 'use strict';
 var gulp = require('gulp'),
     react = require('gulp-react'),
-    clean = require('gulp-clean'),
+    rimraf = require('gulp-rimraf'),
     gjslint = require('gulp-gjslint'),
     sync = require('browser-sync'),
     webpack = require('gulp-webpack');
@@ -54,7 +54,7 @@ gulp.task('lint', function() {
     .pipe(gulp.dest('./assets'))
     .pipe(gjslint({ flags: ['--nojsdoc'] }))
     .pipe(gjslint.reporter('console'))
-    .pipe(clean());
+    .pipe(rimraf());
 });
 
 gulp.task('default', ['pack', 'sync', 'watch']);

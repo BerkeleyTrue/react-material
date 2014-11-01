@@ -92,26 +92,25 @@ var ToggleButton = React.createClass({
 
   render() {
     var props = this.props;
-    var styles = ToggleButtonStyles;
-    var circleStyle = [styles.circleStyle];
+    var circleStyle = [ToggleButtonStyles.circleStyle];
     var checked = this.state.checked;
 
     if (checked) {
-      circleStyle.push(styles.checkedStyle);
+      circleStyle.push(ToggleButtonStyles.checkedStyle);
     }
 
-    var onButtonStyle = [styles.onButtonStyle];
+    var onButtonStyle = [ToggleButtonStyles.onButtonStyle];
     if (props.onButtonStyle) {
       onButtonStyle = onButtonStyle.concat(props.onButtonStyle);
     }
     if (checked){
-      onButtonStyle.push(styles.onButtonFillStyle);
+      onButtonStyle.push(ToggleButtonStyles.onButtonFillStyle);
     }
 
-    return <div styles={this.normalStyle} onClick={this.onClick}>
+    return <div styles={ToggleButtonStyles.normalStyle} onClick={this.onClick}>
       {props.children}
-      <div styles={styles.circlePositionStyle}>
-        <div styles={styles.lineStyle} />
+      <div styles={ToggleButtonStyles.circlePositionStyle}>
+        <div styles={ToggleButtonStyles.lineStyle} />
         <div styles={circleStyle}>
           <div styles={onButtonStyle} />
         </div>

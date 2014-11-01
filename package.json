@@ -11,6 +11,7 @@
 	  "extract-text-webpack-plugin": "git+https://github.com/SanderSpies/extract-text-webpack-plugin.git",
     "file-loader": "^0.8.1",
     "gulp": "^3.8.8",
+    "gulp-rimraf": "^0.1.1",
     "gulp-gjslint": "^0.1.2",
     "gulp-react": "^1.0.1",
     "gulp-webpack": "^0.3.0",

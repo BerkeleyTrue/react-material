@@ -35,19 +35,18 @@ var CircleShadowStyles = {
 
 var CircleShadow = React.createClass({
 
-  getInitialState:function() {
+  getInitialState() {
     return {
       active: false
     }
   },
 
-  render: function() {
+  render() {
     var props = this.props;
-    var styles = CircleShadowStyles;
     var state = this.state;
-    var styles = [styles.normalStyle];
+    var styles = [CircleShadowStyles.normalStyle];
     if (state.active) {
-      styles.push(styles.pressedStyle);
+      styles.push(CircleShadowStyles.pressedStyle);
     }
     if (props.active && props.styles) {
       styles = styles.concat(props.styles);
@@ -58,11 +57,11 @@ var CircleShadow = React.createClass({
     </div>;
   },
 
-  onMouseUp: function(){
+  onMouseUp(){
     this.setState({active: false});
   },
 
-  onMouseDown: function(){
+  onMouseDown(){
     this.setState({active: true});
   }
 
