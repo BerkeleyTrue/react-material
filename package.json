@@ -1,27 +1,28 @@
 {
   "name": "react-material",
-  "version": "0.0.2-alpha",
+  "version": "0.3.0",
   "keywords": [
     "react-component"
   ],
   "devDependencies": {
     "browser-sync": "^1.4.0",
-    "css-loader": "^0.7.0",
-    "extract-text-webpack-plugin": "git+https://github.com/andreypopp/extract-text-webpack-plugin.git",
-    "file-loader": "^0.6.1",
+    "css-loader": "^0.9.0",
+    "react-style-webpack-plugin": "git+https://github.com/js-next/react-style-webpack-plugin.git",
+	  "extract-text-webpack-plugin": "git+https://github.com/SanderSpies/extract-text-webpack-plugin.git",
+    "file-loader": "^0.8.1",
     "gulp": "^3.8.8",
-    "gulp-clean": "^0.3.1",
+    "gulp-rimraf": "^0.1.1",
     "gulp-gjslint": "^0.1.2",
     "gulp-react": "^1.0.1",
     "gulp-webpack": "^0.3.0",
-    "html-loader": "0.2.2",
-    "jsx-loader": "^0.11.0",
-    "react-style": "0.0.13-alpha",
-    "style-loader": "^0.6.4",
-    "webpack": "^1.3.3-beta1"
+    "html-loader": "0.2.3",
+    "jsx-loader": "^0.12.0",
+    "react-style": "^0.3.0",
+    "style-loader": "^0.8.1",
+    "webpack": "^1.4.5"
   },
-  "dependencies": {
-    "react": "0.11.1",
-    "react-style": "0.0.13-alpha"
+  "peerDependencies": {
+    "react": "^0.12.0",
+    "react-style": "^0.3.0"
   }
 }

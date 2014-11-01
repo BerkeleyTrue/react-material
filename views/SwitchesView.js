@@ -15,16 +15,23 @@ var ToggleButton = require('../components/ToggleButton');
 
 var SwitchesView = React.createClass({
 
-  getInitialState: function() {
+	styles: {
+		containerStyle: ReactStyle({
+			marginTop: '60px'
+		})
+  },
+
+  getInitialState() {
     return {
       checked: false
     };
   },
 
-  render: function() {
+  render() {
     var props = this.props;
+	  var styles = this.styles;
     var state = this.state;
-    return <div>
+    return <div styles={styles.containerStyle}>
       <FormRow>
         <CheckBox onChange={this.onChange} ref="checkbox">
           I'm inside the checkbox <br /> line 2 <br /> line 3
@@ -50,15 +57,15 @@ var SwitchesView = React.createClass({
     </div>;
   },
 
-  onChange: function(){
+  onChange(){
     this.setState({checked: this.refs.checkbox.isChecked});
   },
 
-  onRadioButtonGroupChange: function() {
+  onRadioButtonGroupChange() {
     this.setState({rbValue:this.refs.rbgroup.selectedValue})
   },
 
-  onToggleButtonChange:function(){
+  onToggleButtonChange(){
     this.setState({swChecked: this.refs.toggleButton.isChecked})
   }
 

@@ -6,14 +6,17 @@
 var React = require('react');
 var ReactStyle = require('react-style');
 
+var CardCollectionStyles = {
+  normalCardCollectionStyle: ReactStyle({
+
+  })
+};
+
 var CardCollection = React.createClass({
 
-  normalCardCollectionStyle: ReactStyle(function(){
-
-  }),
-
   render: function() {
-    return <div styles={this.normalCardCollectionStyle()}>
+    var styles = CardCollectionStyles;
+    return <div styles={styles.normalCardCollectionStyle}>
       {this.props.children}
     </div>;
   }

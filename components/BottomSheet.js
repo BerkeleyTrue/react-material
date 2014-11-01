@@ -8,60 +8,57 @@ var ReactStyle = require('react-style');
 
 var Colors = require('../style/Colors');
 
-var merge = require('../vendor/merge');
+var BottomSheetStyles = {
+
+	normalBottomSheetStyle: ReactStyle({
+		backgroundColor: 'white',
+		borderTop: '1px solid ' + Colors.grey.P300,
+		bottom: 0,
+		left: 0,
+		paddingBottom: 8,
+		position: 'fixed',
+		right: 0,
+		transition: 'transform .2s cubic-bezier(.4,0,.2,1), visibility 0s linear 0s',
+		visibility: 'visible',
+		zIndex: '3'
+	}),
+
+	showBottomSheetStyle: ReactStyle({
+		transform: 'translateY(0)'
+	}),
+
+	titleStyle: ReactStyle({
+		color: Colors.grey.P500,
+		cursor: 'default',
+		padding: 16
+	})
+
+};
 
 var BottomSheet = React.createClass({
 
-  normalBottomSheetStyle: ReactStyle(function normalBottomSheetStyle(){
-    return {
-      backgroundColor: 'white',
-      borderTop: '1px solid ' + Colors.grey.P300,
-      bottom: 0,
-      left: 0,
-      paddingBottom: 8,
-      position: 'fixed',
-      right: 0,
-      transition: 'transform .2s cubic-bezier(.4,0,.2,1), visibility 0s linear 0s',
-      visibility: 'visible',
-      zIndex: 3
-    }
-  }),
+	hiddenTransformStyle() {
+		var height = 0;
+		if (this.isMounted()) {
+			var domNode = this.getDOMNode();
+			if (domNode) {
+				height = domNode.offsetHeight + 8;
+			}
+		}
 
-  hiddenTransformStyle: ReactStyle(function hiddenTransformStyle(){
-    var height = 0;
-    if (this.isMounted()) {
-      var domNode = this.getDOMNode();
-      if (domNode) {
-        height = domNode.offsetHeight + 8;
-      }
-    }
+		return ReactStyle({
+			visibility: 'hidden',
+			transform: 'translateY(' + height + 'px)',
+			transition: 'transform .2s cubic-bezier(.4,0,.2,1), visibility 0s linear .21s'
+		});
+	},
 
-    return {
-      visibility: 'hidden',
-      transform: 'translateY(' + height +'px)',
-      transition: 'transform .2s cubic-bezier(.4,0,.2,1), visibility 0s linear .21s'
-    };
-  }),
-
-  showBottomSheetStyle: ReactStyle(function showBottomSheetStyle(){
-    return {
-      transform: 'translateY(0)'
-    }
-  }),
-
-  titleStyle: ReactStyle(function titleStyle(){
-    return {
-      color: Colors.grey.P500,
-      cursor: 'default',
-      padding:  16
-    };
-  }),
-
-  render: function(){
+  render(){
     var props = this.props;
-    var bottomSheetStyles = [this.normalBottomSheetStyle()];
+	  var styles = BottomSheetStyles;
+    var bottomSheetStyles = [styles.normalBottomSheetStyle];
     if (props.show) {
-      bottomSheetStyles.push(this.showBottomSheetStyle());
+      bottomSheetStyles.push(styles.showBottomSheetStyle);
     }
     else {
       bottomSheetStyles.push(this.hiddenTransformStyle());
@@ -71,7 +68,7 @@ var BottomSheet = React.createClass({
     }
     return <div styles={bottomSheetStyles}>
     {props.title &&
-      <div styles={this.titleStyle()}>
+      <div styles={styles.titleStyle}>
         {props.title}
       </div>
       }
@@ -80,7 +77,7 @@ var BottomSheet = React.createClass({
     </div>;
   },
 
-  componentDidMount: function(){
+  componentDidMount(){
     this.forceUpdate(); // to enforce calculation of height
   }
 

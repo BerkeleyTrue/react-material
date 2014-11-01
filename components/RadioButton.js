@@ -10,74 +10,63 @@ var Colors = require('../style/Colors');
 
 var CircleShadow = require('./CircleShadow');
 
+var RadioButtonStyles = {
+
+  normalStyle: ReactStyle({
+    webkitTapHighlightColor: 'rgba(0,0,0,0)',
+    cursor: 'pointer',
+    position: 'relative',
+    display: 'block',
+    outline: 'none'
+  }),
+
+  childStyle: ReactStyle({
+    paddingLeft: '16px'
+  }),
+
+  childBigStyle: ReactStyle({
+    paddingLeft: '32px'
+  }),
+
+  offButtonStyle: ReactStyle({
+    border: 'solid 2px',
+    borderColor: Colors.grey.P700,
+    borderRadius: '50%',
+    height: '16px',
+    left: 0,
+    position: 'absolute',
+    top: 0,
+    width: '16px'
+  }),
+
+  onButtonStyle: ReactStyle({
+    backgroundColor: Colors.grey.P700,
+    borderRadius: '50%',
+    height: '20px',
+    left: 0,
+    position: 'absolute',
+    top: 0,
+    transform: 'scale(0)',
+    transition: 'transform ease 0.28s',
+    width: '20px',
+    willChange: 'transform'
+  }),
+
+  onButtonFillStyle: ReactStyle({
+    transform: 'scale(.6)'
+  }),
+
+  circleContainerStyle: ReactStyle({
+    position: 'absolute',
+    width: '16px',
+    height: '16px',
+    top: '2px',
+    left: '2px'
+  })
+
+};
+
 var RadioButton = React.createClass({
-
-  normalStyle: ReactStyle(function normalStyle(){
-    return {
-      webkitTapHighlightColor: 'rgba(0,0,0,0)',
-      cursor: 'pointer',
-      position: 'relative',
-
-      display: 'block',
-      outline: 'none'
-    };
-  }),
-
-  childStyle: ReactStyle(function childStyle(){
-    return {
-      paddingLeft: 16
-    };
-  }),
-
-  childBigStyle: ReactStyle(function childStyle(){
-    return {
-      paddingLeft: 32
-    };
-  }),
-
-  offButtonStyle: ReactStyle(function offButtonStyle(){
-    return {
-      border: 'solid 2px',
-      borderColor: Colors.grey.P700,
-      borderRadius: '50%',
-      height: 16,
-      left: 0,
-      position: 'absolute',
-      top: 0,
-      width: 16
-    };
-  }),
-
-  onButtonStyle: ReactStyle(function onButtonStyle(){
-    return {
-      backgroundColor: Colors.grey.P700,
-      borderRadius: '50%',
-      height: 20,
-      left: 0,
-      position: 'absolute',
-      top: 0,
-      transform: 'scale(0)',
-      transition: 'transform ease 0.28s',
-      width: 20,
-      willChange: 'transform'
-    };
-  }),
-
-  onButtonFillStyle: ReactStyle(function onButtonFillStyle(){
-    return {
-      transform: 'scale(.6)'
-    };
-  }),
-
-  circleContainerStyle: ReactStyle(function circleContainerStyle(){
-    return {
-      position: 'absolute',
-      width: 16,
-      height: 16,
-      top: 2,
-      left: 2
-    };
-  }),
 
   isChecked: false,
 
@@ -91,27 +80,24 @@ var RadioButton = React.createClass({
 
   render: function() {
     var props = this.props;
+    var styles = RadioButtonStyles;
     var checked = this.state.checked || props.checked;
-    var normalStyles = [this.normalStyle()];
-    if (props.styles) {
-      normalStyles = normalStyles.concat(props.styles);
-    }
+    var normalStyles = styles.normalStyle;
+    var propStyles = props.styles || {};
 
-    var onButtonStyle = [this.onButtonStyle()];
-    if (props.onButtonStyle) {
-      onButtonStyle = onButtonStyle.concat(props.onButtonStyle);
-    }
-    if (checked){
-      onButtonStyle.push(this.onButtonFillStyle());
-    }
-
-    return <div tabIndex={0} styles={normalStyles} onClick={this.onClick} onMouseDown={this.onMouseDown}>
-      <div styles={this.offButtonStyle()} />
-      <div styles={onButtonStyle} />
-      <div styles={this.circleContainerStyle()}>
-        <CircleShadow styles={props.onButtonStyle} active={this.state.mouseDown} />
-      </div>
-      <div styles={props.children && props.children.length ? this.childBigStyle() : this.childStyle()}>
+    return <div tabIndex={0}
+                styles={[styles.normalStyle, propStyles.normalStyle]}
+                onClick={this.onClick}
+                onMouseDown={this.onMouseDown}>
+      <div styles={[styles.offButtonStyle,
+                    propStyles.offButtonStyle]} />
+      <div styles={[styles.onButtonStyle,
+                    propStyles.onButtonStyle,
+                    checked && styles.onButtonFillStyle]} />
+      <div styles={[props.children && props.children.length ?
+                    styles.childBigStyle :
+                    styles.childStyle,
+                    propStyles.childStyle]}>
         {props.children}
       </div>
     </div>;

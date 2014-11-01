@@ -10,64 +10,54 @@ var Colors = require('../style/Colors');
 
 var transitionEnd = require('./TransitionEndName');
 
+var ProgressBarStyles = {
+
+  normalStyle: ReactStyle({
+    backgroundColor: Colors.grey.P300,
+    height: 4,
+    overflow: 'hidden',
+    position: 'relative'
+  }),
+
+  progressStyle: ReactStyle({
+    backgroundColor: Colors.red.P600,
+    bottom: 0,
+    borderTopRightRadius: 3,
+    borderBottomRightRadius: 3,
+    left: 0,
+    position: 'absolute',
+    top: 0,
+    transition: 'width .65s linear'
+  }),
+
+  indeterminateBigStyle: ReactStyle({
+    borderRadius: 3,
+    width: '75%',
+    left: '-75%'
+  }),
+
+  indeterminateBigAnimateStyle: ReactStyle({
+    left: '100%',
+    transition: 'left .65s ease-in, width .65s ease-in'
+  }),
+
+  indeteminateSmallSlowAnimateStyle: ReactStyle({
+    width: '10%',
+    transition: 'left 1.25s ease-in, width .65s ease-in'
+  }),
+
+  loadingStyle: ReactStyle({
+    position: 'relative',
+    height: 4
+  }),
+
+  bufferingStyle: ReactStyle({
+
+  })
+
+};
+
 var ProgressBar = React.createClass({
-
-  normalStyle: ReactStyle(function normalStyle() {
-    return {
-      backgroundColor: Colors.grey.P300,
-      height: 4,
-      overflow: 'hidden',
-      position: 'relative'
-    };
-  }),
-
-  progressStyle: ReactStyle(function progressStyle() {
-    return {
-      backgroundColor: Colors.red.P600,
-      bottom: 0,
-      borderTopRightRadius: 3,
-      borderBottomRightRadius: 3,
-      left: 0,
-      position: 'absolute',
-      top: 0,
-      transition: 'width .65s linear'
-    };
-  }),
-
-  indeterminateBigStyle: ReactStyle(function indeterminateBigStyle() {
-    return {
-      borderRadius: 3,
-      width: '75%',
-      left: '-75%'
-    };
-  }),
-
-  indeterminateBigAnimateStyle: ReactStyle(function indeterminateBigAnimateStyle() {
-    return {
-      left: '100%',
-      transition: 'left .65s ease-in, width .65s ease-in'
-    };
-  }),
-
-  indeteminateSmallSlowAnimateStyle: ReactStyle(function indeteminateSmallSlowAnimateStyle(){
-    return {
-      width: '10%',
-      transition: 'left 1.25s ease-in, width .65s ease-in'
-    };
-  }),
-
-  loadingStyle: ReactStyle(function loadingStyle(){
-    return {
-      position: 'relative',
-      height: 4
-    };
-  }),
-
-  bufferingStyle: ReactStyle(function bufferingStyle(){
-    return {
-
-    };
-  }),
 
   getInitialState: function() {
     return {
@@ -82,33 +72,34 @@ var ProgressBar = React.createClass({
     type: React.PropTypes.string
   },
 
-  render: function() {
+  render() {
     var props = this.props;
+    var styles = ProgressBarStyles;
     var state = this.state;
-    var progressBarStyles = [this.progressStyle()];
+    var progressBarStyles = [styles.progressStyle];
     if (props.percentage) {
-      progressBarStyles.push({width: props.percentage + '%'});
+      progressBarStyles.push(ReactStyle({width: props.percentage + '%'}));
     }
     if (props.styles) {
       progressBarStyles = progressBarStyles.concat(props.styles);
     }
     if (props.type === 'indeterminate') {
-      progressBarStyles.push(this.indeterminateBigStyle());
+      progressBarStyles.push(styles.indeterminateBigStyle);
       if (state.indeterminateAnimate) {
-        progressBarStyles.push(this.indeterminateBigAnimateStyle());
+        progressBarStyles.push(styles.indeterminateBigAnimateStyle);
       }
       if (state.smallSlowAnimate) {
-        progressBarStyles.push(this.indeteminateSmallSlowAnimateStyle());
+        progressBarStyles.push(styles.indeteminateSmallSlowAnimateStyle);
       }
     }
 
-    var bufferStyles = [this.normalStyle(), {width: props.bufferPercentage + '%'}];
+    var bufferStyles = [styles.normalStyle, ReactStyle({width: props.bufferPercentage + '%'})];
 
 
-    return <div styles={props.bufferPercentage ? this.loadingStyle() : this.normalStyle()}>
+    return <div styles={props.bufferPercentage ? styles.loadingStyle : styles.normalStyle}>
           {props.bufferPercentage &&
             <div>
-              <div styles={this.bufferingStyle()} />
+              <div styles={styles.bufferingStyle} />
               <div styles={bufferStyles} />
             </div>
             }
@@ -116,7 +107,7 @@ var ProgressBar = React.createClass({
     </div>
   },
 
-  componentDidMount: function() {
+  componentDidMount() {
     var self = this;
     if (this.props.type === 'indeterminate') {
       setTimeout(function() {
@@ -133,7 +124,7 @@ var ProgressBar = React.createClass({
 
   },
 
-  onTransitionEnd: function(e) {
+  onTransitionEnd(e) {
     if (e.propertyName === 'left') {
       var counter = this.state.counter;
       if (counter < 3) {

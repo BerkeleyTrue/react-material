@@ -17,15 +17,18 @@ var ProgressBar = require('../components/ProgressBar');
 
 var CardsView = React.createClass({
 
-  normalStyle: ReactStyle(function(){
-    return {
-      margin: '0 auto',
-      width: '300px'
-    };
-  }),
+	styles: {
+
+		normalStyle: ReactStyle({
+			margin: '0 auto',
+			width: '300px'
+		})
+
+	},
 
   render: function() {
-    return <div styles={this.normalStyle()}>
+	  var styles = this.styles;
+    return <div styles={styles.normalStyle}>
       <Cards>
         <Card>
           <h2>
@@ -34,7 +37,7 @@ var CardsView = React.createClass({
         </Card>
         <Card title="Basic components">
           <Button>A simple button</Button>
-          <Button raised={true} styles={[{backgroundColor: Colors.amber.P500, color: Colors.grey.P50}]}>
+          <Button raised={true} styles={[ReactStyle({backgroundColor: Colors.amber.P500, color: Colors.grey.P50})]}>
             Raised button
           </Button>
           <div>

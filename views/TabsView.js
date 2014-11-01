@@ -11,13 +11,13 @@ var Tab = require('../components/Tab');
 
 var TabsView = React.createClass({
 
-  getInitialState: function() {
+  getInitialState() {
     return {
       view: 0
     };
   },
 
-  render: function() {
+  render() {
     var state = this.state;
     return <div>
       <h1>

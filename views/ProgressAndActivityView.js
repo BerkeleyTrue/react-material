@@ -35,8 +35,8 @@ var ProgressAndActivityView = React.createClass({
       <h2>Circular</h2>
       <FloatingActionButton
           icon={uploadPercentage === '100%' ? 'done' : 'cloud-upload'}
-          styles={[{backgroundColor:uploadPercentage === '100%' ? Colors.orange.P500 : Colors.indigo.P500}]}
-          progressCircleStyle={{stroke:Colors.orange.P500}}
+          styles={[ReactStyle({backgroundColor:uploadPercentage === '100%' ? Colors.orange.P500 : Colors.indigo.P500})]}
+          progressCircleStyle={ReactStyle({stroke:Colors.orange.P500})}
           percentage={state.uploadPercentage}
           onClick={this.uploadSomething}/>
       TODO

@@ -1,6 +1,5 @@
 'use strict';
 
-var merge = require('../vendor/merge');
 
 var TransitionMixin = {
 

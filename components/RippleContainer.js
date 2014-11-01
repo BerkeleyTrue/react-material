@@ -11,75 +11,64 @@ var isTransform = require('./isTransform');
 var rippleUniqueId = 0;
 var transitionEnd = require('./TransitionEndName');
 
-var isTouchDevice = 'ontouchstart' in window;
+
+var isTouchDevice = typeof window !== 'undefined' &&
+                    'ontouchstart' in window;
+
+var RippleContainerStyles = {
+
+  normalStyle: ReactStyle({
+    height: '100%',
+    left: 0,
+    position: 'absolute',
+    top: 0,
+    width: '100%'
+  }),
+
+  rippleStyle: ReactStyle({
+    display: 'block',
+    position: 'absolute',
+    background: 'rgba(0, 0, 0, 0.04)',
+    borderRadius: '50%',
+    transform: 'scale(0)',
+    transition: 'transform .25s linear, opacity .25s linear .2s'
+  }),
+
+  rippleAnimationStyle: ReactStyle({
+    transform: 'scale(2)'
+  }),
+
+  rippleFadeoutStyle: ReactStyle({
+    opacity: '0'
+  })
+
+};
 
 var RippleContainer = React.createClass({
 
-  getInitialState: function() {
+  getInitialState() {
     return {
       ripples: []
     };
   },
 
-  normalStyle: ReactStyle(function normalStyle(){
-    return {
-      height: '100%',
-      left: 0,
-      position: 'absolute',
-      top: 0,
-      width: '100%'
-    };
-  }),
-
-  rippleStyle: ReactStyle(function rippleStyle() {
-    return {
-      display: 'block',
-      position: 'absolute',
-      background: 'rgba(0, 0, 0, 0.04)',
-      borderRadius: '50%',
-      transform: 'scale(0)',
-      transition: 'transform .25s linear, opacity .25s linear .2s'
-    };
-  }),
-
-  rippleAnimationStyle: ReactStyle(function rippleAnimationStyle() {
-    return {
-      transform: 'scale(2)'
-    };
-  }),
-
-  rippleFadeoutStyle: ReactStyle(function rippleFadeoutStyle() {
-    return {
-      opacity: 0
-    };
-  }),
-
-  dimensions: ReactStyle(function dimensions(){
-    var props = this.props;
-    return {
-      height: props.height,
-      left: props.left,
-      top: props.top,
-      width: props.width
-    };
-  }),
-
-  render: function() {
+  render() {
     var props = this.props;
     var state = this.state;
+    var styles = RippleContainerStyles;
     var ripples = state.ripples;
     var rippleComponents = [];
     for (var i = 0, l = ripples.length; i < l; i++) {
       var ripple = ripples[i];
-      var rippleStyles = [this.rippleStyle()];
+      var rippleStyles = [styles.rippleStyle];
       if (ripple.transitioning || ripple.transitionComplete) {
-        rippleStyles.push(this.rippleAnimationStyle());
+        rippleStyles.push(styles.rippleAnimationStyle);
       }
       if (i < l - 1 || (ripple.transitionComplete && ripple.fadeOut)) {
-        rippleStyles.push({opacity: 0});
+        rippleStyles.push(ReactStyle({opacity: '0'}));
       }
 
-      rippleStyles.push({left: ripple.x, top: ripple.y, width: ripple.width, height: ripple.height});
+      rippleStyles.push(ReactStyle({left: ripple.x, top: ripple.y, width: ripple.width, height: ripple.height}));
       var rippleComponent = <div key={ripple.id}
                                  ref={'ripple_'+ripple.id}
                                  styles={rippleStyles} />;
@@ -87,7 +76,7 @@ var RippleContainer = React.createClass({
     }
 
 
-    return <div styles={[this.normalStyle(), props.styles]}
+    return <div styles={[styles.normalStyle, props.styles]}
         onTouchStart={isTouchDevice && this.onMouseDown}
         onTouchEnd={isTouchDevice && this.onMouseUp}
         onTouchCancel={isTouchDevice && this.onMouseLeave}
@@ -99,7 +88,7 @@ var RippleContainer = React.createClass({
       </div>;
   },
 
-  onMouseDown: function(e) {
+  onMouseDown(e) {
     var domNode = this.getDOMNode();
     var height = domNode.offsetHeight;
     var width = domNode.offsetWidth;
@@ -129,7 +118,7 @@ var RippleContainer = React.createClass({
     setTimeout(this.startRipple, 0);
   },
 
-  onMouseUp: function(e) {
+  onMouseUp(e) {
     this.onMouseLeave();
     var onClick = this.props.onClick;
     if (onClick) {
@@ -138,7 +127,7 @@ var RippleContainer = React.createClass({
     }
   },
 
-  onMouseLeave: function() {
+  onMouseLeave() {
     // fade out
     var ripples = this.state.ripples;
     for (var i = 0, l = ripples.length; i < l; i++) {
@@ -150,13 +139,13 @@ var RippleContainer = React.createClass({
 
   },
 
-  startRipple: function() {
+  startRipple() {
     var ripples = this.state.ripples;
     ripples[ripples.length - 1].transitioning = true;
     this.setState({ripples: ripples});
   },
 
-  endRipple: function(e) {
+  endRipple(e) {
     var ripples = this.state.ripples;
     if (isTransform(e.propertyName)) {
       ripples[0].transitioning = false;
@@ -169,7 +158,7 @@ var RippleContainer = React.createClass({
     }
   },
 
-  componentDidMount: function() {
+  componentDidMount() {
     var self = this;
     var domNode = this.getDOMNode();
 
@@ -177,6 +166,7 @@ var RippleContainer = React.createClass({
       return;
     }
 
+    //TODO: make sure we only do this once, instead of all the time...
     domNode.addEventListener(transitionEnd, this.endRipple);
   }
 

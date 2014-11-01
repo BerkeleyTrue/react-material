@@ -1,7 +1,11 @@
-var ExtractTextPlugin = require("extract-text-webpack-plugin");
-var jsxloader = require.resolve('jsx-loader');
+'use strict';
+
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var ReactStylePlugin = require('react-style-webpack-plugin');
+
 
 module.exports = {
+	devtool: 'sourcemap',
 	entry: "./views/DocumentationApplication.js",
 	output: {
 		filename: "bundle.js",
@@ -10,13 +14,28 @@ module.exports = {
 	},
 	module: {
 		loaders: [
-      { test: /\.js$/, loaders: ["react-style/lib/webpack?{autoprefixer:{browsers: '> 1%'}, compress:false}", jsxloader] },
-			{ test: /\.css$/, loader: ExtractTextPlugin.extract("style-loader", "css-loader")},
-			{ test: /\.png$/, loader: "file-loader" },
-      { test: /\.html$/, loader: "html-loader" }
+      {
+        test:/\.html$/,
+        loader: 'html-loader'
+      },
+      {
+        test: /\.js$/,
+        loaders: [
+          ReactStylePlugin.loader(),
+          'jsx-loader?harmony&sourceMap'
+        ]
+      },
+      {
+        test: /\.css$/,
+	      loader: ExtractTextPlugin.extract('css-loader?sourceMap')
+      },
+      {
+        test: /\.(otf|eot|svg|ttf|woff)/,
+        loader: 'url-loader?limit=8192'
+      }
 		]
 	},
 	plugins: [
-		new ExtractTextPlugin("styles.css")
+		new ReactStylePlugin('bundle.css', {allChunks: true})
 	]
 };

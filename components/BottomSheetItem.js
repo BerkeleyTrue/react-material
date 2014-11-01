@@ -8,16 +8,18 @@ var ReactStyle = require('react-style');
 
 var ListItem = require('../components/ListItem');
 
+var BottomSheetItemStyles = {
+
+  normalStyle: ReactStyle({
+    height: 48
+  })
+
+};
+
 var BottomSheetItem = React.createClass({
 
-  normalStyle: ReactStyle(function normalStyle(){
-    return {
-      height: 48
-    };
-  }),
-
-  render: function() {
-    return this.transferPropsTo(<ListItem styles={this.normalStyle()}>{this.props.children}</ListItem>);
+  render() {
+    return this.transferPropsTo(<ListItem styles={BottomSheetItemStyles.normalStyle}>{this.props.children}</ListItem>);
   }
 
 });

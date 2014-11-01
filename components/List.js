@@ -6,18 +6,21 @@
 var React = require('react');
 var ReactStyle = require('react-style');
 
+var ListStyles = {
+
+  normalListStyle: ReactStyle({
+    overflow: 'auto',
+    overflowY: 'auto',
+    overflowX: 'none'
+  })
+
+};
+
 var List = React.createClass({
 
-  normalListStyle: ReactStyle(function normalListStyle(){
-    return {
-      overflow: 'auto',
-      overflowY: 'auto',
-      overflowX: 'none'
-    };
-  }),
-
   render: function() {
-    var listStyle = this.normalListStyle();
+    var styles = ListStyles;
+    var listStyle = styles.normalListStyle;
     return <div styles={listStyle}>
       {this.props.children}
     </div>;
