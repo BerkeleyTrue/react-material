@@ -25,7 +25,6 @@ var ButtonStyles = {
     borderRadius: 3,
     display: 'inline-block',
     outline: 'none',
-    overflow: 'hidden',
     padding: 9,
     textAlign: 'center',
     userSelect: 'none',
@@ -48,12 +47,12 @@ var ButtonStyles = {
   }),
 
   shadowStyle: ReactStyle({
-    borderRadius: 3
+    borderRadius: '3px'
   }),
 
   rippleContainerStyle: ReactStyle({
     overflow: 'hidden',
-    borderRadius: '3'
+    borderRadius: '3px'
   })
 
 };
