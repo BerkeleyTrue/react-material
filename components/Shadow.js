@@ -10,15 +10,15 @@ var ShadowStyle = require('../style/Shadow');
 
 var ShadowStyles = {
 
-	normalShadowStyle: ReactStyle({
-		bottom: 0,
-		left: 0,
-		position: 'absolute',
-		right: 0,
-		top: 0,
-		willChange: 'box-shadow',
-		transition: 'box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1)'
-	})
+  normalShadowStyle: ReactStyle({
+    bottom: 0,
+    left: 0,
+    position: 'absolute',
+    right: 0,
+    top: 0,
+    willChange: 'box-shadow',
+    transition: 'box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1)'
+  })
 
 };
 
@@ -29,8 +29,8 @@ var Shadow = React.createClass({
   },
 
   render: function() {
-	  var props = this.props;
-	  var styles = ShadowStyles;
+    var props = this.props;
+    var styles = ShadowStyles;
     var size = props.size;
     var shadowTopStyle;
     var shadowBottomStyle;
@@ -59,7 +59,7 @@ var Shadow = React.createClass({
     var bottomStyles = [styles.normalShadowStyle, shadowBottomStyle];
     var topStyles = [styles.normalShadowStyle , shadowTopStyle];
     if (props.styles) {
-	    bottomStyles = bottomStyles.concat(props.styles);
+      bottomStyles = bottomStyles.concat(props.styles);
       topStyles = topStyles.concat(props.styles);
     }
     return <div>

@@ -11,13 +11,13 @@ var TextField  = require('./TextField');
 // on select go to top + full width + show suggestions
 var AutoComplete = React.createClass({
 
-	render() {
-		return <div>
-			<div>
-				<TextField />
-			</div>
-		</div>;
-	}
+  render() {
+    return <div>
+      <div>
+        <TextField />
+      </div>
+    </div>;
+  }
 
 });
 

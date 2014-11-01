@@ -10,9 +10,9 @@ var ListItem = require('../components/ListItem');
 
 var BottomSheetItemStyles = {
 
-	normalStyle: ReactStyle({
-		height: 48
-	})
+  normalStyle: ReactStyle({
+    height: 48
+  })
 
 };
 

@@ -8,11 +8,11 @@ var ReactStyle = require('react-style');
 
 var ListStyles = {
 
-	normalListStyle: ReactStyle({
-		overflow: 'auto',
-		overflowY: 'auto',
-		overflowX: 'none'
-	})
+  normalListStyle: ReactStyle({
+    overflow: 'auto',
+    overflowY: 'auto',
+    overflowX: 'none'
+  })
 
 };
 

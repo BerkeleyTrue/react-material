@@ -16,44 +16,44 @@ var transitionEnd = require('./TransitionEndName');
 
 var DialogStyles = {
 
-	normalStyle: ReactStyle({
-		backgroundColor: Colors.grey.P50,
-		boxSizing: 'border-box',
-		lineHeight: '24px',
-		opacity: '0',
-		padding: 24,
-		left: '50%',
-		top: '50%',
-		visibility: 'hidden',
-		position: 'fixed',
-		transform: 'translate(0,0) scale(1, 1)',
-		transformOrigin: '0 0',
-		zIndex: '3',
-		willChange: 'transform, opacity, left, top'
-	}),
+  normalStyle: ReactStyle({
+    backgroundColor: Colors.grey.P50,
+    boxSizing: 'border-box',
+    lineHeight: '24px',
+    opacity: '0',
+    padding: 24,
+    left: '50%',
+    top: '50%',
+    visibility: 'hidden',
+    position: 'fixed',
+    transform: 'translate(0,0) scale(1, 1)',
+    transformOrigin: '0 0',
+    zIndex: '3',
+    willChange: 'transform, opacity, left, top'
+  }),
 
-	titleStyle: ReactStyle({
-		paddingBottom: 10
-	}),
+  titleStyle: ReactStyle({
+    paddingBottom: 10
+  }),
 
 
-	expandStyle: ReactStyle({
-		visibility: 'visible',
-		opacity: '1'
-	}),
+  expandStyle: ReactStyle({
+    visibility: 'visible',
+    opacity: '1'
+  }),
 
-	childrenStyle: ReactStyle({
-		position: 'relative' // to re-enable text selection
-	}),
+  childrenStyle: ReactStyle({
+    position: 'relative' // to re-enable text selection
+  }),
 
-	slideDownStyle: ReactStyle({
-		opacity: '0',
-		transform: 'translate(0, 100%) scale(.5,.5)',
-		transition: 'transform .56s cubic-bezier(.4, 0, .2, 1),' +
-			'opacity .56s cubic-bezier(.4, 0, .2, 1), ' +
-			'visibility 0s linear .57s',
-		visibility: 'hidden'
-	})
+  slideDownStyle: ReactStyle({
+    opacity: '0',
+    transform: 'translate(0, 100%) scale(.5,.5)',
+    transition: 'transform .56s cubic-bezier(.4, 0, .2, 1),' +
+      'opacity .56s cubic-bezier(.4, 0, .2, 1), ' +
+      'visibility 0s linear .57s',
+    visibility: 'hidden'
+  })
 
 };
 
@@ -62,14 +62,14 @@ var DialogStyles = {
 var Dialog = React.createClass({
 
   getInitialState() {
-		return {
-			expand: false
-		};
-	},
+    return {
+      expand: false
+    };
+  },
 
   render() {
     var props = this.props;
-	  var styles = DialogStyles;
+    var styles = DialogStyles;
     var node;
     var dimensions;
     var normalStyles = [Typography.body2, styles.normalStyle];

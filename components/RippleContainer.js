@@ -13,34 +13,34 @@ var transitionEnd = require('./TransitionEndName');
 
 
 var isTouchDevice = typeof window !== 'undefined' &&
-										'ontouchstart' in window;
+                    'ontouchstart' in window;
 
 var RippleContainerStyles = {
 
-	normalStyle: ReactStyle({
-		height: '100%',
-		left: 0,
-		position: 'absolute',
-		top: 0,
-		width: '100%'
-	}),
+  normalStyle: ReactStyle({
+    height: '100%',
+    left: 0,
+    position: 'absolute',
+    top: 0,
+    width: '100%'
+  }),
 
-	rippleStyle: ReactStyle({
-		display: 'block',
-		position: 'absolute',
-		background: 'rgba(0, 0, 0, 0.04)',
-		borderRadius: '50%',
-		transform: 'scale(0)',
-		transition: 'transform .25s linear, opacity .25s linear .2s'
-	}),
+  rippleStyle: ReactStyle({
+    display: 'block',
+    position: 'absolute',
+    background: 'rgba(0, 0, 0, 0.04)',
+    borderRadius: '50%',
+    transform: 'scale(0)',
+    transition: 'transform .25s linear, opacity .25s linear .2s'
+  }),
 
-	rippleAnimationStyle: ReactStyle({
-		transform: 'scale(2)'
-	}),
+  rippleAnimationStyle: ReactStyle({
+    transform: 'scale(2)'
+  }),
 
-	rippleFadeoutStyle: ReactStyle({
-		opacity: '0'
-	})
+  rippleFadeoutStyle: ReactStyle({
+    opacity: '0'
+  })
 
 };
 

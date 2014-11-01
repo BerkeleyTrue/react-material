@@ -15,8 +15,8 @@ socialIcons = socialIcons.substr(0, socialIcons.indexOf('</defs>'));
 
 var div;
 if (typeof window !== 'undefined') {
-	div = document.createElement('div');
-	div.innerHTML = coreIcons + socialIcons;
+  div = document.createElement('div');
+  div.innerHTML = coreIcons + socialIcons;
 }
 
 var Icon = React.createClass({
