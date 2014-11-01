@@ -8,8 +8,6 @@ var ReactStyle = require('react-style');
 
 var Colors = require('../style/Colors');
 
-var merge = require('../vendor/merge');
-
 var BottomSheetStyles = {
 
 	normalBottomSheetStyle: ReactStyle({

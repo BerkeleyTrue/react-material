@@ -9,7 +9,6 @@ var ReactStyle = require('react-style');
 var Icon = require('./Icon');
 var RippleContainer = require('./RippleContainer');
 
-var merge = require('../vendor/merge');
 
 var Typography = require('../style/Typography');
 

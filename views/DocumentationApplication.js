@@ -45,7 +45,7 @@ var ViewsEnum = {
   MenusView: 10
 };
 
-var TestView = React.createClass({
+var DocumentationApplicationView = React.createClass({
 
   // themes: [BlueTheme],
 
@@ -250,5 +250,5 @@ var TestView = React.createClass({
 });
 
 if (typeof window !== 'undefined') {
-  React.renderComponent(<TestView />, document.getElementById('container'));
+  React.render(<DocumentationApplicationView />, document.getElementById('container'));
 }

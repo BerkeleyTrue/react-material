@@ -8,8 +8,6 @@ var ReactStyle = require('react-style');
 
 var Typography = require('../style/Typography');
 
-var merge = require('../vendor/merge');
-
 var SubheaderStyles = {
 
 	normalStyle: ReactStyle({

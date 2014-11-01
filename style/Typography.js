@@ -1,76 +1,86 @@
 'use strict';
 
-var robotoLightFont = "'RobotoDraft Light', 'Helvetica Neue', Helvetica, Arial";
-var robotoMediumFont = "'RobotoDraft Light', 'Helvetica Neue', Helvetica, Arial";
-var robotoFont = "'RobotoDraft Light', 'Helvetica Neue', Helvetica, Arial";
+var robotoFont = "'Roboto', 'Helvetica Neue', Helvetica, Arial";
 
 var ReactStyle = require('react-style');
 
 var FontStyles = {
   display4: ReactStyle({
     color: 'rgba(0, 0, 0, .54)',
-    fontFamily: robotoLightFont,
+    fontFamily: robotoFont,
+    fontWeight: 300,
     fontSize: 112,
     whiteSpace: 'nowrap'
   }),
   display3: ReactStyle({
     color: 'rgba(0, 0, 0, .54)',
     fontFamily: robotoFont,
+    fontWeight: 400,
     fontSize: 56,
     whiteSpace: 'nowrap'
   }),
   display2: ReactStyle({
     color: 'rgba(0, 0, 0, .54)',
     fontFamily: robotoFont,
+    fontWeight: 400,
     fontSize: 45
   }),
   display1: ReactStyle({
     color: 'rgba(0, 0, 0, .54)',
     fontFamily: robotoFont,
+    fontWeight: 400,
     fontSize: 34
   }),
   headline: ReactStyle({
     color: 'rgba(0, 0, 0, .87)',
     fontFamily: robotoFont,
+    fontWeight: 400,
     fontSize: 24
   }),
   title: ReactStyle({
     color: 'rgba(0, 0, 0, .87)',
-    fontFamily: robotoMediumFont,
+    fontFamily: robotoFont,
+    fontWeight: 500,
     fontSize: 20,
     whiteSpace: 'nowrap'
   }),
   subhead: ReactStyle({
     color: 'rgba(0, 0, 0, .87)',
     fontFamily: robotoFont,
+    fontWeight: 400,
     fontSize: 16
   }),
   body2: ReactStyle({
     color: 'rgba(0, 0, 0, .87)',
-    fontFamily: robotoMediumFont,
+    fontFamily: robotoFont,
+    fontWeight: 500,
     fontSize: 14,
     lineHeight: ''
   }),
   body1: ReactStyle({
     color: 'rgba(0, 0, 0, .87)',
     fontFamily: robotoFont,
+    fontWeight: 400,
     fontSize: 14
   }),
   caption: ReactStyle({
     color: 'rgba(0, 0, 0, .54)',
     fontFamily: robotoFont,
+    fontWeight: 400,
     fontSize: 12,
     whiteSpace: 'nowrap'
   }),
   menu: ReactStyle({
     color: 'rgba(0, 0, 0, .87)',
-    fontFamily: robotoMediumFont,
+    fontFamily: robotoFont,
+    fontWeight: 500,
     fontSize: 14,
     whiteSpace: 'nowrap'
   }),
   button: ReactStyle({
     color: 'rgba(0, 0, 0, .87)',
-    fontFamily: robotoMediumFont,
+    fontFamily: robotoFont,
+    fontWeight: 500,
     fontSize: 14,
     whiteSpace: 'nowrap',
     textTransform: 'uppercase'

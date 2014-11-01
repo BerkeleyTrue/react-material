@@ -10,7 +10,6 @@ var Colors = require('../style/Colors');
 var Typography = require('../style/Typography');
 var Icon = require('./Icon');
 
-var merge = require('../vendor/merge');
 
 var AppBarStyles = {
 
@@ -52,11 +51,11 @@ var AppBarStyles = {
 		left: 72
 	}),
 
-	expandedTitleStyle: ReactStyle(merge(Typography.headline, {
+	expandedTitleStyle: ReactStyle({
 		position: 'relative',
 		left: 14,
 		top: 65
-	})),
+	}),
 
 	boxShadowStyle: ReactStyle({
 		boxShadow: '0 2px 5px rgba(0, 0, 0, .26)'
@@ -102,6 +101,12 @@ var AppBar = React.createClass({
     if (props.shadow && !props.expanded || state.showShadow === true) {
       appBarStyles.push(styles.boxShadowStyle);
     }
+    var expandedTitleStyle;
+    var headLineStyle;
+    if (state.showExpanded && props.expanded) {
+      expandedTitleStyle = styles.expandedTitleStyle;
+      headLineStyle = Typography.headline;
+    }
     return <div>
     {props.expanded && <div styles={[styles.placeHolderStyle, propsStyles.placeHolderStyle]}/> }
       <nav styles={[appBarStyles, propsStyles.appBarStyles]}>
@@ -111,7 +116,7 @@ var AppBar = React.createClass({
       </div>
       }
     {props.title &&
-      <div styles={[Typography.title, styles.titleStyle, state.showExpanded && props.expanded && styles.expandedTitleStyle, propsStyles.titleStyle]}>
+      <div styles={[Typography.title, styles.titleStyle, expandedTitleStyle, headLineStyle, propsStyles.titleStyle]}>
         {props.title}
       </div>
       }

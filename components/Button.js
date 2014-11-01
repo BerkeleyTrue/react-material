@@ -12,7 +12,6 @@ var Typography = require('../style/Typography');
 
 var RippleContainer = require('./RippleContainer');
 var Shadow = require('./Shadow');
-var merge = require('../vendor/merge');
 
 var isTouchDevice = typeof window !== 'undefined' && 'ontouchstart' in window;
 

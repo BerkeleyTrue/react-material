@@ -166,6 +166,7 @@ var RippleContainer = React.createClass({
       return;
     }
 
+    //TODO: make sure we only do this once, instead of all the time...
     domNode.addEventListener(transitionEnd, this.endRipple);
   }
 
