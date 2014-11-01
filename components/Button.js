@@ -73,18 +73,17 @@ var Button = React.createClass({
 
   render() {
     var props = this.props;
-    var styles = ButtonStyles;
     var state = this.state;
-    var styles = [Typography.button, styles.normalButtonStyle];
+    var styles = [Typography.button, ButtonStyles.normalButtonStyle];
     var shadowSize = -1;
     if (props.styles) {
       styles = styles.concat(props.styles);
     }
     if (props.disabled) {
-      styles.push(styles.disabledButtonStyle);
+      styles.push(ButtonStyles.disabledButtonStyle);
     }
     else if (props.raised) {
-      styles.push(styles.raisedButtonStyle);
+      styles.push(ButtonStyles.raisedButtonStyle);
       shadowSize = 1;
 
       if (state.active) {
@@ -101,10 +100,10 @@ var Button = React.createClass({
                 onMouseDown={!isTouchDevice && this.onMouseDown}
                 onMouseUp={!isTouchDevice && this.onMouseUp}
                 onMouseLeave={!isTouchDevice && this.onMouseUp} >
-          <Shadow size={shadowSize} styles={styles.shadowStyle}>
+          <Shadow size={shadowSize} styles={ButtonStyles.shadowStyle}>
 
       {!props.disabled &&
-        <RippleContainer styles={styles.rippleContainerStyle} onClick={props.onClick}/>
+        <RippleContainer styles={ButtonStyles.rippleContainerStyle} onClick={props.onClick}/>
       }
         {props.children}
           </Shadow>
