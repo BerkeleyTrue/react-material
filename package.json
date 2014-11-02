@@ -24,5 +24,10 @@
   "peerDependencies": {
     "react": "^0.12.0",
     "react-style": "^0.3.0"
+  },
+  "browserify" : {
+    "transform" : [
+	  ["reactify", {"es6": true}]
+    ]
   }
 }
