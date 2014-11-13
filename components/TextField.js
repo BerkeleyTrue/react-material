@@ -108,7 +108,8 @@ var TextField = React.createClass({
 
   getInitialState() {
     return {
-      focus: false
+      focus: false,
+      value: this.props.defaultValue || ''
     };
   },
 
@@ -156,8 +157,9 @@ var TextField = React.createClass({
              onWheel={this.onChange}
              onFocus={this.onFocus}
              onBlur={this.onBlur}
-             type="text"
-             ref="textfield"
+             type={this.props.type || 'text'}
+             ref="textField"
+             value={this.state.value}
             styles={textFieldStyling} />
       <div styles={[scrollLeft ? ReactStyle({opacity: '1'}) : null,
                    this.state.focus ? styles.focusStyle : null,
@@ -171,26 +173,29 @@ var TextField = React.createClass({
     </div>;
   },
 
-  onChange() {
-    // TODO: optimize
-    this.forceUpdate();
+  onChange(e) {
+    this.setState({value: e.target.value});
+    if (this.props.onChange) {
+        this.props.onChange(e);
+    }
   },
 
   onBlur(e) {
     this.setState({focus: false});
-    // todo
-    var self = this;
-    setTimeout(function(){
-      self.onChange();
-    }, 0);
+    if (this.props.onBlur) {
+        this.props.onBlur(e);
+    }
   },
 
-  onFocus() {
+  onFocus(e) {
     this.setState({focus: true});
+    if (this.props.onFocus) {
+        this.props.onFocus(e);
+    }
   },
 
   value() {
-    return this.refs.textfield.getDOMNode().value;
+    return this.state.value;
   }
 
 });
