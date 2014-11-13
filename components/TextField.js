@@ -7,6 +7,13 @@ var React = require('react');
 var ReactStyle = require('react-style');
 
 var Colors = require('../style/Colors');
+var Typography = require('../style/Typography');
+
+/** Color of floating label and underline when focused. */
+var focusColor = Colors.blue.P500;
+
+/** Color of label when unfocused. */
+var labelColor = Colors.grey.P500;
 
 var TextFieldStyles = {
 
@@ -14,7 +21,7 @@ var TextFieldStyles = {
     background: 'transparent',
     border: 'none',
     borderBottom: 'solid 1px ' + Colors.grey.P300,
-    fontFamily: "RobotoDraft, 'Helvetica Neue', Helvetica, Arial;",
+    fontFamily: Typography.fontFamily,
     fontSize: 16,
     height: 24,
     outline: 'none',
@@ -25,7 +32,7 @@ var TextFieldStyles = {
     transition: 'border-bottom .28s linear',
     width: '100%',
     ':focus': {
-      borderBottom: 'solid 2px ' + Colors.blue.P500
+      borderBottom: 'solid 2px ' + focusColor
     }
   }),
 
@@ -41,7 +48,7 @@ var TextFieldStyles = {
   }),
 
   placeHolderStyling: ReactStyle({
-    color: Colors.grey.P500,
+    color: labelColor,
     fontSize: 16,
     left: 1,
     position: 'absolute',
@@ -66,7 +73,7 @@ var TextFieldStyles = {
   }),
 
   scrollBlocksStyle: ReactStyle({
-    backgroundColor: Colors.grey.P500,
+    backgroundColor: labelColor,
     bottom: 6,
     height: 3,
     opacity: '0',
@@ -74,7 +81,7 @@ var TextFieldStyles = {
     transition: 'opacity .28s linear',
     width: 3,
     ':before': {
-      backgroundColor: Colors.grey.P500,
+      backgroundColor: labelColor,
       bottom: 0,
       content: "''",
       position: 'absolute',
@@ -83,7 +90,7 @@ var TextFieldStyles = {
       right: 6
     },
     ':after': {
-      backgroundColor: Colors.grey.P500,
+      backgroundColor: labelColor,
       bottom: 0,
       content: "''",
       position: 'absolute',
@@ -94,12 +101,12 @@ var TextFieldStyles = {
   }),
 
   focusStyle: ReactStyle({
-    backgroundColor: Colors.blue.P500,
+    backgroundColor: focusColor,
     ':before': {
-      backgroundColor: Colors.blue.P500
+      backgroundColor: focusColor
     },
     ':after': {
-      backgroundColor: Colors.blue.P500
+      backgroundColor: focusColor
     }
   })
 };
@@ -117,29 +124,40 @@ var TextField = React.createClass({
     var props = this.props;
     var styles = TextFieldStyles;
     var propStyles = props.styles || {};
-    var textfield = this.refs.textfield;
+    var textField = this.refs.textField;
     var scrollLeft = 0;
     var scrollWidth = -1;
     var width = -1;
     var placeHolderStyling = [styles.placeHolderStyling];
+
     if (props.floatingLabel) {
       placeHolderStyling.push(styles.floatingLabelPlaceHolderStyling);
     }
 
-    if (textfield) {
-      var textfieldDOMNode = textfield.getDOMNode();
+    if (this.state.focus || this.state.value.length > 0) {
+      if (props.floatingLabel) {
+        placeHolderStyling.push(styles.placeHolderTopStyling);
+        if (this.state.focus) {
+          placeHolderStyling.push(ReactStyle({color: focusColor}));
+        }
+      } else {
+          placeHolderStyling.push(ReactStyle({opacity: '0'}));
+      }
+    }
+
+    if (textField) {
+      var textfieldDOMNode = textField.getDOMNode();
       scrollWidth = textfieldDOMNode.scrollWidth;
       scrollLeft = textfieldDOMNode.scrollLeft;
       width = textfieldDOMNode.offsetWidth;
-      if (textfieldDOMNode.value.trim().length) {
-        if (props.floatingLabel) {
-          placeHolderStyling.push(styles.placeHolderTopStyling);
-        }
-        else {
-          placeHolderStyling.push(ReactStyle({opacity: '0'}));
-        }
-      }
     }
+
+    var containerStyling = [styles.containerStyling];
+    if (props.floatingLabel) {
+        containerStyling.push(ReactStyle({height: '66px'}));
+    }
+    containerStyling.push(propStyles.containerStyling);
+
     var textFieldStyling = [styles.normalTextFieldStyle];
     if (props.error) {
       textFieldStyling.push(styles.errorTextFieldStyle);
@@ -147,9 +165,7 @@ var TextField = React.createClass({
     if (props.floatingLabel) {
       textFieldStyling.push(ReactStyle({paddingTop: 25}));
     }
-    return <div styles={[styles.containerStyling,
-                        props.floatingLabel ? ReactStyle({height: '66px'}) : null,
-                        propStyles.containerStyling]}>
+    return <div styles={containerStyling}>
     <div styles={placeHolderStyling}>{props.placeHolder}</div>
       <input onChange={this.onChange}
              onKeyUp={this.onChange}
