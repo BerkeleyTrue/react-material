@@ -259,6 +259,7 @@ var TextField = React.createClass({
              onFocus={this.onFocus}
              onBlur={this.onBlur}
              onMouseDown={this.onMouseDown}
+             onTouchStart={this.onTouchStart}
              type={this.props.type || 'text'}
              ref='textField'
              value={this.state.value}
@@ -285,6 +286,14 @@ var TextField = React.createClass({
       return;
     }
     this.setState({focusX: e.clientX});
+  },
+
+  onTouchStart(e) {
+    if (this.state.focus) {
+      return;
+    }
+    var touch = e.touches.item(0);
+    this.setState({focusX: touch.clientX});
   },
 
   onChange(e) {
