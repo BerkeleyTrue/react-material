@@ -231,7 +231,9 @@ var TextField = React.createClass({
       cursorBlockStyling.push(ReactStyle({marginTop: 25}));
     }
 
-    if (this.state.focus && this.state.value.length === 0) {
+    if (this.state.focus &&
+        this.state.focusX &&
+        this.state.value.length === 0) {
       if (!this.state.focusing) {
         cursorBlockStyling.push(styles.activeCursorBlockStyle);
       }
@@ -282,25 +284,7 @@ var TextField = React.createClass({
     if (this.state.focus) {
       return;
     }
-
-    // animate the focused underline, spilling from the horizontal
-    // position of the mouse or touch
-    var underlineRect = this.refs['underlineContainer'].getDOMNode().getBoundingClientRect();
-    var focusedUnderline = this.refs['focusedUnderline'].getDOMNode();
-
-    focusedUnderline.style.transition = 'none';
-    focusedUnderline.style.left = `${e.clientX - underlineRect.left}px`;
-    focusedUnderline.style.right = `${underlineRect.right - e.clientX}px`;
-
-    this.setState({focusing: true});
-
-    setTimeout(() => {
-      focusedUnderline.style.transition = '';
-      focusedUnderline.style.left = '0px';
-      focusedUnderline.style.right = '0px';
-
-      this.setState({focusing: false});
-    }, 1);
+    this.setState({focusX: e.clientX});
   },
 
   onChange(e) {
@@ -311,14 +295,42 @@ var TextField = React.createClass({
   },
 
   onBlur(e) {
-    this.setState({focus: false});
+    this.setState({
+      focus: false,
+      focusX: null
+    });
     if (this.props.onBlur) {
         this.props.onBlur(e);
     }
   },
 
   onFocus(e) {
-    this.setState({focus: true});
+    this.setState({
+      focus: true
+    });
+
+    // if the user focused via touch or mouse,
+    // animate the focused underline, spilling from the horizontal
+    // position of the mouse or touch
+    if (this.state.focusX) {
+      var underlineRect = this.refs['underlineContainer'].getDOMNode().getBoundingClientRect();
+      var focusedUnderline = this.refs['focusedUnderline'].getDOMNode();
+      
+      this.setState({focusing: true});
+
+      focusedUnderline.style.transition = 'none';
+      focusedUnderline.style.left = `${this.state.focusX - underlineRect.left}px`;
+      focusedUnderline.style.right = `${underlineRect.right - this.state.focusX}px`;
+
+      setTimeout(() => {
+        focusedUnderline.style.transition = '';
+        focusedUnderline.style.left = '0px';
+        focusedUnderline.style.right = '0px';
+
+        this.setState({focusing: false});
+      }, 1);
+    }
+
     if (this.props.onFocus) {
         this.props.onFocus(e);
     }
