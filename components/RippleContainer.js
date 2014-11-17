@@ -48,7 +48,8 @@ var RippleContainer = React.createClass({
 
   getInitialState() {
     return {
-      ripples: []
+      ripples: [],
+      hasMouseMoved: false
     };
   },
 
@@ -79,8 +80,10 @@ var RippleContainer = React.createClass({
     return <div styles={[styles.normalStyle, props.styles]}
         onTouchStart={isTouchDevice && this.onMouseDown}
         onTouchEnd={isTouchDevice && this.onMouseUp}
+        onTouchMove={isTouchDevice && this.onMouseMove}
         onTouchCancel={isTouchDevice && this.onMouseLeave}
         onMouseDown={!isTouchDevice && this.onMouseDown}
+        onMouseMove={!isTouchDevice && this.onMouseMove}
         onMouseLeave={!isTouchDevice && this.onMouseLeave}
         onMouseUp={!isTouchDevice && this.onMouseUp}
       >
@@ -114,14 +117,19 @@ var RippleContainer = React.createClass({
 
     // messes up click event :-(
     this.setState({ripples: ripples});
+    this.setState({hasMouseMoved: false});
 
     setTimeout(this.startRipple, 0);
+  },
+
+  onMouseMove(e) {
+    this.setState({hasMouseMoved: true});
   },
 
   onMouseUp(e) {
     this.onMouseLeave();
     var onClick = this.props.onClick;
-    if (onClick) {
+    if (onClick && !this.state.hasMouseMoved) {
       e.preventDefault();
       onClick({target: this.getDOMNode().parentNode, originalEvent: e});
     }
