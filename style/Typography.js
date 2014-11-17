@@ -1,10 +1,10 @@
 'use strict';
 
-var robotoFont = "'Roboto', 'Helvetica Neue', Helvetica, Arial";
-
 var ReactStyle = require('react-style');
 
-var FontStyles = {
+var robotoFont = "'Roboto', 'Helvetica Neue', Helvetica, Arial";
+
+var fontStyles = {
   display4: ReactStyle({
     color: 'rgba(0, 0, 0, .54)',
     fontFamily: robotoFont,
@@ -87,4 +87,8 @@ var FontStyles = {
   })
 };
 
-module.exports = FontStyles;
+module.exports = {
+	fontFamily: robotoFont,
+	fontStyles: fontStyles
+};
+
