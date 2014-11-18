@@ -16,16 +16,16 @@ var AppBar = require('../components/AppBar');
 var SideNavigation = require('../components/SideNavigation');
 var Overlay = require('../components/Overlay');
 //
-var BottomSheetsView = require('./BottomSheetsView');
+//var BottomSheetsView = require('./BottomSheetsView');
 var ButtonsView = require('./ButtonsView');
-var ProgressAndActivityView = require('./ProgressAndActivityView');
+//var ProgressAndActivityView = require('./ProgressAndActivityView');
 var SwitchesView = require('./SwitchesView');
 var TabsView = require('./TabsView');
 var TextFieldsView = require('./TextFieldsView');
 var ListsView = require('./ListView');
 var CardsView = require('./CardsView');
 var DialogsView = require('./DialogsView');
-var MenusView = require('./MenusView');
+//var MenusView = require('./MenusView');
 //
 var List = require('../components/List');
 var ListItem = require('../components/ListItem');
@@ -33,16 +33,16 @@ var ListItem = require('../components/ListItem');
 //var BlueTheme = require('../themes/BlueTheme');
 
 var ViewsEnum = {
-  BottomSheetsView: 1,
+  //BottomSheetsView: 1,
   ButtonsView: 2,
-  ProgressAndActivityView: 3,
+  //ProgressAndActivityView: 3,
   TabsView: 4,
   TextFieldsView: 5,
   SwitchesView: 6,
   ListsView: 7,
   CardsView: 8,
-  DialogsView: 9,
-  MenusView: 10
+  DialogsView: 9
+  //MenusView: 10
 };
 
 var DocumentationApplicationView = React.createClass({
@@ -115,16 +115,16 @@ var DocumentationApplicationView = React.createClass({
     var view = state.view;
     var title;
     var expanded = false;
-    if(view === ViewsEnum.BottomSheetsView) {
+    /*if(view === ViewsEnum.BottomSheetsView) {
       title = 'Bottom sheets';
-    }
-    else if(view === ViewsEnum.ButtonsView) {
+    }*/
+    if(view === ViewsEnum.ButtonsView) {
       expanded = true;
       title = 'Buttons';
     }
-    else if(view === ViewsEnum.ProgressAndActivityView) {
+    /*else if(view === ViewsEnum.ProgressAndActivityView) {
       title = 'Progress and Activity';
-    }
+    }*/
     else if(view === ViewsEnum.TabsView) {
       title = 'Tabs';
     }
@@ -143,9 +143,9 @@ var DocumentationApplicationView = React.createClass({
     else if (view === ViewsEnum.DialogsView) {
       title = 'Dialogs';
     }
-    else if (view === ViewsEnum.MenusView) {
+    /*else if (view === ViewsEnum.MenusView) {
       title = 'Menus';
-    }
+    }*/
     var styles = this.styles;
     return <div styles={styles.normalStyle}>
       <AppBar onNavButtonClick={this.onNavButtonClick}
@@ -156,9 +156,9 @@ var DocumentationApplicationView = React.createClass({
       <Overlay show={state.showSideNavigation} onClick={this.onOverlayClick} />
       <SideNavigation show={state.showSideNavigation}>
         <List>
-          <ListItem onClick={this.onClick(ViewsEnum.BottomSheetsView)}>
+          {/*<ListItem onClick={this.onClick(ViewsEnum.BottomSheetsView)}>
             Bottom Sheets
-          </ListItem>
+          </ListItem>*/}
           <ListItem onClick={this.onClick(ViewsEnum.ButtonsView)}>
             Buttons
           </ListItem>
@@ -171,12 +171,12 @@ var DocumentationApplicationView = React.createClass({
           <ListItem onClick={this.onClick(ViewsEnum.ListsView)}>
             Lists
           </ListItem>
-          <ListItem onClick={this.onClick(ViewsEnum.MenusView)}>
+          {/*<ListItem onClick={this.onClick(ViewsEnum.MenusView)}>
             Menus
-          </ListItem>
-          <ListItem onClick={this.onClick(ViewsEnum.ProgressAndActivityView)}>
+          </ListItem>*/}
+          {/*<ListItem onClick={this.onClick(ViewsEnum.ProgressAndActivityView)}>
             Progress and Activity
-          </ListItem>
+          </ListItem>*/}
           <ListItem onClick={this.onClick(ViewsEnum.SwitchesView)}>
             Switches
           </ListItem>
@@ -206,15 +206,15 @@ var DocumentationApplicationView = React.createClass({
           </p>
         </div>
         }
-        {state.view === ViewsEnum.BottomSheetsView &&
+        {/*state.view === ViewsEnum.BottomSheetsView &&
             <BottomSheetsView />
-        }
+        */}
         {state.view === ViewsEnum.ButtonsView &&
             <ButtonsView />
         }
-        {state.view === ViewsEnum.ProgressAndActivityView &&
+        {/*state.view === ViewsEnum.ProgressAndActivityView &&
             <ProgressAndActivityView />
-        }
+        */}
         {state.view === ViewsEnum.TabsView &&
             <TabsView />
         }
@@ -233,9 +233,9 @@ var DocumentationApplicationView = React.createClass({
         {state.view === ViewsEnum.DialogsView &&
             <DialogsView />
         }
-        {state.view === ViewsEnum.MenusView &&
+        {/*state.view === ViewsEnum.MenusView &&
             <MenusView />
-        }
+        */}
       </div>
     </div>;
   },

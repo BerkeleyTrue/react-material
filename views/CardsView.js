@@ -30,11 +30,6 @@ var CardsView = React.createClass({
 	  var styles = this.styles;
     return <div styles={styles.normalStyle}>
       <Cards>
-        <Card>
-          <h2>
-            Not yet responsive or anything, best viewed on Nexus 5 for now
-          </h2>
-        </Card>
         <Card title="Basic components">
           <Button>A simple button</Button>
           <Button raised={true} styles={[ReactStyle({backgroundColor: Colors.amber.P500, color: Colors.grey.P50})]}>
@@ -59,7 +54,6 @@ var CardsView = React.createClass({
       </Cards>
     </div>;
   }
-
 });
 
 module.exports = CardsView;
