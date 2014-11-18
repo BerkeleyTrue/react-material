@@ -142,7 +142,7 @@ var AppBar = React.createClass({
     this.scroll = true;
     var self = this;
     function checkExpanded() {
-      if (typeof window === 'undefined') {
+      if (typeof window === 'undefined' || !self.isMounted()) {
         return;
       }
       var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
