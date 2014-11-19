@@ -78,6 +78,7 @@ var AppBar = React.createClass({
     onBackButtonClick: React.PropTypes.func,
     onMenuButtonCLick: React.PropTypes.func,
     onNavButtonClick: React.PropTypes.func,
+    onTitleClick: React.PropTypes.func,
     title: React.PropTypes.string
   },
 
@@ -115,8 +116,13 @@ var AppBar = React.createClass({
         <Icon icon="menu"/>
       </div>
       }
+    {props.onBackButtonClick &&
+      <div styles={styles.navButtonStyle} onClick={props.onBackButtonClick}>
+        <Icon icon="arrow-back"/>
+      </div>
+      }
     {props.title &&
-      <div styles={[Typography.title, styles.titleStyle, expandedTitleStyle, headLineStyle, propsStyles.titleStyle]}>
+      <div styles={[Typography.title, styles.titleStyle, expandedTitleStyle, headLineStyle, propsStyles.titleStyle]} onClick={props.onTitleClick}>
         {props.title}
       </div>
       }
@@ -142,7 +148,7 @@ var AppBar = React.createClass({
     this.scroll = true;
     var self = this;
     function checkExpanded() {
-      if (typeof window === 'undefined') {
+      if (typeof window === 'undefined' || !self.isMounted()) {
         return;
       }
       var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
