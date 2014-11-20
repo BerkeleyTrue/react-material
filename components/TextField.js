@@ -52,26 +52,6 @@ var TextFieldStyles = {
     margin: textMargin
   }, 'normalTextFieldStyle'),
 
-  // style used for the cursor block that
-  // appears when the input gains focus and then
-  // moves and collapses to the left using activeCursorBlockStyle
-  cursorBlockStyle: ReactStyle({
-    position: 'absolute',
-    width: 50,
-    left: '3em',
-    backgroundColor: focusColor,
-    opacity: '0.75',
-    height: '1.4em',
-    top: '0.4em',
-    transition: `all ${transitionDuration} ease-out`
-  }, 'cursorBlockStyle'),
-
-  activeCursorBlockStyle: ReactStyle({
-    left: 0,
-    width: 0,
-    opacity: '0.4'
-  }, 'activeCursorBlockStyle'),
-
   underlineContainerStyle: ReactStyle({
     position: 'relative',
     left: 0,
@@ -224,21 +204,9 @@ var TextField = React.createClass({
     containerStyling.push(propStyles.containerStyling);
 
     var textFieldStyling = [styles.normalTextFieldStyle];
-    var cursorBlockStyling = [styles.cursorBlockStyle];
 
     if (props.floatingLabel) {
       textFieldStyling.push(ReactStyle({paddingTop: 25}));
-      cursorBlockStyling.push(ReactStyle({marginTop: 25}));
-    }
-
-    if (this.state.focus &&
-        this.state.focusX &&
-        this.state.value.length === 0) {
-      if (!this.state.focusing) {
-        cursorBlockStyling.push(styles.activeCursorBlockStyle);
-      }
-    } else {
-      cursorBlockStyling.push(ReactStyle({display:'none'}));
     }
 
     var focusedUnderlineStyling = [styles.focusedUnderlineStyle];
@@ -264,7 +232,6 @@ var TextField = React.createClass({
              ref='textField'
              value={this.state.value}
             styles={textFieldStyling} />
-      <div styles={cursorBlockStyling}></div>
       <div ref='underlineContainer' styles={styles.underlineContainerStyle}>
         <div ref='underline' styles={styles.underlineStyle}></div>
         <div ref='focusedUnderline' styles={focusedUnderlineStyling}></div>
