@@ -161,7 +161,7 @@ var TextField = React.createClass({
       // text field and then cleared a moment later
       focusing: true,
       // the current value of the input field
-      value: this.props.defaultValue || ''
+      value: ''
     };
   },
 
@@ -179,7 +179,7 @@ var TextField = React.createClass({
       placeHolderStyling.push(styles.floatingLabelPlaceHolderStyling);
     }
 
-    if (this.state.focus || this.state.value.length > 0) {
+    if (this.state.focus || this.effectiveValue().length > 0) {
       if (props.floatingLabel) {
         placeHolderStyling.push(styles.placeHolderTopStyling);
         if (this.state.focus) {
@@ -230,8 +230,9 @@ var TextField = React.createClass({
              onTouchStart={this.onTouchStart}
              type={this.props.type || 'text'}
              ref='textField'
-             value={this.state.value}
-            styles={textFieldStyling} />
+             defaultValue={this.props.defaultValue}
+             value={this.props.value}
+             styles={textFieldStyling} />
       <div ref='underlineContainer' styles={styles.underlineContainerStyle}>
         <div ref='underline' styles={styles.underlineStyle}></div>
         <div ref='focusedUnderline' styles={focusedUnderlineStyling}></div>
@@ -264,7 +265,6 @@ var TextField = React.createClass({
   },
 
   onChange(e) {
-    this.setState({value: e.target.value});
     if (this.props.onChange) {
         this.props.onChange(e);
     }
@@ -312,10 +312,18 @@ var TextField = React.createClass({
     }
   },
 
-  value() {
-    return this.state.value;
+  // returns the value being displayed in the text field.
+  // This is equal to props.value if set or the current
+  // value of the actual DOM node if mounted
+  effectiveValue() {
+    if (this.props.value !== undefined) {
+        return this.props.value;
+    } else if (this.isMounted()) {
+        return this.refs['textField'].getDOMNode().value;
+    } else {
+        return '';
+    }
   }
-
 });
 
 module.exports = TextField;
