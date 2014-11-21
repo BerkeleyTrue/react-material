@@ -228,10 +228,10 @@ var TextField = React.createClass({
              onBlur={this.onBlur}
              onMouseDown={this.onMouseDown}
              onTouchStart={this.onTouchStart}
-             type={this.props.type || 'text'}
+             type={props.type || 'text'}
              ref='textField'
-             defaultValue={this.props.defaultValue}
-             value={this.props.value}
+             defaultValue={props.defaultValue}
+             value={props.value}
              styles={textFieldStyling} />
       <div ref='underlineContainer' styles={styles.underlineContainerStyle}>
         <div ref='underline' styles={styles.underlineStyle}></div>
@@ -316,8 +316,9 @@ var TextField = React.createClass({
   // This is equal to props.value if set or the current
   // value of the actual DOM node if mounted
   effectiveValue() {
-    if (this.props.value !== undefined) {
-        return this.props.value;
+    var value = this.props.value;
+    if (value !== undefined) {
+        return value;
     } else if (this.isMounted()) {
         return this.refs['textField'].getDOMNode().value;
     } else {
