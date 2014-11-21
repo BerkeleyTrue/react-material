@@ -160,8 +160,6 @@ var TextField = React.createClass({
       // a flag set when the user initiates focusing the
       // text field and then cleared a moment later
       focusing: true,
-      // the current value of the input field
-      value: ''
     };
   },
 
