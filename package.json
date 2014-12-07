@@ -1,6 +1,11 @@
 {
   "name": "react-material",
   "version": "0.3.2",
+  "repository" : {
+    "type" : "git",
+    "url" : "http://github.com/SanderSpies/react-material.git"
+  },
+
   "keywords": [
     "react-component"
   ],
