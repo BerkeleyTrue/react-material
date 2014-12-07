@@ -5,13 +5,13 @@
     "react-component"
   ],
   "scripts": {
-    "preinstall": "git submodule update --init"
+    "preinstall": "git submodule update -i -r"
   },
   "devDependencies": {
     "browser-sync": "^1.4.0",
     "css-loader": "^0.9.0",
     "react-style-webpack-plugin": "git+https://github.com/js-next/react-style-webpack-plugin.git",
-	  "extract-text-webpack-plugin": "git+https://github.com/SanderSpies/extract-text-webpack-plugin.git",
+    "extract-text-webpack-plugin": "git+https://github.com/SanderSpies/extract-text-webpack-plugin.git",
     "file-loader": "^0.8.1",
     "gulp": "^3.8.8",
     "gulp-rimraf": "^0.1.1",
