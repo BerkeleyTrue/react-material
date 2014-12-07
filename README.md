@@ -17,9 +17,7 @@ A good starting point for web apps styled with [material design](http://www.goog
 Run
 ---
 - git clone https://github.com/SanderSpies/react-material.git
-- git submodule init
-- git submodule update
-- npm install
+- npm install (now does git submodule init + git submodule update for you)
 - webpack
 - open index.html
 - enjoy
