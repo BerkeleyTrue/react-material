@@ -3,10 +3,21 @@
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var ReactStylePlugin = require('react-style-webpack-plugin');
 
+var path = require('path');
+
+var port = JSON.parse(process.env.npm_package_config_port || 6000),
+  subdomain =   "",//JSON.parse(/*process.env.npm_package_config_subdomain*/ ""),
+  url = subdomain ?
+  'https://' + subdomain + '.localtunnel.me' :
+  'http://localhost:' + port;
+
 
 module.exports = {
 	devtool: 'sourcemap',
-	entry: "./views/DocumentationApplication.js",
+	entry: [
+      'webpack-dev-server/client?' + url,
+      "./views/DocumentationApplication.js"
+    ],
 	output: {
 		filename: "bundle.js",
 		path: __dirname + "/assets",
@@ -21,6 +32,7 @@ module.exports = {
       {
         test: /\.js$/,
         loaders: [
+          "autocat-loader",
           ReactStylePlugin.loader(),
           'jsx-loader?harmony&sourceMap'
         ]
