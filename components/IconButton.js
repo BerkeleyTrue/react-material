@@ -36,7 +36,6 @@ var IconButtonStyles = {
 };
 
 var IconButton = React.createClass({
-
   render: function() {
     var props = this.props;
     var styles = IconButtonStyles;
