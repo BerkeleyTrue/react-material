@@ -3,10 +3,17 @@
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var ReactStylePlugin = require('react-style-webpack-plugin');
 
+var path = require('path');
+
+var port = JSON.parse(process.env.npm_package_config_port || 6000);
+
 
 module.exports = {
 	devtool: 'sourcemap',
-	entry: "./views/DocumentationApplication.js",
+	entry: [
+      'webpack-dev-server/client?http://localhost:' + port,
+      "./views/DocumentationApplication.js"
+    ],
 	output: {
 		filename: "bundle.js",
 		path: __dirname + "/assets",

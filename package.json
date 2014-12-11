@@ -10,6 +10,7 @@
     "react-component"
   ],
   "scripts": {
+    "dev": "webpack-dev-server  --config webpack.config.js --progress --colors --port 2222",
     "preinstall": "git submodule update -i -r"
   },
   "devDependencies": {
@@ -27,7 +28,8 @@
     "jsx-loader": "^0.12.0",
     "react-style": "^0.3.0",
     "style-loader": "^0.8.1",
-    "webpack": "^1.4.5"
+    "webpack": "^1.4.5",
+    "webpack-dev-server": "~1.4.7"
   },
   "peerDependencies": {
     "react": "^0.12.0",
