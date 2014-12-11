@@ -10,7 +10,7 @@
     "react-component"
   ],
   "scripts": {
-    "dev": "webpack-dev-server  --config webpack.config.js --progress --colors --port 2222"
+    "dev": "webpack-dev-server  --config webpack.config.js --progress --colors --port 2222",
     "preinstall": "git submodule update -i -r"
   },
   "devDependencies": {
