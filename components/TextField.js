@@ -52,26 +52,6 @@ var TextFieldStyles = {
     margin: textMargin
   }, 'normalTextFieldStyle'),
 
-  // style used for the cursor block that
-  // appears when the input gains focus and then
-  // moves and collapses to the left using activeCursorBlockStyle
-  cursorBlockStyle: ReactStyle({
-    position: 'absolute',
-    width: 50,
-    left: '3em',
-    backgroundColor: focusColor,
-    opacity: '0.75',
-    height: '1.4em',
-    top: '0.4em',
-    transition: `all ${transitionDuration} ease-out`
-  }, 'cursorBlockStyle'),
-
-  activeCursorBlockStyle: ReactStyle({
-    left: 0,
-    width: 0,
-    opacity: '0.4'
-  }, 'activeCursorBlockStyle'),
-
   underlineContainerStyle: ReactStyle({
     position: 'relative',
     left: 0,
@@ -180,8 +160,6 @@ var TextField = React.createClass({
       // a flag set when the user initiates focusing the
       // text field and then cleared a moment later
       focusing: true,
-      // the current value of the input field
-      value: this.props.defaultValue || ''
     };
   },
 
@@ -199,7 +177,7 @@ var TextField = React.createClass({
       placeHolderStyling.push(styles.floatingLabelPlaceHolderStyling);
     }
 
-    if (this.state.focus || this.state.value.length > 0) {
+    if (this.state.focus || this.effectiveValue().length > 0) {
       if (props.floatingLabel) {
         placeHolderStyling.push(styles.placeHolderTopStyling);
         if (this.state.focus) {
@@ -224,21 +202,9 @@ var TextField = React.createClass({
     containerStyling.push(propStyles.containerStyling);
 
     var textFieldStyling = [styles.normalTextFieldStyle];
-    var cursorBlockStyling = [styles.cursorBlockStyle];
 
     if (props.floatingLabel) {
       textFieldStyling.push(ReactStyle({paddingTop: 25}));
-      cursorBlockStyling.push(ReactStyle({marginTop: 25}));
-    }
-
-    if (this.state.focus &&
-        this.state.focusX &&
-        this.state.value.length === 0) {
-      if (!this.state.focusing) {
-        cursorBlockStyling.push(styles.activeCursorBlockStyle);
-      }
-    } else {
-      cursorBlockStyling.push(ReactStyle({display:'none'}));
     }
 
     var focusedUnderlineStyling = [styles.focusedUnderlineStyle];
@@ -260,11 +226,11 @@ var TextField = React.createClass({
              onBlur={this.onBlur}
              onMouseDown={this.onMouseDown}
              onTouchStart={this.onTouchStart}
-             type={this.props.type || 'text'}
+             type={props.type || 'text'}
              ref='textField'
-             value={this.state.value}
-            styles={textFieldStyling} />
-      <div styles={cursorBlockStyling}></div>
+             defaultValue={props.defaultValue}
+             value={props.value}
+             styles={textFieldStyling} />
       <div ref='underlineContainer' styles={styles.underlineContainerStyle}>
         <div ref='underline' styles={styles.underlineStyle}></div>
         <div ref='focusedUnderline' styles={focusedUnderlineStyling}></div>
@@ -297,7 +263,6 @@ var TextField = React.createClass({
   },
 
   onChange(e) {
-    this.setState({value: e.target.value});
     if (this.props.onChange) {
         this.props.onChange(e);
     }
@@ -345,10 +310,19 @@ var TextField = React.createClass({
     }
   },
 
-  value() {
-    return this.state.value;
+  // returns the value being displayed in the text field.
+  // This is equal to props.value if set or the current
+  // value of the actual DOM node if mounted
+  effectiveValue() {
+    var value = this.props.value;
+    if (value !== undefined) {
+        return value;
+    } else if (this.isMounted()) {
+        return this.refs['textField'].getDOMNode().value;
+    } else {
+        return '';
+    }
   }
-
 });
 
 module.exports = TextField;
