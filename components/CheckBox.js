@@ -12,17 +12,16 @@ var transitionEnd = require('./TransitionEndName');
 var isTransform = require('./isTransform');
 var CircleShadow = require('./CircleShadow');
 
-var CheckBox = React.createClass({
+class CheckBox extends React.Component {
 
-  isChecked: false,
-
-  getInitialState() {
+  constructor(props) {
+    super(props);
     var checked = this.props.checked || false;
     this.isChecked = checked;
-    return {
+    this.state = {
       checked: checked
     };
-  },
+  }
 
   render() {
     var state = this.state;
@@ -42,7 +41,7 @@ var CheckBox = React.createClass({
     }
 
 
-    return <div tabIndex={0} styles={containerStyles} onClick={this.onToggle} onMouseDown={this.onMouseDown} onMouseUp={this.onMouseUp}>
+    return <div tabIndex={0} styles={containerStyles} onClick={() => this.onToggle()} onMouseDown={() => this.onMouseDown()} onMouseUp={() => this.onMouseUp()}>
       <div ref="checkbox" styles={stylesX}/>
       <div styles={styles.circleContainerStyle}>
         <CircleShadow styles={styles.circleStyle} active={this.state.mouseDown} />
@@ -51,21 +50,21 @@ var CheckBox = React.createClass({
         {props.children}
       </div>
     </div>
-  },
+  }
 
   onMouseDown() {
     if (!transitionEnd) {
       return;
     }
     this.setState({mouseDown: true});
-  },
+  }
 
   onMouseUp() {
     if (!transitionEnd) {
       return;
     }
     this.setState({mouseDown: false});
-  },
+  }
 
   onToggle() {
     if (!this.state.checked) {
@@ -80,23 +79,23 @@ var CheckBox = React.createClass({
     if (props.onChange) {
       props.onChange({checked: this.isChecked});
     }
-  },
+  }
 
   componentDidMount() {
     if (!transitionEnd) {
       return;
     }
 
-    this.refs.checkbox.getDOMNode().addEventListener(transitionEnd, this.onTransitionEnd);
-  },
+    React.findDOMNode(this.refs.checkbox).addEventListener(transitionEnd, () => this.onTransitionEnd);
+  }
 
   componentWillUnmount() {
     if (!transitionEnd) {
       return;
     }
 
-    this.refs.checkbox.getDOMNode().removeEventListener(transitionEnd, this.onTransitionEnd);
-  },
+    React.findDOMNode(this.refs.checkbox).removeEventListener(transitionEnd, () => this.onTransitionEnd);
+  }
 
   onTransitionEnd(e) {
     var state = this.state;
@@ -105,13 +104,13 @@ var CheckBox = React.createClass({
         this.setState({checked: true, transitioning: false});
       }
     }
-  },
+  }
 
   toggle() {
     this.onToggle();
   }
 
-});
+}
 
 var CheckBoxStyles = StyleSheet.create({
 

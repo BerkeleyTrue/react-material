@@ -10,25 +10,28 @@ var Colors = require('../style/Colors');
 var Typography = require('../style/Typography');
 var Icon = require('./Icon');
 
-var AppBar = React.createClass({
+class AppBar extends React.Component {
 
-  propTypes: {
-    actionButtons: React.PropTypes.array,
-    boxShadow: React.PropTypes.bool,
-    expanded: React.PropTypes.bool,
-    onBackButtonClick: React.PropTypes.func,
-    onMenuButtonCLick: React.PropTypes.func,
-    onNavButtonClick: React.PropTypes.func,
-    onTitleClick: React.PropTypes.func,
-    title: React.PropTypes.string
-  },
+  //propTypes: {
+  //  actionButtons: React.PropTypes.array,
+  //  boxShadow: React.PropTypes.bool,
+  //  expanded: React.PropTypes.bool,
+  //  onBackButtonClick: React.PropTypes.func,
+  //  onMenuButtonCLick: React.PropTypes.func,
+  //  onNavButtonClick: React.PropTypes.func,
+  //  onTitleClick: React.PropTypes.func,
+  //  title: React.PropTypes.string
+  //},
 
-  getInitialState() {
-    return {
+  constructor(props) {
+    super(props);
+    this.acceptingScrollValue = true;
+    this.finalCheckTimeout = null;
+    this.state = {
       scrollListenerAttached: false,
       showShadow: true
     };
-  },
+  }
 
   render() {
     var props  =       this.props;
@@ -63,25 +66,24 @@ var AppBar = React.createClass({
       </div>
       }
     {props.title &&
-      <div styles={[Typography.title, styles.titleStyle, expandedTitleStyle, headLineStyle, propsStyles.titleStyle]} onClick={props.onTitleClick}>
+      <div styles={[Typography.title, styles.titleStyle, expandedTitleStyle, headLineStyle, propsStyles.titleStyle]} onClick={()=>props.onTitleClick}>
         {props.title}
       </div>
       }
       {props.children}
     </nav></div>;
-  },
+  }
 
   componentDidUpdate() {
     this.initializeScrollListener();
     this.onBodyScroll()
-  },
+  }
 
   componentWillMount() {
     this.initializeScrollListener();
-  },
+  }
 
-  acceptingScrollValue: true,
-  finalCheckTimeout: null,
+
   onBodyScroll() {
     if (!this.acceptingScrollValue) {
       return
@@ -89,7 +91,7 @@ var AppBar = React.createClass({
     this.scroll = true;
     var self = this;
     function checkExpanded() {
-      if (typeof window === 'undefined' || !self.isMounted()) {
+      if (typeof window === 'undefined') {
         return;
       }
       var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
@@ -127,7 +129,7 @@ var AppBar = React.createClass({
     }, 100);
 
     this.acceptingScrollValue = false;
-  },
+  }
 
   initializeScrollListener() {
     if (typeof window === 'undefined') {
@@ -143,14 +145,13 @@ var AppBar = React.createClass({
     else if (!props.expanded && state.scrollListenerAttached) {
       window.removeEventListener('scroll', this.onBodyScroll);
     }
-  },
+  }
 
   componentWillUnmount() {
-
     window.removeEventListener('scroll', this.onBodyScroll);
   }
 
-});
+}
 
 
 var AppBarStyles = StyleSheet.create({

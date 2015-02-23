@@ -18,9 +18,9 @@ if (typeof window !== 'undefined') {
   div.innerHTML = coreIcons + socialIcons;
 }
 
-var Icon = React.createClass({
+class Icon extends React.Component {
 
-  render: function() {
+  render() {
     if (!this.props.icon) {
       return <div />;
     }
@@ -37,6 +37,6 @@ var Icon = React.createClass({
   }
 
 
-});
+}
 
 module.exports = Icon;

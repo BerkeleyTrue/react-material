@@ -6,30 +6,30 @@
 var React = require('react');
 var StyleSheet = require('react-style');
 
-var Overlay = React.createClass({
+class Overlay extends React.Component {
+  //
+  //propTypes: {
+  //  onClick: React.PropTypes.func.isRequired
+  //},
 
-  propTypes: {
-    onClick: React.PropTypes.func.isRequired
-  },
-
-  render: function() {
+  render() {
     var styles = OverlayStyles;
     var overlayStyles = [styles.normalOverlayStyle];
     if (this.props.show) {
       overlayStyles.push(styles.normalOverlayVisibleStyle);
     }
-    return <div onClick={this.onClick} styles={overlayStyles}>
+    return <div onClick={(e) => this.onClick(e)} styles={overlayStyles}>
 
     </div>
-  },
+  }
 
-  onClick: function(e) {
+  onClick(e) {
     var props = this.props;
     if (props.onClick) {
       props.onClick(e);
     }
   }
-});
+}
 
 var OverlayStyles = StyleSheet.create({
 

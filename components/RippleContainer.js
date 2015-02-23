@@ -15,13 +15,13 @@ var transitionEnd = require('./TransitionEndName');
 var isTouchDevice = typeof window !== 'undefined' &&
                     'ontouchstart' in window;
 
-var RippleContainer = React.createClass({
+class RippleContainer extends React.Component {
 
-  getInitialState() {
-    return {
+  constructor() {
+    this.state = {
       ripples: []
     };
-  },
+  }
 
   render() {
     var props = this.props;
@@ -48,19 +48,19 @@ var RippleContainer = React.createClass({
 
 
     return <div styles={[styles.normalStyle, props.styles]}
-        onTouchStart={isTouchDevice && this.onMouseDown}
-        onTouchEnd={isTouchDevice && this.onMouseUp}
-        onTouchCancel={isTouchDevice && this.onMouseLeave}
-        onMouseDown={!isTouchDevice && this.onMouseDown}
-        onMouseLeave={!isTouchDevice && this.onMouseLeave}
-        onMouseUp={!isTouchDevice && this.onMouseUp}
+        onTouchStart={(e) => isTouchDevice && this.onMouseDown(e)}
+        onTouchEnd={(e) => isTouchDevice && this.onMouseUp(e)}
+        onTouchCancel={(e) => isTouchDevice && this.onMouseLeave(e)}
+        onMouseDown={(e) => !isTouchDevice && this.onMouseDown(e)}
+        onMouseLeave={(e) => !isTouchDevice && this.onMouseLeave(e)}
+        onMouseUp={(e) => !isTouchDevice && this.onMouseUp(e)}
       >
         {rippleComponents}
       </div>;
-  },
+  }
 
   onMouseDown(e) {
-    var domNode = this.getDOMNode();
+    var domNode = React.findDOMNode(this);
     var height = domNode.offsetHeight;
     var width = domNode.offsetWidth;
     if (width > height) {
@@ -86,17 +86,17 @@ var RippleContainer = React.createClass({
     // messes up click event :-(
     this.setState({ripples: ripples});
 
-    setTimeout(this.startRipple, 0);
-  },
+    setTimeout(() => this.startRipple(), 0);
+  }
 
   onMouseUp(e) {
     this.onMouseLeave();
     var onClick = this.props.onClick;
     if (onClick) {
       e.preventDefault();
-      onClick({target: this.getDOMNode().parentNode, originalEvent: e});
+      onClick({target: React.findDOMNode(this).parentNode, originalEvent: e});
     }
-  },
+  }
 
   onMouseLeave() {
     // fade out
@@ -108,13 +108,13 @@ var RippleContainer = React.createClass({
     }
     this.setState({ripples: ripples});
 
-  },
+  }
 
   startRipple() {
     var ripples = this.state.ripples;
     ripples[ripples.length - 1].transitioning = true;
     this.setState({ripples: ripples});
-  },
+  }
 
   endRipple(e) {
     var ripples = this.state.ripples;
@@ -127,21 +127,21 @@ var RippleContainer = React.createClass({
       ripples.shift();
       this.setState({ripples: ripples});
     }
-  },
+  }
 
   componentDidMount() {
     var self = this;
-    var domNode = this.getDOMNode();
+    var domNode = React.findDOMNode(this);
 
     if (!transitionEnd) {
       return;
     }
 
     //TODO: make sure we only do this once, instead of all the time...
-    domNode.addEventListener(transitionEnd, this.endRipple);
+    domNode.addEventListener(transitionEnd, (e) => this.endRipple(e));
   }
 
-});
+}
 
 var RippleContainerStyles = StyleSheet.create({
 

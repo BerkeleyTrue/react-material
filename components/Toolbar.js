@@ -4,15 +4,15 @@
 'use strict';
 
 var React = require('react');
-var ReactStyle = require('react-style');
+var StyleSheet = require('react-style');
 
-var Toolbar = React.createClass({
+class Toolbar extends React.Component {
 
-  render: function() {
+  render() {
     return <div>
     </div>;
   }
 
-});
+}
 
 module.exports = Toolbar;

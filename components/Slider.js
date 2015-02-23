@@ -5,12 +5,12 @@
 
 var React = require('react');
 
-var Slider = React.createClass({
+class Slider extends React.Component {
 
-  render: function() {
+  render() {
 
   }
 
-});
+}
 
 module.exports = Slider;

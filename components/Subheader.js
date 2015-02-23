@@ -8,16 +8,16 @@ var StyleSheet = require('react-style');
 
 var Typography = require('../style/Typography');
 
-var Subheader = React.createClass({
+class Subheader extends React.Component {
 
-  render: function() {
+  render() {
     var styles = SubheaderStyles;
     return <div styles={[Typography.subhead, styles.normalStyle]}>
       {this.props.children}
     </div>
   }
 
-});
+}
 
 var SubheaderStyles = StyleSheet.create({
 

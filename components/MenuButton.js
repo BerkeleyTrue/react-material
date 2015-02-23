@@ -5,12 +5,12 @@
 
 var React = require('react');
 
-var MenuButton = React.createClass({
+class MenuButton extends React.Component {
 
-  render: function() {
+  render() {
 
   }
 
-});
+}
 
 module.exports = MenuButton;

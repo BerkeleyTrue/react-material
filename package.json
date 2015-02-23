@@ -13,6 +13,7 @@
     "gulp-rimraf": "^0.1.1",
     "gulp-gjslint": "^0.1.2",
     "gulp-react": "^1.0.1",
+    "babel-loader": "4.0.0",
     "gulp-webpack": "^0.3.0",
     "html-loader": "0.2.3",
     "jsx-loader": "^0.12.0",

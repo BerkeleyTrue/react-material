@@ -6,18 +6,18 @@
 var React = require('react');
 var ReactStyle = require('react-style');
 
-var Tab = React.createClass({
+class Tab extends React.Component {
 
-  propTypes: {
-    title: React.PropTypes.string.isRequired
-  },
+  //propTypes: {
+  //  title: React.PropTypes.string.isRequired
+  //},
 
-  render: function(){
+  render() {
     return <div>
       {this.props.children}
     </div>
   }
 
-});
+}
 
 module.exports = Tab;

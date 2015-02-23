@@ -9,15 +9,14 @@ var StyleSheet = require('react-style');
 var RadioButton = require('./RadioButton');
 var FormRow = require('./FormRow');
 
-var RadioButtonGroup = React.createClass({
+class RadioButtonGroup extends React.Component {
 
-  selectedValue: null,
-
-  getInitialState() {
-    return {
+  constructor() {
+    this.selectedValue = null;
+    this.state = {
       selectedIndex: -1
-    }
-  },
+    };
+  }
 
   render() {
     var props = this.props;
@@ -29,7 +28,7 @@ var RadioButtonGroup = React.createClass({
       var radioButton = <RadioButton key={i}
                                      value={child.props.value}
                                      position={i}
-                                     onChange={this.onChange}
+                                     onChange={(e)=>this.onChange(e)}
                                      checked={this.state.selectedIndex === i}>
         {child.props.children}
       </RadioButton>;
@@ -41,7 +40,7 @@ var RadioButtonGroup = React.createClass({
     return <div>
         {radioButtons}
     </div>;
-  },
+  }
 
   onChange(e){
     var selectedIndex = e.ref.props.position;
@@ -50,7 +49,7 @@ var RadioButtonGroup = React.createClass({
     this.props.onChange(e);
   }
 
-});
+}
 
 var RadioButtonGroupStyles = StyleSheet.create({
 

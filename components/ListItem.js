@@ -9,12 +9,9 @@ var StyleSheet = require('react-style');
 var Icon = require('./Icon');
 var RippleContainer = require('./RippleContainer');
 
+class ListItem extends React.Component{
 
-var Typography = require('../style/Typography');
-
-var ListItem = React.createClass({
-
-  render: function() {
+  render() {
     var props = this.props;
     var styles = ListItemStyles;
     var listItemStyles = [styles.normalListItemStyle];
@@ -28,21 +25,21 @@ var ListItem = React.createClass({
 
     return <div styles={listItemStyles}>
       {!props.disableRipple &&
-      <RippleContainer onClick={this.onClick}/> }
+      <RippleContainer onClick={(e)=> this.onClick(e)}/> }
       {props.icon &&
         <div styles={styles.iconStyle}><Icon icon={props.icon}/></div> }
       {props.children}
     </div>;
-  },
+  }
 
-  onClick: function(e) {
+  onClick(e) {
     var onClick = this.props.onClick;
     if (onClick) {
       onClick(e);
     }
   }
 
-});
+}
 
 var ListItemStyles = StyleSheet.create({
 

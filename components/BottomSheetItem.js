@@ -8,13 +8,13 @@ var StyleSheet = require('react-style');
 
 var ListItem = require('../components/ListItem');
 
-var BottomSheetItem = React.createClass({
+class BottomSheetItem extends React.Component {
 
   render() {
     return this.transferPropsTo(<ListItem styles={BottomSheetItemStyles.normalStyle}>{this.props.children}</ListItem>);
   }
 
-});
+}
 
 var BottomSheetItemStyles = StyleSheet.create({
   normalStyle: {

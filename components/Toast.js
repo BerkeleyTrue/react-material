@@ -5,12 +5,12 @@
 
 var React = require('react');
 
-var Toast = React.createClass({
+class Toast extends React.Component {
 
-  render: function() {
+  render() {
 
   }
 
-});
+}
 
 module.exports = Toast;

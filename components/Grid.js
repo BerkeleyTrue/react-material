@@ -5,12 +5,12 @@
 
 var React = require('react');
 
-var Grid = React.createClass({
+class Grid extends React.Component {
 
-  render: function() {
+  render() {
     return <div />;
   }
 
-});
+}
 
 module.exports = Grid;

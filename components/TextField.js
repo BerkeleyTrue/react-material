@@ -76,7 +76,7 @@ var TextField = React.createClass({
     }
 
     if (textField) {
-      var textfieldDOMNode = textField.getDOMNode();
+      var textfieldDOMNode = React.findDOMNode(textField);
       scrollWidth = textfieldDOMNode.scrollWidth;
       scrollLeft = textfieldDOMNode.scrollLeft;
       width = textfieldDOMNode.offsetWidth;
@@ -174,8 +174,8 @@ var TextField = React.createClass({
     // animate the focused underline, spilling from the horizontal
     // position of the mouse or touch
     if (this.state.focusX) {
-      var underlineRect = this.refs['underlineContainer'].getDOMNode().getBoundingClientRect();
-      var focusedUnderline = this.refs['focusedUnderline'].getDOMNode();
+      var underlineRect = React.findDOMNode(this.refs['underlineContainer']).getBoundingClientRect();
+      var focusedUnderline = React.findDOMNode(this.refs['focusedUnderline']);
       
       this.setState({focusing: true});
 
@@ -205,7 +205,7 @@ var TextField = React.createClass({
     if (value !== undefined) {
         return value;
     } else if (this.isMounted()) {
-        return this.refs['textField'].getDOMNode().value;
+        return React.findDOMNode(this.refs['textField']).value;
     } else {
         return '';
     }

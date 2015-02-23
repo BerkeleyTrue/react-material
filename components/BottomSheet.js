@@ -8,12 +8,12 @@ var StyleSheet = require('react-style');
 
 var Colors = require('../style/Colors');
 
-var BottomSheet = React.createClass({
+class BottomSheet extends React.Component{
 
 	hiddenTransformStyle() {
 		var height = 0;
 		if (this.isMounted()) {
-			var domNode = this.getDOMNode();
+			var domNode = React.findDOMNode(this);
 			if (domNode) {
 				height = domNode.offsetHeight + 8;
 			}
@@ -24,7 +24,7 @@ var BottomSheet = React.createClass({
 			transform: 'translateY(' + height + 'px)',
 			transition: 'transform .2s cubic-bezier(.4,0,.2,1), visibility 0s linear .21s'
 		};
-	},
+	}
 
   render(){
     var props = this.props;
@@ -48,13 +48,13 @@ var BottomSheet = React.createClass({
 
       {props.children}
     </div>;
-  },
+  }
 
   componentDidMount(){
     this.forceUpdate(); // to enforce calculation of height
   }
 
-});
+}
 
 var BottomSheetStyles = StyleSheet.create({
 

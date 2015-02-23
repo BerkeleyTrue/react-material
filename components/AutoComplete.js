@@ -9,7 +9,7 @@ var StyleSheet = require('react-style');
 var TextField  = require('./TextField');
 
 // on select go to top + full width + show suggestions
-var AutoComplete = React.createClass({
+class AutoComplete extends React.Component {
 
   render() {
     return <div>
@@ -19,6 +19,6 @@ var AutoComplete = React.createClass({
     </div>;
   }
 
-});
+}
 
 module.exports = AutoComplete;

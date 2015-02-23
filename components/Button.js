@@ -52,16 +52,16 @@ class Button extends React.Component {
     return <div role="button"
                 tabIndex="0"
                 styles={styles}
-                onTouchStart={() => isTouchDevice && this.onMouseDown}
-                onTouchEnd={() => isTouchDevice && this.onMouseUp}
-                onTouchCancel={() => isTouchDevice && this.onMouseUp}
-                onMouseDown={() => !isTouchDevice && this.onMouseDown}
-                onMouseUp={() => !isTouchDevice && this.onMouseUp}
-                onMouseLeave={() => !isTouchDevice && this.onMouseUp} >
+                onTouchStart={() => isTouchDevice && this.onMouseDown()}
+                onTouchEnd={() => isTouchDevice && this.onMouseUp()}
+                onTouchCancel={() => isTouchDevice && this.onMouseUp()}
+                onMouseDown={() => !isTouchDevice && this.onMouseDown()}
+                onMouseUp={() => !isTouchDevice && this.onMouseUp()}
+                onMouseLeave={() => !isTouchDevice && this.onMouseUp()} >
           <Shadow size={shadowSize} styles={ButtonStyles.shadowStyle}>
 
       {!props.disabled &&
-        <RippleContainer styles={ButtonStyles.rippleContainerStyle} onClick={props.onClick}/>
+        <RippleContainer styles={ButtonStyles.rippleContainerStyle} onClick={() => props.onClick && props.onClick()}/>
       }
         {props.children}
           </Shadow>
@@ -82,7 +82,7 @@ class Button extends React.Component {
     this.setState({active: true});
   }
 
-};
+}
 
 var ButtonStyles = StyleSheet.create({
 

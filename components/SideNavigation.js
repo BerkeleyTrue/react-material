@@ -8,9 +8,9 @@ var Colors = require('../style/Colors');
 var React = require('react');
 var StyleSheet = require('react-style');
 
-var SideNavigation = React.createClass({
+class SideNavigation extends React.Component {
 
-  render: function() {
+  render() {
     var props = this.props;
     var styles = SideNavigationStyles;
     var sideNavigationStyles = [styles.normalSideNavStyle];
@@ -22,7 +22,7 @@ var SideNavigation = React.createClass({
     </div>;
   }
 
-});
+}
 
 var SideNavigationStyles = StyleSheet.create({
 

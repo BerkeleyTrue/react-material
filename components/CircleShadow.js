@@ -8,13 +8,14 @@ var StyleSheet = require('react-style');
 
 var Colors = require('../style/Colors');
 
-var CircleShadow = React.createClass({
+class CircleShadow extends React.Component {
 
-  getInitialState() {
-    return {
+  constructor(props) {
+    super(props);
+    this.state = {
       active: false
     }
-  },
+  }
 
   render() {
     var props = this.props;
@@ -27,20 +28,20 @@ var CircleShadow = React.createClass({
       styles = styles.concat(props.styles);
     }
 
-    return <div styles={styles} onMouseUp={this.onMouseUp} onMouseDown={this.onMouseDown}>
+    return <div styles={styles} onMouseUp={() => this.onMouseUp()} onMouseDown={() => this.onMouseDown()}>
 
     </div>;
-  },
+  }
 
   onMouseUp(){
     this.setState({active: false});
-  },
+  }
 
   onMouseDown(){
     this.setState({active: true});
   }
 
-});
+}
 
 var CircleShadowStyles = StyleSheet.create({
 

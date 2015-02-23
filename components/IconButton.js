@@ -10,18 +10,18 @@ var CircleShadow = require('./CircleShadow');
 var Colors = require('../style/Colors');
 var Icon = require('./Icon');
 
-var IconButton = React.createClass({
+class IconButton extends React.Component {
 
-  render: function() {
+  render() {
     var props = this.props;
     var styles = IconButtonStyles;
-    return <div styles={styles.normalStyle} onClick={props.onClick}>
+    return <div styles={styles.normalStyle} onClick={() => props.onClick()}>
       <CircleShadow active={true} styles={[styles.circleShadowStyle]}/>
       <Icon icon={props.icon}/>
     </div>;
   }
 
-});
+}
 
 var IconButtonStyles = StyleSheet.create({
 

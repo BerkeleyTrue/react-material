@@ -6,7 +6,7 @@
 var React = require('react');
 var StyleSheet = require('react-style');
 
-var FormRow = React.createClass({
+class FormRow extends React.Component {
 
   render() {
     var props   = this.props;
@@ -16,7 +16,7 @@ var FormRow = React.createClass({
     </div>;
   }
 
-});
+}
 
 var FormRowStyles = StyleSheet.create({
 

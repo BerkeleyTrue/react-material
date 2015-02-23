@@ -10,7 +10,11 @@ var Colors = require('../style/Colors');
 
 var RippleContainer = require('../components/RippleContainer');
 
-var Tabs = React.createClass({
+class Tabs extends React.Component {
+
+  //constructor(props) {
+  //  super(props);
+  //}
 
   render() {
     var props = this.props;
@@ -22,16 +26,15 @@ var Tabs = React.createClass({
     for (var i = 0, l = children.length; i < l; i++) {
       var child = children[i];
       var childProps = child.props;
-      var tabTitleStyles = [styles.tabTitleStyle,
-                            {width:(100 / children.length) + '%'}];
+      var tabTitleStyles = [styles.tabTitleStyle];
       if (childProps.selected) {
         tabTitleStyles.push(styles.tabTitleSelectedStyle);
         selectedTab = child;
         selectedIndex = i;
       }
-
+      tabTitleStyles.push({width:(100 / children.length) + '%'});
       titles[i] = <li key={i} styles={tabTitleStyles}>
-                    <RippleContainer onClick={this.onTabHeaderClick} />
+                    <RippleContainer onClick={(e)=>this.onTabHeaderClick(e)} />
                     {childProps.title}
                   </li>;
     }
@@ -52,7 +55,7 @@ var Tabs = React.createClass({
       {selectedTab}
     </div>
 
-  },
+  }
 
   onTabHeaderClick(e) {
     var props = this.props;
@@ -70,7 +73,7 @@ var Tabs = React.createClass({
     }
   }
 
-});
+}
 
 var TabsStyles = StyleSheet.create({
   normalStyle: {

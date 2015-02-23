@@ -8,27 +8,13 @@ var StyleSheet = require('react-style');
 
 var ShadowStyle = require('../style/Shadow');
 
-var ShadowStyles = StyleSheet.create({
+class Shadow extends React.Component {
 
-  normalShadowStyle: {
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
-    right: 0,
-    top: 0,
-    willChange: 'box-shadow',
-    transition: 'box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1)'
-  }
+  //propTypes: {
+  //  size: React.PropTypes.number.isRequired
+  //},
 
-});
-
-var Shadow = React.createClass({
-
-  propTypes: {
-    size: React.PropTypes.number.isRequired
-  },
-
-  render: function() {
+  render() {
     var props = this.props;
     var styles = ShadowStyles;
     var size = props.size;
@@ -67,6 +53,20 @@ var Shadow = React.createClass({
       <div styles={topStyles} />
         {this.props.children}
       </div>;
+  }
+
+}
+
+var ShadowStyles = StyleSheet.create({
+
+  normalShadowStyle: {
+    bottom: 0,
+    left: 0,
+    position: 'absolute',
+    right: 0,
+    top: 0,
+    willChange: 'box-shadow',
+    transition: 'box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1)'
   }
 
 });

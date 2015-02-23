@@ -5,7 +5,7 @@ var ReactStylePlugin = require('react-style-webpack-plugin');
 
 
 module.exports = {
-	devtool: 'sourcemap',
+	//devtool: 'sourcemap',
 	entry: "./views/DocumentationApplication.js",
 	output: {
 		filename: "bundle.js",
@@ -21,8 +21,8 @@ module.exports = {
       {
         test: /\.js$/,
         loaders: [
-          ReactStylePlugin.loader(),
-          'jsx-loader?harmony&sourceMap'
+          'jsx-loader?harmony',
+          ReactStylePlugin.loader()
         ]
       },
       {

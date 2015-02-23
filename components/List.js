@@ -6,9 +6,9 @@
 var React = require('react');
 var StyleSheet = require('react-style');
 
-var List = React.createClass({
+class List extends React.Component {
 
-  render: function() {
+  render() {
     var styles = ListStyles;
     var listStyle = styles.normalListStyle;
     return <div styles={listStyle}>
@@ -16,7 +16,7 @@ var List = React.createClass({
     </div>;
   }
 
-});
+}
 
 var ListStyles = StyleSheet.create({
 

@@ -16,13 +16,14 @@ var transitionEnd = require('./TransitionEndName');
 
 // warning: this code is fugly - did several attempts of getting
 // the effects right, which was a challenge
-var Dialog = React.createClass({
+class Dialog extends React.Component {
 
-  getInitialState() {
-    return {
+  constructor(props) {
+    super(props);
+    this.state = {
       expand: false
     };
-  },
+  }
 
   render() {
     var props = this.props;
@@ -30,8 +31,8 @@ var Dialog = React.createClass({
     var node;
     var dimensions;
     var normalStyles = [Typography.body2, styles.normalStyle];
-    if (props.triggerElement && (node = props.triggerElement.getDOMNode())) {
-      var domNode = this.getDOMNode();
+    if (props.triggerElement && (node = React.findDOMNode(props.triggerElement))) {
+      var domNode = React.findDOMNode(this);
 
       if (!this.originalDimensions) {
         var width = domNode.getBoundingClientRect().width;
@@ -87,7 +88,7 @@ var Dialog = React.createClass({
         {props.children}
       </div>
     </div>;
-  },
+  }
 
   onTransitionEnd(e) {
     if (e.propertyName === 'visibility') {
@@ -95,42 +96,41 @@ var Dialog = React.createClass({
       this.reset = true;
       this.setState({expand: false});
     }
-  },
+  }
 
   componentDidMount() {
     if (!transitionEnd) {
       return;
     }
 
-    this.refs.dialog.getDOMNode().addEventListener(transitionEnd, this.onTransitionEnd);
-  },
+    React.findDOMNode(this.refs.dialog).addEventListener(transitionEnd, () => this.onTransitionEnd);
+  }
 
   componentWillUnmount() {
     if (!transitionEnd) {
       return;
     }
 
-    this.refs.dialog.getDOMNode().removeEventListener(transitionEnd, this.onTransitionEnd);
-  },
+    React.findDOMNode(this.refs.dialog).removeEventListener(transitionEnd, () => this.onTransitionEnd);
+  }
 
   componentDidUpdate() {
       var self = this;
       setTimeout(function() {
-        if (self.isMounted()) {
 
-          if (self.reset) {
-            self.reset = false;
-            return;
-          }
-
-          if (!self.state.expand && self.props.show) {
-            self.setState({expand: true});
-          }
+        if (self.reset) {
+          self.reset = false;
+          return;
         }
+
+        if (!self.state.expand && self.props.show) {
+          self.setState({expand: true});
+        }
+
       }, 10);
   }
 
-});
+}
 
 var DialogStyles = StyleSheet.create({
 

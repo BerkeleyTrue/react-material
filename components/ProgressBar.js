@@ -10,20 +10,20 @@ var Colors = require('../style/Colors');
 
 var transitionEnd = require('./TransitionEndName');
 
-var ProgressBar = React.createClass({
+class ProgressBar extends React.Component {
 
-  getInitialState: function() {
-    return {
+  constructor() {
+    this.state = {
       counter: 0,
       indeterminateAnimate: false
     };
-  },
+  }
 
-  propTypes: {
-    percentage: React.PropTypes.number,
-    bufferPercentage: React.PropTypes.number,
-    type: React.PropTypes.string
-  },
+  //propTypes: {
+  //  percentage: React.PropTypes.number,
+  //  bufferPercentage: React.PropTypes.number,
+  //  type: React.PropTypes.string
+  //},
 
   render() {
     var props = this.props;
@@ -58,7 +58,7 @@ var ProgressBar = React.createClass({
             }
           <div ref="progress" styles={progressBarStyles} />
     </div>
-  },
+  }
 
   componentDidMount() {
     var self = this;
@@ -71,11 +71,11 @@ var ProgressBar = React.createClass({
         return;
       }
 
-      this.refs.progress.getDOMNode().addEventListener(transitionEnd, this.onTransitionEnd);
+      React.findDOMNode(this.refs.progress).addEventListener(transitionEnd, this.onTransitionEnd);
     }
 
 
-  },
+  }
 
   onTransitionEnd(e) {
     if (e.propertyName === 'left') {
@@ -97,7 +97,7 @@ var ProgressBar = React.createClass({
     }
   }
 
-});
+}
 
 var ProgressBarStyles = StyleSheet.create({
 

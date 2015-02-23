@@ -10,13 +10,14 @@ var StyleSheet = require('react-style');
 
 var RadioButton = require('./RadioButton');
 
-var ToggleButton = React.createClass({
+class ToggleButton extends React.Component {
 
-  getInitialState(){
-    return {
+  constructor(props) {
+    super(props);
+    this.state = {
       checked: false
-    };
-  },
+    }
+  }
 
   render() {
     var props = this.props;
@@ -44,7 +45,7 @@ var ToggleButton = React.createClass({
         </div>
       </div>
     </div>;
-  },
+  }
 
   onClick() {
     var props = this.props;
@@ -56,7 +57,7 @@ var ToggleButton = React.createClass({
     }
   }
 
-});
+}
 
 var ToggleButtonStyles = StyleSheet.create({
 

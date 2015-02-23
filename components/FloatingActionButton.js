@@ -17,17 +17,18 @@ if (typeof window !== 'undefined') {
   isTouchDevice = 'ontouchstart' in window;
 }
 
-var FloatingActionButton = React.createClass({
+class FloatingActionButton extends React.Component {
 
-  propTypes: {
-    icon: React.PropTypes.string.isRequired
-  },
+  //propTypes: {
+  //  icon: React.PropTypes.string.isRequired
+  //},
 
-  getInitialState() {
-    return {
+  constructor(props) {
+    super(props);
+    this.state = {
       active: false
     };
-  },
+  }
 
   render() {
     var props = this.props;
@@ -72,12 +73,12 @@ var FloatingActionButton = React.createClass({
 
     return <div   role="button"
                   tabIndex={0}
-                  onTouchStart={isTouchDevice && this.onMouseDown}
-                  onTouchEnd={isTouchDevice && this.onMouseUp}
-                  onTouchCancel={isTouchDevice && this.onMouseUp}
-                  onMouseDown={!isTouchDevice && this.onMouseDown}
-                  onMouseUp={!isTouchDevice && this.onMouseUp}
-                  onMouseLeave={!isTouchDevice && this.onMouseLeave}
+                  onTouchStart={() => isTouchDevice && this.onMouseDown()}
+                  onTouchEnd={() => isTouchDevice && this.onMouseUp()}
+                  onTouchCancel={() => isTouchDevice && this.onMouseUp()}
+                  onMouseDown={() => !isTouchDevice && this.onMouseDown()}
+                  onMouseUp={() => !isTouchDevice && this.onMouseUp()}
+                  onMouseLeave={() => !isTouchDevice && this.onMouseLeave()}
                   styles={containerStyles}>
         <Shadow size={shadowSize} styles={styles.shadowStyle}/>
         <div styles={percentageStyling}>
@@ -94,7 +95,7 @@ var FloatingActionButton = React.createClass({
         <Icon icon={props.icon} styles={props.mini ? styles.miniIconStyle : styles.defaultIconStyle}/>
       </div>
     </div>;
-  },
+  }
 
 
   onMouseUp() {
@@ -103,7 +104,7 @@ var FloatingActionButton = React.createClass({
     if(props.onClick) {
       props.onClick();
     }
-  },
+  }
 
   onMouseLeave() {
     var props = this.props;
@@ -111,9 +112,10 @@ var FloatingActionButton = React.createClass({
       return;
     }
     this.setState({active: false});
-  },
+  }
 
   onMouseDown() {
+    console.log('BOOOEEE');
     var props = this.props;
     if (props.disabled || props.percentage) {
       return;
@@ -121,7 +123,7 @@ var FloatingActionButton = React.createClass({
     this.setState({active: true});
   }
 
-});
+}
 
 var FloatingActionButtonStyles = StyleSheet.create({
 

@@ -8,9 +8,9 @@ var StyleSheet = require('react-style');
 
 var Shadow = require('./Shadow');
 
-var Card = React.createClass({
+class Card extends React.Component {
 
-  render: function() {
+  render() {
     var props  = this.props;
     var styles = CardStyles;
     return <div styles={styles.normalCardStyle}>
@@ -22,7 +22,7 @@ var Card = React.createClass({
     </div>;
   }
 
-});
+}
 
 var CardStyles = StyleSheet.create({
 

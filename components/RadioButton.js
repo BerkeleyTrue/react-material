@@ -10,19 +10,18 @@ var Colors = require('../style/Colors');
 
 var CircleShadow = require('./CircleShadow');
 
-var RadioButton = React.createClass({
+class RadioButton extends React.Component {
 
-  isChecked: false,
-
-  getInitialState: function() {
+  constructor(props) {
+    super(props);
     var checked = this.props.checked || false;
     this.isChecked = checked;
     return {
       checked: checked
     };
-  },
+  }
 
-  render: function() {
+  render() {
     var props = this.props;
     var styles = RadioButtonStyles;
     var checked = this.state.checked || props.checked;
@@ -31,8 +30,8 @@ var RadioButton = React.createClass({
 
     return <div tabIndex={0}
                 styles={[styles.normalStyle, propStyles.normalStyle]}
-                onClick={this.onClick}
-                onMouseDown={this.onMouseDown}>
+                onClick={() => this.onClick()}
+                onMouseDown={() => this.onMouseDown()}>
       <div styles={[styles.offButtonStyle,
                     propStyles.offButtonStyle]} />
       <div styles={[styles.onButtonStyle,
@@ -45,12 +44,12 @@ var RadioButton = React.createClass({
         {props.children}
       </div>
     </div>;
-  },
+  }
 
-  onClick: function() {
+  onClick() {
     var props = this.props;
     var position = 0;
-    var el = this.getDOMNode();
+    var el = React.findDOMNode(this);
     while(el = el.previousSibling) {
       position++
     }
@@ -63,13 +62,13 @@ var RadioButton = React.createClass({
     var isChecked = !state.checked;
     this.setState({checked: isChecked});
     this.isChecked = isChecked;
-  },
+  }
 
-  onMouseDown: function(){
+  onMouseDown(){
     this.setState({mouseDown: !this.state.checked});
   }
 
-});
+}
 
 var RadioButtonStyles = StyleSheet.create({
 
