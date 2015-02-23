@@ -4,58 +4,11 @@
 'use strict';
 
 var React = require('react');
-var ReactStyle = require('react-style');
+var StyleSheet = require('react-style');
 
 var Colors = require('../style/Colors');
 
 var transitionEnd = require('./TransitionEndName');
-
-var ProgressBarStyles = {
-
-  normalStyle: ReactStyle({
-    backgroundColor: Colors.grey.P300,
-    height: 4,
-    overflow: 'hidden',
-    position: 'relative'
-  }),
-
-  progressStyle: ReactStyle({
-    backgroundColor: Colors.red.P600,
-    bottom: 0,
-    borderTopRightRadius: 3,
-    borderBottomRightRadius: 3,
-    left: 0,
-    position: 'absolute',
-    top: 0,
-    transition: 'width .65s linear'
-  }),
-
-  indeterminateBigStyle: ReactStyle({
-    borderRadius: 3,
-    width: '75%',
-    left: '-75%'
-  }),
-
-  indeterminateBigAnimateStyle: ReactStyle({
-    left: '100%',
-    transition: 'left .65s ease-in, width .65s ease-in'
-  }),
-
-  indeteminateSmallSlowAnimateStyle: ReactStyle({
-    width: '10%',
-    transition: 'left 1.25s ease-in, width .65s ease-in'
-  }),
-
-  loadingStyle: ReactStyle({
-    position: 'relative',
-    height: 4
-  }),
-
-  bufferingStyle: ReactStyle({
-
-  })
-
-};
 
 var ProgressBar = React.createClass({
 
@@ -78,7 +31,7 @@ var ProgressBar = React.createClass({
     var state = this.state;
     var progressBarStyles = [styles.progressStyle];
     if (props.percentage) {
-      progressBarStyles.push(ReactStyle({width: props.percentage + '%'}));
+      progressBarStyles.push({width: props.percentage + '%'});
     }
     if (props.styles) {
       progressBarStyles = progressBarStyles.concat(props.styles);
@@ -93,7 +46,7 @@ var ProgressBar = React.createClass({
       }
     }
 
-    var bufferStyles = [styles.normalStyle, ReactStyle({width: props.bufferPercentage + '%'})];
+    var bufferStyles = [styles.normalStyle, {width: props.bufferPercentage + '%'}];
 
 
     return <div styles={props.bufferPercentage ? styles.loadingStyle : styles.normalStyle}>
@@ -142,6 +95,53 @@ var ProgressBar = React.createClass({
         }, 0);
       }
     }
+  }
+
+});
+
+var ProgressBarStyles = StyleSheet.create({
+
+  normalStyle: {
+    backgroundColor: Colors.grey.P300,
+    height: 4,
+    overflow: 'hidden',
+    position: 'relative'
+  },
+
+  progressStyle: {
+    backgroundColor: Colors.red.P600,
+    bottom: 0,
+    borderTopRightRadius: 3,
+    borderBottomRightRadius: 3,
+    left: 0,
+    position: 'absolute',
+    top: 0,
+    transition: 'width .65s linear'
+  },
+
+  indeterminateBigStyle: {
+    borderRadius: 3,
+    width: '75%',
+    left: '-75%'
+  },
+
+  indeterminateBigAnimateStyle: {
+    left: '100%',
+    transition: 'left .65s ease-in, width .65s ease-in'
+  },
+
+  indeteminateSmallSlowAnimateStyle: {
+    width: '10%',
+    transition: 'left 1.25s ease-in, width .65s ease-in'
+  },
+
+  loadingStyle: {
+    position: 'relative',
+    height: 4
+  },
+
+  bufferingStyle: {
+
   }
 
 });

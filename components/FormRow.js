@@ -4,15 +4,7 @@
 'use strict';
 
 var React = require('react');
-var ReactStyle = require('react-style');
-
-var FormRowStyles = {
-
-  normalStyle: ReactStyle({
-    padding: '20px'
-  })
-
-};
+var StyleSheet = require('react-style');
 
 var FormRow = React.createClass({
 
@@ -22,6 +14,14 @@ var FormRow = React.createClass({
     return <div styles={styles.normalStyle}>
       {props.children}
     </div>;
+  }
+
+});
+
+var FormRowStyles = StyleSheet.create({
+
+  normalStyle: {
+    padding: '20px'
   }
 
 });

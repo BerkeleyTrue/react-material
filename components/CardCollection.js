@@ -4,13 +4,7 @@
 'use strict';
 
 var React = require('react');
-var ReactStyle = require('react-style');
-
-var CardCollectionStyles = {
-  normalCardCollectionStyle: ReactStyle({
-
-  })
-};
+var StyleSheet = require('react-style');
 
 var CardCollection = React.createClass({
 
@@ -21,6 +15,12 @@ var CardCollection = React.createClass({
     </div>;
   }
 
+});
+
+var CardCollectionStyles = StyleSheet.create({
+  normalCardCollectionStyle: {
+
+  }
 });
 
 module.exports = CardCollection;

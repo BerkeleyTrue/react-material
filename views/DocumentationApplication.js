@@ -6,7 +6,7 @@
 require("./style.css");
 
 var React = require('react');
-var ReactStyle = require('react-style');
+var StyleSheet = require('react-style');
 React.initializeTouchEvents(true);
 
 var Colors = require('../style/Colors');
@@ -55,51 +55,51 @@ var DocumentationApplicationView = React.createClass({
       view: 0
     }
   },
-  styles: {
+  styles: StyleSheet.create({
 
-	  normalStyle: ReactStyle({
+	  normalStyle: {
 		  backgroundColor: Colors.grey.P100,
 		  minHeight: '100%'
-	  }),
+	  },
 
-	  containerStyle: ReactStyle({
+	  containerStyle: {
 		  margin: 'auto',
 		  maxWidth: '700px',
 		  padding: '56px 20px 0'
-	  }),
+	  },
 
-	  headerStyle: ReactStyle({
+	  headerStyle: {
 		  color: Colors.indigo.P500,
 		  fontSize: '34',
 		  lineHeight: '32px',
 		  marginBottom: 42,
 		  paddingTop: 80,
 		  fontWeight: 400
-	  }),
+	  },
 
-	  paragraphStyle: ReactStyle({
+	  paragraphStyle: {
 		  color: Colors.grey.P900,
 		  fontSize: '20',
 		  lineHeight: '32px'
-	  }),
+	  },
 
 	  appBar: {
 
-		  normalAppBarStyle: ReactStyle({
-			  backgroundColor: Colors.blue.P500,
-		    color: 'white',
-		    fill: 'white'
-		  }),
-
-		  placeHolderStyle: ReactStyle({
-			  backgroundColor: Colors.blue.P500
-		  }),
-
-		  titleStyle: ReactStyle({
-			  color: 'white'
-		  })
+		  //normalAppBarStyle: ReactStyle({
+			 // backgroundColor: Colors.blue.P500,
+		  //  color: 'white',
+		  //  fill: 'white'
+		  //}),
+      //
+		  //placeHolderStyle: ReactStyle({
+			 // backgroundColor: Colors.blue.P500
+		  //}),
+      //
+		  //titleStyle: ReactStyle({
+			 // color: 'white'
+		  //})
 	  }
-  },
+  }),
 
   onNavButtonClick: function() {
     this.setState({showSideNavigation: !this.state.showSideNavigation});

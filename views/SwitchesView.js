@@ -4,8 +4,7 @@
 'use strict';
 
 var React = require('react');
-var ReactStyle = require('react-style');
-
+var StyleSheet = require('react-style');
 var FormRow = require('../components/FormRow');
 var CheckBox = require('../components/CheckBox');
 var RadioButton = require('../components/RadioButton');
@@ -15,11 +14,11 @@ var ToggleButton = require('../components/ToggleButton');
 
 var SwitchesView = React.createClass({
 
-	styles: {
-		containerStyle: ReactStyle({
+	styles: StyleSheet.create({
+		containerStyle: {
 			marginTop: '60px'
-		})
-  },
+		}
+  }),
 
   getInitialState() {
     return {

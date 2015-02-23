@@ -4,7 +4,7 @@
 'use strict';
 
 var React = require('react');
-var ReactStyle = require('react-style');
+var StyleSheet = require('react-style');
 
 var Button = require('../components/Button');
 var Colors = require('../style/Colors');
@@ -18,15 +18,15 @@ var ButtonsView = React.createClass({
       <h2>Main buttons</h2>
       <h3>Floating action buttons</h3>
       <div>
-        <FloatingActionButton ref="fab1" icon="undo" styles={[ReactStyle({backgroundColor:Colors.red.P600})]}/> {' '}
-        <FloatingActionButton ref="fab2" icon="arrow-forward" mini={true} styles={[ReactStyle({backgroundColor:Colors.blue.P500})]}/>
+        <FloatingActionButton ref="fab1" icon="undo" styles={[{backgroundColor:Colors.red.P600}]}/> {' '}
+        <FloatingActionButton ref="fab2" icon="arrow-forward" mini={true} styles={[{backgroundColor:Colors.blue.P500}]}/>
       </div>
       <h3>Raised button</h3>
       <div>
         <Button raised={true}>
           Button 1
         </Button>{' '}
-        <Button raised={true} styles={ReactStyle({marginLeft:10})}>
+        <Button raised={true} styles={{marginLeft:10}}>
           Button 2
         </Button>
       </div>

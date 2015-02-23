@@ -24,7 +24,7 @@
 //      | 16 |---
 
 var React = require('react');
-var ReactStyle = require('react-style');
+var StyleSheet = require('react-style');
 
 var Colors = require('../style/Colors');
 var Typography = require('../style/Typography');
@@ -37,119 +37,6 @@ var labelColor = Colors.grey.P500;
 
 var transitionDuration = '0.2s';
 var textMargin = '0.5em 0 0.25em';
-
-var TextFieldStyles = {
-
-  normalTextFieldStyle: ReactStyle({
-    background: 'transparent',
-    fontFamily: Typography.fontFamily,
-    fontSize: 16,
-    border: 'none',
-    outline: 'none',
-    left: 0,
-    width: '100%',
-    padding: 0,
-    margin: textMargin
-  }, 'normalTextFieldStyle'),
-
-  underlineContainerStyle: ReactStyle({
-    position: 'relative',
-    left: 0,
-    right: 0,
-    height: 0,
-    overflow: 'visible'
-  }, 'underlineContainerStyle'),
-
-  underlineStyle: ReactStyle({
-    backgroundColor: labelColor,
-    height: 1
-  }),
-
-  // style used for the underline when the input
-  // has focus
-  focusedUnderlineStyle: ReactStyle({
-    backgroundColor: focusColor,
-    height: 2,
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    opacity: '0',
-    transition: `left ${transitionDuration} ease-out, right ${transitionDuration} ease-out`
-  }, 'focusedUnderlineStyle'),
-
-  errorUnderlineStyle: ReactStyle({
-    backgroundColor: Colors.red.P400
-  }, 'errorTextFieldStyle'),
-
-  fullWidthTextFieldStyle: ReactStyle({
-    width: '100%'
-  }, 'fullWidthTextFieldStyle'),
-
-  placeHolderStyling: ReactStyle({
-    color: labelColor,
-    fontSize: 16,
-    left: 1,
-    position: 'absolute',
-    opacity: '1',
-    transition: 'top .18s linear, font-size .18s linear, opacity .10s linear',
-    pointerEvents: 'none',
-    margin: textMargin
-  }, 'placeHolderStyling'),
-
-  floatingLabelPlaceHolderStyling: ReactStyle({
-    top: 27
-  }, 'floatingLabelPlaceHolderStyling'),
-
-  containerStyling: ReactStyle({
-    position: 'relative',
-    width: 300,
-    paddingBottom: 8
-  }, 'containerStyling'),
-
-  placeHolderTopStyling: ReactStyle({
-    fontSize: 12,
-    top: 4
-  }, 'placeHolderTopStyling'),
-
-  scrollBlocksStyle: ReactStyle({
-    backgroundColor: labelColor,
-    bottom: 6,
-    height: 3,
-    opacity: '0',
-    position: 'absolute',
-    transition: 'opacity .28s linear',
-    width: 3,
-    ':before': {
-      backgroundColor: labelColor,
-      bottom: 0,
-      content: "''",
-      position: 'absolute',
-      height: 3,
-      width: 3,
-      right: 6
-    },
-    ':after': {
-      backgroundColor: labelColor,
-      bottom: 0,
-      content: "''",
-      position: 'absolute',
-      height: 3,
-      width: 3,
-      right: -6
-    }
-  }, 'scrollBlocksStyle'),
-
-  focusStyle: ReactStyle({
-    backgroundColor: focusColor,
-    ':before': {
-      backgroundColor: focusColor
-    },
-    ':after': {
-      backgroundColor: focusColor
-    }
-  }, 'focusStyle')
-};
 
 var TextField = React.createClass({
 
@@ -181,10 +68,10 @@ var TextField = React.createClass({
       if (props.floatingLabel) {
         placeHolderStyling.push(styles.placeHolderTopStyling);
         if (this.state.focus) {
-          placeHolderStyling.push(ReactStyle({color: focusColor}));
+          placeHolderStyling.push({color: focusColor});
         }
       } else {
-          placeHolderStyling.push(ReactStyle({opacity: '0'}));
+          placeHolderStyling.push({opacity: '0'});
       }
     }
 
@@ -197,19 +84,19 @@ var TextField = React.createClass({
 
     var containerStyling = [styles.containerStyling];
     if (props.floatingLabel) {
-        containerStyling.push(ReactStyle({height: '66px'}));
+        containerStyling.push({height: '66px'});
     }
     containerStyling.push(propStyles.containerStyling);
 
     var textFieldStyling = [styles.normalTextFieldStyle];
 
     if (props.floatingLabel) {
-      textFieldStyling.push(ReactStyle({paddingTop: 25}));
+      textFieldStyling.push({paddingTop: 25});
     }
 
     var focusedUnderlineStyling = [styles.focusedUnderlineStyle];
     if (this.state.focus) {
-      focusedUnderlineStyling.push(ReactStyle({opacity:1}));
+      focusedUnderlineStyling.push({opacity:1});
     }
 
     if (props.error) {
@@ -235,15 +122,15 @@ var TextField = React.createClass({
         <div ref='underline' styles={styles.underlineStyle}></div>
         <div ref='focusedUnderline' styles={focusedUnderlineStyling}></div>
       </div>
-      <div styles={[scrollLeft ? ReactStyle({opacity: '1'}) : null,
+      <div styles={[scrollLeft ? {opacity: '1'} : null,
                    this.state.focus ? styles.focusStyle : null,
                   styles.scrollBlocksStyle,
-                  ReactStyle({left: '6px'})]} />
+                  {left: '6px'}]} />
       <div styles={[(scrollWidth > (scrollLeft + width)) ?
-                     ReactStyle({opacity: '1'}) : null,
+      {opacity: '1'} : null,
                     this.state.focus ? styles.focusStyle : null,
                     styles.scrollBlocksStyle,
-                    ReactStyle({right: '6px'})]} />
+                    {right: '6px'}]} />
     </div>;
   },
 
@@ -322,6 +209,119 @@ var TextField = React.createClass({
     } else {
         return '';
     }
+  }
+});
+
+var TextFieldStyles = StyleSheet.create({
+
+  normalTextFieldStyle: {
+    background: 'transparent',
+    fontFamily: Typography.fontFamily,
+    fontSize: 16,
+    border: 'none',
+    outline: 'none',
+    left: 0,
+    width: '100%',
+    padding: 0,
+    margin: textMargin
+  },
+
+  underlineContainerStyle: {
+    position: 'relative',
+    left: 0,
+    right: 0,
+    height: 0,
+    overflow: 'visible'
+  },
+
+  underlineStyle: {
+    backgroundColor: labelColor,
+    height: 1
+  },
+
+  // style used for the underline when the input
+  // has focus
+  focusedUnderlineStyle: {
+    backgroundColor: focusColor,
+    height: 2,
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    opacity: '0',
+    transition: `left ${transitionDuration} ease-out, right ${transitionDuration} ease-out`
+  },
+
+  errorUnderlineStyle: {
+    backgroundColor: Colors.red.P400
+  },
+
+  fullWidthTextFieldStyle: {
+    width: '100%'
+  },
+
+  placeHolderStyling: {
+    color: labelColor,
+    fontSize: 16,
+    left: 1,
+    position: 'absolute',
+    opacity: '1',
+    transition: 'top .18s linear, font-size .18s linear, opacity .10s linear',
+    pointerEvents: 'none',
+    margin: textMargin
+  },
+
+  floatingLabelPlaceHolderStyling: {
+    top: 27
+  },
+
+  containerStyling: {
+    position: 'relative',
+    width: 300,
+    paddingBottom: 8
+  },
+
+  placeHolderTopStyling: {
+    fontSize: 12,
+    top: 4
+  },
+
+  scrollBlocksStyle: {
+    backgroundColor: labelColor,
+    bottom: 6,
+    height: 3,
+    opacity: '0',
+    position: 'absolute',
+    transition: 'opacity .28s linear',
+    width: 3,
+    //':before': {
+    //  backgroundColor: labelColor,
+    //  bottom: 0,
+    //  content: "''",
+    //  position: 'absolute',
+    //  height: 3,
+    //  width: 3,
+    //  right: 6
+    //},
+    //':after': {
+    //  backgroundColor: labelColor,
+    //  bottom: 0,
+    //  content: "''",
+    //  position: 'absolute',
+    //  height: 3,
+    //  width: 3,
+    //  right: -6
+    //}
+  },
+
+  focusStyle: {
+    backgroundColor: focusColor,
+    //':before': {
+    //  backgroundColor: focusColor
+    //},
+    //':after': {
+    //  backgroundColor: focusColor
+    //}
   }
 });
 

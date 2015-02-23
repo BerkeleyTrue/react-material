@@ -4,7 +4,7 @@
 'use strict';
 
 var React = require('react');
-var ReactStyle = require('react-style');
+var StyleSheet = require('react-style');
 
 var isTransform = require('./isTransform');
 
@@ -14,35 +14,6 @@ var transitionEnd = require('./TransitionEndName');
 
 var isTouchDevice = typeof window !== 'undefined' &&
                     'ontouchstart' in window;
-
-var RippleContainerStyles = {
-
-  normalStyle: ReactStyle({
-    height: '100%',
-    left: 0,
-    position: 'absolute',
-    top: 0,
-    width: '100%'
-  }),
-
-  rippleStyle: ReactStyle({
-    display: 'block',
-    position: 'absolute',
-    background: 'rgba(0, 0, 0, 0.04)',
-    borderRadius: '50%',
-    transform: 'scale(0)',
-    transition: 'transform .25s linear, opacity .25s linear .2s'
-  }),
-
-  rippleAnimationStyle: ReactStyle({
-    transform: 'scale(2)'
-  }),
-
-  rippleFadeoutStyle: ReactStyle({
-    opacity: '0'
-  })
-
-};
 
 var RippleContainer = React.createClass({
 
@@ -65,10 +36,10 @@ var RippleContainer = React.createClass({
         rippleStyles.push(styles.rippleAnimationStyle);
       }
       if (i < l - 1 || (ripple.transitionComplete && ripple.fadeOut)) {
-        rippleStyles.push(ReactStyle({opacity: '0'}));
+        rippleStyles.push({opacity: '0'});
       }
 
-      rippleStyles.push(ReactStyle({left: ripple.x, top: ripple.y, width: ripple.width, height: ripple.height}));
+      rippleStyles.push({left: ripple.x, top: ripple.y, width: ripple.width, height: ripple.height});
       var rippleComponent = <div key={ripple.id}
                                  ref={'ripple_'+ripple.id}
                                  styles={rippleStyles} />;
@@ -168,6 +139,35 @@ var RippleContainer = React.createClass({
 
     //TODO: make sure we only do this once, instead of all the time...
     domNode.addEventListener(transitionEnd, this.endRipple);
+  }
+
+});
+
+var RippleContainerStyles = StyleSheet.create({
+
+  normalStyle: {
+    height: '100%',
+    left: 0,
+    position: 'absolute',
+    top: 0,
+    width: '100%'
+  },
+
+  rippleStyle: {
+    display: 'block',
+    position: 'absolute',
+    background: 'rgba(0, 0, 0, 0.04)',
+    borderRadius: '50%',
+    transform: 'scale(0)',
+    transition: 'transform .25s linear, opacity .25s linear .2s'
+  },
+
+  rippleAnimationStyle: {
+    transform: 'scale(2)'
+  },
+
+  rippleFadeoutStyle: {
+    opacity: '0'
   }
 
 });

@@ -4,17 +4,9 @@
 'use strict';
 
 var React = require('react');
-var ReactStyle = require('react-style');
+var StyleSheet = require('react-style');
 
 var ListItem = require('../components/ListItem');
-
-var BottomSheetItemStyles = {
-
-  normalStyle: ReactStyle({
-    height: 48
-  })
-
-};
 
 var BottomSheetItem = React.createClass({
 
@@ -23,5 +15,12 @@ var BottomSheetItem = React.createClass({
   }
 
 });
+
+var BottomSheetItemStyles = StyleSheet.create({
+  normalStyle: {
+    height: 48
+  }
+});
+
 
 module.exports = BottomSheetItem;

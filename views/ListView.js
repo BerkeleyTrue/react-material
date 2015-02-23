@@ -4,7 +4,7 @@
 'use strict';
 
 var React = require('react');
-var ReactStyle = require('react-style');
+var StyleSheet = require('react-style');
 
 var CheckBox = require('../components/CheckBox');
 var List = require('../components/List');

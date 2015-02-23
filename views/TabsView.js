@@ -4,7 +4,7 @@
 'use strict';
 
 var React = require('react');
-var ReactStyle = require('react-style');
+var StyleSheet = require('react-style');
 
 var Tabs = require('../components/Tabs');
 var Tab = require('../components/Tab');

@@ -1,91 +1,91 @@
 'use strict';
 
-var ReactStyle = require('react-style');
+var StyleSheet = require('react-style');
 
 var robotoFont = "'Roboto', 'Helvetica Neue', Helvetica, Arial";
 
-var fontStyles = {
-  display4: ReactStyle({
+var fontStyles = StyleSheet.create({
+  display4: {
     color: 'rgba(0, 0, 0, .54)',
     fontFamily: robotoFont,
     fontWeight: 300,
     fontSize: 112,
     whiteSpace: 'nowrap'
-  }),
-  display3: ReactStyle({
+  },
+  display3: {
     color: 'rgba(0, 0, 0, .54)',
     fontFamily: robotoFont,
     fontWeight: 400,
     fontSize: 56,
     whiteSpace: 'nowrap'
-  }),
-  display2: ReactStyle({
+  },
+  display2: {
     color: 'rgba(0, 0, 0, .54)',
     fontFamily: robotoFont,
     fontWeight: 400,
     fontSize: 45
-  }),
-  display1: ReactStyle({
+  },
+  display1: {
     color: 'rgba(0, 0, 0, .54)',
     fontFamily: robotoFont,
     fontWeight: 400,
     fontSize: 34
-  }),
-  headline: ReactStyle({
+  },
+  headline: {
     color: 'rgba(0, 0, 0, .87)',
     fontFamily: robotoFont,
     fontWeight: 400,
     fontSize: 24
-  }),
-  title: ReactStyle({
+  },
+  title: {
     color: 'rgba(0, 0, 0, .87)',
     fontFamily: robotoFont,
     fontWeight: 500,
     fontSize: 20,
     whiteSpace: 'nowrap'
-  }),
-  subhead: ReactStyle({
+  },
+  subhead: {
     color: 'rgba(0, 0, 0, .87)',
     fontFamily: robotoFont,
     fontWeight: 400,
     fontSize: 16
-  }),
-  body2: ReactStyle({
+  },
+  body2: {
     color: 'rgba(0, 0, 0, .87)',
     fontFamily: robotoFont,
     fontWeight: 500,
     fontSize: 14,
     lineHeight: ''
-  }),
-  body1: ReactStyle({
+  },
+  body1: {
     color: 'rgba(0, 0, 0, .87)',
     fontFamily: robotoFont,
     fontWeight: 400,
     fontSize: 14
-  }),
-  caption: ReactStyle({
+  },
+  caption: {
     color: 'rgba(0, 0, 0, .54)',
     fontFamily: robotoFont,
     fontWeight: 400,
     fontSize: 12,
     whiteSpace: 'nowrap'
-  }),
-  menu: ReactStyle({
+  },
+  menu: {
     color: 'rgba(0, 0, 0, .87)',
     fontFamily: robotoFont,
     fontWeight: 500,
     fontSize: 14,
     whiteSpace: 'nowrap'
-  }),
-  button: ReactStyle({
+  },
+  button: {
     color: 'rgba(0, 0, 0, .87)',
     fontFamily: robotoFont,
     fontWeight: 500,
     fontSize: 14,
     whiteSpace: 'nowrap',
     textTransform: 'uppercase'
-  })
-};
+  }
+});
 
 module.exports = {
 	fontFamily: robotoFont,

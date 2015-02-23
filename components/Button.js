@@ -4,7 +4,7 @@
 'use strict';
 
 var React = require('react');
-var ReactStyle = require('react-style');
+var StyleSheet = require('react-style');
 
 var Colors = require('../style/Colors');
 var Sizes = require('../style/Sizes');
@@ -15,60 +15,19 @@ var Shadow = require('./Shadow');
 
 var isTouchDevice = typeof window !== 'undefined' && 'ontouchstart' in window;
 
-var ButtonStyles = {
+class Button extends React.Component {
 
-  normalButtonStyle: ReactStyle({
-    webkitTapHighlightColor: 'rgba(0,0,0,0)',
-    cursor: 'pointer',
-    position: 'relative',
-    height: Sizes.Button.height - 2 * 9,
-    borderRadius: 3,
-    display: 'inline-block',
-    outline: 'none',
-    padding: 9,
-    textAlign: 'center',
-    userSelect: 'none',
-    minWidth: Sizes.Button.minWidth,
-    lineHeight: '19px'
-  }),
+  //propTypes: {
+  //  raised: React.PropTypes.bool,
+  //  disabled: React.PropTypes.bool
+  //},
 
-  raisedButtonStyle: ReactStyle({
-    backgroundColor: Colors.grey.P300
-  }),
-
-  raisedButtonPressedStyle: ReactStyle({
-    boxShadow: '0 8px 17px 0 rgba(0, 0, 0, 0.2)'
-  }),
-
-  disabledButtonStyle: ReactStyle({
-    backgroundColor: Colors.grey.P300,
-    color: Colors.grey.P500,
-    cursor: 'default'
-  }),
-
-  shadowStyle: ReactStyle({
-    borderRadius: '3px'
-  }),
-
-  rippleContainerStyle: ReactStyle({
-    overflow: 'hidden',
-    borderRadius: '3px'
-  })
-
-};
-
-var Button = React.createClass({
-
-  propTypes: {
-    raised: React.PropTypes.bool,
-    disabled: React.PropTypes.bool
-  },
-
-  getInitialState() {
-    return {
+  constructor(props) {
+    super(props);
+    this.state = {
       active: false
-    };
-  },
+    }
+  }
 
   render() {
     var props = this.props;
@@ -93,12 +52,12 @@ var Button = React.createClass({
     return <div role="button"
                 tabIndex="0"
                 styles={styles}
-                onTouchStart={isTouchDevice && this.onMouseDown}
-                onTouchEnd={isTouchDevice && this.onMouseUp}
-                onTouchCancel={isTouchDevice && this.onMouseUp}
-                onMouseDown={!isTouchDevice && this.onMouseDown}
-                onMouseUp={!isTouchDevice && this.onMouseUp}
-                onMouseLeave={!isTouchDevice && this.onMouseUp} >
+                onTouchStart={() => isTouchDevice && this.onMouseDown}
+                onTouchEnd={() => isTouchDevice && this.onMouseUp}
+                onTouchCancel={() => isTouchDevice && this.onMouseUp}
+                onMouseDown={() => !isTouchDevice && this.onMouseDown}
+                onMouseUp={() => !isTouchDevice && this.onMouseUp}
+                onMouseLeave={() => !isTouchDevice && this.onMouseUp} >
           <Shadow size={shadowSize} styles={ButtonStyles.shadowStyle}>
 
       {!props.disabled &&
@@ -107,14 +66,14 @@ var Button = React.createClass({
         {props.children}
           </Shadow>
       </div>;
-  },
+  }
 
   onMouseUp() {
     if (this.props.disabled) {
       return;
     }
     this.setState({active: false});
-  },
+  }
 
   onMouseDown() {
     if (this.props.disabled) {
@@ -123,6 +82,49 @@ var Button = React.createClass({
     this.setState({active: true});
   }
 
+};
+
+var ButtonStyles = StyleSheet.create({
+
+  normalButtonStyle: {
+    webkitTapHighlightColor: 'rgba(0,0,0,0)',
+    cursor: 'pointer',
+    position: 'relative',
+    height: Sizes.Button.height - 2 * 9,
+    borderRadius: 3,
+    display: 'inline-block',
+    outline: 'none',
+    padding: 9,
+    textAlign: 'center',
+    userSelect: 'none',
+    minWidth: Sizes.Button.minWidth,
+    lineHeight: '19px'
+  },
+
+  raisedButtonStyle: {
+    backgroundColor: Colors.grey.P300
+  },
+
+  raisedButtonPressedStyle: {
+    boxShadow: '0 8px 17px 0 rgba(0, 0, 0, 0.2)'
+  },
+
+  disabledButtonStyle: {
+    backgroundColor: Colors.grey.P300,
+    color: Colors.grey.P500,
+    cursor: 'default'
+  },
+
+  shadowStyle: {
+    borderRadius: '3px'
+  },
+
+  rippleContainerStyle: {
+    overflow: 'hidden',
+    borderRadius: '3px'
+  }
+
 });
+
 
 module.exports = Button;

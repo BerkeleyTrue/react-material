@@ -4,28 +4,9 @@
 'use strict';
 
 var React = require('react');
-var ReactStyle = require('react-style');
+var StyleSheet = require('react-style');
 
 var Shadow = require('./Shadow');
-
-var CardStyles = {
-
-  normalCardStyle: ReactStyle({
-    backgroundColor: 'white',
-    borderRadius: 2,
-    margin: 8,
-    height: 250,
-    padding: 16,
-    position: 'relative'
-  }),
-
-  headerStyle: ReactStyle({
-    cursor: 'default',
-    marginBottom: 35,
-    marginTop: 0
-  })
-
-};
 
 var Card = React.createClass({
 
@@ -39,6 +20,25 @@ var Card = React.createClass({
       }
       {this.props.children}
     </div>;
+  }
+
+});
+
+var CardStyles = StyleSheet.create({
+
+  normalCardStyle: {
+    backgroundColor: 'white',
+    borderRadius: 2,
+    margin: 8,
+    height: 250,
+    padding: 16,
+    position: 'relative'
+  },
+
+  headerStyle: {
+    cursor: 'default',
+    marginBottom: 35,
+    marginTop: 0
   }
 
 });

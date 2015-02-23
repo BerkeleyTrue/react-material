@@ -4,13 +4,13 @@
 'use strict';
 
 var React = require('react');
-var ReactStyle = require('react-style');
+var StyleSheet = require('react-style');
 
 var ShadowStyle = require('../style/Shadow');
 
-var ShadowStyles = {
+var ShadowStyles = StyleSheet.create({
 
-  normalShadowStyle: ReactStyle({
+  normalShadowStyle: {
     bottom: 0,
     left: 0,
     position: 'absolute',
@@ -18,9 +18,9 @@ var ShadowStyles = {
     top: 0,
     willChange: 'box-shadow',
     transition: 'box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1)'
-  })
+  }
 
-};
+});
 
 var Shadow = React.createClass({
 

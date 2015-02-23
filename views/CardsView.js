@@ -4,7 +4,7 @@
 'use strict';
 
 var React = require('react');
-var ReactStyle = require('react-style');
+var StyleSheet = require('react-style');
 
 var Colors = require('../style/Colors');
 
@@ -17,14 +17,14 @@ var ProgressBar = require('../components/ProgressBar');
 
 var CardsView = React.createClass({
 
-	styles: {
+	styles: StyleSheet.create({
 
-		normalStyle: ReactStyle({
+		normalStyle: {
 			margin: '0 auto',
 			width: '300px'
-		})
+		}
 
-	},
+	}),
 
   render: function() {
 	  var styles = this.styles;
@@ -32,7 +32,7 @@ var CardsView = React.createClass({
       <Cards>
         <Card title="Basic components">
           <Button>A simple button</Button>
-          <Button raised={true} styles={[ReactStyle({backgroundColor: Colors.amber.P500, color: Colors.grey.P50})]}>
+          <Button raised={true} styles={[{backgroundColor: Colors.amber.P500, color: Colors.grey.P50}]}>
             Raised button
           </Button>
           <div>

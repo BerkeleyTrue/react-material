@@ -4,24 +4,10 @@
 'use strict';
 
 var React = require('react');
-var ReactStyle = require('react-style');
+var StyleSheet = require('react-style');
 
 var RadioButton = require('./RadioButton');
 var FormRow = require('./FormRow');
-
-var RadioButtonGroupStyles = {
-
-  rowStyle: ReactStyle({
-    padding: '20px 0',
-    ':first-child': {
-      paddingTop: 0
-    },
-    ':last-child': {
-      paddingBottom: 0
-    }
-  })
-
-};
 
 var RadioButtonGroup = React.createClass({
 
@@ -62,6 +48,20 @@ var RadioButtonGroup = React.createClass({
     this.selectedValue = e.ref.props.value || selectedIndex;
     this.setState({selectedIndex: selectedIndex});
     this.props.onChange(e);
+  }
+
+});
+
+var RadioButtonGroupStyles = StyleSheet.create({
+
+  rowStyle: {
+    padding: '20px 0',
+    //':first-child': {
+    //  paddingTop: 0
+    //},
+    //':last-child': {
+    //  paddingBottom: 0
+    //}
   }
 
 });

@@ -6,56 +6,13 @@
 var Colors = require('../style/Colors');
 
 var React = require('react');
-var ReactStyle = require('react-style');
+var StyleSheet = require('react-style');
 
 var Shadow = require('./Shadow');
 var Typography = require('../style/Typography');
 
 var merge = require('../vendor/merge');
 var transitionEnd = require('./TransitionEndName');
-
-var DialogStyles = {
-
-  normalStyle: ReactStyle({
-    backgroundColor: Colors.grey.P50,
-    boxSizing: 'border-box',
-    lineHeight: '24px',
-    opacity: '0',
-    padding: 24,
-    left: '50%',
-    top: '50%',
-    visibility: 'hidden',
-    position: 'fixed',
-    transform: 'translate(0,0) scale(1, 1)',
-    transformOrigin: '0 0',
-    zIndex: '3',
-    willChange: 'transform, opacity, left, top'
-  }),
-
-  titleStyle: ReactStyle({
-    paddingBottom: 10
-  }),
-
-
-  expandStyle: ReactStyle({
-    visibility: 'visible',
-    opacity: '1'
-  }),
-
-  childrenStyle: ReactStyle({
-    position: 'relative' // to re-enable text selection
-  }),
-
-  slideDownStyle: ReactStyle({
-    opacity: '0',
-    transform: 'translate(0, 100%) scale(.5,.5)',
-    transition: 'transform .56s cubic-bezier(.4, 0, .2, 1),' +
-      'opacity .56s cubic-bezier(.4, 0, .2, 1), ' +
-      'visibility 0s linear .57s',
-    visibility: 'hidden'
-  })
-
-};
 
 // warning: this code is fugly - did several attempts of getting
 // the effects right, which was a challenge
@@ -114,10 +71,10 @@ var Dialog = React.createClass({
     }
 
     if (dimensions) {
-      normalStyles.push(ReactStyle(dimensions));
+      normalStyles.push(dimensions);
     }
     if (props.width) {
-      normalStyles.push(ReactStyle({width: props.width}));
+      normalStyles.push({width: props.width});
     }
 
     return <div ref="dialog" styles={normalStyles}>
@@ -171,6 +128,48 @@ var Dialog = React.createClass({
           }
         }
       }, 10);
+  }
+
+});
+
+var DialogStyles = StyleSheet.create({
+
+  normalStyle: {
+    backgroundColor: Colors.grey.P50,
+    boxSizing: 'border-box',
+    lineHeight: '24px',
+    opacity: '0',
+    padding: 24,
+    left: '50%',
+    top: '50%',
+    visibility: 'hidden',
+    position: 'fixed',
+    transform: 'translate(0,0) scale(1, 1)',
+    transformOrigin: '0 0',
+    zIndex: '3',
+    willChange: 'transform, opacity, left, top'
+  },
+
+  titleStyle: {
+    paddingBottom: 10
+  },
+
+  expandStyle: {
+    visibility: 'visible',
+    opacity: '1'
+  },
+
+  childrenStyle: {
+    position: 'relative' // to re-enable text selection
+  },
+
+  slideDownStyle: {
+    opacity: '0',
+    transform: 'translate(0, 100%) scale(.5,.5)',
+    transition: 'transform .56s cubic-bezier(.4, 0, .2, 1),' +
+    'opacity .56s cubic-bezier(.4, 0, .2, 1), ' +
+    'visibility 0s linear .57s',
+    visibility: 'hidden'
   }
 
 });

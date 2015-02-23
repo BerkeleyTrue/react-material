@@ -4,17 +4,7 @@
 'use strict';
 
 var React = require('react');
-var ReactStyle = require('react-style');
-
-var ListStyles = {
-
-  normalListStyle: ReactStyle({
-    overflow: 'auto',
-    overflowY: 'auto',
-    overflowX: 'none'
-  })
-
-};
+var StyleSheet = require('react-style');
 
 var List = React.createClass({
 
@@ -24,6 +14,16 @@ var List = React.createClass({
     return <div styles={listStyle}>
       {this.props.children}
     </div>;
+  }
+
+});
+
+var ListStyles = StyleSheet.create({
+
+  normalListStyle: {
+    overflow: 'auto',
+    overflowY: 'auto',
+    overflowX: 'none'
   }
 
 });

@@ -4,7 +4,7 @@
 'use strict';
 
 var React = require('react');
-var ReactStyle = require('react-style');
+var StyleSheet = require('react-style');
 
 var Button = require('../components/Button');
 var Dialog = require('../components/Dialog');
@@ -14,18 +14,18 @@ var Colors = require('../style/Colors');
 
 var DialogsView = React.createClass({
 
-	styles: {
-		buttonBarStyle: ReactStyle({
+	styles: StyleSheet.create({
+		buttonBarStyle: {
 			position: 'absolute',
 			bottom: -12,
 			right: -8,
 			display: 'inline-block'
-		}),
+		},
 
-		textStyle: ReactStyle({
+		textStyle: {
 			paddingBottom: 40
-		})
-	},
+		}
+	}),
 
   getInitialState() {
     return {
@@ -47,7 +47,7 @@ var DialogsView = React.createClass({
         </div>
         <div styles={styles.buttonBarStyle}>
           <Button onClick={this.onOverlayClick}>Decline</Button>
-          <Button onClick={this.onOverlayClick} styles={ReactStyle({color:Colors.blue.P500})}>Accept</Button>
+          <Button onClick={this.onOverlayClick} styles={{color:Colors.blue.P500}}>Accept</Button>
         </div>
       </Dialog>
     </div>;

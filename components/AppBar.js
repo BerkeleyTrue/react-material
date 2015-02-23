@@ -4,70 +4,11 @@
 'use strict';
 
 var React = require('react');
-var ReactStyle = require('react-style');
+var StyleSheet = require('react-style');
 
 var Colors = require('../style/Colors');
 var Typography = require('../style/Typography');
 var Icon = require('./Icon');
-
-
-var AppBarStyles = {
-
-  normalAppBarStyle: ReactStyle({
-    backgroundColor: Colors.cyan.P500,
-    boxSizing: 'border-box',
-    position: 'fixed',
-    height: 56,
-    top: 0,
-    width: '100%',
-    zIndex: '1'
-  }),
-
-  expandedAppBarStyle: ReactStyle({
-    height: 128,
-    position: 'relative',
-    marginTop: -128
-  }),
-
-  navButtonStyle: ReactStyle({
-    height: 26,
-    webkitTapHighlightColor: 'rgba(0,0,0,0)',
-    position: 'fixed',
-    width: 24,
-    display: 'inline-block',
-    padding: '14px 16px',
-    cursor: 'pointer',
-    verticalAlign: 'top',
-    top: 0
-  }),
-
-  titleStyle: ReactStyle({
-    display: 'inline-block',
-    opacity: 'inherit',
-    cursor: 'default',
-    lineHeight: '56px',
-    position: 'absolute',
-    top: 0,
-    left: 72
-  }),
-
-  expandedTitleStyle: ReactStyle({
-    position: 'relative',
-    left: 14,
-    top: 65
-  }),
-
-  boxShadowStyle: ReactStyle({
-    boxShadow: '0 2px 5px rgba(0, 0, 0, .26)'
-  }),
-
-  placeHolderStyle: ReactStyle({
-    backgroundColor: Colors.cyan.P500,
-    position: 'relative',
-    height: 128,
-    width: '100%'
-  })
-};
 
 var AppBar = React.createClass({
 
@@ -209,6 +150,65 @@ var AppBar = React.createClass({
     window.removeEventListener('scroll', this.onBodyScroll);
   }
 
+});
+
+
+var AppBarStyles = StyleSheet.create({
+
+  normalAppBarStyle: {
+    backgroundColor: Colors.cyan.P500,
+    boxSizing: 'border-box',
+    position: 'fixed',
+    height: 56,
+    top: 0,
+    width: '100%',
+    zIndex: '1'
+  },
+
+  expandedAppBarStyle: {
+    height: 128,
+    position: 'relative',
+    marginTop: -128
+  },
+
+  navButtonStyle: {
+    height: 26,
+    webkitTapHighlightColor: 'rgba(0,0,0,0)',
+    position: 'fixed',
+    width: 24,
+    display: 'inline-block',
+    padding: '14px 16px',
+    cursor: 'pointer',
+    verticalAlign: 'top',
+    top: 0
+  },
+
+  titleStyle: {
+    display: 'inline-block',
+    opacity: 'inherit',
+    cursor: 'default',
+    lineHeight: '56px',
+    position: 'absolute',
+    top: 0,
+    left: 72
+  },
+
+  expandedTitleStyle: {
+    position: 'relative',
+    left: 14,
+    top: 65
+  },
+
+  boxShadowStyle: {
+    boxShadow: '0 2px 5px rgba(0, 0, 0, .26)'
+  },
+
+  placeHolderStyle: {
+    backgroundColor: Colors.cyan.P500,
+    position: 'relative',
+    height: 128,
+    width: '100%'
+  }
 });
 
 module.exports = AppBar;

@@ -4,7 +4,6 @@
 'use strict';
 
 var React = require('react');
-var ReactStyle = require('react-style');
 
 var coreIcons = require('./icons/core-icons.html');
 coreIcons = coreIcons.substr(coreIcons.indexOf('<defs>') + '<defs>'.length);
@@ -27,7 +26,9 @@ var Icon = React.createClass({
     }
 
     if (window.SVGSVGElement) {
-      return <svg styles={this.props.styles} viewBox="0 0 24 24" height="100%" width="100%" preserveAspectRatio="xMidYMid meet" ref="svg" dangerouslySetInnerHTML={{__html: div.querySelector('#' + this.props.icon).innerHTML}} />
+      var html = div.querySelector('#' + this.props.icon).innerHTML;
+
+      return <svg styles={this.props.styles} viewBox="0 0 24 24" height="100%" width="100%" preserveAspectRatio="xMidYMid meet" dangerouslySetInnerHTML={{__html: html}}></svg>
     }
     else {
       // TODO: should go to generated image sprite
