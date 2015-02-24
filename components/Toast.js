@@ -3,7 +3,8 @@
  */
 'use strict';
 
-var React = require('react');
+import React from 'react';
+import StyleSheet from 'react-style';
 
 class Toast extends React.Component {
 

@@ -3,20 +3,20 @@
  */
 'use strict';
 
-var Colors = require('../style/Colors');
+import Colors from '../style/Colors';
 
-var React = require('react');
-var StyleSheet = require('react-style');
+import React from 'react';
+import StyleSheet from 'react-style';
 
-var Shadow = require('./Shadow');
-var Typography = require('../style/Typography');
+import Shadow from './Shadow';
+import Typography from '../style/Typography';
 
-var merge = require('../vendor/merge');
-var transitionEnd = require('./TransitionEndName');
+import merge from '../vendor/merge';
+import transitionEnd from './TransitionEndName';
 
 // warning: this code is fugly - did several attempts of getting
 // the effects right, which was a challenge
-class Dialog extends React.Component {
+export default class Dialog extends React.Component {
 
   constructor(props) {
     super(props);
@@ -173,5 +173,3 @@ var DialogStyles = StyleSheet.create({
   }
 
 });
-
-module.exports = Dialog;

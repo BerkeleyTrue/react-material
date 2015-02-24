@@ -3,12 +3,12 @@
  */
 'use strict';
 
-var React = require('react');
-var StyleSheet = require('react-style');
+import React from 'react';
+import StyleSheet from 'react-style';
 
-var Shadow = require('./Shadow');
+import Shadow from './Shadow';
 
-class Card extends React.Component {
+export default class Card extends React.Component {
 
   render() {
     var props  = this.props;
@@ -42,5 +42,3 @@ var CardStyles = StyleSheet.create({
   }
 
 });
-
-module.exports = Card;

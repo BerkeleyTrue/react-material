@@ -3,12 +3,12 @@
  */
 'use strict';
 
-var React = require('react');
-var StyleSheet = require('react-style');
+import React from 'react';
+import StyleSheet from 'react-style';
 
-var Colors = require('../style/Colors');
+import {Colors} from '../style/';
 
-class BottomSheet extends React.Component{
+export default class BottomSheet extends React.Component {
 
 	hiddenTransformStyle() {
 		var height = 0;
@@ -82,5 +82,3 @@ var BottomSheetStyles = StyleSheet.create({
   }
 
 });
-
-module.exports = BottomSheet;

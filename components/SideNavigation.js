@@ -3,12 +3,12 @@
  */
 'use strict';
 
-var Colors = require('../style/Colors');
+import React from 'react';
+import StyleSheet from 'react-style';
 
-var React = require('react');
-var StyleSheet = require('react-style');
+import {Colors} from '../style/';
 
-class SideNavigation extends React.Component {
+export default class SideNavigation extends React.Component {
 
   render() {
     var props = this.props;
@@ -48,5 +48,3 @@ var SideNavigationStyles = StyleSheet.create({
   }
 
 });
-
-module.exports = SideNavigation;

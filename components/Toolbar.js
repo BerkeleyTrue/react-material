@@ -3,8 +3,8 @@
  */
 'use strict';
 
-var React = require('react');
-var StyleSheet = require('react-style');
+import React from 'react';
+import StyleSheet from 'react-style';
 
 class Toolbar extends React.Component {
 

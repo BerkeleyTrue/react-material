@@ -3,12 +3,12 @@
  */
 'use strict';
 
-var React = require('react');
-var StyleSheet = require('react-style');
+import React from 'react';
+import StyleSheet from 'react-style';
 
-var ShadowStyle = require('../style/Shadow');
+import ShadowStyle from '../style/Shadow';
 
-class Shadow extends React.Component {
+export default class Shadow extends React.Component {
 
   //propTypes: {
   //  size: React.PropTypes.number.isRequired
@@ -70,5 +70,3 @@ var ShadowStyles = StyleSheet.create({
   }
 
 });
-
-module.exports = Shadow;

@@ -3,14 +3,12 @@
  */
 'use strict';
 
-var React = require('react');
+import React from 'react';
 
-class Grid extends React.Component {
+export default class Grid extends React.Component {
 
   render() {
     return <div />;
   }
 
 }
-
-module.exports = Grid;

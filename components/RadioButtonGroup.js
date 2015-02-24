@@ -3,11 +3,11 @@
  */
 'use strict';
 
-var React = require('react');
-var StyleSheet = require('react-style');
+import React from 'react';
+import StyleSheet from 'react-style';
 
-var RadioButton = require('./RadioButton');
-var FormRow = require('./FormRow');
+import RadioButton from './RadioButton'
+import FormRow from './FormRow';
 
 class RadioButtonGroup extends React.Component {
 

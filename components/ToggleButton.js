@@ -3,14 +3,14 @@
  */
 'use strict';
 
-var Colors = require('../style/Colors');
+import {Colors} from '../style/';
 
-var React = require('react');
-var StyleSheet = require('react-style');
+import React from 'react';
+import StyleSheet from 'react-style';
 
-var RadioButton = require('./RadioButton');
+import {RadioButton} from './';
 
-class ToggleButton extends React.Component {
+export default class ToggleButton extends React.Component {
 
   constructor(props) {
     super(props);
@@ -130,6 +130,3 @@ var ToggleButtonStyles = StyleSheet.create({
   }
 
 });
-
-
-module.exports = ToggleButton;

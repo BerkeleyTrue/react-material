@@ -3,13 +3,13 @@
  */
 'use strict';
 
-var React = require('react');
-var StyleSheet = require('react-style');
+import React from 'react';
+import StyleSheet from 'react-style';
 
-var Icon = require('./Icon');
-var RippleContainer = require('./RippleContainer');
+import Icon from './Icon';
+import RippleContainer from './RippleContainer';
 
-class ListItem extends React.Component{
+export default class ListItem extends React.Component{
 
   render() {
     var props = this.props;
@@ -66,5 +66,3 @@ var ListItemStyles = StyleSheet.create({
   }
 
 });
-
-module.exports = ListItem;

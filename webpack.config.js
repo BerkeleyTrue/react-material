@@ -21,13 +21,13 @@ module.exports = {
       {
         test: /\.js$/,
         loaders: [
-          'babel-loader', //jsx-loader?harmony',
+          'babel-loader',  //jsx-loader?harmony'
           ReactStylePlugin.loader()
         ]
       },
       {
         test: /\.css$/,
-	      loader: ExtractTextPlugin.extract('css-loader?sourceMap')
+	      loader: ExtractTextPlugin.extract('css-loader')
       },
       {
         test: /\.(otf|eot|svg|ttf|woff)/,

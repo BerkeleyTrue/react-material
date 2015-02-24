@@ -3,13 +3,13 @@
  */
 'use strict';
 
-var React = require('react');
-var StyleSheet = require('react-style');
+import React from 'react';
+import StyleSheet from 'react-style';
 
-var isTransform = require('./isTransform');
+import isTransform from './isTransform';
 
 var rippleUniqueId = 0;
-var transitionEnd = require('./TransitionEndName');
+import transitionEnd from './TransitionEndName';
 
 
 var isTouchDevice = typeof window !== 'undefined' &&

@@ -3,10 +3,10 @@
  */
 'use strict';
 
-var React = require('react');
-var StyleSheet = require('react-style');
+import React from 'react';
+import StyleSheet from 'react-style';
 
-class Overlay extends React.Component {
+export default class Overlay extends React.Component {
   //
   //propTypes: {
   //  onClick: React.PropTypes.func.isRequired
@@ -56,5 +56,3 @@ var OverlayStyles = StyleSheet.create({
   }
 
 });
-
-module.exports = Overlay;

@@ -3,7 +3,7 @@
  */
 'use strict';
 
-var React = require('react');
+import React from 'react';
 
 var coreIcons = require('./icons/core-icons.html');
 coreIcons = coreIcons.substr(coreIcons.indexOf('<defs>') + '<defs>'.length);
@@ -18,7 +18,7 @@ if (typeof window !== 'undefined') {
   div.innerHTML = coreIcons + socialIcons;
 }
 
-class Icon extends React.Component {
+export default class Icon extends React.Component {
 
   render() {
     if (!this.props.icon) {
@@ -36,7 +36,4 @@ class Icon extends React.Component {
     }
   }
 
-
 }
-
-module.exports = Icon;

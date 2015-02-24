@@ -3,13 +3,10 @@
  */
 'use strict';
 
-var React = require('react');
-var StyleSheet = require('react-style');
-var FormRow = require('../components/FormRow');
-var CheckBox = require('../components/CheckBox');
-var RadioButton = require('../components/RadioButton');
-var RadioButtonGroup = require('../components/RadioButtonGroup');
-var ToggleButton = require('../components/ToggleButton');
+import React from 'react';
+import StyleSheet from 'react-style';
+
+import {FormRow, CheckBox, RadioButton, RadioButtonGroup, ToggleButton} from '../components/';
 
 
 var SwitchesView = React.createClass({

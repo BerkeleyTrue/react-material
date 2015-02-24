@@ -3,17 +3,12 @@
  */
 'use strict';
 
-var React = require('react');
-var StyleSheet = require('react-style');
+import React from 'react';
+import StyleSheet from 'react-style';
 
-var Colors = require('../style/Colors');
+import {Colors} from '../style/';
 
-var Button = require('../components/Button');
-var BottomSheet = require('../components/BottomSheet');
-var BottomSheetItem = require('../components/BottomSheetItem');
-
-var ListItem = require('../components/ListItem');
-var Overlay = require('../components/Overlay');
+import {Button, BottomSheet, BottomSheetItem, ListItem, Overlay} from '../components/';
 
 var preventOverlayClick = false; // Mobile Safari
 

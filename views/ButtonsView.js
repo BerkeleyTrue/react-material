@@ -3,13 +3,12 @@
  */
 'use strict';
 
-var React = require('react');
-var StyleSheet = require('react-style');
+import React from 'react';
+import StyleSheet from 'react-style';
 
-var Button = require('../components/Button');
-var Colors = require('../style/Colors');
-var FloatingActionButton = require('../components/FloatingActionButton');
-var IconButton = require('../components/IconButton');
+import {Colors} from '../style/';
+
+import {Button, FloatingActionButton, IconButton} from '../components/';
 
 var ButtonsView = React.createClass({
 

@@ -3,14 +3,13 @@
  */
 'use strict';
 
-var React = require('react');
-var StyleSheet = require('react-style');
+import React from 'react';
+import StyleSheet from 'react-style';
 
-class CardCollection extends React.Component {
+export default class CardCollection extends React.Component {
 
   render() {
-    var styles = CardCollectionStyles;
-    return <div styles={styles.normalCardCollectionStyle}>
+    return <div styles={CardCollectionStyles.normalCardCollectionStyle}>
       {this.props.children}
     </div>;
   }
@@ -22,5 +21,3 @@ var CardCollectionStyles = StyleSheet.create({
 
   }
 });
-
-module.exports = CardCollection;

@@ -3,14 +3,12 @@
  */
 'use strict';
 
-var React = require('react');
-var StyleSheet = require('react-style');
+import React from 'react';
+import StyleSheet from 'react-style';
 
-var Button = require('../components/Button');
-var Dialog = require('../components/Dialog');
-var Overlay = require('../components/Overlay');
+import {Colors} from '../style/';
 
-var Colors = require('../style/Colors');
+import {Button, Dialog, Overlay} from '../components/';
 
 var DialogsView = React.createClass({
 

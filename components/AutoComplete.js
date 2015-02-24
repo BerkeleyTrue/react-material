@@ -3,13 +3,13 @@
  */
 'use strict';
 
-var React      = require('react');
-var StyleSheet = require('react-style');
+import React from 'react';
+import StyleSheet from 'react-style';
 
-var TextField  = require('./TextField');
+import {TextField} from './TextField';
 
 // on select go to top + full width + show suggestions
-class AutoComplete extends React.Component {
+export default class AutoComplete extends React.Component {
 
   render() {
     return <div>
@@ -20,5 +20,3 @@ class AutoComplete extends React.Component {
   }
 
 }
-
-module.exports = AutoComplete;

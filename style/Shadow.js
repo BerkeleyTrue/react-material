@@ -1,8 +1,8 @@
 'use strict';
 
-var StyleSheet = require('react-style');
+import StyleSheet from 'react-style';
 
-var Shadow = StyleSheet.create({
+export default StyleSheet.create({
   z1top: {
     boxShadow: '0 2px 10px 0 rgba(0, 0, 0, 0.16)'
   },
@@ -34,5 +34,3 @@ var Shadow = StyleSheet.create({
     boxShadow: '0 27px 24px 0 rgba(0, 0, 0, 0.2)'
   }
 });
-
-module.exports = Shadow;

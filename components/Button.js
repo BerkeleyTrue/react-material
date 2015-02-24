@@ -3,17 +3,19 @@
  */
 'use strict';
 
-import React from 'babel!react';
-import StyleSheet from 'babel!react-style';
+import React from 'react';
+import StyleSheet from 'react-style';
 
-import {Colors, Sizes, Typography} from 'babel!../style';
+import {Colors,
+        Sizes,
+        Typography} from '../style';
 
-import RippleContainer from 'babel!./RippleContainer';
-import Shadow from 'babel!./Shadow';
+import RippleContainer from './RippleContainer';
+import Shadow from './Shadow';
 
 var isTouchDevice = typeof window !== 'undefined' && 'ontouchstart' in window;
 
-class Button extends React.Component {
+export default class Button extends React.Component {
 
   //propTypes: {
   //  raised: React.PropTypes.bool,
@@ -123,5 +125,3 @@ var ButtonStyles = StyleSheet.create({
   }
 
 });
-
-export default Button;

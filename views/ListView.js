@@ -3,14 +3,10 @@
  */
 'use strict';
 
-var React = require('react');
-var StyleSheet = require('react-style');
+import React from 'react';
+import StyleSheet from 'react-style';
 
-var CheckBox = require('../components/CheckBox');
-var List = require('../components/List');
-var ListItem = require('../components/ListItem');
-
-var Subheader = require('../components/Subheader');
+import {CheckBox, List, ListItem, Subheader} from '../components/';
 
 var ListView = React.createClass({
 

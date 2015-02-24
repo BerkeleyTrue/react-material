@@ -3,15 +3,13 @@
  */
 'use strict';
 
-var React = require('react');
-var StyleSheet = require('react-style');
+import React from 'react';
+import StyleSheet from 'react-style';
 
-class List extends React.Component {
+export default class List extends React.Component {
 
   render() {
-    var styles = ListStyles;
-    var listStyle = styles.normalListStyle;
-    return <div styles={listStyle}>
+    return <div styles={ListStyles.normalListStyle}>
       {this.props.children}
     </div>;
   }
@@ -27,5 +25,3 @@ var ListStyles = StyleSheet.create({
   }
 
 });
-
-module.exports = List;

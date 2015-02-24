@@ -3,11 +3,10 @@
  */
 'use strict';
 
-var React = require('react');
-var StyleSheet = require('react-style');
+import React from 'react';
+import StyleSheet from 'react-style';
 
-var Tabs = require('../components/Tabs');
-var Tab = require('../components/Tab');
+import {Tabs, Tab} from '../components/';
 
 var TabsView = React.createClass({
 

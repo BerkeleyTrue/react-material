@@ -3,10 +3,10 @@
  */
 'use strict';
 
-var React = require('react');
-var StyleSheet = require('react-style');
+import React from 'react';
+import StyleSheet from 'react-style';
 
-class FormRow extends React.Component {
+export default class FormRow extends React.Component {
 
   render() {
     var props   = this.props;
@@ -25,5 +25,3 @@ var FormRowStyles = StyleSheet.create({
   }
 
 });
-
-module.exports = FormRow;

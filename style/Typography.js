@@ -1,6 +1,6 @@
 'use strict';
 
-var StyleSheet = require('react-style');
+import StyleSheet from 'react-style';
 
 var robotoFont = "'Roboto', 'Helvetica Neue', Helvetica, Arial";
 

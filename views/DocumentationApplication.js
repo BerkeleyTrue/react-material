@@ -5,18 +5,19 @@
 
 require("./style.css");
 
-import React from 'babel!react';
-import StyleSheet from 'babel!react-style';
+import React from 'react';
+import StyleSheet from 'react-style';
+
 React.initializeTouchEvents(true);
 
-import {Colors} from 'babel!../style';
+import {Colors} from '../style';
 
 // components
 import {AppBar,
         List,
         ListItem,
         Overlay,
-        SideNavigation} from 'babel!../components';
+        SideNavigation} from '../components';
 
 //
 //var BottomSheetsView = require('./BottomSheetsView');
@@ -26,7 +27,7 @@ import {ButtonsView,
         ListsView,
         SwitchesView,
         TabsView,
-        TextFieldsView} from 'babel!./';
+        TextFieldsView} from './';
 
 //var ProgressAndActivityView = require('./ProgressAndActivityView');
 
@@ -49,72 +50,26 @@ var ViewsEnum = {
   //MenusView: 10
 };
 
-var DocumentationApplicationView = React.createClass({
+export default class DocumentationApplicationView extends React.Component {
 
   // themes: [BlueTheme],
 
-  getInitialState: function() {
-    return {
+  constructor() {
+    this.state =  {
       showSideNavigation: false,
       view: 0
     }
-  },
-  styles: StyleSheet.create({
+  }
 
-	  normalStyle: {
-		  backgroundColor: Colors.grey.P100,
-		  minHeight: '100%'
-	  },
-
-	  containerStyle: {
-		  margin: 'auto',
-		  maxWidth: '700px',
-		  padding: '56px 20px 0'
-	  },
-
-	  headerStyle: {
-		  color: Colors.indigo.P500,
-		  fontSize: '34',
- 		  lineHeight: '32px',
-		  marginBottom: 42,
-		  paddingTop: 80,
-		  fontWeight: 400
-	  },
-
-	  paragraphStyle: {
-		  color: Colors.grey.P900,
-		  fontSize: '20',
-		  lineHeight: '32px'
-	  },
-
-	  appBar: {
-
-		  //normalAppBarStyle: ReactStyle({
-			 // backgroundColor: Colors.blue.P500,
-		  //  color: 'white',
-		  //  fill: 'white'
-		  //}),
-      //
-		  //placeHolderStyle: ReactStyle({
-			 // backgroundColor: Colors.blue.P500
-		  //}),
-      //
-		  //titleStyle: ReactStyle({
-			 // color: 'white'
-		  //})
-	  }
-  }),
-
-  onNavButtonClick: function() {
+  onNavButtonClick() {
     this.setState({showSideNavigation: !this.state.showSideNavigation});
-  },
+  }
 
-  onOverlayClick: function() {
+  onOverlayClick() {
     this.setState({showSideNavigation: false});
-  },
+  }
 
-
-  render: function() {
+  render() {
     var state = this.state;
     var view = state.view;
     var title;
@@ -147,22 +102,17 @@ var DocumentationApplicationView = React.createClass({
     else if (view === ViewsEnum.DialogsView) {
       title = 'Dialogs';
     }
-    /*else if (view === ViewsEnum.MenusView) {
-      title = 'Menus';
-    }*/
-    var styles = this.styles;
-    return <div styles={styles.normalStyle}>
-      <AppBar onNavButtonClick={this.onNavButtonClick}
+
+
+    return <div styles={DocumentationApplicationStyles.normalStyle}>
+      <AppBar onNavButtonClick={() => this.onNavButtonClick()}
 							expanded={expanded}
 							shadow={true}
 							title={title}
-							styles={styles.appBar}/>
-      <Overlay show={state.showSideNavigation} onClick={this.onOverlayClick} />
+							styles={DocumentationApplicationStyles.appBar}/>
+      <Overlay show={state.showSideNavigation} onClick={() => this.onOverlayClick()} />
       <SideNavigation show={state.showSideNavigation}>
         <List>
-          {/*<ListItem onClick={this.onClick(ViewsEnum.BottomSheetsView)}>
-            Bottom Sheets
-          </ListItem>*/}
           <ListItem onClick={this.onClick(ViewsEnum.ButtonsView)}>
             Buttons
           </ListItem>
@@ -175,12 +125,6 @@ var DocumentationApplicationView = React.createClass({
           <ListItem onClick={this.onClick(ViewsEnum.ListsView)}>
             Lists
           </ListItem>
-          {/*<ListItem onClick={this.onClick(ViewsEnum.MenusView)}>
-            Menus
-          </ListItem>*/}
-          {/*<ListItem onClick={this.onClick(ViewsEnum.ProgressAndActivityView)}>
-            Progress and Activity
-          </ListItem>*/}
           <ListItem onClick={this.onClick(ViewsEnum.SwitchesView)}>
             Switches
           </ListItem>
@@ -192,33 +136,28 @@ var DocumentationApplicationView = React.createClass({
           </ListItem>
         </List>
       </SideNavigation>
-      <div styles={styles.containerStyle}>
+      <div styles={DocumentationApplicationStyles.containerStyle}>
       {state.view === 0 &&
         <div>
-          <h1 styles={styles.headerStyle}>React Material Components</h1>
-          <p styles={styles.paragraphStyle}>
+          <h1 styles={DocumentationApplicationStyles.headerStyle}>React Material Components</h1>
+          <p styles={DocumentationApplicationStyles.paragraphStyle}>
              Here you find components written with <a href="http://reactjs.org">React.js</a> and {' '}
              <a href="https://github.com/SanderSpies/react-style">React Style</a> that attempt to abide to the {' '}
              <a href="http://www.google.com/design/spec/material-design/introduction.html">Google material design guidelines</a>.
              It takes a different approach from Polymer, by wrapping both templates
             and CSS within JavaScript.
           </p>
-          <p styles={styles.paragraphStyle}>
+          <p styles={DocumentationApplicationStyles.paragraphStyle}>
             If something is not correct, feel free to help out and file an {' '}
             <a href="https://github.com/SanderSpies/react-style/issues/new">issue</a> or {' '}
             <a href="https://github.com/SanderSpies/react-style/fork">fork the project</a> and do a pull request.
           </p>
         </div>
         }
-        {/*state.view === ViewsEnum.BottomSheetsView &&
-            <BottomSheetsView />
-        */}
+
         {state.view === ViewsEnum.ButtonsView &&
             <ButtonsView />
         }
-        {/*state.view === ViewsEnum.ProgressAndActivityView &&
-            <ProgressAndActivityView />
-        */}
         {state.view === ViewsEnum.TabsView &&
             <TabsView />
         }
@@ -237,20 +176,62 @@ var DocumentationApplicationView = React.createClass({
         {state.view === ViewsEnum.DialogsView &&
             <DialogsView />
         }
-        {/*state.view === ViewsEnum.MenusView &&
-            <MenusView />
-        */}
       </div>
     </div>;
-  },
+  }
 
-  onClick: function(position) {
+  onClick(position) {
     var self = this;
     return function() {
       self.setState({view: position, showSideNavigation: false});
     }
   }
+}
 
+var DocumentationApplicationStyles = StyleSheet.create({
+
+  normalStyle: {
+    backgroundColor: Colors.grey.P100,
+    minHeight: '100%'
+  },
+
+  containerStyle: {
+    margin: 'auto',
+    maxWidth: '700px',
+    padding: '56px 20px 0'
+  },
+
+  headerStyle: {
+    color: Colors.indigo.P500,
+    fontSize: '34',
+    lineHeight: '32px',
+    marginBottom: 42,
+    paddingTop: 80,
+    fontWeight: 400
+  },
+
+  paragraphStyle: {
+    color: Colors.grey.P900,
+    fontSize: '20',
+    lineHeight: '32px'
+  },
+
+  appBar: {
+
+    //normalAppBarStyle: ReactStyle({
+    // backgroundColor: Colors.blue.P500,
+    //  color: 'white',
+    //  fill: 'white'
+    //}),
+    //
+    //placeHolderStyle: ReactStyle({
+    // backgroundColor: Colors.blue.P500
+    //}),
+    //
+    //titleStyle: ReactStyle({
+    // color: 'white'
+    //})
+  }
 });
 
 if (typeof window !== 'undefined') {

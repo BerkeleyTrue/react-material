@@ -3,14 +3,14 @@
  */
 'use strict';
 
-var React = require('react');
-var StyleSheet = require('react-style');
+import React from 'react';
+import StyleSheet from 'react-style';
 
-var Colors = require('../style/Colors');
-var Typography = require('../style/Typography');
-var Icon = require('./Icon');
+import {Colors, Typography} from '../style/';
 
-class AppBar extends React.Component {
+import Icon from './Icon';
+
+export default class AppBar extends React.Component {
 
   //propTypes: {
   //  actionButtons: React.PropTypes.array,
@@ -56,17 +56,17 @@ class AppBar extends React.Component {
     {props.expanded && <div styles={[styles.placeHolderStyle, propsStyles.placeHolderStyle]}/> }
       <nav styles={[appBarStyles, propsStyles.appBarStyles]}>
     {props.onNavButtonClick &&
-      <div styles={styles.navButtonStyle} onClick={props.onNavButtonClick}>
+      <div styles={styles.navButtonStyle} onClick={()=>props.onNavButtonClick()}>
         <Icon icon="menu"/>
       </div>
       }
     {props.onBackButtonClick &&
-      <div styles={styles.navButtonStyle} onClick={props.onBackButtonClick}>
+      <div styles={styles.navButtonStyle} onClick={() => props.onBackButtonClick()}>
         <Icon icon="arrow-back"/>
       </div>
       }
     {props.title &&
-      <div styles={[Typography.title, styles.titleStyle, expandedTitleStyle, headLineStyle, propsStyles.titleStyle]} onClick={()=>props.onTitleClick}>
+      <div styles={[Typography.title, styles.titleStyle, expandedTitleStyle, headLineStyle, propsStyles.titleStyle]} onClick={()=>props.onTitleClick()}>
         {props.title}
       </div>
       }
@@ -210,5 +210,3 @@ var AppBarStyles = StyleSheet.create({
     width: '100%'
   }
 });
-
-module.exports = AppBar;

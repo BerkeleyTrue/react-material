@@ -3,14 +3,15 @@
  */
 'use strict';
 
-var React = require('react');
-var StyleSheet = require('react-style');
+import React from 'react';
+import StyleSheet from 'react-style';
 
-var CircleShadow = require('./CircleShadow');
-var Colors = require('../style/Colors');
-var Icon = require('./Icon');
+import Colors from '../style/Colors';
 
-class IconButton extends React.Component {
+import CircleShadow from './CircleShadow';
+import Icon from './Icon';
+
+export default class IconButton extends React.Component {
 
   render() {
     var props = this.props;
@@ -47,5 +48,3 @@ var IconButtonStyles = StyleSheet.create({
   }
 
 });
-
-module.exports = IconButton;

@@ -1,9 +1,9 @@
 'use strict';
 
-import Colors from 'babel!./Colors';
-import Shadow from 'babel!./Shadow';
-import Sizes from 'babel!./Sizes';
-import Typography from 'babel!./Typography';
+import Colors from './Colors';
+import Shadow from './Shadow';
+import Sizes from './Sizes';
+import Typography from './Typography';
 
 var Style = {
   Colors:     Colors,

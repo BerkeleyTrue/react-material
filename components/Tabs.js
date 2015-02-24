@@ -3,14 +3,14 @@
  */
 'use strict';
 
-var React = require('react');
-var StyleSheet = require('react-style');
+import React from 'react';
+import StyleSheet from 'react-style';
 
-var Colors = require('../style/Colors');
+import {Colors} from '../style/';
 
-var RippleContainer = require('../components/RippleContainer');
+import RippleContainer from '../components/RippleContainer';
 
-class Tabs extends React.Component {
+export default class Tabs extends React.Component {
 
   //constructor(props) {
   //  super(props);
@@ -119,5 +119,3 @@ var TabsStyles = StyleSheet.create({
     bottom: 0
   }
 });
-
-module.exports = Tabs;

@@ -3,14 +3,14 @@
  */
 'use strict';
 
-var React = require('react');
-var StyleSheet = require('react-style');
+import React from 'react';
+import StyleSheet from 'react-style';
 
-var Colors = require('../style/Colors');
+import Colors from '../style/Colors';
 
-var CircleShadow = require('./CircleShadow');
+import CircleShadow from './CircleShadow';
 
-class RadioButton extends React.Component {
+export default class RadioButton extends React.Component {
 
   constructor(props) {
     super(props);
@@ -125,5 +125,3 @@ var RadioButtonStyles = StyleSheet.create({
   }
 
 });
-
-module.exports = RadioButton;

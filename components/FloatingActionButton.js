@@ -3,21 +3,21 @@
  */
 'use strict';
 
-var React = require('react');
-var StyleSheet = require('react-style');
+import React from 'react';
+import StyleSheet from 'react-style';
 
-var Icon = require('./Icon');
-var RippleContainer = require('./RippleContainer');
-var Shadow = require('./Shadow');
+import Icon from './Icon';
+import RippleContainer from './RippleContainer';
+import Shadow from './Shadow';
 
-var Colors = require('../style/Colors');
+import Colors from '../style/Colors';
 
 var isTouchDevice;
 if (typeof window !== 'undefined') {
   isTouchDevice = 'ontouchstart' in window;
 }
 
-class FloatingActionButton extends React.Component {
+export default class FloatingActionButton extends React.Component {
 
   //propTypes: {
   //  icon: React.PropTypes.string.isRequired
@@ -115,7 +115,6 @@ class FloatingActionButton extends React.Component {
   }
 
   onMouseDown() {
-    console.log('BOOOEEE');
     var props = this.props;
     if (props.disabled || props.percentage) {
       return;
@@ -208,5 +207,3 @@ var FloatingActionButtonStyles = StyleSheet.create({
   }
 
 });
-
-module.exports = FloatingActionButton;

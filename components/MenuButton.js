@@ -3,14 +3,12 @@
  */
 'use strict';
 
-var React = require('react');
+import React from 'react';
 
-class MenuButton extends React.Component {
+export default class MenuButton extends React.Component {
 
   render() {
 
   }
 
 }
-
-module.exports = MenuButton;

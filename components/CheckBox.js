@@ -3,16 +3,16 @@
  */
 'use strict';
 
-var React = require('react');
-var StyleSheet = require('react-style');
+import React from 'react';
+import StyleSheet from 'react-style';
 
-var Colors = require('../style/Colors');
+import {Colors} from '../style/';
 
-var transitionEnd = require('./TransitionEndName');
-var isTransform = require('./isTransform');
-var CircleShadow = require('./CircleShadow');
+import transitionEnd from './TransitionEndName';
+import isTransform from './isTransform';
+import CircleShadow from './CircleShadow';
 
-class CheckBox extends React.Component {
+export default class CheckBox extends React.Component {
 
   constructor(props) {
     super(props);
@@ -180,6 +180,3 @@ var CheckBoxStyles = StyleSheet.create({
   }
 
 });
-
-
-module.exports = CheckBox;

@@ -3,14 +3,14 @@
  */
 'use strict';
 
-var React = require('react');
-var StyleSheet = require('react-style');
+import React from 'react';
+import StyleSheet from 'react-style';
 
-var Colors = require('../style/Colors');
+import Colors from '../style/Colors';
 
-var transitionEnd = require('./TransitionEndName');
+import transitionEnd from './TransitionEndName';
 
-class ProgressBar extends React.Component {
+export default class ProgressBar extends React.Component {
 
   constructor() {
     this.state = {
@@ -145,5 +145,3 @@ var ProgressBarStyles = StyleSheet.create({
   }
 
 });
-
-module.exports = ProgressBar;

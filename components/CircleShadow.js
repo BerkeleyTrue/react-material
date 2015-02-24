@@ -3,12 +3,12 @@
  */
 'use strict';
 
-var React = require('react');
-var StyleSheet = require('react-style');
+import React from 'react';
+import StyleSheet from 'react-style';
 
-var Colors = require('../style/Colors');
+import {Colors} from '../style';
 
-class CircleShadow extends React.Component {
+export default class CircleShadow extends React.Component {
 
   constructor(props) {
     super(props);
@@ -67,5 +67,3 @@ var CircleShadowStyles = StyleSheet.create({
   }
 
 });
-
-module.exports = CircleShadow;

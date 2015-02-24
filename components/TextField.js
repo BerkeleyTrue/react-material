@@ -23,11 +23,10 @@
 //      |    |Input Text (16sp)
 //      | 16 |---
 
-var React = require('react');
-var StyleSheet = require('react-style');
+import React from 'react';
+import StyleSheet from 'react-style';
 
-var Colors = require('../style/Colors');
-var Typography = require('../style/Typography');
+import {Colors, Typography} from '../style/';
 
 // Color of floating label and underline when focused
 var focusColor = Colors.blue.P500;

@@ -3,17 +3,13 @@
  */
 'use strict';
 
-var React = require('react');
-var StyleSheet = require('react-style');
+import React from 'react';
+import StyleSheet from 'react-style';
 
-var Colors = require('../style/Colors');
+import {Colors} from '../style/';
 
-var Cards = require('../components/CardCollection');
-var Card = require('../components/Card');
+import {Button, Card, CardCollection, CheckBox, ProgressBar} from '../components/';
 
-var Button = require('../components/Button');
-var Checkbox = require('../components/CheckBox');
-var ProgressBar = require('../components/ProgressBar');
 
 var CardsView = React.createClass({
 
@@ -29,14 +25,14 @@ var CardsView = React.createClass({
   render: function() {
 	  var styles = this.styles;
     return <div styles={styles.normalStyle}>
-      <Cards>
+      <CardCollection>
         <Card title="Basic components">
           <Button>A simple button</Button>
           <Button raised={true} styles={[{backgroundColor: Colors.amber.P500, color: Colors.grey.P50}]}>
             Raised button
           </Button>
           <div>
-            <Checkbox />
+            <CheckBox />
           </div>
         </Card>
         <Card title="Text fields  and dialogs">
@@ -51,7 +47,7 @@ var CardsView = React.createClass({
         <Card>
 
         </Card>
-      </Cards>
+      </CardCollection>
     </div>;
   }
 });

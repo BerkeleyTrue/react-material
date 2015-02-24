@@ -3,13 +3,12 @@
  */
 'use strict';
 
-var React = require('react');
-var StyleSheet = require('react-style');
+import React from 'react';
+import StyleSheet from 'react-style';
 
-var Colors = require('../style/Colors');
+import Colors from '../style/';
 
-var ProgressBar = require('../components/ProgressBar');
-var FloatingActionButton = require('../components/FloatingActionButton');
+import {ProgressBar, FloatingActionButton} from '../components/';
 
 var ProgressAndActivityView = React.createClass({
 
