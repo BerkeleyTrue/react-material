@@ -3,15 +3,13 @@
  */
 'use strict';
 
-var React = require('react');
-var StyleSheet = require('react-style');
+import React from 'babel!react';
+import StyleSheet from 'babel!react-style';
 
-var Colors = require('../style/Colors');
-var Sizes = require('../style/Sizes');
-var Typography = require('../style/Typography');
+import {Colors, Sizes, Typography} from 'babel!../style';
 
-var RippleContainer = require('./RippleContainer');
-var Shadow = require('./Shadow');
+import RippleContainer from 'babel!./RippleContainer';
+import Shadow from 'babel!./Shadow';
 
 var isTouchDevice = typeof window !== 'undefined' && 'ontouchstart' in window;
 
@@ -126,5 +124,4 @@ var ButtonStyles = StyleSheet.create({
 
 });
 
-
-module.exports = Button;
+export default Button;

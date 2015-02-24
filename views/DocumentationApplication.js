@@ -5,30 +5,34 @@
 
 require("./style.css");
 
-var React = require('react');
-var StyleSheet = require('react-style');
+import React from 'babel!react';
+import StyleSheet from 'babel!react-style';
 React.initializeTouchEvents(true);
 
-var Colors = require('../style/Colors');
+import {Colors} from 'babel!../style';
 
 // components
-var AppBar = require('../components/AppBar');
-var SideNavigation = require('../components/SideNavigation');
-var Overlay = require('../components/Overlay');
+import {AppBar,
+        List,
+        ListItem,
+        Overlay,
+        SideNavigation} from 'babel!../components';
+
 //
 //var BottomSheetsView = require('./BottomSheetsView');
-var ButtonsView = require('./ButtonsView');
+import {ButtonsView,
+        CardsView,
+        DialogsView,
+        ListsView,
+        SwitchesView,
+        TabsView,
+        TextFieldsView} from 'babel!./';
+
 //var ProgressAndActivityView = require('./ProgressAndActivityView');
-var SwitchesView = require('./SwitchesView');
-var TabsView = require('./TabsView');
-var TextFieldsView = require('./TextFieldsView');
-var ListsView = require('./ListView');
-var CardsView = require('./CardsView');
-var DialogsView = require('./DialogsView');
+
 //var MenusView = require('./MenusView');
 //
-var List = require('../components/List');
-var ListItem = require('../components/ListItem');
+
 //
 //var BlueTheme = require('../themes/BlueTheme');
 
@@ -71,7 +75,7 @@ var DocumentationApplicationView = React.createClass({
 	  headerStyle: {
 		  color: Colors.indigo.P500,
 		  fontSize: '34',
-		  lineHeight: '32px',
+ 		  lineHeight: '32px',
 		  marginBottom: 42,
 		  paddingTop: 80,
 		  fontWeight: 400

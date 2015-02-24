@@ -153,7 +153,6 @@ class AppBar extends React.Component {
 
 }
 
-
 var AppBarStyles = StyleSheet.create({
 
   normalAppBarStyle: {

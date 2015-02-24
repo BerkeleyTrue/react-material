@@ -21,7 +21,7 @@ module.exports = {
       {
         test: /\.js$/,
         loaders: [
-          'jsx-loader?harmony',
+          'babel-loader', //jsx-loader?harmony',
           ReactStylePlugin.loader()
         ]
       },
