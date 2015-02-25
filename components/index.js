@@ -1,6 +1,7 @@
 'use strict';
 
 import AppBar from './AppBar';
+import Application from './Application';
 import BottomSheet from './BottomSheet';
 import BottomSheetItem from './BottomSheetItem';
 import Button from './Button';
@@ -28,6 +29,9 @@ import ToggleButton from './ToggleButton';
 
 export default {
   AppBar: AppBar,
+  Application: Application,
+  BottomSheet: BottomSheet,
+  BottomSheetItem: BottomSheetItem,
   Button: Button,
   Card: Card,
   CardCollection: CardCollection,

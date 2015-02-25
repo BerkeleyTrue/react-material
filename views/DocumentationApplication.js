@@ -21,7 +21,8 @@ import {AppBar,
 
 //
 //var BottomSheetsView = require('./BottomSheetsView');
-import {ButtonsView,
+import {BottomSheetsView,
+        ButtonsView,
         CardsView,
         DialogsView,
         ListsView,
@@ -38,7 +39,7 @@ import {ButtonsView,
 //var BlueTheme = require('../themes/BlueTheme');
 
 var ViewsEnum = {
-  //BottomSheetsView: 1,
+  BottomSheetsView: 1,
   ButtonsView: 2,
   //ProgressAndActivityView: 3,
   TabsView: 4,
@@ -74,10 +75,10 @@ export default class DocumentationApplicationView extends React.Component {
     var view = state.view;
     var title;
     var expanded = false;
-    /*if(view === ViewsEnum.BottomSheetsView) {
+    if(view === ViewsEnum.BottomSheetsView) {
       title = 'Bottom sheets';
-    }*/
-    if(view === ViewsEnum.ButtonsView) {
+    }
+    else if(view === ViewsEnum.ButtonsView) {
       expanded = true;
       title = 'Buttons';
     }
@@ -113,6 +114,9 @@ export default class DocumentationApplicationView extends React.Component {
       <Overlay show={state.showSideNavigation} onClick={() => this.onOverlayClick()} />
       <SideNavigation show={state.showSideNavigation}>
         <List>
+          <ListItem onClick={this.onClick(ViewsEnum.BottomSheetsView)}>
+            Bottom sheets
+          </ListItem>
           <ListItem onClick={this.onClick(ViewsEnum.ButtonsView)}>
             Buttons
           </ListItem>
@@ -154,7 +158,9 @@ export default class DocumentationApplicationView extends React.Component {
           </p>
         </div>
         }
-
+        {state.view === ViewsEnum.BottomSheetsView &&
+          <BottomSheetsView />
+          }
         {state.view === ViewsEnum.ButtonsView &&
             <ButtonsView />
         }

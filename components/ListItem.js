@@ -26,8 +26,7 @@ export default class ListItem extends React.Component{
     return <div styles={listItemStyles}>
       {!props.disableRipple &&
       <RippleContainer onClick={(e)=> this.onClick(e)}/> }
-      {props.icon &&
-        <div styles={styles.iconStyle}><Icon icon={props.icon}/></div> }
+
       {props.children}
     </div>;
   }

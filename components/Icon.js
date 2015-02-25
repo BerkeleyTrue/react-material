@@ -4,6 +4,7 @@
 'use strict';
 
 import React from 'react';
+import StyleSheet from 'react-style';
 
 var coreIcons = require('./icons/core-icons.html');
 coreIcons = coreIcons.substr(coreIcons.indexOf('<defs>') + '<defs>'.length);
@@ -22,13 +23,17 @@ export default class Icon extends React.Component {
 
   render() {
     if (!this.props.icon) {
-      return <div />;
+      return <div styles={IconStyles.iconStyle} />;
     }
 
     if (window.SVGSVGElement) {
       var html = div.querySelector('#' + this.props.icon).innerHTML;
 
-      return <svg styles={this.props.styles} viewBox="0 0 24 24" height="100%" width="100%" preserveAspectRatio="xMidYMid meet" dangerouslySetInnerHTML={{__html: html}}></svg>
+      return <svg styles={[IconStyles.iconStyle, this.props.styles]}
+                  viewBox="0 0 24 24"
+                  height="100%"
+                  width="100%"
+                  preserveAspectRatio="xMidYMid meet" dangerouslySetInnerHTML={{__html: html}}></svg>
     }
     else {
       // TODO: should go to generated image sprite
@@ -37,3 +42,11 @@ export default class Icon extends React.Component {
   }
 
 }
+
+var IconStyles = StyleSheet.create({
+  iconStyle: {
+    display: 'inline-block',
+    height: 24,
+    width: 24
+  }
+});

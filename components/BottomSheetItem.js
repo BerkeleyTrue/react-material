@@ -11,7 +11,7 @@ import ListItem from './ListItem';
 export default class BottomSheetItem extends React.Component {
 
   render() {
-    return this.transferPropsTo(<ListItem styles={BottomSheetItemStyles.normalStyle}>{this.props.children}</ListItem>);
+    return <ListItem styles={BottomSheetItemStyles.normalStyle} {...this.props}>{this.props.children}</ListItem>;
   }
 
 }

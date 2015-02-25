@@ -5,7 +5,7 @@ var ReactStylePlugin = require('react-style-webpack-plugin');
 
 
 module.exports = {
-	//devtool: 'sourcemap',
+	devtool: 'sourcemap',
 	entry: "./views/DocumentationApplication.js",
 	output: {
 		filename: "bundle.js",
@@ -36,6 +36,6 @@ module.exports = {
 		]
 	},
 	plugins: [
-		new ReactStylePlugin('bundle.css', {allChunks: true})
+		new ReactStylePlugin('bundle.css')
 	]
 };

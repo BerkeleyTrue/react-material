@@ -18,7 +18,7 @@ export default class IconButton extends React.Component {
     var styles = IconButtonStyles;
     return <div styles={styles.normalStyle} onClick={() => props.onClick()}>
       <CircleShadow active={true} styles={[styles.circleShadowStyle]}/>
-      <Icon icon={props.icon}/>
+      <Icon icon={props.icon} styles={props.styles ? props.styles.iconStyles: null}/>
     </div>;
   }
 

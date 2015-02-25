@@ -10,9 +10,15 @@ import {Colors} from '../style/';
 
 export default class BottomSheet extends React.Component {
 
+  constructor(props) {
+    super(props);
+
+    this._isMounted = false;
+  }
+
 	hiddenTransformStyle() {
 		var height = 0;
-		if (this.isMounted()) {
+		if (this._isMounted) {
 			var domNode = React.findDOMNode(this);
 			if (domNode) {
 				height = domNode.offsetHeight + 8;
@@ -51,6 +57,7 @@ export default class BottomSheet extends React.Component {
   }
 
   componentDidMount(){
+    this._isMounted = true;
     this.forceUpdate(); // to enforce calculation of height
   }
 
