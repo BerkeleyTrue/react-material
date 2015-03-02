@@ -2,3 +2,8 @@
 node_modules/*
 *.iml
 assets/
+
+# don't check in compiled components
+components/icons/
+components/*.js
+views/*.js

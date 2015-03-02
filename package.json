@@ -10,22 +10,25 @@
     "react-component"
   ],
   "scripts": {
+    "prepublish": "gulp transpile",
     "preinstall": "git submodule update -i -r"
   },
   "devDependencies": {
     "browser-sync": "^1.4.0",
     "css-loader": "^0.9.0",
-    "react-style-webpack-plugin": "git+https://github.com/js-next/react-style-webpack-plugin.git",
     "extract-text-webpack-plugin": "git+https://github.com/SanderSpies/extract-text-webpack-plugin.git",
     "file-loader": "^0.8.1",
     "gulp": "^3.8.8",
-    "gulp-rimraf": "^0.1.1",
+    "gulp-babel": "^4.0.0",
     "gulp-gjslint": "^0.1.2",
     "gulp-react": "^1.0.1",
+    "gulp-rimraf": "^0.1.1",
     "gulp-webpack": "^0.3.0",
     "html-loader": "0.2.3",
     "jsx-loader": "^0.12.0",
+    "merge2": "^0.3.1",
     "react-style": "^0.3.0",
+    "react-style-webpack-plugin": "git+https://github.com/js-next/react-style-webpack-plugin.git",
     "style-loader": "^0.8.1",
     "webpack": "^1.4.5"
   },
