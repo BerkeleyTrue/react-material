@@ -23,6 +23,9 @@ var paths = {
 };
 
 gulp.task('transpile', function() {
+  var icons = gulp.src('./components/src/icons/*')
+    .pipe(gulp.dest('./components/icons'));
+
   var components = gulp.src('./components/src/*.js')
     .pipe(babel())
     .pipe(gulp.dest('./components'));
@@ -31,7 +34,7 @@ gulp.task('transpile', function() {
     .pipe(babel())
     .pipe(gulp.dest('./views'));
 
-  return merge(components, views);
+  return merge([icons, components, views]);
 });
 
 gulp.task('pack', ['transpile'], function() {
