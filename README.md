@@ -1,4 +1,4 @@
-
+[![Stories in Ready](https://badge.waffle.io/SanderSpies/react-material.png?label=ready&title=Ready)](http://waffle.io/SanderSpies/react-material)
 React Material Design Components
 ===
 Material design components written with React.js and React Style.
