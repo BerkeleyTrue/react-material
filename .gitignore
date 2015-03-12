@@ -1,3 +1,9 @@
 .idea/*
 node_modules/*
 *.iml
+
+# don't check in compiled components
+components/icons/
+components/*.js
+style/*.js
+views/*.js
