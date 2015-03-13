@@ -1,6 +1,7 @@
 'use strict';
 
-import {StyleSheet} from '../style/';
+import React from 'react';
+import StyleSheet from 'react-style';
 
 export default class Application extends React.Component {
 
