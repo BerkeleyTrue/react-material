@@ -1,6 +1,6 @@
 'use strict';
 
-require("./style.css");
+// require("./style.css");
 
 import React from 'react';
 import StyleSheet from 'react-style';
