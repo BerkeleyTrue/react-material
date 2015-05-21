@@ -44,7 +44,7 @@ var CardsView = React.createClass({
             <Checkbox />
           </div>
         </Card>
-        <Card title="Text fields  and dialogs">
+        <Card title="Text fields and dialogs">
           ...
         </Card>
         <Card title="Progress and sliders">
