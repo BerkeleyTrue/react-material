@@ -194,15 +194,15 @@ var DocumentationApplicationView = React.createClass({
           <h1 styles={styles.headerStyle}>React Material Components</h1>
           <p styles={styles.paragraphStyle}>
              Here you find components written with <a href="http://reactjs.org">React.js</a> and {' '}
-             <a href="https://github.com/SanderSpies/react-style">React Style</a> that attempt to abide to the {' '}
+             <a href="https://github.com/SanderSpies/react-material">React Style</a> that attempt to abide to the {' '}
              <a href="http://www.google.com/design/spec/material-design/introduction.html">Google material design guidelines</a>.
              It takes a different approach from Polymer, by wrapping both templates
             and CSS within JavaScript.
           </p>
           <p styles={styles.paragraphStyle}>
             If something is not correct, feel free to help out and file an {' '}
-            <a href="https://github.com/SanderSpies/react-style/issues/new">issue</a> or {' '}
-            <a href="https://github.com/SanderSpies/react-style/fork">fork the project</a> and do a pull request.
+            <a href="https://github.com/SanderSpies/react-material/issues/new">issue</a> or {' '}
+            <a href="https://github.com/SanderSpies/react-material/fork">fork the project</a> and do a pull request.
           </p>
         </div>
         }
