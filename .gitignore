@@ -4,6 +4,7 @@ node_modules/*
 .DS_Store
 
 # don't check in compiled components
+assets
 components/icons/
 components/*.js
 style/*.js
