@@ -1,66 +1,9 @@
-'use strict';
-
-import React from 'react';
+import React, { PropTypes } from 'react';
 import StyleSheet from 'react-style';
 
-import {Colors} from '../style/';
+import { Colors } from '../style/';
 
-export default class BottomSheet extends React.Component {
-
-  constructor(props) {
-    super(props);
-
-    this._isMounted = false;
-  }
-
-	hiddenTransformStyle() {
-		var height = 0;
-		if (this._isMounted) {
-			var domNode = React.findDOMNode(this);
-			if (domNode) {
-				height = domNode.offsetHeight + 8;
-			}
-		}
-
-		return {
-			visibility: 'hidden',
-			transform: 'translateY(' + height + 'px)',
-			transition: 'transform .2s cubic-bezier(.4,0,.2,1), visibility 0s linear .21s'
-		};
-	}
-
-  render(){
-    var props = this.props;
-	  var styles = BottomSheetStyles;
-    var bottomSheetStyles = [styles.normalBottomSheetStyle];
-    if (props.show) {
-      bottomSheetStyles.push(styles.showBottomSheetStyle);
-    }
-    else {
-      bottomSheetStyles.push(this.hiddenTransformStyle());
-    }
-    if (props.styles) {
-      bottomSheetStyles = bottomSheetStyles.concat(props.styles);
-    }
-    return <div styles={bottomSheetStyles}>
-    {props.title &&
-      <div styles={styles.titleStyle}>
-        {props.title}
-      </div>
-      }
-
-      {props.children}
-    </div>;
-  }
-
-  componentDidMount(){
-    this._isMounted = true;
-    this.forceUpdate(); // to enforce calculation of height
-  }
-
-}
-
-var BottomSheetStyles = StyleSheet.create({
+const BottomSheetStyles = StyleSheet.create({
 
   normalBottomSheetStyle: {
     backgroundColor: 'white',
@@ -70,7 +13,8 @@ var BottomSheetStyles = StyleSheet.create({
     paddingBottom: 8,
     position: 'fixed',
     right: 0,
-    transition: 'transform .2s cubic-bezier(.4,0,.2,1), visibility 0s linear 0s',
+    transition:
+      'transform .2s cubic-bezier(.4,0,.2,1), visibility 0s linear 0s',
     visibility: 'visible',
     zIndex: '3'
   },
@@ -84,5 +28,81 @@ var BottomSheetStyles = StyleSheet.create({
     cursor: 'default',
     padding: 16
   }
-
 });
+
+export default class extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this._isMounted = false;
+  }
+  static displayName = 'BottomSheet '
+  static propTypes = {
+    children: PropTypes.node,
+    show: PropTypes.bool,
+    styles: PropTypes.object,
+    title: PropTypes.string
+  }
+
+  componentDidMount() {
+    this._isMounted = true;
+
+    // to enforce calculation of height
+    this.forceUpdate();
+  }
+
+  hiddenTransformStyle() {
+    let height = 0;
+    if (this._isMounted) {
+      const domNode = React.findDOMNode(this);
+      if (domNode) {
+        height = domNode.offsetHeight + 8;
+      }
+    }
+
+    return {
+      visibility: 'hidden',
+      transform: 'translateY(' + height + 'px)',
+      transition:
+        'transform .2s cubic-bezier(.4,0,.2,1), visibility 0s linear .21s'
+    };
+  }
+
+  renderTitle(title, styles) {
+    if (!title) {
+      return null;
+    }
+    return (
+      <div styles={ styles }>
+        { title }
+      </div>
+    );
+  }
+
+  render() {
+    const defaultStyles = BottomSheetStyles;
+    let bottomSheetStyles = [defaultStyles.normalBottomSheetStyle];
+    const {
+      children,
+      show,
+      styles,
+      title
+    } = this.props;
+
+    if (show) {
+      bottomSheetStyles.push(defaultStyles.showBottomSheetStyle);
+    } else {
+      bottomSheetStyles.push(this.hiddenTransformStyle());
+    }
+    if (styles) {
+      bottomSheetStyles = bottomSheetStyles.concat(styles);
+    }
+
+    return (
+      <div styles={bottomSheetStyles}>
+        { this.renderTitle(title, defaultStyles.titleStyle) }
+        { children }
+      </div>
+    );
+  }
+}

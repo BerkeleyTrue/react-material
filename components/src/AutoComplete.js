@@ -1,19 +1,22 @@
-'use strict';
-
 import React from 'react';
-import StyleSheet from 'react-style';
+// import StyleSheet from 'react-style';
 
-import {TextField} from './TextField';
+import { TextField } from './TextField';
 
 // on select go to top + full width + show suggestions
-export default class AutoComplete extends React.Component {
+export default class extends React.Component {
+  constructor() {
+    super();
+  }
+  static displayName = 'AutoComplete'
 
   render() {
-    return <div>
+    return (
       <div>
-        <TextField />
+        <div>
+          <TextField />
+        </div>
       </div>
-    </div>;
+    );
   }
-
 }

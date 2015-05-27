@@ -1,87 +1,13 @@
-'use strict';
-
-import React from 'react';
+import React, { PropTypes } from 'react';
 import StyleSheet from 'react-style';
 
-import {Colors,
-        Sizes,
-        Typography} from '../style';
-
+import { Colors, Sizes, Typography } from '../style';
 import RippleContainer from './RippleContainer';
 import Shadow from './Shadow';
 
-var isTouchDevice = typeof window !== 'undefined' && 'ontouchstart' in window;
+const isTouchDevice = typeof window !== 'undefined' && 'ontouchstart' in window;
 
-export default class Button extends React.Component {
-
-  //propTypes: {
-  //  raised: React.PropTypes.bool,
-  //  disabled: React.PropTypes.bool
-  //},
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      active: false
-    }
-  }
-
-  render() {
-    var props = this.props;
-    var state = this.state;
-    var styles = [Typography.button, ButtonStyles.normalButtonStyle];
-    var shadowSize = -1;
-    if (props.styles) {
-      styles = styles.concat(props.styles);
-    }
-    if (props.disabled) {
-      styles.push(ButtonStyles.disabledButtonStyle);
-    }
-    else if (props.raised) {
-      styles.push(ButtonStyles.raisedButtonStyle);
-      shadowSize = 1;
-
-      if (state.active) {
-        shadowSize = 2;
-      }
-    }
-
-    return <div role="button"
-                tabIndex="0"
-                styles={styles}
-                onTouchStart={() => isTouchDevice && this.onMouseDown()}
-                onTouchEnd={() => isTouchDevice && this.onMouseUp()}
-                onTouchCancel={() => isTouchDevice && this.onMouseUp()}
-                onMouseDown={() => !isTouchDevice && this.onMouseDown()}
-                onMouseUp={() => !isTouchDevice && this.onMouseUp()}
-                onMouseLeave={() => !isTouchDevice && this.onMouseUp()} >
-          <Shadow size={shadowSize} styles={ButtonStyles.shadowStyle}>
-
-      {!props.disabled &&
-        <RippleContainer styles={ButtonStyles.rippleContainerStyle} onClick={() => props.onClick && props.onClick()}/>
-      }
-        {props.children}
-          </Shadow>
-      </div>;
-  }
-
-  onMouseUp() {
-    if (this.props.disabled) {
-      return;
-    }
-    this.setState({active: false});
-  }
-
-  onMouseDown() {
-    if (this.props.disabled) {
-      return;
-    }
-    this.setState({active: true});
-  }
-
-}
-
-var ButtonStyles = StyleSheet.create({
+const ButtonStyles = StyleSheet.create({
 
   normalButtonStyle: {
     webkitTapHighlightColor: 'rgba(0,0,0,0)',
@@ -120,5 +46,100 @@ var ButtonStyles = StyleSheet.create({
     overflow: 'hidden',
     borderRadius: '3px'
   }
-
 });
+
+export default class extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      active: false
+    };
+  }
+
+  static displayName = 'Button';
+  static propTypes = {
+    children: PropTypes.children,
+    disabled: PropTypes.bool,
+    onClick: PropTypes.func,
+    styles: PropTypes.object,
+    raised: PropTypes.bool
+  }
+
+  onMouseUp() {
+    if (this.props.disabled) {
+      return;
+    }
+    this.setState({active: false});
+  }
+
+  onMouseDown() {
+    if (this.props.disabled) {
+      return;
+    }
+    this.setState({active: true});
+  }
+
+  renderRipples(disabled, onClick, styles) {
+    if (disabled) {
+      return null;
+    }
+    return (
+      <RippleContainer
+        onClick={ () => onClick && onClick() }
+        styles={ styles } />
+    );
+  }
+
+  render() {
+    const {
+      shadowStyle,
+      rippleContainerStyle,
+      normalButtonStyle
+    } = ButtonStyles;
+
+    const {
+      children,
+      disabled,
+      onClick,
+      raised
+    } = this.props;
+
+    let styles = [
+      Typography.button,
+      normalButtonStyle
+    ];
+
+    let shadowSize = -1;
+    if (this.props.styles) {
+      styles = styles.concat(this.props.styles);
+    }
+    if (disabled) {
+      styles.push(ButtonStyles.disabledButtonStyle);
+    } else if (raised) {
+      styles.push(ButtonStyles.raisedButtonStyle);
+      shadowSize = 1;
+
+      if (this.state.active) {
+        shadowSize = 2;
+      }
+    }
+
+    return (
+      <div
+        onMouseDown={() => !isTouchDevice && this.onMouseDown()}
+        onMouseLeave={() => !isTouchDevice && this.onMouseUp()}
+        onMouseUp={() => !isTouchDevice && this.onMouseUp()}
+        onTouchCancel={() => isTouchDevice && this.onMouseUp()}
+        onTouchEnd={() => isTouchDevice && this.onMouseUp()}
+        onTouchStart={() => isTouchDevice && this.onMouseDown()}
+        role='button'
+        styles={ styles }
+        tabIndex='0'>
+          <Shadow size={ shadowSize } styles={ shadowStyle }>
+            { this.renderRipples(disabled, onClick, rippleContainerStyle) }
+            { children }
+          </Shadow>
+      </div>
+    );
+  }
+}

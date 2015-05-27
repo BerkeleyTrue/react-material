@@ -1,16 +1,13 @@
-'use strict';
-
 import React from 'react';
-import StyleSheet from 'react-style';
+// import StyleSheet from 'react-style';
 
-export default class Application extends React.Component {
-
-  render() {
-
+// const ApplicationStyles = StyleSheet.create({});
+export default class extends React.Component {
+  constructor() {
+    super();
   }
-
+  static displayName = 'Application'
+  render() {
+    return null;
+  }
 }
-
-var ApplicationStyles = StyleSheet.create({
-
-});
