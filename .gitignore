@@ -1,6 +1,7 @@
 .idea/*
 node_modules/*
 *.iml
+.DS_Store
 
 # don't check in compiled components
 components/icons/
