@@ -1,0 +1,6 @@
+assets
+components/icons/
+components/*.js
+style/*.js
+views/*.js
+vendor

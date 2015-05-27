@@ -1,9 +1,7 @@
 'use strict';
 var gulp = require('gulp'),
-    react = require('gulp-react'),
     babel = require('gulp-babel'),
-    rimraf = require('gulp-rimraf'),
-    gjslint = require('gulp-gjslint'),
+    eslint = require('gulp-eslint'),
     sync = require('browser-sync'),
     merge = require('merge2'),
     webpack = require('gulp-webpack');
@@ -19,7 +17,6 @@ var paths = {
     './assets/bundle.js',
     './assets/styles.css'
   ]
-
 };
 
 gulp.task('transpile', function() {
@@ -71,11 +68,8 @@ gulp.task('watch', function() {
 
 gulp.task('lint', function() {
   return gulp.src(paths.src)
-    .pipe(react())
-    .pipe(gulp.dest('./assets'))
-    .pipe(gjslint({ flags: ['--nojsdoc'] }))
-    .pipe(gjslint.reporter('console'))
-    .pipe(rimraf());
+    .pipe(eslint())
+    .pipe(eslint.format());
 });
 
 gulp.task('default', ['transpile', 'pack', 'sync', 'watch']);
