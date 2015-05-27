@@ -1,20 +1,21 @@
-'use strict';
-
 import React from 'react';
 import StyleSheet from 'react-style';
 
-export default class CardCollection extends React.Component {
+const CardCollectionStyles = StyleSheet.create({
+  normalCardCollectionStyle: {}
+});
 
-  render() {
-    return <div styles={CardCollectionStyles.normalCardCollectionStyle}>
-      {this.props.children}
-    </div>;
+export default class extends React.Component {
+  static displayName = 'CardCollection '
+  static propTypes = {
+    children: React.PropTypes.node
   }
-
+  render() {
+    return (
+      <div styles={ CardCollectionStyles.normalCardCollectionStyle }>
+        { this.props.children }
+      </div>
+    );
+  }
 }
 
-var CardCollectionStyles = StyleSheet.create({
-  normalCardCollectionStyle: {
-
-  }
-});

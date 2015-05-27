@@ -1,28 +1,9 @@
-'use strict';
-
 import React from 'react';
 import StyleSheet from 'react-style';
 
 import Shadow from './Shadow';
 
-export default class Card extends React.Component {
-
-  render() {
-    var props  = this.props;
-    var styles = CardStyles;
-    return <div styles={styles.normalCardStyle}>
-      <Shadow size={1} />
-      {props.title &&
-        <h3 styles={styles.headerStyle}>{props.title}</h3>
-      }
-      {this.props.children}
-    </div>;
-  }
-
-}
-
-var CardStyles = StyleSheet.create({
-
+const CardStyles = StyleSheet.create({
   normalCardStyle: {
     backgroundColor: 'white',
     borderRadius: 2,
@@ -37,5 +18,33 @@ var CardStyles = StyleSheet.create({
     marginBottom: 35,
     marginTop: 0
   }
-
 });
+
+export default class extends React.Component {
+  static displayName = 'Card';
+  static propTypes = {
+    children: React.PropTypes.node,
+    styles: React.PropTypes.object,
+    title: React.PropTypes.string
+  }
+
+  render() {
+    const {
+      styles,
+      title
+    } = this.props;
+
+    return (
+      <div styles={ CardStyles.normalCardStyle }>
+        <Shadow size={1} />
+        { title &&
+          <h3 styles={styles.headerStyle}>
+            { title }
+          </h3>
+        }
+        { this.props.children }
+      </div>
+    );
+  }
+
+}

@@ -1,6 +1,4 @@
-'use strict';
-
-import React from 'react';
+import React, { PropTypes } from 'react';
 import StyleSheet from 'react-style';
 
 import {Colors} from '../style/';
@@ -9,108 +7,7 @@ import transitionEnd from './TransitionEndName';
 import isTransform from './isTransform';
 import CircleShadow from './CircleShadow';
 
-export default class CheckBox extends React.Component {
-
-  constructor(props) {
-    super(props);
-    var checked = this.props.checked || false;
-    this.isChecked = checked;
-    this.state = {
-      checked: checked
-    };
-  }
-
-  render() {
-    var state = this.state;
-    var props = this.props;
-    var styles = CheckBoxStyles;
-    var stylesX = [styles.normalStyle];
-    var containerStyles = [styles.containerStyle];
-    if (props.containerStyles) {
-      containerStyles = containerStyles.concat(props.containerStyles);
-    }
-    if (state.transitioning) {
-      stylesX.push(styles.transitionStyle);
-    }
-    else if (state.checked && !state.transitioning) {
-      stylesX.push(styles.transitionStyle);
-      stylesX.push(styles.checkedStyle);
-    }
-
-
-    return <div tabIndex={0} styles={containerStyles} onClick={() => this.onToggle()} onMouseDown={() => this.onMouseDown()} onMouseUp={() => this.onMouseUp()}>
-      <div ref="checkbox" styles={stylesX}/>
-      <div styles={styles.circleContainerStyle}>
-        <CircleShadow styles={styles.circleStyle} active={this.state.mouseDown} />
-      </div>
-      <div styles={ props.children && props.children.length ? styles.childBigStyle : styles.childStyle}>
-        {props.children}
-      </div>
-    </div>
-  }
-
-  onMouseDown() {
-    if (!transitionEnd) {
-      return;
-    }
-    this.setState({mouseDown: true});
-  }
-
-  onMouseUp() {
-    if (!transitionEnd) {
-      return;
-    }
-    this.setState({mouseDown: false});
-  }
-
-  onToggle() {
-    if (!this.state.checked) {
-      this.setState({transitioning: true});
-      this.isChecked = true;
-    }
-    else {
-      this.setState({checked: false});
-      this.isChecked = false;
-    }
-    var props = this.props;
-    if (props.onChange) {
-      props.onChange({checked: this.isChecked});
-    }
-  }
-
-  componentDidMount() {
-    if (!transitionEnd) {
-      return;
-    }
-
-    React.findDOMNode(this.refs.checkbox).addEventListener(transitionEnd, () => this.onTransitionEnd);
-  }
-
-  componentWillUnmount() {
-    if (!transitionEnd) {
-      return;
-    }
-
-    React.findDOMNode(this.refs.checkbox).removeEventListener(transitionEnd, () => this.onTransitionEnd);
-  }
-
-  onTransitionEnd(e) {
-    var state = this.state;
-    if (state.transitioning) {
-      if (isTransform(e.propertyName) && !state.checked) {
-        this.setState({checked: true, transitioning: false});
-      }
-    }
-  }
-
-  toggle() {
-    this.onToggle();
-  }
-
-}
-
-var CheckBoxStyles = StyleSheet.create({
-
+const CheckBoxStyles = StyleSheet.create({
   containerStyle: {
     cursor: 'pointer',
     display: 'block',
@@ -175,5 +72,134 @@ var CheckBoxStyles = StyleSheet.create({
   circleStyle: {
     backgroundColor: Colors.green.P600
   }
-
 });
+
+export default class extends React.Component {
+  constructor(props) {
+    super(props);
+    const { checked } = props;
+    this.isChecked = checked;
+    this.state = {
+      checked: checked
+    };
+  }
+  static displayName = 'CheckBox'
+  static defaultProps = {
+    checked: false,
+    onChange: () => {}
+  }
+  static propTypes = {
+    children: PropTypes.node,
+    checked: PropTypes.bool,
+    containerStyles: PropTypes.object,
+    onChange: PropTypes.func
+  }
+
+  componentDidMount() {
+    if (!transitionEnd) {
+      return null;
+    }
+
+    React.findDOMNode(this.refs.checkbox)
+      .addEventListener(transitionEnd, () => this.onTransitionEnd);
+  }
+
+  componentWillUnmount() {
+    if (!transitionEnd) {
+      return null;
+    }
+    React.findDOMNode(this.refs.checkbox)
+      .removeEventListener(transitionEnd, () => this.onTransitionEnd);
+  }
+
+  onTransitionEnd(e) {
+    var state = this.state;
+    if (state.transitioning) {
+      if (isTransform(e.propertyName) && !state.checked) {
+        this.setState({checked: true, transitioning: false});
+      }
+    }
+  }
+
+  toggle() {
+    this.onToggle();
+  }
+
+  onMouseDown() {
+    if (!transitionEnd) {
+      return null;
+    }
+    this.setState({ mouseDown: true });
+  }
+
+  onMouseUp() {
+    if (!transitionEnd) {
+      return;
+    }
+    this.setState({ mouseDown: false });
+  }
+
+  onToggle() {
+    if (!this.state.checked) {
+      this.setState({ transitioning: true });
+      this.isChecked = true;
+    } else {
+      this.setState({ checked: false });
+      this.isChecked = false;
+    }
+    const { onChange } = this.props;
+
+    if (onChange) {
+      onChange({ checked: this.isChecked });
+    }
+  }
+
+  render() {
+    const {
+      children
+    } = this.props;
+
+    const {
+      checked,
+      transitioning
+    } = this.state;
+
+    const styles = CheckBoxStyles;
+    const stylesX = [styles.normalStyle];
+    let containerStyles = [styles.containerStyle];
+    if (this.props.containerStyles) {
+      containerStyles = containerStyles.concat(this.props.containerStyles);
+    }
+    if (transitioning) {
+      stylesX.push(styles.transitionStyle);
+    } else if (checked) {
+      stylesX.push(styles.transitionStyle);
+      stylesX.push(styles.checkedStyle);
+    }
+
+    const childStyle = children && children.length ?
+      styles.childBigStyle :
+      styles.childStyle;
+
+    return (
+      <div
+        onClick={ () => this.onToggle()}
+        onMouseDown={() => this.onMouseDown()}
+        onMouseUp={() => this.onMouseUp()}
+        styles={ containerStyles }
+        tabIndex={ 0 }>
+        <div
+          ref='checkbox'
+          styles={ stylesX } />
+        <div styles={ styles.circleContainerStyle }>
+          <CircleShadow
+            active={ this.state.mouseDown }
+            styles={ styles.circleStyle } />
+        </div>
+        <div styles={ childStyle } >
+          { children }
+        </div>
+      </div>
+    );
+  }
+}
