@@ -1,5 +1,3 @@
-'use strict';
-
 import BottomSheetsView from './BottomSheetsView';
 import ButtonsView from './ButtonsView';
 import CardsView from './CardsView';

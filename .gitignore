@@ -8,5 +8,7 @@ node_modules/*
 assets
 components/icons/
 components/*.js
+components/*.jsx
 style/*.js
 views/*.js
+views/*.jsx

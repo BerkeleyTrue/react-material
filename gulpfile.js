@@ -13,6 +13,13 @@ var paths = {
     './themes/*.js',
     './views/src/*.js'
   ],
+  components: [
+    './components/src/*.js',
+    './components/src/*.jsx'],
+  views: [
+    './views/src/*.js',
+    './views/src/*.jsx'
+  ],
   packed: [
     './assets/bundle.js',
     './assets/styles.css'
@@ -23,7 +30,7 @@ gulp.task('transpile', function() {
   var icons = gulp.src('./components/src/icons/*')
     .pipe(gulp.dest('./components/icons'));
 
-  var components = gulp.src('./components/src/*.js')
+  var components = gulp.src(paths.components)
     .pipe(babel())
     .pipe(gulp.dest('./components'));
 
@@ -31,7 +38,7 @@ gulp.task('transpile', function() {
     .pipe(babel())
     .pipe(gulp.dest('./style'));
 
-  var views = gulp.src('./views/src/*.js')
+  var views = gulp.src(paths.views)
     .pipe(babel())
     .pipe(gulp.dest('./views'));
 
