@@ -1,78 +1,11 @@
-'use strict';
-
-import React from 'react';
+import React, { PropTypes } from 'react';
 import StyleSheet from 'react-style';
 
-import {Colors} from '../style/';
+import { Colors } from '../style/';
 
 import RippleContainer from '../components/RippleContainer';
 
-export default class Tabs extends React.Component {
-
-  //constructor(props) {
-  //  super(props);
-  //}
-
-  render() {
-    var props = this.props;
-    var styles = TabsStyles;
-    var titles = [];
-    var children = props.children;
-    var selectedTab;
-    var selectedIndex = 0;
-    for (var i = 0, l = children.length; i < l; i++) {
-      var child = children[i];
-      var childProps = child.props;
-      var tabTitleStyles = [styles.tabTitleStyle];
-      if (childProps.selected) {
-        tabTitleStyles.push(styles.tabTitleSelectedStyle);
-        selectedTab = child;
-        selectedIndex = i;
-      }
-      tabTitleStyles.push({width:(100 / children.length) + '%'});
-      titles[i] = <li key={i} styles={tabTitleStyles}>
-                    <RippleContainer onClick={(e)=>this.onTabHeaderClick(e)} />
-                    {childProps.title}
-                  </li>;
-    }
-    var normalStyles = [styles.normalStyle];
-    if (props.styles) {
-      normalStyles = normalStyles.concat(props.styles);
-    }
-    return <div styles={normalStyles}>
-      <ul styles={styles.tabTitlesContainerStyle}>
-        {titles}
-        <div styles={[styles.selectionBarStyle,
-                      {
-                        width:(100 / children.length) + '%',
-                        left: (100 / children.length * selectedIndex) + '%'
-                      }
-                    ]}/>
-      </ul>
-      {selectedTab}
-    </div>
-
-  }
-
-  onTabHeaderClick(e) {
-    var props = this.props;
-    if (props.onChange) {
-      var position = 0;
-      var target = e.target;
-
-      while (target = target.previousSibling) {
-        position++;
-      }
-
-      // enhance the event with the position of the blind
-      e.position = position;
-      props.onChange(e);
-    }
-  }
-
-}
-
-var TabsStyles = StyleSheet.create({
+const TabsStyles = StyleSheet.create({
   normalStyle: {
     position: 'relative',
     width: '100%'
@@ -116,3 +49,123 @@ var TabsStyles = StyleSheet.create({
     bottom: 0
   }
 });
+
+export default class extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  static displayName = 'Tabs'
+  static propTypes = {
+    children: PropTypes.node,
+    onChange: PropTypes.func,
+    styles: PropTypes.object
+  }
+
+  getSelectedChild(children) {
+    let defaultVal = {
+      selectedTab: null,
+      selectedIndex: 0
+    };
+    if (!children) {
+      return defaultVal;
+    }
+    if (!Array.isArray(children)) {
+      children = [children];
+    }
+    return children.reduce((accu, child, index) => {
+      if (!child.props.selected) {
+        return accu;
+      }
+      accu.selectedTab = child;
+      accu.selectedIndex = index;
+    }, defaultVal);
+  }
+
+  onTabHeaderClick(e) {
+    const { onChange } = this.props;
+    if (onChange) {
+      let position = 0;
+      let target = e.target;
+
+      while (target.previousSibling) {
+        target = target.previousSibling;
+        position++;
+      }
+
+      // enhance the event with the position of the blind
+      e.position = position;
+      onChange(e);
+    }
+  }
+
+  renderTitles(children, tabTitleStyle, tabTitleSelectedStyle) {
+    if (!children) {
+      return null;
+    }
+    if (!Array.isArray(children)) {
+      children = [children];
+    }
+
+    return children.map((child, index) => {
+      const childProps = child.props;
+      const tabTitleStyles = [tabTitleStyle];
+
+      if (childProps.selected) {
+        tabTitleStyles.push(tabTitleSelectedStyle);
+      }
+
+      tabTitleStyles.push({ width: (100 / children.length) + '%' });
+      return (
+        <li
+          key={ index }
+          styles={ tabTitleStyles }>
+          <RippleContainer onClick={ ::this.onTabHeaderClick } />
+          { childProps.title }
+        </li>
+      );
+    });
+  }
+
+  render() {
+    const {
+      children,
+      styles
+    } = this.props;
+
+    const {
+      normalStyle,
+      selectionBarStyle,
+      tabTitlesContainerStyle,
+      tabTitleSelectedStyle,
+      tabTitleStyle
+    } = TabsStyles;
+
+    let normalStyles = [normalStyle];
+    if (styles) {
+      normalStyles = normalStyles.concat(styles);
+    }
+
+    const {
+      selectedIndex,
+      selectedTab
+    } = this.getSelectedChild(children);
+
+    const selectionBarStyles = [
+      selectionBarStyle,
+      {
+        width: (100 / children.length) + '%',
+        left: (100 / children.length * selectedIndex) + '%'
+      }
+    ];
+    return (
+      <div styles={normalStyles}>
+        <ul styles={tabTitlesContainerStyle}>
+          { this.renderTabs(children, tabTitleStyle, tabTitleSelectedStyle) }
+          <div styles={ selectionBarStyles }/>
+        </ul>
+        { selectedTab }
+      </div>
+    );
+  }
+}
+

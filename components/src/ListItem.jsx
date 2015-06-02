@@ -1,44 +1,9 @@
-'use strict';
-
-import React from 'react';
+import React, { PropTypes } from 'react';
 import StyleSheet from 'react-style';
 
-import Icon from './Icon';
 import RippleContainer from './RippleContainer';
 
-export default class ListItem extends React.Component{
-
-  render() {
-    var props = this.props;
-    var styles = ListItemStyles;
-    var listItemStyles = [styles.normalListItemStyle];
-    if (props.icon) {
-      listItemStyles.push(styles.singleLineWithIconTitleStyle);
-    }
-
-    if(props.styles) {
-      listItemStyles = listItemStyles.concat(props.styles);
-    }
-
-    return <div styles={listItemStyles}>
-      {!props.disableRipple &&
-      <RippleContainer onClick={(e)=> this.onClick(e)}/> }
-
-      {props.children}
-    </div>;
-  }
-
-  onClick(e) {
-    var onClick = this.props.onClick;
-    if (onClick) {
-      onClick(e);
-    }
-  }
-
-}
-
-var ListItemStyles = StyleSheet.create({
-
+const ListItemStyles = StyleSheet.create({
   normalListItemStyle: {
     webkitTapHighlightColor: 'rgba(0,0,0,0)',
     boxSizing: 'border-box',
@@ -60,5 +25,57 @@ var ListItemStyles = StyleSheet.create({
     position: 'relative',
     pointerEvents: 'none'
   }
-
 });
+
+export default class extends React.Component{
+  constructor(props) {
+    super(props);
+  }
+  static displayName = 'ListItem'
+  static propTypes = {
+    children: PropTypes.node,
+    disableRipple: PropTypes.bool,
+    icon: PropTypes.string,
+    onClick: PropTypes.func,
+    styles: PropTypes.array
+  }
+
+  renderRipple(disableRipple, onClick) {
+    if (disableRipple) {
+      return null;
+    }
+    return <RippleContainer onClick={ onClick } />;
+  }
+
+  render() {
+    const {
+      children,
+      disableRipple,
+      icon,
+      onClick,
+      styles
+    } = this.props;
+
+    const {
+      normalListItemStyle,
+      singleLineWithIconTitleStyle
+    } = ListItemStyles;
+
+    const listItemStyles = [normalListItemStyle];
+
+    if (icon) {
+      listItemStyles.push(singleLineWithIconTitleStyle);
+    }
+
+    if (styles) {
+      listItemStyles = listItemStyles.concat(styles);
+    }
+
+    return (
+      <div styles={listItemStyles}>
+        { this.renderRipple(disableRipple, onClick) }
+        { children }
+      </div>
+    );
+  }
+}

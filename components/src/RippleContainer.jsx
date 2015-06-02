@@ -1,147 +1,12 @@
-'use strict';
-
-import React from 'react';
+import React, { PropTypes } from 'react';
 import StyleSheet from 'react-style';
 
-import isTransform from './isTransform';
+import { isTouchDevice, isTransform, noop, slice } from './utils';
 
 var rippleUniqueId = 0;
 import transitionEnd from './TransitionEndName';
 
-
-var isTouchDevice = typeof window !== 'undefined' &&
-                    'ontouchstart' in window;
-
-class RippleContainer extends React.Component {
-
-  constructor() {
-    this.state = {
-      ripples: []
-    };
-  }
-
-  render() {
-    var props = this.props;
-    var state = this.state;
-    var styles = RippleContainerStyles;
-    var ripples = state.ripples;
-    var rippleComponents = [];
-    for (var i = 0, l = ripples.length; i < l; i++) {
-      var ripple = ripples[i];
-      var rippleStyles = [styles.rippleStyle];
-      if (ripple.transitioning || ripple.transitionComplete) {
-        rippleStyles.push(styles.rippleAnimationStyle);
-      }
-      if (i < l - 1 || (ripple.transitionComplete && ripple.fadeOut)) {
-        rippleStyles.push({opacity: '0'});
-      }
-
-      rippleStyles.push({left: ripple.x, top: ripple.y, width: ripple.width, height: ripple.height});
-      var rippleComponent = <div key={ripple.id}
-                                 ref={'ripple_'+ripple.id}
-                                 styles={rippleStyles} />;
-      rippleComponents.push(rippleComponent);
-    }
-
-
-    return <div styles={[styles.normalStyle, props.styles]}
-        onTouchStart={(e) => isTouchDevice && this.onMouseDown(e)}
-        onTouchEnd={(e) => isTouchDevice && this.onMouseUp(e)}
-        onTouchCancel={(e) => isTouchDevice && this.onMouseLeave(e)}
-        onMouseDown={(e) => !isTouchDevice && this.onMouseDown(e)}
-        onMouseLeave={(e) => !isTouchDevice && this.onMouseLeave(e)}
-        onMouseUp={(e) => !isTouchDevice && this.onMouseUp(e)}
-      >
-        {rippleComponents}
-      </div>;
-  }
-
-  onMouseDown(e) {
-    var domNode = React.findDOMNode(this);
-    var height = domNode.offsetHeight;
-    var width = domNode.offsetWidth;
-    if (width > height) {
-      height = width;
-    }
-    else {
-      width = height;
-    }
-    var boundingRect = domNode.getBoundingClientRect();
-    var x = e.clientX - boundingRect.left - width / 2;
-    var y = e.clientY - boundingRect.top - height / 2;
-
-    var ripples = this.state.ripples;
-    var ripple = {
-      id: rippleUniqueId++,
-      height: height,
-      width: width,
-      x: x,
-      y: y
-    };
-    ripples.push(ripple);
-
-    // messes up click event :-(
-    this.setState({ripples: ripples});
-
-    setTimeout(() => this.startRipple(), 0);
-  }
-
-  onMouseUp(e) {
-    this.onMouseLeave();
-    var onClick = this.props.onClick;
-    if (onClick) {
-      e.preventDefault();
-      onClick({target: React.findDOMNode(this).parentNode, originalEvent: e});
-    }
-  }
-
-  onMouseLeave() {
-    // fade out
-    var ripples = this.state.ripples;
-    for (var i = 0, l = ripples.length; i < l; i++) {
-      ripples[i].fadeOut = true;
-      ripples[i].transitioning = false;
-      ripples[i].transitionComplete = true;
-    }
-    this.setState({ripples: ripples});
-
-  }
-
-  startRipple() {
-    var ripples = this.state.ripples;
-    ripples[ripples.length - 1].transitioning = true;
-    this.setState({ripples: ripples});
-  }
-
-  endRipple(e) {
-    var ripples = this.state.ripples;
-    if (isTransform(e.propertyName)) {
-      ripples[0].transitioning = false;
-      ripples[0].transitionComplete = true;
-      this.setState({ripples: ripples});
-    }
-    else if (e.propertyName === 'opacity') {
-      ripples.shift();
-      this.setState({ripples: ripples});
-    }
-  }
-
-  componentDidMount() {
-    var self = this;
-    var domNode = React.findDOMNode(this);
-
-    if (!transitionEnd) {
-      return;
-    }
-
-    //TODO: make sure we only do this once, instead of all the time...
-    domNode.addEventListener(transitionEnd, (e) => this.endRipple(e));
-  }
-
-}
-
-var RippleContainerStyles = StyleSheet.create({
-
+const RippleContainerStyles = StyleSheet.create({
   normalStyle: {
     height: '100%',
     left: 0,
@@ -166,7 +31,157 @@ var RippleContainerStyles = StyleSheet.create({
   rippleFadeoutStyle: {
     opacity: '0'
   }
-
 });
 
-module.exports = RippleContainer;
+export default class extends React.Component {
+  constructor() {
+    this.state = {
+      ripples: []
+    };
+  }
+
+  static displayName = 'RippleContainer'
+  static propTypes = {
+    onClick: PropTypes.func,
+    styles: PropTypes.object
+  }
+
+  componentDidMount() {
+    if (!transitionEnd) {
+      return;
+    }
+    // TODO: make sure we only do this once, instead of all the time...
+    React.findDOMNode(this)
+      .addEventListener(transitionEnd, ::this.endRipple);
+  }
+
+  onMouseDown(e) {
+    const domNode = React.findDOMNode(this);
+    const boundingRect = domNode.getBoundingClientRect();
+    let height = domNode.offsetHeight;
+    let width = domNode.offsetWidth;
+    if (width > height) {
+      height = width;
+    } else {
+      width = height;
+    }
+    const x = e.clientX - boundingRect.left - width / 2;
+    const y = e.clientY - boundingRect.top - height / 2;
+
+    const ripples = slice.call(this.state.ripples);
+    let ripple = {
+      id: rippleUniqueId++,
+      height: height,
+      width: width,
+      x: x,
+      y: y
+    };
+    ripples.push(ripple);
+
+    // messes up click event :-(
+    this.setState({ ripples: ripples });
+
+    setTimeout(::this.startRipple, 0);
+  }
+
+  onMouseUp(e) {
+    this.onMouseLeave();
+    const { onClick } = this.props;
+    if (onClick) {
+      e.preventDefault();
+      onClick({
+        target: React.findDOMNode(this).parentNode,
+        originalEvent: e
+      });
+    }
+  }
+
+  onMouseLeave() {
+    // fade out
+    const ripples = slice.call(this.state.ripples)
+      .map(ripple => {
+        ripple.fadeOut = true;
+        ripple.transitioning = false;
+        ripple.transitionComplete = true;
+      });
+    this.setState({ ripples: ripples });
+
+  }
+
+  startRipple() {
+    let ripples = slice.call(this.state.ripples);
+    ripples[ripples.length - 1].transitioning = true;
+    this.setState({ ripples: ripples });
+  }
+
+  endRipple(e) {
+    let ripples = slice.call(this.state.ripples);
+    if (isTransform(e.propertyName)) {
+      ripples[0].transitioning = false;
+      ripples[0].transitionComplete = true;
+      this.setState({ ripples: ripples });
+
+    } else if (e.propertyName === 'opacity') {
+      ripples.shift();
+      this.setState({ ripples: ripples });
+    }
+  }
+
+  renderRipples(ripples, styles, animateStyle) {
+    const l = ripples.length;
+    return ripples.map((ripple, index) => {
+      const rippleStyles = [styles];
+      if (ripple.transitioning || ripple.transitionComplete) {
+        rippleStyles.push(animateStyle);
+      }
+
+      if (index < (l - 1) || (ripple.transitionComplete && ripple.fadeOut)) {
+        rippleStyles.push({ opacity: '0' });
+      }
+
+      rippleStyles.push({
+        height: ripple.height,
+        left: ripple.x,
+        top: ripple.y,
+        width: ripple.width
+      });
+
+      return (
+        <div
+          key={ ripple.id }
+          ref={ 'ripple_' + ripple.id }
+          styles={ rippleStyles } />
+      );
+    });
+  }
+
+  render() {
+    const {
+      styles
+    } = this.props;
+
+    const {
+      ripples
+    } = this.state;
+
+    const {
+      normalStyle,
+      rippleStyle,
+      rippleAnimationStyle
+    } = RippleContainerStyles;
+
+    return (
+      <div
+        onMouseDown={ !isTouchDevice ? ::this.onMouseDown : noop }
+        onMouseLeave={ !isTouchDevice ? ::this.onMouseLeave : noop }
+        onMouseUp={ !isTouchDevice ? ::this.onMouseUp : noop }
+
+        onTouchCancel={ isTouchDevice ? ::this.onMouseLeave : noop }
+        onTouchEnd={ isTouchDevice ? ::this.onMouseUp : noop }
+        onTouchStart={ isTouchDevice ? ::this.onMouseDown : noop }
+        styles={ [normalStyle, styles] }>
+        { this.renderRipples(ripples, rippleStyle, rippleAnimationStyle) }
+      </div>
+    );
+  }
+}

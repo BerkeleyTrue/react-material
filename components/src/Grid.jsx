@@ -1,11 +1,9 @@
-'use strict';
-
 import React from 'react';
 
-export default class Grid extends React.Component {
-
+export default class extends React.Component {
+  constructor() { super(); }
+  static displayName = 'Grid'
   render() {
     return <div />;
   }
-
 }

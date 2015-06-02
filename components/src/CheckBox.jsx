@@ -4,8 +4,8 @@ import StyleSheet from 'react-style';
 import {Colors} from '../style/';
 
 import transitionEnd from './TransitionEndName';
-import isTransform from './isTransform';
 import CircleShadow from './CircleShadow';
+import { isTransform, noop } from './utils';
 
 const CheckBoxStyles = StyleSheet.create({
   containerStyle: {
@@ -62,7 +62,6 @@ const CheckBoxStyles = StyleSheet.create({
     width: '10px'
   },
 
-
   circleContainerStyle: {
     position: 'absolute',
     height: '20px',
@@ -79,14 +78,12 @@ export default class extends React.Component {
     super(props);
     const { checked } = props;
     this.isChecked = checked;
-    this.state = {
-      checked: checked
-    };
+    this.state = { checked };
   }
   static displayName = 'CheckBox'
   static defaultProps = {
     checked: false,
-    onChange: () => {}
+    onChange: noop
   }
   static propTypes = {
     children: PropTypes.node,

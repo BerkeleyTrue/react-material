@@ -1,5 +1,3 @@
-'use strict';
-
 import StyleSheet from 'react-style';
 
 export default StyleSheet.create({

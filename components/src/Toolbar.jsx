@@ -1,15 +1,12 @@
-'use strict';
-
 import React from 'react';
-import StyleSheet from 'react-style';
+// import StyleSheet from 'react-style';
 
-class Toolbar extends React.Component {
-
+export default class extends React.Component {
+  static displayName = 'Toolbar'
   render() {
-    return <div>
-    </div>;
+    return (
+      <div>
+      </div>
+    );
   }
-
 }
-
-module.exports = Toolbar;

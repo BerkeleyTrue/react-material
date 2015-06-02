@@ -1,28 +1,12 @@
-'use strict';
-
-import React from 'react';
+import React, { PropTypes } from 'react';
 import StyleSheet from 'react-style';
 
 import Colors from '../style/Colors';
-
 import CircleShadow from './CircleShadow';
 import Icon from './Icon';
+import { noop } from './utils';
 
-export default class IconButton extends React.Component {
-
-  render() {
-    var props = this.props;
-    var styles = IconButtonStyles;
-    return <div styles={styles.normalStyle} onClick={() => props.onClick()}>
-      <CircleShadow active={true} styles={[styles.circleShadowStyle]}/>
-      <Icon icon={props.icon} styles={props.styles ? props.styles.iconStyles: null}/>
-    </div>;
-  }
-
-}
-
-var IconButtonStyles = StyleSheet.create({
-
+const IconButtonStyles = StyleSheet.create({
   normalStyle: {
     cursor: 'pointer',
     display: 'inline-block',
@@ -43,5 +27,43 @@ var IconButtonStyles = StyleSheet.create({
     transform: 'scale(2) translateZ(0)',
     width: 24
   }
-
 });
+
+export default class extends React.Component {
+  constructor(props) { super(props); }
+  static displayName = 'IconButton'
+  static defaultProps = {
+    onClick: noop
+  }
+  static propTypes = {
+    icon: PropTypes.string,
+    onClick: PropTypes.func,
+    styles: PropTypes.object
+  }
+  render() {
+    const {
+      icon,
+      onClick,
+      styles
+    } = this.props;
+
+    const {
+      normalStyle,
+      circleShadowStyle
+    } = IconButtonStyles;
+
+    const iconStyles = styles ? styles.iconStyles : null;
+    return (
+      <div
+        onClick={ () => onClick() }
+        styles={ normalStyle }>
+        <CircleShadow
+          active={ true }
+          styles={ circleShadowStyle } />
+        <Icon
+          icon={ icon }
+          styles={ iconStyles }/>
+      </div>
+    );
+  }
+}

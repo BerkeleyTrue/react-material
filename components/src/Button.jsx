@@ -4,11 +4,9 @@ import StyleSheet from 'react-style';
 import { Colors, Sizes, Typography } from '../style';
 import RippleContainer from './RippleContainer';
 import Shadow from './Shadow';
-
-const isTouchDevice = typeof window !== 'undefined' && 'ontouchstart' in window;
+import { isTouchDevice, noop } from './utils';
 
 const ButtonStyles = StyleSheet.create({
-
   normalButtonStyle: {
     webkitTapHighlightColor: 'rgba(0,0,0,0)',
     cursor: 'pointer',
@@ -56,7 +54,10 @@ export default class extends React.Component {
     };
   }
 
-  static displayName = 'Button';
+  static displayName = 'Button'
+  static defaultProps = {
+    onClick: noop
+  }
   static propTypes = {
     children: PropTypes.children,
     disabled: PropTypes.bool,
@@ -69,14 +70,14 @@ export default class extends React.Component {
     if (this.props.disabled) {
       return;
     }
-    this.setState({active: false});
+    this.setState({ active: false });
   }
 
   onMouseDown() {
     if (this.props.disabled) {
       return;
     }
-    this.setState({active: true});
+    this.setState({ active: true });
   }
 
   renderRipples(disabled, onClick, styles) {
@@ -85,7 +86,7 @@ export default class extends React.Component {
     }
     return (
       <RippleContainer
-        onClick={ () => onClick && onClick() }
+        onClick={ onClick }
         styles={ styles } />
     );
   }
@@ -126,12 +127,12 @@ export default class extends React.Component {
 
     return (
       <div
-        onMouseDown={() => !isTouchDevice && this.onMouseDown()}
-        onMouseLeave={() => !isTouchDevice && this.onMouseUp()}
-        onMouseUp={() => !isTouchDevice && this.onMouseUp()}
-        onTouchCancel={() => isTouchDevice && this.onMouseUp()}
-        onTouchEnd={() => isTouchDevice && this.onMouseUp()}
-        onTouchStart={() => isTouchDevice && this.onMouseDown()}
+        onMouseDown={ () => !isTouchDevice && this.onMouseDown() }
+        onMouseLeave={ () => !isTouchDevice && this.onMouseUp() }
+        onMouseUp={ () => !isTouchDevice && this.onMouseUp() }
+        onTouchCancel={ () => isTouchDevice && this.onMouseUp() }
+        onTouchEnd={ () => isTouchDevice && this.onMouseUp() }
+        onTouchStart={ () => isTouchDevice && this.onMouseDown() }
         role='button'
         styles={ styles }
         tabIndex='0'>

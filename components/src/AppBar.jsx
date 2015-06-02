@@ -3,9 +3,9 @@ import StyleSheet from 'react-style';
 
 import { Colors, Typography } from '../style/';
 import Icon from './Icon';
+import { noop } from './utils';
 
 const AppBarStyles = StyleSheet.create({
-
   normalAppBarStyle: {
     backgroundColor: Colors.cyan.P500,
     boxSizing: 'border-box',
@@ -76,8 +76,13 @@ export default class extends React.Component {
 
   static displayName = 'AppBar';
   static defaultProps = {
-    styles: {}
+    styles: {},
+    onBackButtonClick: noop,
+    onMenuButtonCLick: noop,
+    onNavButtonClick: noop,
+    onTitleClick: noop
   }
+
   static propTypes = {
     actionButtons: React.PropTypes.array,
     boxShadow: React.PropTypes.bool,

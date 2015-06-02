@@ -1,35 +1,7 @@
-'use strict';
-
-import React from 'react';
+import React, { PropTypes } from 'react';
 import StyleSheet from 'react-style';
 
-export default class Overlay extends React.Component {
-  //
-  //propTypes: {
-  //  onClick: React.PropTypes.func.isRequired
-  //},
-
-  render() {
-    var styles = OverlayStyles;
-    var overlayStyles = [styles.normalOverlayStyle];
-    if (this.props.show) {
-      overlayStyles.push(styles.normalOverlayVisibleStyle);
-    }
-    return <div onClick={(e) => this.onClick(e)} styles={overlayStyles}>
-
-    </div>
-  }
-
-  onClick(e) {
-    var props = this.props;
-    if (props.onClick) {
-      props.onClick(e);
-    }
-  }
-}
-
-var OverlayStyles = StyleSheet.create({
-
+const OverlayStyles = StyleSheet.create({
   normalOverlayStyle: {
     height: '100%',
     position: 'fixed',
@@ -42,14 +14,61 @@ var OverlayStyles = StyleSheet.create({
     opacity: '.01',
     zIndex: '2',
     visibility: 'hidden',
-    transition: 'visibility 0s linear .4s, opacity .4s cubic-bezier(.4, 0, .2, 1), z-index 0s linear .4s'
+    transition:
+      'visibility 0s ' +
+      'linear .4s, ' +
+      'opacity .4s ' +
+      'cubic-bezier(.4, 0, .2, 1), ' +
+      'z-index 0s linear .4s'
   },
 
   normalOverlayVisibleStyle: {
     opacity: '.3',
-    filter: 'alpha(opacity=30)', // wonder what's better this or transparent images (both suck for this)
+    // NOTE: wonder what's better this or
+    // transparent images (both suck for this)
+    filter: 'alpha(opacity=30)',
     visibility: 'visible',
-    transition: 'visibility 0s linear 0s, opacity .4s cubic-bezier(.4, 0, .2, 1), z-index 0s linear 0s'
+    transition:
+      'visibility 0s ' +
+      'linear 0s, ' +
+      'opacity .4s ' +
+      'cubic-bezier(.4, 0, .2, 1), ' +
+      'z-index 0s linear 0s'
+  }
+});
+
+export default class extends React.Component {
+  constructor() {
+    super();
+  }
+  static displayName = 'Overlay'
+  static propTypes = {
+    onClick: PropTypes.func.isRequired,
+    show: PropTypes.bool
   }
 
-});
+  render() {
+    const {
+      onClick,
+      show
+    } = this.props;
+
+    const {
+      normalOverlayVisibleStyle,
+      normalOverlayStyle
+    } = OverlayStyles;
+
+    const overlayStyles = [normalOverlayStyle];
+
+    if (show) {
+      overlayStyles.push(normalOverlayVisibleStyle);
+    }
+
+    return (
+      <div
+        onClick={ onClick ? onClick : () => {} }
+        styles={ overlayStyles }>
+      </div>
+    );
+  }
+}

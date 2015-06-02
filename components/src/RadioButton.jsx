@@ -1,73 +1,9 @@
-'use strict';
-
-import React from 'react';
+import React, { PropTypes } from 'react';
 import StyleSheet from 'react-style';
 
 import Colors from '../style/Colors';
 
-import CircleShadow from './CircleShadow';
-
-export default class RadioButton extends React.Component {
-
-  constructor(props) {
-    super(props);
-    var checked = this.props.checked || false;
-    this.isChecked = checked;
-    return {
-      checked: checked
-    };
-  }
-
-  render() {
-    var props = this.props;
-    var styles = RadioButtonStyles;
-    var checked = this.state.checked || props.checked;
-    var normalStyles = styles.normalStyle;
-    var propStyles = props.styles || {};
-
-    return <div tabIndex={0}
-                styles={[styles.normalStyle, propStyles.normalStyle]}
-                onClick={() => this.onClick()}
-                onMouseDown={() => this.onMouseDown()}>
-      <div styles={[styles.offButtonStyle,
-                    propStyles.offButtonStyle]} />
-      <div styles={[styles.onButtonStyle,
-                    propStyles.onButtonStyle,
-                    checked && styles.onButtonFillStyle]} />
-      <div styles={[props.children && props.children.length ?
-                    styles.childBigStyle :
-                    styles.childStyle,
-                    propStyles.childStyle]}>
-        {props.children}
-      </div>
-    </div>;
-  }
-
-  onClick() {
-    var props = this.props;
-    var position = 0;
-    var el = React.findDOMNode(this);
-    while(el = el.previousSibling) {
-      position++
-    }
-    var state = this.state;
-    if (props.onChange) {
-      props.onChange({checked: state.checked, ref: this, position: position});
-      return;
-    }
-
-    var isChecked = !state.checked;
-    this.setState({checked: isChecked});
-    this.isChecked = isChecked;
-  }
-
-  onMouseDown(){
-    this.setState({mouseDown: !this.state.checked});
-  }
-
-}
-
-var RadioButtonStyles = StyleSheet.create({
+const RadioButtonStyles = StyleSheet.create({
 
   normalStyle: {
     webkitTapHighlightColor: 'rgba(0,0,0,0)',
@@ -120,5 +56,100 @@ var RadioButtonStyles = StyleSheet.create({
     top: '2px',
     left: '2px'
   }
-
 });
+
+export default class extends React.Component {
+  constructor(props) {
+    super(props);
+    const { checked = false } = props;
+    this.isChecked = checked;
+    this.state({
+      checked: checked
+    });
+  }
+
+  static displayName = 'RadioButton'
+  static propTypes = {
+    checked: PropTypes.bool,
+    children: PropTypes.node,
+    onChange: PropTypes.func,
+    styles: PropTypes.object
+  }
+
+  onClick() {
+    const {
+      onChange
+    } = this.props;
+
+    const {
+      checked
+    } = this.state;
+
+    let position = 0;
+    const el = React.findDOMNode(this);
+    // NOTE(Berks): previously was es = es.previousSibling, not sure what the
+    // intent is here
+    while (el === el.previousSibling) {
+      position++;
+    }
+
+    if (onChange) {
+      return onChange({
+        checked: checked,
+        ref: this,
+        position: position
+      });
+    }
+
+    this.isChecked = !checked;
+    this.setState({ checked: !checked });
+  }
+
+  onMouseDown() {
+    this.setState({ mouseDown: !this.state.checked });
+  }
+
+  render() {
+    const {
+      children,
+      styles = {}
+    } = this.props;
+
+    const checked = this.state.checked || this.props.checked;
+
+    const radioButtonStyles = [
+      RadioButtonStyles.normalStyle,
+      styles.normalStyle
+    ];
+    const offButtonStyles = [
+      RadioButtonStyles.offButtonStyle,
+      styles.offButtonStyle
+    ];
+    const onButtonStyles = [
+      RadioButtonStyles.onButtonStyle,
+      styles.onButtonStyle,
+      checked && RadioButtonStyles.onButtonFillStyle
+    ];
+    const childContianerStyles = [
+      children && children.length ?
+        RadioButtonStyles.childBigStyle :
+        RadioButtonStyles.childStyle,
+      styles.childStyle
+    ];
+
+    return (
+      <div
+        onClick={ ::this.onClick }
+        onMouseDown={ ::this.onMouseDown }
+        styles={ radioButtonStyles }
+        tabIndex={0}>
+        <div styles={ offButtonStyles } />
+        <div styles={ onButtonStyles } />
+        <div styles={ childContianerStyles }>
+          { children }
+        </div>
+      </div>
+    );
+  }
+}
+

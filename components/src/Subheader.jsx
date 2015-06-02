@@ -1,30 +1,36 @@
-'use strict';
-
-import React from 'react';
+import React, { PropTypes } from 'react';
 import StyleSheet from 'react-style';
 
-import {Typography} from '../style/';
+import { Typography } from '../style/';
 
-class Subheader extends React.Component {
-
-  render() {
-    var styles = SubheaderStyles;
-    return <div styles={[Typography.subhead, styles.normalStyle]}>
-      {this.props.children}
-    </div>
-  }
-
-}
-
-var SubheaderStyles = StyleSheet.create({
-
+const SubheaderStyles = StyleSheet.create({
   normalStyle: {
     height: 48,
     lineHeight: '48px',
     padding: '0 16px',
     position: 'relative'
   }
-
 });
 
-module.exports = Subheader;
+export default class extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  static displayName = 'Subheader'
+  static propTypes = {
+    children: PropTypes.node
+  }
+  render() {
+    const { normalStyle } = SubheaderStyles;
+    const {
+      children
+    } = this.props;
+
+    return (
+      <div styles={ [Typography.subhead, normalStyle] }>
+        { children }
+      </div>
+    );
+  }
+}

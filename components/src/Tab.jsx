@@ -1,20 +1,25 @@
-'use strict';
+import React, { PropTypes } from 'react';
+// import StyleSheet from 'react-style';
 
-import React from 'react';
-import StyleSheet from 'react-style';
-
-class Tab extends React.Component {
-
-  //propTypes: {
-  //  title: React.PropTypes.string.isRequired
-  //},
-
-  render() {
-    return <div>
-      {this.props.children}
-    </div>
+export default class extends React.Component {
+  constructor(props) {
+    super(props);
   }
 
-}
+  static displayName = 'Tab'
+  static propTypes = {
+    children: PropTypes.node,
+    title: PropTypes.string.isRequired
+  }
 
-module.exports = Tab;
+  render() {
+    const {
+      children
+    } = this.props;
+    return (
+      <div>
+        { children }
+      </div>
+    );
+  }
+}

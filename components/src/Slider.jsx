@@ -1,14 +1,7 @@
-'use strict';
-
 import React from 'react';
-import StyleSheet from 'react-style';
+// import StyleSheet from 'react-style';
 
-class Slider extends React.Component {
-
-  render() {
-
-  }
-
+export default class extends React.Component {
+  static displayName = 'Slider'
+  render() { }
 }
-
-module.exports = Slider;

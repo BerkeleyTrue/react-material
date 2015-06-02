@@ -1,5 +1,3 @@
-'use strict';
-
 // Text Field inputs
 //
 // Spec: http://www.google.com/design/spec/components/text-fields.html
@@ -20,196 +18,19 @@
 //      |    |Input Text (16sp)
 //      | 16 |---
 
-import React from 'react';
+import React, { PropTypes } from 'react';
 import StyleSheet from 'react-style';
 
-import {Colors, Typography} from '../style/';
+import { Colors, Typography } from '../style/';
 
 // Color of floating label and underline when focused
-var focusColor = Colors.blue.P500;
+const focusColor = Colors.blue.P500;
 
 // Color of label when unfocused
-var labelColor = Colors.grey.P500;
-
-var transitionDuration = '0.2s';
-var textMargin = '0.5em 0 0.25em';
-
-var TextField = React.createClass({
-
-  getInitialState() {
-    return {
-      // indicates whether the input field has focus
-      focus: false,
-      // a flag set when the user initiates focusing the
-      // text field and then cleared a moment later
-      focusing: true,
-    };
-  },
-
-  render() {
-    var props = this.props;
-    var styles = TextFieldStyles;
-    var propStyles = props.styles || {};
-    var textField = this.refs.textField;
-    var scrollLeft = 0;
-    var scrollWidth = -1;
-    var width = -1;
-    var placeHolderStyling = [styles.placeHolderStyling];
-
-    if (props.floatingLabel) {
-      placeHolderStyling.push(styles.floatingLabelPlaceHolderStyling);
-    }
-
-    if (this.state.focus || this.effectiveValue().length > 0) {
-      if (props.floatingLabel) {
-        placeHolderStyling.push(styles.placeHolderTopStyling);
-        if (this.state.focus) {
-          placeHolderStyling.push({color: focusColor});
-        }
-      } else {
-          placeHolderStyling.push({opacity: '0'});
-      }
-    }
-
-    if (textField) {
-      var textfieldDOMNode = React.findDOMNode(textField);
-      scrollWidth = textfieldDOMNode.scrollWidth;
-      scrollLeft = textfieldDOMNode.scrollLeft;
-      width = textfieldDOMNode.offsetWidth;
-    }
-
-    var containerStyling = [styles.containerStyling];
-    if (props.floatingLabel) {
-        containerStyling.push({height: '66px'});
-    }
-    containerStyling.push(propStyles.containerStyling);
-
-    var textFieldStyling = [styles.normalTextFieldStyle];
-
-    if (props.floatingLabel) {
-      textFieldStyling.push({paddingTop: 25});
-    }
-
-    var focusedUnderlineStyling = [styles.focusedUnderlineStyle];
-    if (this.state.focus) {
-      focusedUnderlineStyling.push({opacity:1});
-    }
-
-    if (props.error) {
-      focusedUnderlineStyling.push(styles.errorUnderlineStyle);
-    }
-
-    return <div styles={containerStyling}>
-      <div styles={placeHolderStyling}>{props.placeHolder}</div>
-      <input onChange={this.onChange}
-             onKeyUp={this.onChange}
-             onClick={this.onChange}
-             onWheel={this.onChange}
-             onFocus={this.onFocus}
-             onBlur={this.onBlur}
-             onMouseDown={this.onMouseDown}
-             onTouchStart={this.onTouchStart}
-             type={props.type || 'text'}
-             ref='textField'
-             defaultValue={props.defaultValue}
-             value={props.value}
-             styles={textFieldStyling} />
-      <div ref='underlineContainer' styles={styles.underlineContainerStyle}>
-        <div ref='underline' styles={styles.underlineStyle}></div>
-        <div ref='focusedUnderline' styles={focusedUnderlineStyling}></div>
-      </div>
-      <div styles={[scrollLeft ? {opacity: '1'} : null,
-                   this.state.focus ? styles.focusStyle : null,
-                  styles.scrollBlocksStyle,
-                  {left: '6px'}]} />
-      <div styles={[(scrollWidth > (scrollLeft + width)) ?
-      {opacity: '1'} : null,
-                    this.state.focus ? styles.focusStyle : null,
-                    styles.scrollBlocksStyle,
-                    {right: '6px'}]} />
-    </div>;
-  },
-
-  onMouseDown(e) {
-    if (this.state.focus) {
-      return;
-    }
-    this.setState({focusX: e.clientX});
-  },
-
-  onTouchStart(e) {
-    if (this.state.focus) {
-      return;
-    }
-    var touch = e.touches.item(0);
-    this.setState({focusX: touch.clientX});
-  },
-
-  onChange(e) {
-    if (this.props.onChange) {
-        this.props.onChange(e);
-    }
-  },
-
-  onBlur(e) {
-    this.setState({
-      focus: false,
-      focusX: null
-    });
-    if (this.props.onBlur) {
-        this.props.onBlur(e);
-    }
-  },
-
-  onFocus(e) {
-    this.setState({
-      focus: true
-    });
-
-    // if the user focused via touch or mouse,
-    // animate the focused underline, spilling from the horizontal
-    // position of the mouse or touch
-    if (this.state.focusX) {
-      var underlineRect = React.findDOMNode(this.refs['underlineContainer']).getBoundingClientRect();
-      var focusedUnderline = React.findDOMNode(this.refs['focusedUnderline']);
-
-      this.setState({focusing: true});
-
-      focusedUnderline.style.transition = 'none';
-      focusedUnderline.style.left = `${this.state.focusX - underlineRect.left}px`;
-      focusedUnderline.style.right = `${underlineRect.right - this.state.focusX}px`;
-
-      setTimeout(() => {
-        focusedUnderline.style.transition = '';
-        focusedUnderline.style.left = '0px';
-        focusedUnderline.style.right = '0px';
-
-        this.setState({focusing: false});
-      }, 1);
-    }
-
-    if (this.props.onFocus) {
-        this.props.onFocus(e);
-    }
-  },
-
-  // returns the value being displayed in the text field.
-  // This is equal to props.value if set or the current
-  // value of the actual DOM node if mounted
-  effectiveValue() {
-    var value = this.props.value;
-    if (value !== undefined) {
-        return value;
-    } else if (this.isMounted()) {
-        return React.findDOMNode(this.refs['textField']).value;
-    } else {
-        return '';
-    }
-  }
-});
-
-var TextFieldStyles = StyleSheet.create({
-
+const labelColor = Colors.grey.P500;
+const transitionDuration = '0.2s';
+const textMargin = '0.5em 0 0.25em';
+const TextFieldStyles = StyleSheet.create({
   normalTextFieldStyle: {
     background: 'transparent',
     fontFamily: Typography.fontFamily,
@@ -245,7 +66,9 @@ var TextFieldStyles = StyleSheet.create({
     left: 0,
     right: 0,
     opacity: '0',
-    transition: `left ${transitionDuration} ease-out, right ${transitionDuration} ease-out`
+    transition:
+      `left ${transitionDuration} ease-out, ` +
+      `right ${transitionDuration} ease-out`
   },
 
   errorUnderlineStyle: {
@@ -289,36 +112,288 @@ var TextFieldStyles = StyleSheet.create({
     opacity: '0',
     position: 'absolute',
     transition: 'opacity .28s linear',
-    width: 3,
-    //':before': {
-    //  backgroundColor: labelColor,
-    //  bottom: 0,
-    //  content: "''",
-    //  position: 'absolute',
-    //  height: 3,
-    //  width: 3,
-    //  right: 6
-    //},
-    //':after': {
-    //  backgroundColor: labelColor,
-    //  bottom: 0,
-    //  content: "''",
-    //  position: 'absolute',
-    //  height: 3,
-    //  width: 3,
-    //  right: -6
-    //}
+    width: 3
+    // ':before': {
+    //   backgroundColor: labelColor,
+    //   bottom: 0,
+    //   content: "''",
+    //   position: 'absolute',
+    //   height: 3,
+    //   width: 3,
+    //   right: 6
+    // },
+    // ':after': {
+    //   backgroundColor: labelColor,
+    //   bottom: 0,
+    //   content: "''",
+    //   position: 'absolute',
+    //   height: 3,
+    //   width: 3,
+    //   right: -6
+    // }
   },
 
   focusStyle: {
-    backgroundColor: focusColor,
-    //':before': {
-    //  backgroundColor: focusColor
-    //},
-    //':after': {
-    //  backgroundColor: focusColor
-    //}
+    backgroundColor: focusColor
+    // ':before': {
+    //   backgroundColor: focusColor
+    // },
+    // ':after': {
+    //   backgroundColor: focusColor
+    // }
   }
 });
 
-module.exports = TextField;
+export default class extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      // indicates whether the input field has focus
+      focus: false,
+      // a flag set when the user initiates focusing the
+      // text field and then cleared a moment later
+      focusing: true
+    };
+  }
+
+  static displayName = 'TextField'
+  static propTypes = {
+    defaultValue: PropTypes.string,
+    error: PropTypes.bool,
+    floatingLabel: PropTypes.bool,
+    onBlur: PropTypes.func,
+    onFocus: PropTypes.func,
+    onChange: PropTypes.func,
+    placeHolder: PropTypes.string,
+    styles: PropTypes.object,
+    type: PropTypes.string,
+    value: PropTypes.number
+  }
+
+  componentDidMount() {
+    this.isMounted = true;
+  }
+
+  componentWillUnmount() {
+    this.isMounted = false;
+  }
+
+  onMouseDown(e) {
+    if (this.state.focus) {
+      return;
+    }
+    this.setState({ focusX: e.clientX });
+  }
+
+  onTouchStart(e) {
+    if (this.state.focus) {
+      return;
+    }
+    var touch = e.touches.item(0);
+    this.setState({ focusX: touch.clientX });
+  }
+
+  onChange(e) {
+    const { onChange } = this.props;
+    if (onChange) {
+      onChange(e);
+    }
+  }
+
+  onBlur(e) {
+    const { onBlur } = this.props;
+    this.setState({
+      focus: false,
+      focusX: null
+    });
+    if (onBlur) {
+      onBlur(e);
+    }
+  }
+
+  onFocus(e) {
+    const { onFocus } = this.props;
+    const { focusX } = this.state;
+    this.setState({
+      focus: true
+    });
+
+    // if the user focused via touch or mouse,
+    // animate the focused underline, spilling from the horizontal
+    // position of the mouse or touch
+    if (focusX) {
+      const underlineRect = React.findDOMNode(this.refs['underlineContainer'])
+        .getBoundingClientRect();
+      const focusedUnderline = React.findDOMNode(this.refs['focusedUnderline']);
+
+      this.setState({ focusing: true });
+
+      focusedUnderline.style.transition = 'none';
+
+      focusedUnderline.style.left =
+        `${this.state.focusX - underlineRect.left}px`;
+      focusedUnderline.style.right =
+        `${underlineRect.right - this.state.focusX}px`;
+
+      setTimeout(() => {
+        focusedUnderline.style.transition = '';
+        focusedUnderline.style.left = '0px';
+        focusedUnderline.style.right = '0px';
+
+        this.setState({ focusing: false });
+      }, 1);
+    }
+
+    if (onFocus) {
+      onFocus(e);
+    }
+  }
+
+  // returns the value being displayed in the text field.
+  // This is equal to props.value if set or the current
+  // value of the actual DOM node if mounted
+  effectiveValue() {
+    const { value } = this.props;
+    if (value) {
+      return value;
+    } else if (this.isMounted) {
+      return React.findDOMNode(this.refs['textField']).value;
+    } else {
+      return '';
+    }
+  }
+
+  render() {
+    const {
+      defaultValue,
+      error,
+      floatingLabel,
+      placeHolder,
+      styles,
+      type,
+      value
+    } = this.props;
+
+    const {
+      focus
+    } = this.state;
+
+    const textField = this.refs.textField;
+    const scrollLeft = 0;
+    const scrollWidth = -1;
+    const width = -1;
+
+    const {
+      containerStyling,
+      errorUnderlineStyle,
+
+      floatingLabelPlaceHolderStyling,
+      focusedUnderlineStyling,
+      focusStyle,
+
+      placeHolderStyling,
+      placeHolderTopStyling,
+
+      normalTextFieldStyle,
+      scrollBlocksStyle,
+
+      underlineContainerStyle,
+      underlineStyle
+    } = TextFieldStyles;
+
+    var placeHolderStyles = [placeHolderStyling];
+
+    if (floatingLabel) {
+      placeHolderStyles.push(floatingLabelPlaceHolderStyling);
+    }
+
+    if (focus || this.effectiveValue().length > 0) {
+      if (floatingLabel) {
+
+        placeHolderStyles.push(placeHolderTopStyling);
+
+        if (focus) {
+          placeHolderStyles.push({ color: focusColor });
+        }
+      } else {
+        placeHolderStyles.push({ opacity: '0' });
+      }
+    }
+
+    if (textField) {
+      var textfieldDOMNode = React.findDOMNode(textField);
+      scrollWidth = textfieldDOMNode.scrollWidth;
+      scrollLeft = textfieldDOMNode.scrollLeft;
+      width = textfieldDOMNode.offsetWidth;
+    }
+
+    const containerStyles = [containerStyling];
+
+    if (floatingLabel) {
+      containerStyles.push({ height: '66px' });
+    }
+    containerStyles.push(styles.containerStyling);
+
+    const textFieldStyling = [normalTextFieldStyle];
+    if (floatingLabel) {
+      textFieldStyling.push({ paddingTop: 25 });
+    }
+
+    const focusedUnderlineStyles = [focusedUnderlineStyling];
+    if (focus) {
+      focusedUnderlineStyles.push({ opacity: 1 });
+    }
+
+    if (error) {
+      focusedUnderlineStyles.push(errorUnderlineStyle);
+    }
+
+    const focusStylesLeft = [
+      scrollLeft ? { opacity: '1'} : null,
+      focus ? focusStyle : null,
+      scrollBlocksStyle,
+      { left: '6px' }
+    ];
+
+    const focusStylesRight = [
+      (scrollWidth > (scrollLeft + width)) ? { opacity: '1' } : null,
+      focus ? focusStyle : null,
+      scrollBlocksStyle,
+      { right: '6px' }
+    ];
+
+    return (
+      <div styles={ containerStyles }>
+        <div styles={ placeHolderStyles }>
+          { placeHolder }
+        </div>
+        <input
+          defaultValue={ defaultValue }
+          onBlur={ ::this.onBlur }
+          onChange={ ::this.onChange }
+          onClick={ ::this.onChange }
+          onFocus={ ::this.onFocus }
+          onKeyUp={ ::this.onChange }
+          onMouseDown={ ::this.onMouseDown }
+          onTouchStart={ ::this.onTouchStart }
+          onWheel={ ::this.onChange }
+          ref='textField'
+          styles={ textFieldStyling }
+          type={ type || 'text' }
+          value={ value } />
+        <div
+          ref='underlineContainer'
+          styles={ underlineContainerStyle }>
+          <div
+            ref='underline'
+            styles={ underlineStyle } />
+          <div
+            ref='focusedUnderline'
+            styles={ focusedUnderlineStyles } />
+        </div>
+        <div styles={ focusStylesLeft } />
+        <div styles={ focusStylesRight } />
+      </div>
+    );
+  }
+}

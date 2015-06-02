@@ -1,63 +1,9 @@
-'use strict';
-
-import {Colors} from '../style/';
-
-import React from 'react';
+import React, { PropTypes } from 'react';
 import StyleSheet from 'react-style';
 
-import {RadioButton} from './';
+import { Colors } from '../style/';
 
-export default class ToggleButton extends React.Component {
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      checked: false
-    }
-  }
-
-  render() {
-    var props = this.props;
-    var circleStyle = [ToggleButtonStyles.circleStyle];
-    var checked = this.state.checked;
-
-    if (checked) {
-      circleStyle.push(ToggleButtonStyles.checkedStyle);
-    }
-
-    var onButtonStyle = [ToggleButtonStyles.onButtonStyle];
-    if (props.onButtonStyle) {
-      onButtonStyle = onButtonStyle.concat(props.onButtonStyle);
-    }
-    if (checked){
-      onButtonStyle.push(ToggleButtonStyles.onButtonFillStyle);
-    }
-
-    return <div styles={ToggleButtonStyles.normalStyle} onClick={this.onClick}>
-      {props.children}
-      <div styles={ToggleButtonStyles.circlePositionStyle}>
-        <div styles={ToggleButtonStyles.lineStyle} />
-        <div styles={circleStyle}>
-          <div styles={onButtonStyle} />
-        </div>
-      </div>
-    </div>;
-  }
-
-  onClick() {
-    var props = this.props;
-    var checked = !this.state.checked;
-    this.isChecked = checked;
-    this.setState({checked: checked});
-    if (props.onChange) {
-      props.onChange({checked: this.isChecked});
-    }
-  }
-
-}
-
-var ToggleButtonStyles = StyleSheet.create({
-
+const ToggleButtonStyles = StyleSheet.create({
   normalStyle: {
     webkitTapHighlightColor: 'rgba(0,0,0,0)',
     cursor: 'pointer',
@@ -125,5 +71,71 @@ var ToggleButtonStyles = StyleSheet.create({
   onButtonFillStyle: {
     transform: 'scale(1)'
   }
-
 });
+
+export default class extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      checked: false
+    };
+  }
+  static displayName = 'ToggleButton'
+  static propTypes = {
+    children: PropTypes.node,
+    onChange: PropTypes.func,
+    styles: PropTypes.object
+  }
+
+  onClick() {
+    const { onChange } = this.props;
+    const {
+      checked
+    } = this.state;
+
+    this.isChecked = !checked;
+    this.setState({ checked: !checked });
+    if (onChange) {
+      onChange({ checked: this.isChecked });
+    }
+  }
+
+  render() {
+    const {
+      children,
+      styles
+    } = this.props;
+    const {
+      checked
+    } = this.state;
+
+    const circleStyle = [ToggleButtonStyles.circleStyle];
+    const onButtonStyle = [ToggleButtonStyles.onButtonStyle];
+
+    if (checked) {
+      circleStyle.push(ToggleButtonStyles.checkedStyle);
+    }
+
+    if (styles) {
+      onButtonStyle = onButtonStyle.concat(styles.onButtonStyle);
+    }
+
+    if (checked) {
+      onButtonStyle.push(ToggleButtonStyles.onButtonFillStyle);
+    }
+
+    return (
+      <div
+        onClick={ ::this.onClick }
+        styles={ ToggleButtonStyles.normalStyle }>
+        { children }
+        <div styles={ ToggleButtonStyles.circlePositionStyle }>
+          <div styles={ ToggleButtonStyles.lineStyle } />
+          <div styles={ circleStyle }>
+            <div styles={ onButtonStyle } />
+          </div>
+        </div>
+      </div>
+    );
+  }
+}
