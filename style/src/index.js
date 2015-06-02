@@ -1,15 +1,4 @@
-'use strict';
-
-import Colors from './Colors';
-import Shadow from './Shadow';
-import Sizes from './Sizes';
-import Typography from './Typography';
-
-var Style = {
-  Colors:     Colors,
-  Shadow:     Shadow,
-  Sizes:      Sizes,
-  Typography: Typography
-};
-
-export default Style;
+export { default as Colors } from './Colors';
+export { default as Shadow } from './Shadow';
+export { default as Sizes } from './Sizes';
+export { default as Typography } from './Typography';

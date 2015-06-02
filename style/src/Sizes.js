@@ -1,6 +1,4 @@
-'use strict';
-
-var Sizes = {
+export default {
   AppBar: {
     height: 56
   },
@@ -9,5 +7,3 @@ var Sizes = {
     minWidth: 88
   }
 };
-
-module.exports = Sizes;

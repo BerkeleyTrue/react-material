@@ -1,6 +1,4 @@
-'use strict';
-
-var Colors = {
+export default {
   red: {
     P50: '#fde0dc',
     P100: '#f9bdbb',
@@ -296,5 +294,3 @@ var Colors = {
     P900: '#263238'
   }
 };
-
-module.exports = Colors;

@@ -1,10 +1,7 @@
-'use strict';
-
 import StyleSheet from 'react-style';
 
-var robotoFont = "'Roboto', 'Helvetica Neue', Helvetica, Arial";
-
-var fontStyles = StyleSheet.create({
+export const robotoFont = "'Roboto', 'Helvetica Neue', Helvetica, Arial";
+export const fontStyles = StyleSheet.create({
   display4: {
     color: 'rgba(0, 0, 0, .54)',
     fontFamily: robotoFont,
@@ -86,9 +83,3 @@ var fontStyles = StyleSheet.create({
     textTransform: 'uppercase'
   }
 });
-
-module.exports = {
-	fontFamily: robotoFont,
-	fontStyles: fontStyles
-};
-
