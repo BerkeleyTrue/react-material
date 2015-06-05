@@ -76,11 +76,7 @@ export default class extends React.Component {
 
   static displayName = 'AppBar';
   static defaultProps = {
-    styles: {},
-    onBackButtonClick: noop,
-    onMenuButtonCLick: noop,
-    onNavButtonClick: noop,
-    onTitleClick: noop
+    styles: {}
   }
 
   static propTypes = {
@@ -89,7 +85,6 @@ export default class extends React.Component {
     children: PropTypes.node,
     expanded: PropTypes.bool,
     onBackButtonClick: PropTypes.func,
-    onMenuButtonCLick: PropTypes.func,
     onNavButtonClick: PropTypes.func,
     onTitleClick: PropTypes.func,
     shadow: PropTypes.bool,
