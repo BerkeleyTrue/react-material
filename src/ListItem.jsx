@@ -5,7 +5,7 @@ import { RippleContainer } from './';
 
 const ListItemStyles = StyleSheet.create({
   normalListItemStyle: {
-    webkitTapHighlightColor: 'rgba(0,0,0,0)',
+    WebkitTapHighlightColor: 'rgba(0,0,0,0)',
     boxSizing: 'border-box',
     cursor: 'pointer',
     overflow: 'hidden',

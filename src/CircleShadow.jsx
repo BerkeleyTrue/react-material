@@ -5,7 +5,7 @@ import { Colors } from './style';
 
 const CircleShadowStyles = StyleSheet.create({
   normalStyle: {
-    webkitTapHighlightColor: 'rgba(0,0,0,0)',
+    WebkitTapHighlightColor: 'rgba(0,0,0,0)',
     backgroundColor: Colors.grey.P700,
     opacity: '0',
     borderRadius: '50%',

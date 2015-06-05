@@ -6,7 +6,7 @@ import { Colors } from './style';
 const RadioButtonStyles = StyleSheet.create({
 
   normalStyle: {
-    webkitTapHighlightColor: 'rgba(0,0,0,0)',
+    WebkitTapHighlightColor: 'rgba(0,0,0,0)',
     cursor: 'pointer',
     position: 'relative',
     display: 'block',

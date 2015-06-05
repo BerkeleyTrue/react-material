@@ -7,7 +7,7 @@ import { isTouchDevice, noop } from './utils';
 
 const ButtonStyles = StyleSheet.create({
   normalButtonStyle: {
-    webkitTapHighlightColor: 'rgba(0,0,0,0)',
+    WebkitTapHighlightColor: 'rgba(0,0,0,0)',
     cursor: 'pointer',
     position: 'relative',
     height: Sizes.Button.height - 2 * 9,
