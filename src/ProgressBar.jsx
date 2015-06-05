@@ -48,7 +48,8 @@ const ProgressBarStyles = StyleSheet.create({
 });
 
 export default class extends React.Component {
-  constructor() {
+  constructor(props) {
+    super(props);
     this.state = {
       counter: 0,
       indeterminateAnimate: false

@@ -279,9 +279,10 @@ export default class extends React.Component {
     } = this.state;
 
     const textField = this.refs.textField;
-    const scrollLeft = 0;
-    const scrollWidth = -1;
-    const width = -1;
+
+    let scrollLeft = 0;
+    let scrollWidth = -1;
+    let width = -1;
 
     const {
       containerStyling,

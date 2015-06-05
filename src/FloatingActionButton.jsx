@@ -164,10 +164,10 @@ export default class extends React.Component {
 
     const containerStyles = [styles.containerStyle];
     const iconStyle = mini ? styles.miniIconStyle : styles.defaultIconStyle;
-    const normalStyles = [styles.normalStyle];
     const percentageStyling = [styles.percentageStyle];
 
-    const shadowSize = 1;
+    let normalStyles = [styles.normalStyle];
+    let shadowSize = 1;
 
     let styles = FloatingActionButtonStyles;
     if (this.props.styles) {

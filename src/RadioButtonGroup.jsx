@@ -16,7 +16,8 @@ const RadioButtonGroupStyles = StyleSheet.create({
 });
 
 export default class extends React.Component {
-  constructor() {
+  constructor(props) {
+    super(props);
     this.selectedValue = null;
     this.state = {
       selectedIndex: -1

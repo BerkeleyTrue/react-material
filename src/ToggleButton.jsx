@@ -110,7 +110,7 @@ export default class extends React.Component {
     } = this.state;
 
     const circleStyle = [ToggleButtonStyles.circleStyle];
-    const onButtonStyle = [ToggleButtonStyles.onButtonStyle];
+    let onButtonStyle = [ToggleButtonStyles.onButtonStyle];
 
     if (checked) {
       circleStyle.push(ToggleButtonStyles.checkedStyle);

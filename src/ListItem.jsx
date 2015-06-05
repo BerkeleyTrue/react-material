@@ -61,7 +61,7 @@ export default class extends React.Component{
       singleLineWithIconTitleStyle
     } = ListItemStyles;
 
-    const listItemStyles = [normalListItemStyle];
+    let listItemStyles = [normalListItemStyle];
 
     if (icon) {
       listItemStyles.push(singleLineWithIconTitleStyle);
