@@ -1,26 +1,10 @@
-import BottomSheetsView from './BottomSheetsView';
-import ButtonsView from './ButtonsView';
-import CardsView from './CardsView';
-import DialogsView from './DialogsView';
-import ListView from './ListView';
-import MenusView from './MenusView';
-import ProgressAndActivityView from './ProgressAndActivityView';
-import SwitchesView from './SwitchesView';
-import TabsView from './TabsView';
-import TextFieldsView from './TextFieldsView';
-
-
-var Views = {
-  BottomSheetsView: BottomSheetsView,
-  ButtonsView: ButtonsView,
-  CardsView: CardsView,
-  DialogsView: DialogsView,
-  ListsView: ListView,
-  MenusView: MenusView,
-  ProgressAndActivityView: ProgressAndActivityView,
-  SwitchesView: SwitchesView,
-  TabsView: TabsView,
-  TextFieldsView: TextFieldsView
-};
-
-export default Views;
+export { default as BottomSheetsView } from './BottomSheetsView';
+export { default as ButtonsView } from './ButtonsView';
+export { default as CardsView } from './CardsView';
+export { default as DialogsView } from './DialogsView';
+export { default as ListView } from './ListView';
+export { default as MenusView } from './MenusView';
+export { default as ProgressAndActivityView } from './ProgressAndActivityView';
+export { default as SwitchesView } from './SwitchesView';
+export { default as TabsView } from './TabsView';
+export { default as TextFieldsView } from './TextFieldsView';

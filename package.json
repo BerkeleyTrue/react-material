@@ -42,6 +42,7 @@
     ]
   },
   "dependencies": {
+    "keymirror": "^0.1.1",
     "object.assign": "^3.0.0"
   }
 }

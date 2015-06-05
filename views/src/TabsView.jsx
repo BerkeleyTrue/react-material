@@ -1,39 +1,41 @@
-'use strict';
-
 import React from 'react';
-import StyleSheet from 'react-style';
 
-import {Tabs, Tab} from '../components/';
+import { Tabs, Tab } from '../components/';
 
-var TabsView = React.createClass({
-
-  getInitialState() {
-    return {
+export default class extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
       view: 0
     };
-  },
+  }
+
+  static displayName = 'TabsView'
+
+  onChange(e) {
+    this.setState({ view: e.position });
+  }
 
   render() {
     var state = this.state;
-    return <div>
-      <h1>
-        Example
-      </h1>
-      <Tabs onChange={this.onChange}>
-        <Tab title="tab1" selected={state.view === 0}>
-          Contents of tab 1
-        </Tab>
-        <Tab title="tab2" selected={state.view === 1}>
-          Contents of tab 2
-        </Tab>
-      </Tabs>
-    </div>;
-  },
-
-  onChange: function(e) {
-    this.setState({view: e.position});
+    return (
+      <div>
+        <h1>
+          Example
+        </h1>
+        <Tabs onChange={ ::this.onChange }>
+          <Tab
+            selected={ state.view === 0 }
+            title='tab1'>
+            Contents of tab 1
+          </Tab>
+          <Tab
+            selected={ state.view === 1 }
+            title='tab2'>
+            Contents of tab 2
+          </Tab>
+        </Tabs>
+      </div>
+    );
   }
-
-});
-
-module.exports = TabsView;
+}

@@ -1,198 +1,22 @@
-'use strict';
-
-// require("./style.css");
-
 import React from 'react';
+import keyMirror from 'keymirror';
 import StyleSheet from 'react-style';
 
 React.initializeTouchEvents(true);
 
-import {Colors} from '../style';
+import { Colors } from '../style';
 
-// components
-import {AppBar,
-        List,
-        ListItem,
-        Overlay,
-        SideNavigation} from '../components';
+import {
+  AppBar,
+  List,
+  ListItem,
+  Overlay,
+  SideNavigation
+} from '../components';
 
-//
-//var BottomSheetsView = require('./BottomSheetsView');
-import {BottomSheetsView,
-        ButtonsView,
-        CardsView,
-        DialogsView,
-        ListsView,
-        SwitchesView,
-        TabsView,
-        TextFieldsView} from './';
+import { default as Views } from './';
 
-//var ProgressAndActivityView = require('./ProgressAndActivityView');
-
-//var MenusView = require('./MenusView');
-//
-
-//
-//var BlueTheme = require('../themes/BlueTheme');
-
-var ViewsEnum = {
-  BottomSheetsView: 1,
-  ButtonsView: 2,
-  //ProgressAndActivityView: 3,
-  TabsView: 4,
-  TextFieldsView: 5,
-  SwitchesView: 6,
-  ListsView: 7,
-  CardsView: 8,
-  DialogsView: 9
-  //MenusView: 10
-};
-
-export default class DocumentationApplicationView extends React.Component {
-
-  // themes: [BlueTheme],
-
-  constructor() {
-    this.state =  {
-      showSideNavigation: false,
-      view: 0
-    }
-  }
-
-  onNavButtonClick() {
-    this.setState({showSideNavigation: !this.state.showSideNavigation});
-  }
-
-  onOverlayClick() {
-    this.setState({showSideNavigation: false});
-  }
-
-  render() {
-    var state = this.state;
-    var view = state.view;
-    var title;
-    var expanded = false;
-    if(view === ViewsEnum.BottomSheetsView) {
-      title = 'Bottom sheets';
-    }
-    else if(view === ViewsEnum.ButtonsView) {
-      expanded = true;
-      title = 'Buttons';
-    }
-    /*else if(view === ViewsEnum.ProgressAndActivityView) {
-      title = 'Progress and Activity';
-    }*/
-    else if(view === ViewsEnum.TabsView) {
-      title = 'Tabs';
-    }
-    else if(view === ViewsEnum.TextFieldsView) {
-      title = 'Text fields';
-    }
-    else if(view === ViewsEnum.SwitchesView) {
-      title = 'Switches';
-    }
-    else if(view === ViewsEnum.ListsView) {
-      title = 'Lists';
-    }
-    else if(view === ViewsEnum.CardsView) {
-      title = 'Cards';
-    }
-    else if (view === ViewsEnum.DialogsView) {
-      title = 'Dialogs';
-    }
-
-
-    return <div styles={DocumentationApplicationStyles.normalStyle}>
-      <AppBar onNavButtonClick={() => this.onNavButtonClick()}
-							expanded={expanded}
-							shadow={true}
-							title={title}
-							styles={DocumentationApplicationStyles.appBar}/>
-      <Overlay show={state.showSideNavigation} onClick={() => this.onOverlayClick()} />
-      <SideNavigation show={state.showSideNavigation}>
-        <List>
-          <ListItem onClick={this.onClick(ViewsEnum.BottomSheetsView)}>
-            Bottom sheets
-          </ListItem>
-          <ListItem onClick={this.onClick(ViewsEnum.ButtonsView)}>
-            Buttons
-          </ListItem>
-          <ListItem onClick={this.onClick(ViewsEnum.CardsView)}>
-            Cards
-          </ListItem>
-          <ListItem onClick={this.onClick(ViewsEnum.DialogsView)}>
-            Dialogs
-          </ListItem>
-          <ListItem onClick={this.onClick(ViewsEnum.ListsView)}>
-            Lists
-          </ListItem>
-          <ListItem onClick={this.onClick(ViewsEnum.SwitchesView)}>
-            Switches
-          </ListItem>
-          <ListItem onClick={this.onClick(ViewsEnum.TabsView)}>
-            Tabs
-          </ListItem>
-          <ListItem onClick={this.onClick(ViewsEnum.TextFieldsView)}>
-            Text fields
-          </ListItem>
-        </List>
-      </SideNavigation>
-      <div styles={DocumentationApplicationStyles.containerStyle}>
-      {state.view === 0 &&
-        <div>
-          <h1 styles={DocumentationApplicationStyles.headerStyle}>React Material Components</h1>
-          <p styles={DocumentationApplicationStyles.paragraphStyle}>
-             Here you find components written with <a href="http://reactjs.org">React.js</a> and {' '}
-             <a href="https://github.com/SanderSpies/react-style">React Style</a> that attempt to abide to the {' '}
-             <a href="http://www.google.com/design/spec/material-design/introduction.html">Google material design guidelines</a>.
-             It takes a different approach from Polymer, by wrapping both templates
-            and CSS within JavaScript.
-          </p>
-          <p styles={DocumentationApplicationStyles.paragraphStyle}>
-            If something is not correct, feel free to help out and file an {' '}
-            <a href="https://github.com/SanderSpies/react-style/issues/new">issue</a> or {' '}
-            <a href="https://github.com/SanderSpies/react-style/fork">fork the project</a> and do a pull request.
-          </p>
-        </div>
-        }
-        {state.view === ViewsEnum.BottomSheetsView &&
-          <BottomSheetsView />
-          }
-        {state.view === ViewsEnum.ButtonsView &&
-            <ButtonsView />
-        }
-        {state.view === ViewsEnum.TabsView &&
-            <TabsView />
-        }
-        {state.view === ViewsEnum.TextFieldsView &&
-            <TextFieldsView />
-        }
-        {state.view === ViewsEnum.SwitchesView &&
-            <SwitchesView />
-        }
-        {state.view === ViewsEnum.ListsView &&
-            <ListsView />
-        }
-        {state.view === ViewsEnum.CardsView &&
-            <CardsView />
-        }
-        {state.view === ViewsEnum.DialogsView &&
-            <DialogsView />
-        }
-      </div>
-    </div>;
-  }
-
-  onClick(position) {
-    var self = this;
-    return function() {
-      self.setState({view: position, showSideNavigation: false});
-    }
-  }
-}
-
-var DocumentationApplicationStyles = StyleSheet.create({
-
+const DocumentationApplicationStyles = StyleSheet.create({
   normalStyle: {
     backgroundColor: Colors.grey.P100,
     minHeight: '100%'
@@ -220,23 +44,184 @@ var DocumentationApplicationStyles = StyleSheet.create({
   },
 
   appBar: {
-
-    //normalAppBarStyle: ReactStyle({
-    // backgroundColor: Colors.blue.P500,
-    //  color: 'white',
-    //  fill: 'white'
-    //}),
+    // normalAppBarStyle: ReactStyle({
+    //  backgroundColor: Colors.blue.P500,
+    //   color: 'white',
+    //   fill: 'white'
+    // }),
     //
-    //placeHolderStyle: ReactStyle({
-    // backgroundColor: Colors.blue.P500
-    //}),
+    // placeHolderStyle: ReactStyle({
+    //  backgroundColor: Colors.blue.P500
+    // }),
     //
-    //titleStyle: ReactStyle({
-    // color: 'white'
-    //})
+    // titleStyle: ReactStyle({
+    //  color: 'white'
+    // })
   }
 });
 
+const ViewKeys = keyMirror({
+  defaultView: null,
+  BottomSheetsView: null,
+  ButtonsView: null,
+  // ProgressAndActivityView: null,
+  TabsView: null,
+  TextFieldsView: null,
+  SwitchesView: null,
+  ListsView: null,
+  CardsView: null,
+  DialogsView: null
+  // MenusView: null
+});
+
+const URLs = {
+  REACT: 'http://facebook.github.io/react/',
+  REACT_MATERIAL: 'https://github.com/SanderSpies/react-style',
+  GOOGLE_MATERIAL:
+    'http://www.google.com/design/spec/material-design/introduction.html'
+};
+
+Views.defaultView = (
+  <div>
+    <h1 styles={ DocumentationApplicationStyles.headerStyle }>
+      React Material Components
+    </h1>
+    <p styles={ DocumentationApplicationStyles.paragraphStyle }>
+      Here you find components written with
+      <a href={ URLs.REACT }>React.js</a> and
+      {' '}
+      <a href={ URLs.REACT_MATERIAL }>
+        React Style
+      </a> that attempt to abide to the
+      {' '}
+      <a href={ URLs.GOOGLE_MATERIAL }>
+        Google material design guidelines
+      </a>
+      It takes a different approach from Polymer, by wrapping both
+      templates and CSS within JavaScript.
+    </p>
+    <p styles={ DocumentationApplicationStyles.paragraphStyle }>
+      If something is not correct, feel free to help out and file an
+      {' '}
+      <a href={ URLs.REACT_MATERIAL + '/issues' }>
+        issue
+      </a> or
+      {' '}
+      <a href={ URLs.REACT_MATERIAL + '/fork' }>
+        fork the project
+      </a> and do a pull request.
+    </p>
+  </div>
+);
+
+const Titles = {
+  [ViewKeys.BottomSheetsView]: 'Bottom sheets',
+  [ViewKeys.ButtonsView]: 'Buttons',
+  [ViewKeys.ProgressAndActivityView]: 'Progress and Activity',
+  [ViewKeys.TabsView]: 'Tabs',
+  [ViewKeys.TextFieldsView]: 'Text fields',
+  [ViewKeys.SwitchesView]: 'Switches',
+  [ViewKeys.ListsView]: 'Lists',
+  [ViewKeys.CardsView]: 'Cards',
+  [ViewKeys.DialogsView]: 'Dialogs'
+};
+
+export default class DocumentationApplicationView extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      showSideNavigation: false,
+      view: 0
+    };
+  }
+
+  static displayName = 'DocumentationApplicationView'
+
+  onNavButtonClick() {
+    this.setState({ showSideNavigation: !this.state.showSideNavigation });
+  }
+
+  onClick(view) {
+    return () => {
+      this.setState({
+        view: view,
+        expanded: view === ViewKeys.ButtonsView,
+        showSideNavigation: false
+      });
+    };
+  }
+
+  onOverlayClick() {
+    this.setState({ showSideNavigation: false });
+  }
+
+  renderView(view) {
+    return Views[view];
+  }
+
+  getTitle(view) {
+    return Titles[view];
+  }
+
+  render() {
+    const {
+      expanded,
+      showSideNavigation,
+      view
+    } = this.state;
+
+    const title = this.getTitle(view);
+
+    return (
+      <div styles={ DocumentationApplicationStyles.normalStyle }>
+        <AppBar
+          expanded={ expanded }
+          onNavButtonClick={ ::this.onNavButtonClick }
+          shadow={ true }
+          styles={ DocumentationApplicationStyles.appBar }
+          title={ title } />
+        <Overlay
+          onClick={ ::this.onOverlayClick }
+          show={ showSideNavigation } />
+        <SideNavigation show={ showSideNavigation }>
+          <List>
+            <ListItem onClick={ this.onClick(ViewKeys.BottomSheetsView) }>
+              Bottom sheets
+            </ListItem>
+            <ListItem onClick={ this.onClick(ViewKeys.ButtonsView) }>
+              Buttons
+            </ListItem>
+            <ListItem onClick={ this.onClick(ViewKeys.CardsView) }>
+              Cards
+            </ListItem>
+            <ListItem onClick={ this.onClick(ViewKeys.DialogsView) }>
+              Dialogs
+            </ListItem>
+            <ListItem onClick={ this.onClick(ViewKeys.ListsView) }>
+              Lists
+            </ListItem>
+            <ListItem onClick={ this.onClick(ViewKeys.SwitchesView) }>
+              Switches
+            </ListItem>
+            <ListItem onClick={ this.onClick(ViewKeys.TabsView) }>
+              Tabs
+            </ListItem>
+            <ListItem onClick={ this.onClick(ViewKeys.TextFieldsView) }>
+              Text fields
+            </ListItem>
+          </List>
+        </SideNavigation>
+        <div styles={ DocumentationApplicationStyles.containerStyle }>
+          { this.renderView(view) }
+        </div>
+      </div>
+    );
+  }
+}
+
 if (typeof window !== 'undefined') {
-  React.render(<DocumentationApplicationView />, document.getElementById('container'));
+  React.render(
+    <DocumentationApplicationView />,
+    document.getElementById('container')
+  );
 }

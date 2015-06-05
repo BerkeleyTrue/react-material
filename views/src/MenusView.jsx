@@ -1,18 +1,15 @@
-'use strict';
-
 import React from 'react';
-import StyleSheet from 'react-style';
+// import StyleSheet from 'react-style';
 
-import {Button} from '../components/';
+import { Button } from '../components/';
 
-var MenusView = React.createClass({
-
-  render: function() {
-    return <div>
-      <Button>Does nothing</Button>
-    </div>;
+export default class extends React.Component {
+  static displayName = 'MenusView'
+  render() {
+    return (
+      <div>
+        <Button>Does nothing</Button>
+      </div>
+    );
   }
-
-});
-
-module.exports = MenusView;
+}
