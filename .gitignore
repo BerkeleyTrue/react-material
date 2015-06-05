@@ -6,9 +6,4 @@ node_modules/*
 
 # don't check in compiled components
 assets
-components/icons/
-components/*.js
-components/*.jsx
-style/*.js
-views/*.js
-views/*.jsx
+lib

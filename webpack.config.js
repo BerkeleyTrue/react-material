@@ -1,41 +1,39 @@
-'use strict';
-
+var path = require('path');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var ReactStylePlugin = require('react-style-webpack-plugin');
 
-
 module.exports = {
-	devtool: 'sourcemap',
-	entry: "./views/DocumentationApplication.js",
-	output: {
-		filename: "bundle.js",
-		path: __dirname + "/assets",
-		publicPath: "assets/"
-	},
-	module: {
-		loaders: [
+  devtool: 'sourcemap',
+  entry: './docs/DocumentationApplication.jsx',
+  output: {
+    filename: 'bundle.js',
+    path: path.join(__dirname, '/assets'),
+    publicPath: 'assets/'
+  },
+  module: {
+    loaders: [
       {
-        test:/\.html$/,
+        test: /\.html$/,
         loader: 'html-loader'
       },
       {
-        test: /\.js$/,
+        test: /\.jsx?$/,
         loaders: [
-          'babel-loader',  //jsx-loader?harmony'
-          ReactStylePlugin.loader()
+          'babel-loader'
+          // ReactStylePlugin.loader()
         ]
       },
       {
         test: /\.css$/,
-	      loader: ExtractTextPlugin.extract('css-loader')
+        loader: ExtractTextPlugin.extract('css-loader')
       },
       {
         test: /\.(otf|eot|svg|ttf|woff)/,
         loader: 'url-loader?limit=8192'
       }
-		]
-	},
-	plugins: [
-		new ReactStylePlugin('bundle.css')
-	]
+    ]
+  }
+  /* plugins: [
+    new ReactStylePlugin('bundle.css')
+  ]*/
 };
