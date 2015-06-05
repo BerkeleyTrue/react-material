@@ -88,7 +88,9 @@ Views.defaultView = (
     </h1>
     <p styles={ DocumentationApplicationStyles.paragraphStyle }>
       Here you find components written with
-      <a href={ URLs.REACT }>React.js</a> and
+      {' '}
+      <a href={ URLs.REACT }>React.js</a>
+      and
       {' '}
       <a href={ URLs.REACT_MATERIAL }>
         React Style
@@ -97,6 +99,7 @@ Views.defaultView = (
       <a href={ URLs.GOOGLE_MATERIAL }>
         Google material design guidelines
       </a>
+      {' '}
       It takes a different approach from Polymer, by wrapping both
       templates and CSS within JavaScript.
     </p>
@@ -131,7 +134,7 @@ export default class DocumentationApplicationView extends React.Component {
     super(props);
     this.state = {
       showSideNavigation: false,
-      view: 0
+      view: ViewKeys.defaultView
     };
   }
 
