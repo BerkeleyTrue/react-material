@@ -157,9 +157,12 @@ export default class extends React.Component {
   }
 
   static displayName = 'TextField'
+  static defaultProps = {
+    styles: {}
+  }
   static propTypes = {
     defaultValue: PropTypes.string,
-    error: PropTypes.bool,
+    error: PropTypes.string,
     floatingLabel: PropTypes.bool,
     onBlur: PropTypes.func,
     onFocus: PropTypes.func,
@@ -168,14 +171,6 @@ export default class extends React.Component {
     styles: PropTypes.object,
     type: PropTypes.string,
     value: PropTypes.number
-  }
-
-  componentDidMount() {
-    this.isMounted = true;
-  }
-
-  componentWillUnmount() {
-    this.isMounted = false;
   }
 
   onMouseDown(e) {
@@ -249,20 +244,6 @@ export default class extends React.Component {
     }
   }
 
-  // returns the value being displayed in the text field.
-  // This is equal to props.value if set or the current
-  // value of the actual DOM node if mounted
-  effectiveValue() {
-    const { value } = this.props;
-    if (value) {
-      return value;
-    } else if (this.isMounted) {
-      return React.findDOMNode(this.refs['textField']).value;
-    } else {
-      return '';
-    }
-  }
-
   render() {
     const {
       defaultValue,
@@ -308,7 +289,7 @@ export default class extends React.Component {
       placeHolderStyles.push(floatingLabelPlaceHolderStyling);
     }
 
-    if (focus || this.effectiveValue().length > 0) {
+    if (focus || value > 0) {
       if (floatingLabel) {
 
         placeHolderStyles.push(placeHolderTopStyling);

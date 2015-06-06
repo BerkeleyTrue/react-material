@@ -37,7 +37,7 @@ export default class extends React.Component {
           {' '}
           <Button
             raised={ true }
-            styles={{ marginLeft: 10 }}>
+            styles={ [{ marginLeft: 10 }] }>
             Button 2
           </Button>
         </div>

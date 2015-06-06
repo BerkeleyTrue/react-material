@@ -91,7 +91,7 @@ export default class extends React.Component {
       }
 
       if (!this.state.expand && this.props.show) {
-        this.setState({expand: true});
+        this.setState({ expand: true });
       }
     }, 10);
   }
@@ -145,14 +145,14 @@ export default class extends React.Component {
       const domNode = React.findDOMNode(this);
 
       if (!this.originalDimensions) {
-        const width = domNode.getBoundingClientRect().width;
+        const nodeWidth = domNode.getBoundingClientRect().width;
 
         const scaleX = 1 / (domNode.offsetWidth / node.offsetWidth);
         const scaleY = 1 / (domNode.offsetHeight / node.offsetHeight);
 
         const x = (
           -domNode.getBoundingClientRect().left +
-          width / 2 +
+          nodeWidth / 2 +
           node.getBoundingClientRect().left
         );
 
@@ -164,9 +164,9 @@ export default class extends React.Component {
 
         dimensions = this.originalDimensions = {
           height: domNode.offsetHeight,
-          marginLeft: -(width / 2),
+          marginLeft: -(nodeWidth / 2),
           marginTop: -(domNode.offsetHeight / 2),
-          width: width,
+          width: nodeWidth,
           transform:
             'translate(' + x + 'px, ' + y + 'px) ' +
             'scale(' + scaleX + ', ' + scaleY + ')'

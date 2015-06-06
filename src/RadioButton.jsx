@@ -63,9 +63,9 @@ export default class extends React.Component {
     super(props);
     const { checked = false } = props;
     this.isChecked = checked;
-    this.state({
+    this.state = {
       checked: checked
-    });
+    };
   }
 
   static displayName = 'RadioButton'

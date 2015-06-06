@@ -82,13 +82,13 @@ export default class BottomSheetsView extends React.Component {
         <Button
           onClick={ ::this.onShowBottomSheetBtnClick }
           raised={ true }
-          styles={{ marginTop: 40 }}>
+          styles={ [{ marginTop: 40 }] }>
           List
         </Button>
         <Button
           onClick={ ::this.onShowBottomSheetGridBtnClick }
           raised={ true }
-          styles={{ marginLeft: 20, marginTop: 40 }}>
+          styles={ [{ marginLeft: 20, marginTop: 40 }] }>
           Grid
         </Button>
         <Overlay

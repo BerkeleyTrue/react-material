@@ -3,7 +3,6 @@ import StyleSheet from 'react-style';
 
 import { Colors, Typography } from './style';
 import { Icon } from './';
-import { noop } from './utils';
 
 const AppBarStyles = StyleSheet.create({
   normalAppBarStyle: {

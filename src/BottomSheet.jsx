@@ -33,14 +33,16 @@ const BottomSheetStyles = StyleSheet.create({
 export default class extends React.Component {
   constructor(props) {
     super(props);
-
     this._isMounted = false;
+    this.state = {
+      height: 0
+    };
   }
   static displayName = 'BottomSheet '
   static propTypes = {
     children: PropTypes.node,
     show: PropTypes.bool,
-    styles: PropTypes.object,
+    styles: PropTypes.array,
     title: PropTypes.string
   }
 
@@ -51,14 +53,19 @@ export default class extends React.Component {
     this.forceUpdate();
   }
 
-  hiddenTransformStyle() {
-    let height = 0;
-    if (this._isMounted) {
-      const domNode = React.findDOMNode(this);
-      if (domNode) {
-        height = domNode.offsetHeight + 8;
-      }
+  componentDidUpdate() {
+    // NOTE(berks): not sure this needs to happen always or only at CDM
+    const domNode = React.findDOMNode(this);
+    const newHeight = domNode.offsetHeight + 8;
+    if (this.state.height !== newHeight) {
+      this.setState({ height: newHeight });
     }
+  }
+
+  hiddenTransformStyle() {
+    const {
+      height
+    } = this.state;
 
     return {
       visibility: 'hidden',
@@ -99,7 +106,7 @@ export default class extends React.Component {
     }
 
     return (
-      <div styles={bottomSheetStyles}>
+      <div styles={ bottomSheetStyles }>
         { this.renderTitle(title, defaultStyles.titleStyle) }
         { children }
       </div>

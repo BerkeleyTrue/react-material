@@ -9,7 +9,7 @@ export default class extends React.Component {
     return (
       <div>
         <h2>Single line text fields</h2>
-        <TextField placeHolder='Name'/>
+        <TextField placeHolder='Name' />
         <h2>Floating Labels</h2>
         <TextField
           floatingLabel={ true }

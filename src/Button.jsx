@@ -58,10 +58,10 @@ export default class extends React.Component {
     onClick: noop
   }
   static propTypes = {
-    children: PropTypes.children,
+    children: PropTypes.node,
     disabled: PropTypes.bool,
     onClick: PropTypes.func,
-    styles: PropTypes.object,
+    styles: PropTypes.array,
     raised: PropTypes.bool
   }
 

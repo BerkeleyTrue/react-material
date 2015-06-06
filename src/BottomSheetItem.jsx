@@ -21,7 +21,7 @@ export default class extends React.Component {
     return (
       <ListItem
         {...this.props}
-        styles={ BottomSheetItemStyles.normalStyle}>
+        styles={ [BottomSheetItemStyles.normalStyle] }>
         { this.props.children }
       </ListItem>
     );

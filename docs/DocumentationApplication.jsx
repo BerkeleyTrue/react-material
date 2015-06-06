@@ -75,7 +75,7 @@ const ViewKeys = keyMirror({
   TabsView: null,
   TextFieldsView: null,
   SwitchesView: null,
-  ListsView: null,
+  ListView: null,
   CardsView: null,
   DialogsView: null
   // MenusView: null
@@ -207,7 +207,7 @@ export default class DocumentationApplicationView extends React.Component {
             <ListItem onClick={ this.onClick(ViewKeys.DialogsView) }>
               Dialogs
             </ListItem>
-            <ListItem onClick={ this.onClick(ViewKeys.ListsView) }>
+            <ListItem onClick={ this.onClick(ViewKeys.ListView) }>
               Lists
             </ListItem>
             <ListItem onClick={ this.onClick(ViewKeys.SwitchesView) }>

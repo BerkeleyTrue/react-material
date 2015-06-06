@@ -58,7 +58,7 @@ export default class extends React.Component {
 
   static displayName = 'ProgressBar'
   static propTypes = {
-    percentage: PropTypes.string,
+    percentage: PropTypes.number,
     bufferPercentage: PropTypes.number,
     styles: PropTypes.array,
     type: PropTypes.string

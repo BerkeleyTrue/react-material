@@ -56,18 +56,18 @@ export default class extends React.Component {
           title='Permissions'
           triggerElement={ this.refs.button }
           width={ 300 }>
-          <div styles={styles.textStyle}>
+          <div styles={ [styles.textStyle] }>
             This app determines your phone's location and shares it with
             Hypnotoad in order to serve personalized ads for you. This
             allows for a better overall app experience.
           </div>
-          <div styles={ styles.buttonBarStyle }>
+          <div styles={ [styles.buttonBarStyle] }>
             <Button onClick={ ::this.onOverlayClick }>
               Decline
             </Button>
             <Button
               onClick={ ::this.onOverlayClick}
-              styles={{ color: Colors.blue.P500 }}>
+              styles={ [{ color: Colors.blue.P500 }] }>
               Accept
             </Button>
           </div>

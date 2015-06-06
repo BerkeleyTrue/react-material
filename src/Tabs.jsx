@@ -78,6 +78,7 @@ export default class extends React.Component {
       }
       accu.selectedTab = child;
       accu.selectedIndex = index;
+      return accu;
     }, defaultVal);
   }
 
@@ -98,7 +99,7 @@ export default class extends React.Component {
     }
   }
 
-  renderTitles(children, tabTitleStyle, tabTitleSelectedStyle) {
+  renderTabs(children, tabTitleStyle, tabTitleSelectedStyle) {
     if (!children) {
       return null;
     }

@@ -104,7 +104,7 @@ export default class extends React.Component {
     onClick: PropTypes.func,
     percentage: PropTypes.number,
     progressCircleStyle: PropTypes.object,
-    styles: PropTypes.object
+    styles: PropTypes.array
   }
 
   onMouseDown() {
@@ -162,6 +162,7 @@ export default class extends React.Component {
       active
     } = this.state;
 
+    let styles = FloatingActionButtonStyles;
     const containerStyles = [styles.containerStyle];
     const iconStyle = mini ? styles.miniIconStyle : styles.defaultIconStyle;
     const percentageStyling = [styles.percentageStyle];
@@ -169,7 +170,6 @@ export default class extends React.Component {
     let normalStyles = [styles.normalStyle];
     let shadowSize = 1;
 
-    let styles = FloatingActionButtonStyles;
     if (this.props.styles) {
       normalStyles = normalStyles.concat(this.props.styles);
     }

@@ -24,13 +24,11 @@ export default class extends React.Component {
   static displayName = 'Card';
   static propTypes = {
     children: React.PropTypes.node,
-    styles: React.PropTypes.object,
     title: React.PropTypes.string
   }
 
   render() {
     const {
-      styles,
       title
     } = this.props;
 
@@ -38,7 +36,7 @@ export default class extends React.Component {
       <div styles={ CardStyles.normalCardStyle }>
         <Shadow size={1} />
         { title &&
-          <h3 styles={styles.headerStyle}>
+          <h3 styles={ CardStyles.headerStyle }>
             { title }
           </h3>
         }
