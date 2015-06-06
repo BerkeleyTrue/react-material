@@ -79,7 +79,6 @@ export default class extends React.Component {
     };
     ripples.push(ripple);
 
-    // messes up click event :-(
     this.setState({ ripples: ripples });
 
     setTimeout(::this.startRipple, 0);
@@ -104,6 +103,7 @@ export default class extends React.Component {
         ripple.fadeOut = true;
         ripple.transitioning = false;
         ripple.transitionComplete = true;
+        return ripple;
       });
     this.setState({ ripples: ripples });
 
