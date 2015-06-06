@@ -1,4 +1,5 @@
 import React from 'react';
+import assign from 'object.assign';
 import keyMirror from 'keymirror';
 import StyleSheet from 'react-style';
 
@@ -15,6 +16,12 @@ import {
 } from '../lib';
 
 import * as Views from './';
+
+const ViewMap = Object.keys(Views)
+  .map(viewName => ({ [viewName]: React.createElement(Views[viewName]) }))
+  .reduce((accu, viewElement) => {
+    return assign(accu, viewElement);
+  }, {});
 
 const DocumentationApplicationStyles = StyleSheet.create({
   normalStyle: {
@@ -81,7 +88,7 @@ const URLs = {
     'http://www.google.com/design/spec/material-design/introduction.html'
 };
 
-Views.defaultView = (
+ViewMap.defaultView = (
   <div>
     <h1 styles={ DocumentationApplicationStyles.headerStyle }>
       React Material Components
@@ -159,7 +166,7 @@ export default class DocumentationApplicationView extends React.Component {
   }
 
   renderView(view) {
-    return Views[view];
+    return ViewMap[view];
   }
 
   getTitle(view) {
