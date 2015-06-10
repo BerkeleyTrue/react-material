@@ -25,6 +25,11 @@ var paths = {
     src: ['src/icons/*.html'],
     dest: 'lib/icons'
   },
+  reactifySVG: [
+    'gulp-reactifySVG/*.js',
+    // template file should not be linted
+    'gulp-reactifySVG/*.jsx'
+  ],
   docs: [
     'docs/**/*.jsx',
     'docs/**/*.js'
@@ -48,13 +53,13 @@ gulp.task('svg', function() {
     .pipe(gulp.dest(paths.icons.dest));
 });
 
-gulp.task('pack', ['svg', 'transpile'], function() {
+gulp.task('docs', function() {
   return gulp.src(paths.docs + '/DocumentationApplication.js')
     .pipe(webpack(require('./webpack.config.js')))
       .pipe(gulp.dest('assets/'));
 });
 
-gulp.task('sync', ['pack'], function(cb) {
+gulp.task('sync', ['docs'], function(cb) {
   sync({
     server: {
       baseDir: './',
@@ -68,14 +73,29 @@ gulp.task('sync', ['pack'], function(cb) {
   });
 });
 
-gulp.task('watch', function() {
-  gulp.watch(paths.js.src.concat(paths.docs), ['pack']);
+gulp.task('watch', ['svg', 'transpile', 'docs', 'sync'], function() {
+  gulp.watch(paths.js.src, ['transpile']);
+  gulp.watch(
+    paths.icons.src.concat(paths.reactifySVG),
+    ['svg']
+  );
+  gulp.watch(paths.docs.src, ['docs']);
+  gulp.watch(
+    paths.js.src.concat(
+      paths.docs,
+      paths.reactifySVG
+    ),
+    ['docs']
+  );
 });
 
 gulp.task('lint', function() {
-  return gulp.src(paths.js.src)
+  return gulp.src(paths.js.src.concat(
+    paths.docs,
+    [paths.reactifySVG[0]]
+  ))
     .pipe(eslint())
     .pipe(eslint.format());
 });
 
-gulp.task('default', ['transpile', 'pack', 'sync', 'watch']);
+gulp.task('default', ['lint', 'svg', 'transpile', 'docs', 'sync', 'watch']);
