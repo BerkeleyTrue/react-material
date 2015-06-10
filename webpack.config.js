@@ -32,8 +32,9 @@ module.exports = {
         loader: 'url-loader?limit=8192'
       }
     ]
-  }
-  /* plugins: [
-    new ReactStylePlugin('bundle.css')
-  ]*/
+  },
+  plugins: [
+    // new ReactStylePlugin('bundle.css')
+    new ExtractTextPlugin('bundle.css')
+  ]
 };

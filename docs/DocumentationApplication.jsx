@@ -2,6 +2,7 @@ import React from 'react';
 import assign from 'object.assign';
 import keyMirror from 'keymirror';
 import StyleSheet from 'react-style';
+import styles from './style.css'; // eslint-disable-line
 
 React.initializeTouchEvents(true);
 
