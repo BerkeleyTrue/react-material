@@ -30,7 +30,7 @@
     "react": "^0.13.0",
     "react-magician": "git+https://github.com/SanderSpies/react-magician.git",
     "react-style": "^0.4.0",
-    "react-style-webpack-plugin": "git+https://github.com/js-next/react-style-webpack-plugin.git#multiple-entries",
+    "react-style-webpack-plugin": "^0.4.0",
     "style-loader": "^0.8.1",
     "through2": "^0.6.5",
     "webpack": "^1.4.5"

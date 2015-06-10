@@ -1,6 +1,6 @@
 var path = require('path');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var ReactStylePlugin = require('react-style-webpack-plugin');
+// var ReactStylePlugin = require('react-style-webpack-plugin');
 
 module.exports = {
   devtool: 'sourcemap',
