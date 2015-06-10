@@ -132,7 +132,7 @@ const Titles = {
   [ViewKeys.TabsView]: 'Tabs',
   [ViewKeys.TextFieldsView]: 'Text fields',
   [ViewKeys.SwitchesView]: 'Switches',
-  [ViewKeys.ListsView]: 'Lists',
+  [ViewKeys.ListView]: 'Lists',
   [ViewKeys.CardsView]: 'Cards',
   [ViewKeys.DialogsView]: 'Dialogs'
 };
@@ -156,7 +156,6 @@ export default class DocumentationApplicationView extends React.Component {
     return () => {
       this.setState({
         view: view,
-        expanded: view === ViewKeys.ButtonsView,
         showSideNavigation: false
       });
     };
