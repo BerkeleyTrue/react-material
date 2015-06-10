@@ -10,6 +10,7 @@
     "prepublish": "gulp transpile"
   },
   "devDependencies": {
+    "babel": "^5.5.6",
     "babel-eslint": "^3.1.9",
     "babel-loader": "^5.1.4",
     "browser-sync": "^1.4.0",
@@ -20,15 +21,18 @@
     "gulp": "^3.8.8",
     "gulp-babel": "^5.1.0",
     "gulp-eslint": "^0.12.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-util": "^3.0.5",
     "gulp-webpack": "^0.3.0",
     "html-loader": "0.2.3",
     "jsx-loader": "^0.12.0",
-    "merge2": "^0.3.1",
+    "lodash": "^3.9.3",
     "react": "^0.13.0",
     "react-magician": "git+https://github.com/SanderSpies/react-magician.git",
     "react-style": "^0.4.0",
     "react-style-webpack-plugin": "git+https://github.com/js-next/react-style-webpack-plugin.git#multiple-entries",
     "style-loader": "^0.8.1",
+    "through2": "^0.6.5",
     "webpack": "^1.4.5"
   },
   "browserify": {

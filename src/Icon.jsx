@@ -1,24 +1,12 @@
 import React, { PropTypes } from 'react';
 import StyleSheet from 'react-style';
+import assign from 'object.assign';
 
-const coreIconsTemp = require('./icons/core-icons.html');
-const coreIcons = coreIconsTemp
-  .substr(coreIconsTemp.indexOf('<defs>') + 6)
-  .substr(0, coreIconsTemp.indexOf('</defs>'));
+import { svgSupport } from './utils';
+import coreIcons from './icons/core-icons';
+import socialIcons from './icons/social-icons';
 
-const socialIconsTemp = require('./icons/social-icons.html');
-const socialIcons = socialIconsTemp
-  .substr(socialIconsTemp.indexOf('<defs>') + 6)
-  .substr(0, socialIconsTemp.indexOf('</defs>'));
-
-let div;
-let svgSupport = false;
-if (typeof window !== 'undefined') {
-  div = document.createElement('div');
-  div.innerHTML = coreIcons + socialIcons;
-  svgSupport = !!window.SVGElement;
-}
-
+const iconMap = assign({}, coreIcons, socialIcons);
 const IconStyles = StyleSheet.create({
   iconStyle: {
     display: 'inline-block',
@@ -26,6 +14,13 @@ const IconStyles = StyleSheet.create({
     width: 24
   }
 });
+
+function getIconElement(icon) {
+  if (!icon) {
+    return <div styles={ IconStyles.iconStyle } />;
+  }
+  return iconMap[icon];
+}
 
 export default class Icon extends React.Component {
   constructor(props) { super(props); }
@@ -47,12 +42,6 @@ export default class Icon extends React.Component {
       return <div />;
     }
 
-    if (!icon) {
-      return <div styles={ IconStyles.iconStyle } />;
-    }
-
-    const html = div.querySelector('#' + icon).innerHTML;
-
     const svgStyles = [
       IconStyles.IconStyles,
       styles
@@ -60,12 +49,13 @@ export default class Icon extends React.Component {
 
     return (
       <svg
-        dangerouslySetInnerHTML={{ __html: html }}
         height='100%'
         preserveAspectRatio='xMidYMid meet'
         styles={ svgStyles }
         viewBox='0 0 24 24'
-        width='100%' />
+        width='100%'>
+        { getIconElement(icon) }
+      </svg>
     );
   }
 }

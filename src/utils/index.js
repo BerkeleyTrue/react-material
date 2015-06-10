@@ -27,6 +27,7 @@ export function isTransform(name) {
 
 export function noop() { }
 export const slice = Array.prototype.slice;
+export const svgSupport = !!window.SVGElement;
 
 let transitionEnd = null;
 if (canUseDOM) {

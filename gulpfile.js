@@ -1,9 +1,11 @@
 'use strict';
+require('babel/register');
 var gulp = require('gulp'),
     babel = require('gulp-babel'),
     eslint = require('gulp-eslint'),
+    rename = require('gulp-rename'),
+    reactifySVG = require('./gulp-reactifySVG'),
     sync = require('browser-sync'),
-    merge = require('merge2'),
     webpack = require('gulp-webpack');
 
 var paths = {
@@ -31,20 +33,22 @@ var paths = {
 };
 
 gulp.task('transpile', function() {
-  var icons = gulp.src(paths.icons.src)
-    .pipe(gulp.dest(paths.icons.dest));
-
-  var components = gulp.src(paths.js.src)
+  return gulp.src(paths.js.src)
     .pipe(babel())
     .pipe(gulp.dest(paths.js.dest));
-
-  return merge([
-    icons,
-    components
-  ]);
 });
 
-gulp.task('pack', ['transpile'], function() {
+gulp.task('svg', function() {
+  return gulp.src(paths.icons.src)
+    .pipe(reactifySVG())
+    .pipe(rename({
+      extname: '.jsx'
+    }))
+    .pipe(babel())
+    .pipe(gulp.dest(paths.icons.dest));
+});
+
+gulp.task('pack', ['svg', 'transpile'], function() {
   return gulp.src(paths.docs + '/DocumentationApplication.js')
     .pipe(webpack(require('./webpack.config.js')))
       .pipe(gulp.dest('assets/'));
