@@ -1,0 +1,8 @@
+.idea/*
+**/*.log
+node_modules/*
+*.iml
+.DS_Store
+
+# don't check in compiled components
+assets
