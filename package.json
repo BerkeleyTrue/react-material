@@ -29,7 +29,7 @@
     "lodash": "^3.9.3",
     "react": "^0.13.0",
     "react-magician": "git+https://github.com/SanderSpies/react-magician.git",
-    "react-style": "^0.4.0",
+    "react-style": "^0.5.5",
     "react-style-webpack-plugin": "^0.4.0",
     "style-loader": "^0.8.1",
     "through2": "^0.6.5",
