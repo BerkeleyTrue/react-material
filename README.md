@@ -38,6 +38,7 @@ Current issues
 Alternatives
 ---
 - https://github.com/callemall/material-ui
+- https://github.com/jscissr/react-polymer
 
 If there are others let us know.
 
