@@ -1,6 +1,8 @@
 [![Stories in Ready](https://badge.waffle.io/SanderSpies/react-material.png?label=ready&title=Ready)](http://waffle.io/SanderSpies/react-material)
 React Material Design Components
 ===
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/BerkeleyTrue/react-material.svg)](https://greenkeeper.io/)
 Material design components written with React.js and React Style.
 
 Thanks to the Polymer team for providing a base set of elements that I could re-implement.
